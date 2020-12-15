@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 with open('README.md', 'r') as fdesc:
@@ -6,13 +6,13 @@ with open('README.md', 'r') as fdesc:
 
 setup(
     name='libfmp',
-    version='1.1.0',
+    version='1.1.1',
     description='Python module for fundamentals of music processing',
     author='Meinard Müller and Frank Zalkow',
     author_email='meinard.mueller@audiolabs-erlangen.de',
     url='http://audiolabs-erlangen.de/FMP',
     download_url='https://github.com/meinardmueller/libfmp',
-    packages=['libfmp'],
+    packages=find_packages(),
     long_description=long_description,
     long_description_content_type='text/markdown',
     classifiers=[
