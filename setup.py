@@ -33,5 +33,9 @@ setup(
                       'pandas == 1.0.*',
                       'pretty_midi == 0.2.*',
                       'pysoundfile == 0.9.*',
-                      'scipy == 1.3.*']
+                      'scipy == 1.3.*'],
+    python_requires='>=3.6, <=3.8',
+    extras_require={
+        'tests': ['pytest == 6.2.*']
+    }
 )
