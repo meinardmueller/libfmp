@@ -11,16 +11,16 @@ import numpy as np
 def threshold_matrix_relative(S, thresh_rel=0.2, details=False):
     """Treshold matrix in a relative fashion
 
-    Notebook: C4/C4/C4S2_SSM-Thresholding.ipynb
+    Notebook: C4/C4S2_SSM-Thresholding.ipynb
 
     Args:
-        S: Input matrix
-        thresh_rel: Relative treshold
-        details: Print details on thresholding procedure
+        S (np.ndarray): Input matrix
+        thresh_rel (float): Relative treshold (Default value = 0.2)
+        details (bool): Print details on thresholding procedure (Default value = False)
 
     Returns:
-        S_thresh: Thresholded matrix
-        thresh_abs: Absolute threshold used for thresholding
+        S_thresh (np.ndarray): Thresholded matrix
+        thresh_abs (float): Absolute threshold used for thresholding
     """
     S_thresh = np.copy(S)
     num_cells_below_thresh = int(np.round(S_thresh.size*(1-thresh_rel)))
@@ -33,23 +33,21 @@ def threshold_matrix_relative(S, thresh_rel=0.2, details=False):
     return S_thresh, thresh_abs
 
 
-def threshold_matrix(S, thresh, strategy='absolute', scale=False, penalty=0, binarize=False):
+def threshold_matrix(S, thresh, strategy='absolute', scale=False, penalty=0.0, binarize=False):
     """Treshold matrix in a relative fashion
 
-    Notebook: C4/C4/C4S2_SSM-Thresholding.ipynb
+    Notebook: C4/C4S2_SSM-Thresholding.ipynb
 
     Args:
-        S: Input matrix
-        thresh: Treshold (meaning depends on strategy)
-        strategy: Thresholding strategy ('absolute', 'relative', 'local')
-        scale: If scale=True, then scaling of positive values to range [0,1]
-        penalty: Set values below treshold to value specified
-        binarize: Binarizes final matrix (positive: 1; otherwise: 0)
-        Note: Binarization is applied last (overriding other settings)
-
+        S (np.ndarray): Input matrix
+        thresh (float): Treshold (meaning depends on strategy)
+        strategy (str): Thresholding strategy ('absolute', 'relative', 'local') (Default value = 'absolute')
+        scale (bool): If scale=True, then scaling of positive values to range [0,1] (Default value = False)
+        penalty (float): Set values below treshold to value specified (Default value = 0.0)
+        binarize (bool): Binarizes final matrix (positive: 1; otherwise: 0) (Default value = False)
 
     Returns:
-        S_thresh: Thresholded matrix
+        S_thresh (np.ndarray): Thresholded matrix
     """
     if np.min(S) < 0:
         raise Exception('All entries of the input matrix must be nonnegative')

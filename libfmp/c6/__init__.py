@@ -27,6 +27,7 @@ from .c6s3_adaptive_windowing import plot_beat_grid, \
     adaptive_windowing, \
     compute_plot_adaptive_windowing
 
-from .c6s1_peak_picking import peak_picking_boeck, \
+from .c6s1_peak_picking import peak_picking_simple, \
+    peak_picking_boeck, \
     peak_picking_roeder, \
-    peak_picking_nieto
+    peak_picking_MSAF

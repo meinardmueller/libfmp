@@ -16,15 +16,15 @@ import libfmp.c7
 @jit(nopython=True)
 def compute_accumulated_score_matrix_common_subsequence(S):
     """Given the score matrix, compute the accumulated score matrix
-       for common subsequence matching with step sizes {(1, 0), (0, 1), (1, 1)}
+    for common subsequence matching with step sizes {(1, 0), (0, 1), (1, 1)}
 
     Notebook: C7/C7S3_CommonSubsequence.ipynb
 
     Args:
-        S: Score matrix
+        S (np.ndarray): Score matrix
 
     Returns:
-        D: Accumulated score matrix
+        D (np.ndarray): Accumulated score matrix
     """
     N, M = S.shape
     D = np.zeros((N, M))
@@ -47,17 +47,18 @@ def compute_accumulated_score_matrix_common_subsequence(S):
 @jit(nopython=True)
 def compute_optimal_path_common_subsequence(D, cellmax=True, n=0, m=0):
     """Given an accumulated score matrix, compute the score-maximizing path
-       for common subsequence matching with step sizes {(1, 0), (0, 1), (1, 1)}
+    for common subsequence matching with step sizes {(1, 0), (0, 1), (1, 1)}
 
     Notebook: C7/C7S3_CommonSubsequence.ipynb
 
     Args:
-        D: Accumulated score matrix
-        cellmax: If "True", score-maximizing cell will be computed
-        n, m: Indices of cell for backtracking start; only used when cellmax=False
+        D (np.ndarray): Accumulated score matrix
+        cellmax (bool): If "True", score-maximizing cell will be computed (Default value = True)
+        n (int): Index (first axis) of cell for backtracking start; only used when cellmax=False (Default value = 0)
+        m (int): Index (second axis) of cell for backtracking start; only used when cellmax=False (Default value = 0)
 
-    Returns
-        P: Score-maximizing path (list of index pairs)
+    Returns:
+        P (np.ndarray): Score-maximizing path (array of index pairs)
     """
     if cellmax:
         # n, m = np.unravel_index(np.argmax(D), D.shape)  # doesn't work with jit
@@ -93,11 +94,11 @@ def get_induced_segments(P):
     Notebook: C7/C7S3_CommonSubsequence.ipynb
 
     Args:
-        P: Path (list of index pairs)
+        P (np.ndarray): Path (list of index pairs)
 
-    Returns
-        seg_X: Induced segment of first sequence
-        seg_Y: Induced segment of second sequence
+    Returns:
+        seg_X (np.ndarray): Induced segment of first sequence
+        seg_Y (np.ndarray): Induced segment of second sequence
     """
     seg_X = np.arange(P[0, 0], P[-1, 0] + 1)
     seg_Y = np.arange(P[0, 1], P[-1, 1] + 1)
@@ -107,15 +108,16 @@ def get_induced_segments(P):
 @jit(nopython=True)
 def compute_partial_matching(S):
     """Given the score matrix, compute the accumulated score matrix
-       for partial matching
+    for partial matching
 
     Notebook: C7/C7S3_CommonSubsequence.ipynb
 
     Args:
-        S: Score matrix
+        S (np.ndarray): Score matrix
 
     Returns:
-        D: Accumulated score matrix
+        D (np.ndarray): Accumulated score matrix
+        P (np.ndarray): Partial match (array of index pairs)
     """
     N, M = S.shape
     D = np.zeros((N+1, M+1))
@@ -142,24 +144,38 @@ def compute_partial_matching(S):
 
 def compute_sm_from_wav(x1, x2, Fs, N=4410, H=2205, ell=21, d=5, L_smooth=12,
                         tempo_rel_set=np.array([0.66, 0.81, 1, 1.22, 1.5]),
-                        shift_set=np.array([0]), strategy='relative', scale=1,
-                        thresh=0.15, penalty=-2, binarize=0):
+                        shift_set=np.array([0]), strategy='relative', scale=True,
+                        thresh=0.15, penalty=-2.0, binarize=False):
     """Compute a similarity matrix (SM)
 
-    Notebook: C7S3_VersionIdentification.ipynb
+    Notebook: C7/C7S3_VersionIdentification.ipynb
 
     Args:
-        x1, x2: WAV files
-        Fs: Sampling rate of WAV files
-        N, H: Parameters for computing STFT-based chroma features
-        ell, d: Parameters for computing CENS features
-        L_smooth, tempo_rel_set, shift_set: Parameters for enhancing SM
-        strategy, scale, thresh, penalty, binarize: Parameters used for thresholding SM
+        x1 (np.ndarray): First signal
+        x2 (np.ndarray): Second signal
+        Fs (scalar): Sampling rate of WAV files
+        N (int): Window size for computing STFT-based chroma features (Default value = 4410)
+        H (int): Hop size for computing STFT-based chroma features (Default value = 2205)
+        ell (int): Smoothing length for computing CENS features (Default value = 21)
+        d (int): Downsampling factor for computing CENS features (Default value = 5)
+        L_smooth (int): Length of filter for enhancing SM (Default value = 12)
+        tempo_rel_set (np.ndarray): Set of relative tempo values for enhancing SM
+            (Default value = np.array([0.66, 0.81, 1, 1.22, 1.5]))
+        shift_set (np.ndarray): Set of shift indices for enhancing SM (Default value = np.array([0]))
+        strategy (str): Thresholding strategy for thresholding SM ('absolute', 'relative', 'local')
+            (Default value = 'relative')
+        scale (bool): If scale=True, then scaling of positive values to range [0,1] for thresholding SM
+            (Default value = True)
+        thresh (float): Treshold (meaning depends on strategy) (Default value = 0.15)
+        penalty (float): Set values below treshold to value specified (Default value = -2.0)
+        binarize (bool): Binarizes final matrix (positive: 1; otherwise: 0) (Default value = False)
 
     Returns:
-        X, Y: CENS feature sequence
-        Fs_feature: Feature rate
-        S_thresh, I: Similarity matrix and index matrix
+        X (np.ndarray): CENS feature sequence for first signal
+        Y (np.ndarray): CENS feature sequence for second signal
+        Fs_feature (scalar): Feature rate
+        S_thresh (np.ndarray): Similarity matrix
+        I (np.ndarray): Index matrix
     """
     # Computation of CENS features
     C1 = librosa.feature.chroma_stft(y=x1, sr=Fs, tuning=0, norm=1, hop_length=H, n_fft=N)
@@ -183,19 +199,21 @@ def compute_prf_metrics(I, score, I_Q):
     Notebook: C7/C7S3_Evaluation.ipynb
 
     Args:
-        I: Array of items
-        score: Array containig the score values of the times
-        I_Q: Array of relevant (positive) items
+        I (np.ndarray): Array of items
+        score (np.ndarray): Array containing the score values of the times
+        I_Q (np.ndarray): Array of relevant (positive) items
 
     Returns:
-        P_Q, R_Q, F_Q: Precision, recall, and F-measures sorted by rank
-        BEP: Break-even point
-        F_max: Maximal F-measure
-        P_average: Mean average
-        X_Q: Relevance function
-        rank: Array of rank values
-        I_sorted: Array of items sorted by rank
-        rank_sorted: Array of rank values sorted by rank
+        P_Q (float): Precision
+        R_Q (float): Recall
+        F_Q (float): F-measures sorted by rank
+        BEP (float): Break-even point
+        F_max (float): Maximal F-measure
+        P_average (float): Mean average
+        X_Q (np.ndarray): Relevance function
+        rank (np.ndarray): Array of rank values
+        I_sorted (np.ndarray): Array of items sorted by rank
+        rank_sorted (np.ndarray): Array of rank values sorted by rank
     """
     # Compute rank and sort documents according to rank
     K = len(I)

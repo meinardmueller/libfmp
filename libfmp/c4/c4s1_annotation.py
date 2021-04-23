@@ -11,6 +11,14 @@ import libfmp.b
 
 
 def get_color_for_annotation_file(filename):
+    """Gets color dict for annotation file
+
+    Args:
+        filename (str): Annotation file
+
+    Returns:
+        color_ann (dict): Dictionary encoding color scheme
+    """
     color_ann = None
     if filename == 'FMP_C4_Audio_Brahms_HungarianDances-05_Ormandy.csv':
         color_ann = {'A1': [1, 0, 0, 0.2], 'A2': [1, 0, 0, 0.2], 'A3': [1, 0, 0, 0.2],
@@ -39,12 +47,13 @@ def convert_structure_annotation(ann, Fs=1, remove_digits=False, index=False):
     Notebook: C4/C4S1_MusicStructureGeneral.ipynb
 
     Args:
-        ann: Structure annotions
-        Fs: Sampling rate
-        remove_digits: Remove digits from labels
+        ann (list): Structure annotions
+        Fs (scalar): Sampling rate (Default value = 1)
+        remove_digits (bool): Remove digits from labels (Default value = False)
+        index (bool): Round to nearest integer (Default value = False)
 
     Returns:
-        ann_converted: Converted annotation
+        ann_converted (list): Converted annotation
     """
     ann_converted = []
     for r in ann:
@@ -67,13 +76,15 @@ def read_structure_annotation(fn_ann, fn_ann_color='', Fs=1, remove_digits=False
     Notebook: C4/C4S1_MusicStructureGeneral.ipynb
 
     Args:
-        fn_ann: path and filename for structure annotions
-        fn_ann_color: filename used to identify colors
-        Fs: Sampling rate
-        remove_digits: Remove digits from labels
+        fn_ann (str): Path and filename for structure annotions
+        fn_ann_color (str): Filename used to identify colors (Default value = '')
+        Fs (scalar): Sampling rate (Default value = 1)
+        remove_digits (bool): Remove digits from labels (Default value = False)
+        index (bool): Round to nearest integer (Default value = False)
 
     Returns:
-        ann: Annotations
+        ann (list): Annotations
+        color_ann (dict): Color scheme
     """
     df = libfmp.b.read_csv(fn_ann)
     ann = [(start, end, label) for i, (start, end, label) in df.iterrows()]

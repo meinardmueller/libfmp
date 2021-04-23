@@ -18,13 +18,13 @@ def compute_constellation_map_naive(Y, dist_freq=7, dist_time=7, thresh=0.01):
     Notebook: C7/C7S1_AudioIdentification.ipynb
 
     Args:
-        Y: Spectrogram (magnitude)
-        dist_freq: Neighborhood parameter for frequency direction (kappa)
-        dist_time: Neighborhood parameter for time direction (tau)
-        thresh: Threshold parameter for minimal peak magnitude
+        Y (np.ndarray): Spectrogram (magnitude)
+        dist_freq (int): Neighborhood parameter for frequency direction (kappa) (Default value = 7)
+        dist_time (int): Neighborhood parameter for time direction (tau) (Default value = 7)
+        thresh (float): Threshold parameter for minimal peak magnitude (Default value = 0.01)
 
     Returns:
-        Cmap: Boolean mask for peak structure (same size as Y)
+        Cmap (np.ndarray): Boolean mask for peak structure (same size as Y)
     """
     # spectrogram dimensions
     if Y.ndim > 1:
@@ -54,20 +54,21 @@ def plot_constellation_map(Cmap, Y=None, xlim=None, ylim=None, title='',
                            s=5, color='r', marker='o', figsize=(7, 3), dpi=72):
     """Plot constellation map
 
-    Notebook: C7/C7/C7S1_AudioIdentification.ipynb
+    Notebook: C7/C7S1_AudioIdentification.ipynb
 
     Args:
         Cmap: Constellation map given as boolean mask for peak structure
-        Y: Spectrogram representation
-        xlim, ylim: Limits for x axis and yaxis
-        title: Title for plot
-        xlabel, ylabel: Label for x axis and y axis
-        s: Size of dots in scatter plot
-        color: Color used for scatter plot
-        maker: Marke type used for scatter plot
-        figsize: Width, height in inches
-        dpi: Dots per inch
-        colorbar: Create a colorbar.
+        Y: Spectrogram representation (Default value = None)
+        xlim: Limits for x-axis (Default value = None)
+        ylim: Limits for y-axis (Default value = None)
+        title: Title for plot (Default value = '')
+        xlabel: Label for x-axis (Default value = 'Time (sample)')
+        ylabel: Label for y-axis (Default value = 'Frequency (bins)')
+        s: Size of dots in scatter plot (Default value = 5)
+        color: Color used for scatter plot (Default value = 'r')
+        marker: Marker for peaks (Default value = 'o')
+        figsize: Width, height in inches (Default value = (7, 3))
+        dpi: Dots per inch (Default value = 72)
 
     Returns:
         fig: The created matplotlib figure
@@ -104,13 +105,14 @@ def compute_constellation_map(Y, dist_freq=7, dist_time=7, thresh=0.01):
 
     Notebook: C7/C7S1_AudioIdentification.ipynb
 
-        Y: Spectrogram (magnitude)
-        dist_freq: Neighborhood parameter for frequency direction (kappa)
-        dist_time: Neighborhood parameter for time direction (tau)
-        thresh: Threshold parameter for minimal peak magnitude
+    Args:
+        Y (np.ndarray): Spectrogram (magnitude)
+        dist_freq (int): Neighborhood parameter for frequency direction (kappa) (Default value = 7)
+        dist_time (int): Neighborhood parameter for time direction (tau) (Default value = 7)
+        thresh (float): Threshold parameter for minimal peak magnitude (Default value = 0.01)
 
     Returns:
-        Cmap: Boolean mask for peak structure (same size as Y)
+        Cmap (np.ndarray): Boolean mask for peak structure (same size as Y)
     """
     result = ndimage.maximum_filter(Y, size=[2*dist_freq+1, 2*dist_time+1], mode='constant')
     Cmap = np.logical_and(Y == result, result > thresh)
@@ -118,22 +120,23 @@ def compute_constellation_map(Y, dist_freq=7, dist_time=7, thresh=0.01):
 
 
 def match_binary_matrices_tol(C_ref, C_est, tol_freq=0, tol_time=0):
-    """Compare binary matrices with tolerance
-       Note: The tolerance parameters should be smaller than the minimum distance of
-             peaks (1-entries in C_ref ad C_est) to obtain meaningful TP, FN, FP values
+    """| Compare binary matrices with tolerance
+    | Note: The tolerance parameters should be smaller than the minimum distance of
+      peaks (1-entries in C_ref ad C_est) to obtain meaningful TP, FN, FP values
 
     Notebook: C7/C7S1_AudioIdentification.ipynb
 
-        C_ref: Binary matrix used as reference
-        C_est: inary matrix used as estimation
-        tol_freq: Tolerance in frequency direction (vertical)
-        tol_time: Tolerance in time direction (horizontal)
+    Args:
+        C_ref (np.ndarray): Binary matrix used as reference
+        C_est (np.ndarray): Binary matrix used as estimation
+        tol_freq (int): Tolerance in frequency direction (vertical) (Default value = 0)
+        tol_time (int): Tolerance in time direction (horizontal) (Default value = 0)
 
     Returns:
-        TP: True positives
-        FN: False negatives
-        FP: False positives
-        C_AND: Boolean mask of AND of C_ref and C_est (with tolerance)
+        TP (int): True positives
+        FN (int): False negatives
+        FP (int): False positives
+        C_AND (np.ndarray): Boolean mask of AND of C_ref and C_est (with tolerance)
     """
     assert C_ref.shape == C_est.shape, "Dimensions need to agree"
     N = np.sum(C_ref)
@@ -153,14 +156,15 @@ def compute_matching_function(C_D, C_Q, tol_freq=1, tol_time=1):
 
     Notebook: C7/C7S1_AudioIdentification.ipynb
 
-        C_D: Binary matrix used as dababase document
-        C_Q: Binary matrix used as query document
-        tol_freq: Tolerance in frequency direction (vertical)
-        tol_time: Tolerance in time direction (horizontal)
+    Args:
+        C_D (np.ndarray): Binary matrix used as dababase document
+        C_Q (np.ndarray): Binary matrix used as query document
+        tol_freq (int): Tolerance in frequency direction (vertical) (Default value = 1)
+        tol_time (int): Tolerance in time direction (horizontal) (Default value = 1)
 
     Returns:
-        Delta: Matching function
-        shift_max: Optimal shift position maximizing Delta
+        Delta (np.ndarray): Matching function
+        shift_max (int): Optimal shift position maximizing Delta
     """
     L = C_D.shape[1]
     N = C_Q.shape[1]

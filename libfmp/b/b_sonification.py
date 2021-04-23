@@ -12,21 +12,14 @@ import numpy as np
 def list_to_chromagram(note_list, num_frames, frame_rate):
     """Create a chromagram matrix from a list of note events
 
-    Parameters
-    ----------
-    note_list : List
-        A list of note events (e.g. gathered from a CSV file by libfmp.c1.pianoroll.csv_to_list())
+    Args:
+        note_list (list): A list of note events (e.g. gathered from a CSV file by
+            :func:`libfmp.c1.c1s2_symbolic_rep.csv_to_list`)
+        num_frames (int): Desired number of frames for the matrix
+        frame_rate (float): Frame rate for C (in Hz)
 
-    num_frames : int
-        Desired number of frames for the matrix
-
-    frame_rate : float
-        Frame rate for C (in Hz)
-
-    Returns
-    -------
-    C : NumPy Array
-        Chromagram matrix
+    Returns:
+        C (np.ndarray): Chromagram matrix
     """
     C = np.zeros((12, num_frames))
     for l in note_list:
@@ -37,17 +30,19 @@ def list_to_chromagram(note_list, num_frames, frame_rate):
 
 
 def generate_shepard_tone(chromaNum, Fs, N, weight=1, Fc=440, sigma=15, phase=0):
-    """
-    inputs:
-        chromaNum: 1=C,...
-        Fs: sampling frequency
-        N: desired length (in samples)
-        weight: scaling factor [0:1]
-        Fc: frequency for A4
-        sigma: parameter for envelope of Shepard tone
-        fading: fading at the beginning and end of the tone (in ms)
-    output:
-        shepard tone
+    """Generates shepard tone
+
+    Args:
+        chromaNum (int): 1=C,...
+        Fs (scalar): Sampling frequency
+        N (int): Desired length (in samples)
+        weight (float): Scaling factor [0:1] (Default value = 1)
+        Fc (float): Frequency for A4 (Default value = 440)
+        sigma (float): Parameter for envelope of Shepard tone (Default value = 15)
+        phase (float): Phase of sine (Default value = 0)
+
+    Returns:
+        tone (np.ndarray): Shepard tone
     """
     tone = np.zeros(N)
     # Envelope function for Shepard tones
@@ -68,27 +63,17 @@ def generate_shepard_tone(chromaNum, Fs, N, weight=1, Fc=440, sigma=15, phase=0)
 def sonify_chromagram(chroma_data, N, frame_rate, Fs, fading_msec=5):
     """Sonify the chroma features from a chromagram
 
-    Parameters
-    ----------
-    chroma_data : NumPy Array
-        A chromagram (e.g. gathered from a list of note events by list_to_chromagram())
+    Args:
+        chroma_data (np.ndarray): A chromagram (e.g., gathered from a list of note events by
+            :func:`libfmp.b.b_sonification.list_to_chromagram`)
+        N (int): Length of the sonification (in samples)
+        frame_rate (float): Frame rate for P (in Hz)
+        Fs (float): Sampling frequency (in Hz)
+        fading_msec (float): The length of the fade in and fade out for sonified tones (in msec)
+            (Default value = 5)
 
-    N : int
-        Length of the sonification (in samples)
-
-    frame_rate : float
-        Frame rate for P (in Hz)
-
-    Fs : float
-        Sampling frequency (in Hz)
-
-    fading_msec : float
-        The length of the fade in and fade out for sonified tones (in msec)
-
-    Returns
-    -------
-    chroma_son : NumPy Array
-        Sonification of the chromagram
+    Returns:
+        chroma_son (np.ndarray): Sonification of the chromagram
     """
 
     chroma_son = np.zeros((N,))
@@ -119,33 +104,19 @@ def sonify_chromagram(chroma_data, N, frame_rate, Fs, fading_msec=5):
 def sonify_chromagram_with_signal(chroma_data, x, frame_rate, Fs, fading_msec=5, stereo=True):
     """Sonify the chroma features from a chromagram together with a corresponding signal
 
-    Parameters
-    ----------
-    chroma_data : NumPy Array
-        A chromagram (e.g. gathered from a list of note events by list_to_chromagram()
+    Args:
+        chroma_data (np.ndarray): A chromagram (e.g., gathered from a list of note events by
+            :func:`libfmp.b.b_sonification.list_to_chromagram`)
+        x (np.ndarray): Original signal
+        frame_rate (float): Frame rate for P (in Hz)
+        Fs (float): Sampling frequency (in Hz)
+        fading_msec (float): The length of the fade in and fade out for sonified tones (in msec)
+            (Default value = 5)
+        stereo (bool): Decision between stereo and mono sonification (Default value = True)
 
-    x : NumPy Array
-        Original signal
-
-    frame_rate : float
-        Frame rate for P (in Hz)
-
-    Fs : float
-        Sampling frequency (in Hz)
-
-    fading_msec : float
-        The length of the fade in and fade out for sonified tones (in msec)
-
-    stereo : bool
-        Decision between stereo and mono sonification
-
-    Returns
-    -------
-    chroma_son : NumPy Array
-        Sonification of the chromagram
-
-    out : NumPy Array
-        Sonification combined with the original signal
+    Returns:
+        chroma_son (np.ndarray): Sonification of the chromagram
+        out (np.ndarray): Sonification combined with the original signal
     """
 
     N = x.size
@@ -165,23 +136,16 @@ def sonify_chromagram_with_signal(chroma_data, x, frame_rate, Fs, fading_msec=5,
 def list_to_pitch_activations(note_list, num_frames, frame_rate):
     """Create a pitch activation matrix from a list of note events
 
-    Parameters
-    ----------
-    note_list : List
-        A list of note events (e.g. gathered from a CSV file by libfmp.c1.pianoroll.csv_to_list())
+    Args:
+        note_list (list): A list of note events (e.g., gathered from a CSV file by
+            :func:`libfmp.c1.c1s2_symbolic_rep.csv_to_list`)
+        num_frames (int): Desired number of frames for the matrix
+        frame_rate (float): Frame rate for P (in Hz)
 
-    num_frames : int
-        Desired number of frames for the matrix
+    Returns:
+        P (np.ndarray): Pitch activation matrix (first axis: Indexed by [0:127], encoding MIDI pitches [1:128])
+        F_coef_MIDI (np.ndarray): MIDI pitch axis
 
-    frame_rate : float
-        Frame rate for P (in Hz)
-
-    Returns
-    -------
-    P : NumPy Array
-        Pitch activation matrix
-        First axis: Indexed by [0:127], encoding MIDI pitches [1:128]
-    F_coef_MIDI: MIDI pitch axis
     """
 
     P = np.zeros((128, num_frames))
@@ -196,37 +160,22 @@ def list_to_pitch_activations(note_list, num_frames, frame_rate):
 def sonify_pitch_activations(P, N, frame_rate, Fs, min_pitch=1, Fc=440, harmonics_weights=[1], fading_msec=5):
     """Sonify the pitches from a pitch activation matrix
 
-    Parameters
-    ----------
-    P : NumPy Array
-        A pitch activation matrix (e.g. gathered from a list of note events by list_to_pitch_activations())
-        First axis: Indexed by [0:127], encoding MIDI pitches [1:128]
+    Args:
+        P (np.ndarray): A pitch activation matrix (e.g., gathered from a list of note events by
+            :func:`libfmp.b.b_sonification.list_to_pitch_activations`). First axis: Indexed by [0:127],
+            encoding MIDI pitches [1:128]
+        N (int): Length of the sonification (in samples)
+        frame_rate (float): Frame rate for P (in Hz)
+        Fs (float): Sampling frequency (in Hz)
+        min_pitch (int): Lowest MIDI pitch in P (Default value = 1)
+        Fc (float): Tuning frequency (in Hz) (Default value = 440)
+        harmonics_weights (list): A list of weights for the harmonics of the tones to be sonified
+            (Default value = [1])
+        fading_msec (float): The length of the fade in and fade out for sonified tones (in msec)
+            (Default value = 5)
 
-    N : int
-        Length of the sonification (in samples)
-
-    frame_rate : float
-        Frame rate for P (in Hz)
-
-    Fs : float
-        Sampling frequency (in Hz)
-
-    min_pitch : int
-        Lowest MIDI pitch in P
-
-    Fc : float
-        Tuning frequency (in Hz)
-
-    harmonics_weights : list
-        A list of weights for the harmonics of the tones to be sonified
-
-    fading_msec : float
-        The length of the fade in and fade out for sonified tones (in msec)
-
-    Returns
-    -------
-    pitch_son : NumPy Array
-        Sonification of the pitch activation matrix
+    Returns:
+        pitch_son (np.ndarray): Sonification of the pitch activation matrix
     """
 
     fade_sample = int(fading_msec / 1000 * Fs)
@@ -262,42 +211,23 @@ def sonify_pitch_activations_with_signal(P, x, frame_rate, Fs, min_pitch=1, Fc=4
                                          fading_msec=5, stereo=True):
     """Sonify the pitches from a pitch activation matrix together with a corresponding signal
 
-    Parameters
-    ----------
-    P : NumPy Array
-        A pitch activation matrix (e.g. gathered from a list of note events by list_to_pitch_activations())
+    Args:
+        P (np.ndarray): A pitch activation matrix (e.g., gathered from a list of note events by
+            :func:`libfmp.b.b_sonification.list_to_pitch_activations`)
+        x (np.ndarray): Original signal
+        frame_rate (float): Frame rate for P (in Hz)
+        Fs (float): Sampling frequency (in Hz)
+        min_pitch (int): Lowest MIDI pitch in P (Default value = 1)
+        Fc (float): Tuning frequency (in Hz) (Default value = 440)
+        harmonics_weights (list): A list of weights for the harmonics of the tones to be sonified
+            (Default value = [1])
+        fading_msec (float): The length of the fade in and fade out for sonified tones (in msec)
+            (Default value = 5)
+        stereo (bool): Decision between stereo and mono sonification (Default value = True)
 
-    x : NumPy Array
-        Original signal
-
-    frame_rate : float
-        Frame rate for P (in Hz)
-
-    Fs : float
-        Sampling frequency (in Hz)
-
-    min_pitch : int
-        Lowest MIDI pitch in P
-
-    Fc : float
-        Tuning frequency (in Hz)
-
-    harmonics_weights : list
-        A list of weights for the harmonics of the tones to be sonified
-
-    fading_msec : float
-        The length of the fade in and fade out for sonified tones (in msec)
-
-    stereo : bool
-        Decision between stereo and mono sonification
-
-    Returns
-    -------
-    pitch_son : NumPy Array
-        Sonification of the pitch activation matrix
-
-    out : NumPy Array
-        Sonification combined with the original signal
+    Returns:
+        pitch_son (np.ndarray): Sonification of the pitch activation matrix
+        out (np.ndarray): Sonification combined with the original signal
     """
 
     N = x.size

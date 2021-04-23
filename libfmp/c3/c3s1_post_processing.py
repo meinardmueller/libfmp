@@ -12,17 +12,17 @@ from numba import jit
 
 
 @jit(nopython=True)
-def log_compression(v, gamma=1):
+def log_compression(v, gamma=1.0):
     """Logarithmically compresses a value or array
 
     Notebook: C3/C3S1_LogCompression.ipynb
 
     Args:
-        v: Value or array
-        gamma: Compression factor
+        v (float or np.ndarray): Value or array
+        gamma (float): Compression factor (Default value = 1.0)
 
     Returns:
-        v_compressed: Compressed value or array
+        v_compressed (float or np.ndarray): Compressed value or array
     """
     return np.log(1 + gamma * v)
 
@@ -34,13 +34,15 @@ def normalize_feature_sequence(X, norm='2', threshold=0.0001, v=None):
     Notebook: C3/C3S1_FeatureNormalization.ipynb
 
     Args:
-        X: Feature sequence
-        norm: The norm to be applied. '1', '2', 'max' or 'z'
-        threshold: An threshold below which the vector `v` used instead of normalization
-        v: Used instead of normalization below `threshold`. If None, uses unit vector for given norm
+        X (np.ndarray): Feature sequence
+        norm (str): The norm to be applied. '1', '2', 'max' or 'z' (Default value = '2')
+        threshold (float): An threshold below which the vector ``v`` used instead of normalization
+            (Default value = 0.0001)
+        v (float): Used instead of normalization below ``threshold``. If None, uses unit vector for given norm
+            (Default value = None)
 
     Returns:
-        X_norm: Normalized feature sequence
+        X_norm (np.ndarray): Normalized feature sequence
     """
     assert norm in ['1', '2', 'max', 'z']
 
@@ -97,15 +99,15 @@ def smooth_downsample_feature_sequence(X, Fs, filt_len=41, down_sampling=10, w_t
     Notebook: C3/C3S1_FeatureSmoothing.ipynb
 
     Args:
-        X: Feature sequence
-        Fs: Frame rate of `X`
-        filt_len: Length of smoothing filter
-        down_sampling: Downsampling factor
-        w_type: Window type of smoothing filter
+        X (np.ndarray): Feature sequence
+        Fs (scalar): Frame rate of ``X``
+        filt_len (int): Length of smoothing filter (Default value = 41)
+        down_sampling (int): Downsampling factor (Default value = 10)
+        w_type (str): Window type of smoothing filter (Default value = 'boxcar')
 
     Returns:
-        X_smooth: Smoothed and downsampled feature sequence
-        Fs_feature: Frame rate of `X_smooth`
+        X_smooth (np.ndarray): Smoothed and downsampled feature sequence
+        Fs_feature (scalar): Frame rate of ``X_smooth``
     """
     filt_kernel = np.expand_dims(signal.get_window(w_type, filt_len), axis=0)
     X_smooth = signal.convolve(X, filt_kernel, mode='same') / filt_len
@@ -120,14 +122,14 @@ def median_downsample_feature_sequence(X, Fs, filt_len=41, down_sampling=10):
     Notebook: C3/C3S1_FeatureSmoothing.ipynb
 
     Args:
-        X: Feature sequence
-        Fs: Frame rate of `X`
-        filt_len: Length of smoothing filter
-        down_sampling: Downsampling factor
+        X (np.ndarray): Feature sequence
+        Fs (scalar): Frame rate of ``X``
+        filt_len (int): Length of smoothing filter (Default value = 41)
+        down_sampling (int): Downsampling factor (Default value = 10)
 
     Returns:
-        X_smooth: Smoothed and downsampled feature sequence
-        Fs_feature: Frame rate of `X_smooth`
+        X_smooth (np.ndarray): Smoothed and downsampled feature sequence
+        Fs_feature (scalar): Frame rate of ``X_smooth``
     """
     assert filt_len % 2 == 1  # L needs to be odd
     filt_len = [1, filt_len]

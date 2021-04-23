@@ -13,7 +13,16 @@ import libfmp.b
 
 def plot_beat_grid(B_sec, ax, color='r', linestyle=':', linewidth=1):
     """Plot beat grid (given in seconds) into axis
-    Notebook: C6S3_AdaptiveWindowing.ipynb"""
+
+    Notebook: C6/C6S3_AdaptiveWindowing.ipynb
+
+    Args:
+        B_sec: Beat grid
+        ax: Axes for plotting
+        color: Color of lines (Default value = 'r')
+        linestyle: Style of lines (Default value = ':')
+        linewidth: Width of lines (Default value = 1)
+    """
     for b in B_sec:
         ax.axvline(x=b, color=color, linestyle=linestyle, linewidth=linewidth)
 
@@ -24,15 +33,16 @@ def adaptive_windowing(X, B, neigborhood=1, add_start=False, add_end=False):
     Notebook: C6/C6S3_AdaptiveWindowing.ipynb
 
     Args:
-        X: Feature sequence
-        B: Beat sequence (spefied in frames)
-        neigborhood: Parameter specifying relative range considered for windowing
-        add_start: Add first index of X to beat sequence (if not existent)
-        add_end: Add last index of X to beat sequence (if not existent)
+        X (np.ndarray): Feature sequence
+        B (np.ndarray): Beat sequence (spefied in frames)
+        neigborhood (float): Parameter specifying relative range considered for windowing (Default value = 1)
+        add_start (bool): Add first index of X to beat sequence (if not existent) (Default value = False)
+        add_end (bool): Add last index of X to beat sequence (if not existent) (Default value = False)
 
     Returns:
-        X_adapt: Feature sequence adapted to beat sequence
-        B_s, B_t: Sequences specifying start and end (in frames) of window sections
+        X_adapt (np.ndarray): Feature sequence adapted to beat sequence
+        B_s (np.ndarray): Sequence specifying start (in frames) of window sections
+        B_t (np.ndarray): Sequence specifying end (in frames) of window sections
     """
     len_X = X.shape[1]
     max_B = np.max(B)
@@ -65,14 +75,29 @@ def adaptive_windowing(X, B, neigborhood=1, add_start=False, add_end=False):
 
 def compute_plot_adaptive_windowing(x, Fs, H, X, B, neigborhood=1, add_start=False, add_end=False):
     """Compute and plot process for adaptive windowing [FMP, Section 6.3.3]
-    Notebook: C6/C6S3_AdaptiveWindowing.ipynb"""
+
+    Notebook: C6/C6S3_AdaptiveWindowing.ipynb
+
+    Args:
+        x (np.ndarray): Signal
+        Fs (scalar): Sample Rate
+        H (int): Hop size
+        X (int): Feature sequence
+        B (np.ndarray): Beat sequence (spefied in frames)
+        neigborhood (float): Parameter specifying relative range considered for windowing (Default value = 1)
+        add_start (bool): Add first index of X to beat sequence (if not existent) (Default value = False)
+        add_end (bool): Add last index of X to beat sequence (if not existent) (Default value = False)
+
+    Returns:
+        X_adapt (np.ndarray): Feature sequence adapted to beat sequence
+    """
     X_adapt, B_s, B_t = adaptive_windowing(X, B, neigborhood=neigborhood,
                                            add_start=add_start, add_end=add_end)
 
     fig, ax = plt.subplots(2, 2, gridspec_kw={'width_ratios': [1, 0.03],
                                               'height_ratios': [1, 3]}, figsize=(10, 4))
 
-    libfmp.b.plot_signal(x, Fs, ax=ax[0, 0], title='Adaptive windowing using $\lambda = %0.2f$' % neigborhood)
+    libfmp.b.plot_signal(x, Fs, ax=ax[0, 0], title=r'Adaptive windowing using $\lambda = %0.2f$' % neigborhood)
     ax[0, 1].set_axis_off()
     plot_beat_grid(B_s * H / Fs, ax[0, 0], color='b')
     plot_beat_grid(B_t * H / Fs, ax[0, 0], color='g')

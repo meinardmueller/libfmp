@@ -22,12 +22,12 @@ def compute_score_chromagram(score, Fs_beat):
     Notebook: C3/C3S3_MusicAppTempoCurve.ipynb
 
     Args:
-        score: Score representation
-        Fs_beat: Sampling rate for beat axis
+        score (list): Score representation
+        Fs_beat (scalar): Sampling rate for beat axis
 
     Returns:
-        X_score: Chromagram representation
-        t_beat: Time axis (given in beats)
+        X_score (np.ndarray): Chromagram representation X_score
+        t_beat (np.ndarray): Time axis t_beat (given in beats)
     """
     score_beat_min = min(n[0] for n in score)
     score_beat_max = max(n[0] + n[1] for n in score)
@@ -51,8 +51,8 @@ def plot_measure(ax, measure_pos):
     Notebook: C3/C3S3_MusicAppTempoCurve.ipynb
 
     Args:
-        ax: Figure axis
-        measure_pos: Array containing measure positions
+        ax (mpl.axes.Axes): Figure axis
+        measure_pos (list or np.ndarray): Array containing measure positions
     """
     y_min, y_max = ax.get_ylim()
     ax.vlines(measure_pos, y_min, y_max, color='r')
@@ -68,10 +68,10 @@ def compute_strict_alignment_path(P):
     Notebook: C3/C3S3_MusicAppTempoCurve.ipynb
 
     Args:
-        P: Wapring path
+        P (list or np.ndarray): Warping path
 
     Returns:
-        P_mod: Strict alignment path
+        P_mod (list or np.ndarray): Strict alignment path
     """
     # Initialize P_mod and enforce start boundary condition
     P_mod = np.zeros(P.shape)
@@ -105,10 +105,10 @@ def compute_strict_alignment_path_mask(P):
     Notebook: C3/C3S3_MusicAppTempoCurve.ipynb
 
     Args:
-        P: Wapring path
+        P (list or np.ndarray): Wapring path
 
     Returns:
-        P_mod: Strict alignment path
+        P_mod (list or np.ndarray): Strict alignment path
     """
     P = np.array(P, copy=True)
     N, M = P[-1]
@@ -135,17 +135,20 @@ def plot_tempo_curve(f_tempo, t_beat, ax=None, figsize=(8, 2), color='k', logsca
     Args:
         f_tempo: Tempo curve
         t_beat: Time axis of tempo curve (given as sampled beat axis)
-        ax: Plot either as figure (ax==None) or into axis (ax==True)
-        figsize: Size of figure
-        color: Color of tempo curve
-        logscale: Use linear (logscale==False) or logartihmic (logscale==True) tempo axis
-        xlabel, ylabel: Labels for x- and y-axis
-        xlim, ylim: Limits for x- and y-axis
-        label: Figure labels when plotting into axis (ax==True)
-        measure_pos: Plot measure positions as spefified
+        ax: Plot either as figure (ax==None) or into axis (ax==True) (Default value = None)
+        figsize: Size of figure (Default value = (8, 2))
+        color: Color of tempo curve (Default value = 'k')
+        logscale: Use linear (logscale==False) or logartihmic (logscale==True) tempo axis (Default value = False)
+        xlabel: Label for x-axis (Default value = 'Time (beats)')
+        ylabel: Label for y-axis (Default value = 'Temp (BPM)')
+        xlim: Limits for x-axis (Default value = None)
+        ylim: Limits for x-axis (Default value = None)
+        label: Figure labels when plotting into axis (ax==True) (Default value = '')
+        measure_pos: Plot measure positions as spefified (Default value = [])
 
     Returns:
-        fig, ax: Figure and axis handles
+        fig: figure handle
+        ax: axes handle
     """
     fig = None
     if ax is None:
@@ -181,17 +184,20 @@ def compute_tempo_curve(score, x, Fs=22050, Fs_beat=10, N=4410, H=2205, shift=0,
     Notebook: C3/C3S3_MusicAppTempoCurve.ipynb
 
     Args:
-        score: Score representation
-        x: Audio signal
-        Fs: Samping rate of audio signal
-        Fs_beat: Sampling rate for beat axis
-        N, H: Window size and hope size for computing audio chromagram
-        shift: Cyclic chroma shift applied to audio chromagram
-        sigma: Step size set used for DTW
-        win_len_beat: Window length (given in beats) used for smoothing tempo curve
+        score (list): Score representation
+        x (np.ndarray): Audio signal
+        Fs (scalar): Samping rate of audio signal (Default value = 22050)
+        Fs_beat (scalar): Sampling rate for beat axis (Default value = 10)
+        N (int): Window size for computing audio chromagram (Default value = 4410)
+        H (int): Hope size for computing audio chromagram (Default value = 2205)
+        shift (int): Cyclic chroma shift applied to audio chromagram (Default value = 0)
+        sigma (np.ndarray): Step size set used for DTW
+            (Default value = np.array([[1, 0], [0, 1], [2, 1], [1, 2], [1, 1]]))
+        win_len_beat (float): Window length (given in beats) used for smoothing tempo curve (Default value = 4)
+
     Returns:
-        f_tempo: Tempo curve
-        t_beat: Time axis (given in beats)
+        f_tempo (np.ndarray): Tempo curve
+        t_beat (np.ndarray): Time axis (given in beats)
     """
 
     # Compute score an audio chromagram

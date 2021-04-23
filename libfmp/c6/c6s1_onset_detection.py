@@ -15,20 +15,20 @@ import librosa
 import libfmp.b
 
 
-def read_annotation_pos(fn_ann, label='', header=1, print_table=False):
+def read_annotation_pos(fn_ann, label='', header=True, print_table=False):
     """Read and convert file containing either list of pairs (number,label) or list of (number)
 
     Notebook: C6/C6S1_OnsetDetection.ipynb
 
     Args:
-        fn_ann: Name of file
-        label: Name of label
-        header: Assumes header (1) or not (0)
-        print_table: Prints table if True
+        fn_ann (str): Name of file
+        label (str): Name of label (Default value = '')
+        header (bool): Assumes header (True) or not (False) (Default value = True)
+        print_table (bool): Prints table if True (Default value = False)
 
     Returns:
-        ann: List Annotations
-        label_keys: Dictionaries specifying color and line style used for labels
+        ann (list): List of annotations
+        label_keys (dict): Dictionaries specifying color and line style used for labels
     """
     df = libfmp.b.read_csv(fn_ann, header=header)
     if print_table:
@@ -43,26 +43,26 @@ def read_annotation_pos(fn_ann, label='', header=1, print_table=False):
     return ann, label_keys
 
 
-def compute_novelty_energy(x, Fs=1, N=2048, H=128, gamma=10, norm=1):
+def compute_novelty_energy(x, Fs=1, N=2048, H=128, gamma=10.0, norm=True):
     """Compute energy-based novelty function
 
     Notebook: C6/C6S1_NoveltyEnergy.ipynb
 
     Args:
-        x: Signal
-        Fs: Sampling rate
-        N: Window size
-        H: Hope size
-        gamma: Parameter for logarithmic compression
-        norm: Apply max norm (if norm==1)
+        x (np.ndarray): Signal
+        Fs (scalar): Sampling rate (Default value = 1)
+        N (int): Window size (Default value = 2048)
+        H (int): Hope size (Default value = 128)
+        gamma (float): Parameter for logarithmic compression (Default value = 10.0)
+        norm (bool): Apply max norm (if norm==True) (Default value = True)
 
     Returns:
-        novelty_energy: Energy-based novelty function
-        Fs_feature: Feature rate
+        novelty_energy (np.ndarray): Energy-based novelty function
+        Fs_feature (scalar): Feature rate
     """
-    #x_power = x**2
+    # x_power = x**2
     w = signal.hann(N)
-    Fs_feature = Fs/H
+    Fs_feature = Fs / H
     energy_local = np.convolve(x**2, w**2, 'same')
     energy_local = energy_local[::H]
     if gamma is not None:
@@ -71,7 +71,7 @@ def compute_novelty_energy(x, Fs=1, N=2048, H=128, gamma=10, norm=1):
     energy_local_diff = np.concatenate((energy_local_diff, np.array([0])))
     novelty_energy = np.copy(energy_local_diff)
     novelty_energy[energy_local_diff < 0] = 0
-    if norm == 1:
+    if norm:
         max_value = max(novelty_energy)
         if max_value > 0:
             novelty_energy = novelty_energy / max_value
@@ -85,11 +85,11 @@ def compute_local_average(x, M):
     Notebook: C6/C6S1_NoveltySpectral.ipynb
 
     Args:
-        x: Signal
-        M: Determines size (2M+1) in samples of centric window  used for local average
+        x (np.ndarray): Signal
+        M (int): Determines size (2M+1) in samples of centric window  used for local average
 
     Returns:
-        local_average: Local average signal
+        local_average (np.ndarray): Local average signal
     """
     L = len(x)
     local_average = np.zeros(L)
@@ -100,23 +100,23 @@ def compute_local_average(x, M):
     return local_average
 
 
-def compute_novelty_spectrum(x, Fs=1, N=1024, H=256, gamma=100, M=10, norm=1):
+def compute_novelty_spectrum(x, Fs=1, N=1024, H=256, gamma=100.0, M=10, norm=True):
     """Compute spectral-based novelty function
 
     Notebook: C6/C6S1_NoveltySpectral.ipynb
 
     Args:
-        x: Signal
-        Fs: Sampling rate
-        N: Window size
-        H: Hope size
-        gamma: Parameter for logarithmic compression
-        M: Size (frames) of local average
-        norm: Apply max norm (if norm==1)
+        x (np.ndarray): Signal
+        Fs (scalar): Sampling rate (Default value = 1)
+        N (int): Window size (Default value = 1024)
+        H (int): Hope size (Default value = 256)
+        gamma (float): Parameter for logarithmic compression (Default value = 100.0)
+        M (int): Size (frames) of local average (Default value = 10)
+        norm (bool): Apply max norm (if norm==True) (Default value = True)
 
     Returns:
-        novelty_spectrum: Energy-based novelty function
-        Fs_feature: Feature rate
+        novelty_spectrum (np.ndarray): Energy-based novelty function
+        Fs_feature (scalar): Feature rate
     """
     X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hanning')
     Fs_feature = Fs / H
@@ -129,7 +129,7 @@ def compute_novelty_spectrum(x, Fs=1, N=1024, H=256, gamma=100, M=10, norm=1):
         local_average = compute_local_average(novelty_spectrum, M)
         novelty_spectrum = novelty_spectrum - local_average
         novelty_spectrum[novelty_spectrum < 0] = 0.0
-    if norm == 1:
+    if norm:
         max_value = max(novelty_spectrum)
         if max_value > 0:
             novelty_spectrum = novelty_spectrum / max_value
@@ -139,34 +139,35 @@ def compute_novelty_spectrum(x, Fs=1, N=1024, H=256, gamma=100, M=10, norm=1):
 def principal_argument(v):
     """Principal argument function
 
-    Notebook: /C6/C6S1_NoveltyPhase.ipynb, see also C8/C8S2_InstantFreqEstimation.ipynb
+    | Notebook: C6/C6S1_NoveltyPhase.ipynb, see also
+    | Notebook: C8/C8S2_InstantFreqEstimation.ipynb
 
     Args:
-        v: value (or vector of values)
+        v (float or np.ndarray): Value (or vector of values)
 
     Returns:
-        w: Principle value of v
+        w (float or np.ndarray): Principle value of v
     """
     w = np.mod(v + 0.5, 1) - 0.5
     return w
 
 
-def compute_novelty_phase(x, Fs=1, N=1024, H=64, M=40, norm=1):
+def compute_novelty_phase(x, Fs=1, N=1024, H=64, M=40, norm=True):
     """Compute phase-based novelty function
 
-    Notebook: C6/C6/C6S1_NoveltyPhase.ipynb
+    Notebook: C6/C6S1_NoveltyPhase.ipynb
 
     Args:
-        x: Signal
-        Fs: Sampling rate
-        N: Window size
-        H: Hop size
-        M: Determines size (2M+1) in samples of centric window  used for local average
-        norm: Apply max norm (if norm==1)
+        x (np.ndarray): Signal
+        Fs (scalar): Sampling rate (Default value = 1)
+        N (int): Window size (Default value = 1024)
+        H (int): Hop size (Default value = 64)
+        M (int): Determines size (2M+1) in samples of centric window  used for local average (Default value = 40)
+        norm (bool): Apply max norm (if norm==True) (Default value = True)
 
     Returns:
-        novelty_spectrum: Energy-based novelty function
-        Fs_feature: Feature rate
+        novelty_phase (np.ndarray): Energy-based novelty function
+        Fs_feature (scalar): Feature rate
     """
     X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hanning')
     Fs_feature = Fs / H
@@ -179,29 +180,30 @@ def compute_novelty_phase(x, Fs=1, N=1024, H=64, M=40, norm=1):
         local_average = compute_local_average(novelty_phase, M)
         novelty_phase = novelty_phase - local_average
         novelty_phase[novelty_phase < 0] = 0
-    if norm == 1:
+    if norm:
         max_value = np.max(novelty_phase)
         if max_value > 0:
             novelty_phase = novelty_phase / max_value
     return novelty_phase, Fs_feature
 
 
-def compute_novelty_complex(x, Fs=1, N=1024, H=64, gamma=10, M=40, norm=1):
+def compute_novelty_complex(x, Fs=1, N=1024, H=64, gamma=10.0, M=40, norm=True):
     """Compute complex-domain novelty function
 
     Notebook: C6/C6S1_NoveltyComplex.ipynb
 
     Args:
-        x: Signal
-        Fs: Sampling rate
-        N: Window size
-        H: Hop size
-        M: Determines size (2M+1) in samples of centric window  used for local average
-        norm: Apply max norm (if norm==1)
+        x (np.ndarray): Signal
+        Fs (scalar): Sampling rate (Default value = 1)
+        N (int): Window size (Default value = 1024)
+        H (int): Hop size (Default value = 64)
+        gamma (float): Parameter for logarithmic compression (Default value = 10.0)
+        M (int): Determines size (2M+1) in samples of centric window used for local average (Default value = 40)
+        norm (bool): Apply max norm (if norm==True) (Default value = True)
 
     Returns:
-        novelty_spectrum: Energy-based novelty function
-        Fs_feature: Feature rate
+        novelty_complex (np.ndarray): Energy-based novelty function
+        Fs_feature (scalar): Feature rate
     """
     X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hanning')
     Fs_feature = Fs / H
@@ -222,29 +224,29 @@ def compute_novelty_complex(x, Fs=1, N=1024, H=64, gamma=10, M=40, norm=1):
         local_average = compute_local_average(novelty_complex, M)
         novelty_complex = novelty_complex - local_average
         novelty_complex[novelty_complex < 0] = 0
-    if norm == 1:
+    if norm:
         max_value = np.max(novelty_complex)
         if max_value > 0:
             novelty_complex = novelty_complex / max_value
     return novelty_complex, Fs_feature
 
 
-def resample_signal(x_in, Fs_in, Fs_out=100, norm=1, time_max_sec=None, sigma=None):
+def resample_signal(x_in, Fs_in, Fs_out=100, norm=True, time_max_sec=None, sigma=None):
     """Resample and smooth signal
 
     Notebook: C6/C6S1_NoveltyComparison.ipynb
 
     Args:
-        x_in: Input signal
-        Fs_in: Sampling rate of input signal
-        Fs_out: Sampling rate of output signal
-        norm: Apply max norm (if norm==1)
-        time_max_sec: Duration of output signal (given in seconds)
-        sigma: Standard deviation for smoothing Gaussian kernel
+        x_in (np.ndarray): Input signal
+        Fs_in (scalar): Sampling rate of input signal
+        Fs_out (scalar): Sampling rate of output signal (Default value = 100)
+        norm (bool): Apply max norm (if norm==True) (Default value = True)
+        time_max_sec (float): Duration of output signal (given in seconds) (Default value = None)
+        sigma (float): Standard deviation for smoothing Gaussian kernel (Default value = None)
 
     Returns:
-        x_out: Output signal
-        F_out: Feature rate of output signal
+        x_out (np.ndarray): Output signal
+        Fs_out (scalar): Feature rate of output signal
     """
     if sigma is not None:
         x_in = ndimage.gaussian_filter(x_in, sigma=sigma)
@@ -258,28 +260,28 @@ def resample_signal(x_in, Fs_in, Fs_out=100, norm=1, time_max_sec=None, sigma=No
         x_in = np.append(x_in, [0])
         T_coef_in = np.append(T_coef_in, [T_coef_out[-1]])
     x_out = interp1d(T_coef_in, x_in, kind='linear')(T_coef_out)
-    if norm == 1:
+    if norm:
         x_max = max(x_out)
         if x_max > 0:
             x_out = x_out / max(x_out)
     return x_out, Fs_out
 
 
-def average_nov_dic(nov_dic, time_max_sec, Fs_out=100, norm=1, sigma=None):
+def average_nov_dic(nov_dic, time_max_sec, Fs_out=100, norm=True, sigma=None):
     """Average respamples set of novelty functions
 
     Notebook: C6/C6S1_NoveltyComparison.ipynb
 
     Args:
-        nov_dic: Dictionary of novelty functions
-        time_max_sec: Duration of output signals (given in seconds)
-        Fs_out: Sampling rate of output signal
-        norm: Apply max norm (if norm==1)
-        sigma: Standard deviation for smoothing Gaussian kernel
+        nov_dic (dict): Dictionary of novelty functions
+        time_max_sec (float): Duration of output signals (given in seconds)
+        Fs_out (scalar): Sampling rate of output signal (Default value = 100)
+        norm (bool): Apply max norm (if norm==True) (Default value = True)
+        sigma (float): Standard deviation for smoothing Gaussian kernel (Default value = None)
 
     Returns:
-        nov_matrix: Matrix containing resampled output signal (last one is average)
-        Fs_out: Sampling rate of output signals
+        nov_matrix (np.ndarray): Matrix containing resampled output signal (last one is average)
+        Fs_out (scalar): Sampling rate of output signals
     """
     nov_num = len(nov_dic)
     N_out = int(np.ceil(time_max_sec*Fs_out))
@@ -291,36 +293,9 @@ def average_nov_dic(nov_dic, time_max_sec, Fs_out=100, norm=1, sigma=None):
                                           time_max_sec=time_max_sec, sigma=sigma)
         nov_matrix[k, :] = nov_out
     nov_average = np.sum(nov_matrix, axis=0)/nov_num
-    if norm == 1:
+    if norm:
         max_value = np.max(nov_average)
         if max_value > 0:
             nov_average = nov_average / max_value
     nov_matrix[k+1, :] = nov_average
     return nov_matrix, Fs_out
-
-# #####################################################################
-#
-# def plot_novelty(novelty, Fs, ax=None, figsize=(6, 2), color='k',
-#                  xlabel='Time (seconds)', ylabel='', title=''):
-#     t = np.arange(novelty.shape[0]) / Fs
-#     if ax==None:
-#         axplot = plt.figure(figsize=figsize)
-#         axplot = plt.subplot(1,1,1)
-#     else:
-#         axplot=ax
-#     axplot.plot(t, novelty, color=color)
-#     axplot.set_xlim([t[0], t[-1]])
-#     axplot.set_ylim([1.1*np.min(novelty), 1.1*np.max(novelty)])
-#     axplot.set_xlabel(xlabel)
-#     axplot.set_ylabel(ylabel)
-#     axplot.set_title(title)
-#     if ax!=None: plt.tight_layout()
-#
-#
-# def compute_novelty_resample(x, Fs=1, N=1024, H=256, Fs_out=100):
-#     nov, Fs_nov = compute_novelty_spectrum(x, Fs=Fs, N=N, H=H)
-#     T_coef_in = np.arange(nov.shape[0]) / Fs_nov
-#     N_out = int(np.round(T_coef_in[-1]*Fs_out) + 1)
-#     T_coef_out = np.arange(N_out) / Fs_out
-#     nov_out = resample_signal(nov, T_coef_in, T_coef_out)
-#     return nov_out, Fs_out

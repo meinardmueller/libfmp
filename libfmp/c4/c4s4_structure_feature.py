@@ -17,11 +17,11 @@ def compute_time_lag_representation(S, circular=True):
     Notebook: C4/C4S4_StructureFeature.ipynb
 
     Args:
-        S: Self-similarity matrix
-        circular: computes circular version
+        S (np.ndarray): Self-similarity matrix
+        circular (bool): Computes circular version (Default value = True)
 
     Returns:
-        L: (Circular) time-lag representation of S
+        L (np.ndarray): (Circular) time-lag representation of S
     """
     N = S.shape[0]
     if circular:
@@ -41,11 +41,11 @@ def novelty_structure_feature(L, padding=True):
     Notebook: C4/C4S4_StructureFeature.ipynb
 
     Args:
-        L: Circular time-lag representation
-        padding: Padding the result with the value zero
+        L (np.ndarray): Circular time-lag representation
+        padding (bool): Padding the result with the value zero (Default value = True)
 
     Returns:
-        nov: Novelty function
+        nov (np.ndarray): Novelty function
     """
     N = L.shape[0]
     if padding:
@@ -65,12 +65,16 @@ def plot_ssm_structure_feature_nov(S, L, nov, Fs=1, figsize=(10, 3), ann=[], col
     Args:
         S: SSM
         L: Circular time-lag representation
-        Fs: Feature rate (indicated in title of SSM)
-        ann: Annotations
-        color_ann: Colors used for annotations
+        nov: Novelty function
+        Fs: Feature rate (indicated in title of SSM) (Default value = 1)
+        figsize: Figure size (Default value = (10, 3))
+        ann: Annotations (Default value = [])
+        color_ann: Colors used for annotations (see :func:`libfmp.b.b_plot.plot_segments`) (Default value = [])
 
     Returns:
-        ax1, ax2, ax3: Axes for subplots
+        ax1: First subplot
+        ax2: Second subplot
+        ax3: Third subplot
     """
     plt.figure(figsize=figsize)
     ax1 = plt.subplot(131)

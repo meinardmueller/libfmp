@@ -6,6 +6,7 @@ License: The MIT license, https://opensource.org/licenses/MIT
 This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)
 """
 
+import copy
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import colors
@@ -21,20 +22,21 @@ def compute_chromagram_from_filename(fn_wav, Fs=22050, N=4096, H=2048, gamma=Non
     Notebook: C5/C5S2_ChordRec_Templates.ipynb
 
     Args:
-        fn_wav: Filenname of WAV
-        Fs: Sampling rate
-        N: Window size
-        H: Hop size
-        gamma: Constant for logarithmic compression
-        version: Technique used for front-end decomposition ('STFT', 'IIS', 'CQT')
-        norm: If not 'None', chroma vectors are normalized by norm as specified ('1', '2', 'max')
+        fn_wav (str): Filenname of WAV
+        Fs (scalar): Sampling rate (Default value = 22050)
+        N (int): Window size (Default value = 4096)
+        H (int): Hop size (Default value = 2048)
+        gamma (float): Constant for logarithmic compression (Default value = None)
+        version (str): Technique used for front-end decomposition ('STFT', 'IIS', 'CQT') (Default value = 'STFT')
+        norm (str): If not 'None', chroma vectors are normalized by norm as specified ('1', '2', 'max')
+            (Default value = '2')
 
     Returns:
-        X: Chromagram
-        Fs_X: Feature reate of chromagram
-        x: Audio signal
-        Fs: Sampling rate of audio signal
-        x_dur: Duration (seconds) of audio signal
+        X (np.ndarray): Chromagram
+        Fs_X (scalar): Feature reate of chromagram
+        x (np.ndarray): Audio signal
+        Fs (scalar): Sampling rate of audio signal
+        x_dur (float): Duration (seconds) of audio signal
     """
     x, Fs = librosa.load(fn_wav, sr=Fs)
     x_dur = x.shape[0] / Fs
@@ -64,7 +66,18 @@ def compute_chromagram_from_filename(fn_wav, Fs=22050, N=4096, H=2048, gamma=Non
 
 def plot_chromagram_annotation(ax, X, Fs_X, ann, color_ann, x_dur, cmap='gray_r', title=''):
     """Plot chromagram and annotation
+
     Notebook: C5/C5S2_ChordRec_Templates.ipynb
+
+    Args:
+        ax: Axes handle
+        X: Feature representation
+        Fs_X: Feature rate
+        ann: Annotations
+        color_ann: Color for annotations
+        x_dur: Duration of feature representation
+        cmap: Color map for imshow (Default value = 'gray_r')
+        title: Title for figure (Default value = '')
     """
     libfmp.b.plot_chromagram(X, Fs=Fs_X, ax=ax,
                              chroma_yticks=[0, 4, 7, 11], clim=[0, 1], cmap=cmap,
@@ -79,10 +92,11 @@ def get_chord_labels(ext_minor='m', nonchord=False):
     Notebook: C5/C5S2_ChordRec_Templates.ipynb
 
     Args:
-        nonchord: If "True" then add nonchord label
+        ext_minor (str): Extension for minor chords (Default value = 'm')
+        nonchord (bool): If "True" then add nonchord label (Default value = False)
 
     Returns:
-        chord_labels: List of chord labels
+        chord_labels (list): List of chord labels
     """
     chroma_labels = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     chord_labels_maj = chroma_labels
@@ -99,10 +113,10 @@ def generate_chord_templates(nonchord=False):
     Notebook: C5/C5S2_ChordRec_Templates.ipynb
 
     Args:
-        nonchord: If "True" then add nonchord template
+        nonchord (bool): If "True" then add nonchord template (Default value = False)
 
     Returns:
-        chord_templates: Matrix containing chord_templates as columns
+        chord_templates (np.ndarray): Matrix containing chord_templates as columns
     """
     template_cmaj = np.array([1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0]).T
     template_cmin = np.array([1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]).T
@@ -123,13 +137,13 @@ def chord_recognition_template(X, norm_sim='1', nonchord=False):
     Notebook: C5/C5S2_ChordRec_Templates.ipynb
 
     Args:
-        X: Chromagram
-        norm_sim: Specifies norm used for normalizing chord similarity matrix
-        nonchord: If "True" then add nonchord template
+        X (np.ndarray): Chromagram
+        norm_sim (str): Specifies norm used for normalizing chord similarity matrix (Default value = '1')
+        nonchord (bool): If "True" then add nonchord template (Default value = False)
 
     Returns:
-        chord_sim: Chord similarity matrix
-        chord_max: Binarized chord similarity matrix only containing maximizing chord
+        chord_sim (np.ndarray): Chord similarity matrix
+        chord_max (np.ndarray): Binarized chord similarity matrix only containing maximizing chord
     """
     chord_templates = generate_chord_templates(nonchord=nonchord)
     X_norm = libfmp.c3.normalize_feature_sequence(X, norm='2')
@@ -153,19 +167,21 @@ def convert_chord_label(ann):
     Notebook: C5/C5S2_ChordRec_Eval.ipynb
 
     Args:
-        ann: Segment-based annotation with chord labels
+        ann (list): Segment-based annotation with chord labels
 
     Returns:
-        ann: Segment-based annotation with chord labels
+        ann_conv (list): Converted segment-based annotation with chord labels
     """
+    ann_conv = copy.deepcopy(ann)
+
     for k in range(len(ann)):
-        ann[k][2] = ann[k][2].replace(':min', 'm')
-        ann[k][2] = ann[k][2].replace('Db', 'C#')
-        ann[k][2] = ann[k][2].replace('Eb', 'D#')
-        ann[k][2] = ann[k][2].replace('Gb', 'F#')
-        ann[k][2] = ann[k][2].replace('Ab', 'G#')
-        ann[k][2] = ann[k][2].replace('Bb', 'A#')
-    return ann
+        ann_conv[k][2] = ann_conv[k][2].replace(':min', 'm')
+        ann_conv[k][2] = ann_conv[k][2].replace('Db', 'C#')
+        ann_conv[k][2] = ann_conv[k][2].replace('Eb', 'D#')
+        ann_conv[k][2] = ann_conv[k][2].replace('Gb', 'F#')
+        ann_conv[k][2] = ann_conv[k][2].replace('Ab', 'G#')
+        ann_conv[k][2] = ann_conv[k][2].replace('Bb', 'A#')
+    return ann_conv
 
 
 def convert_sequence_ann(seq, Fs=1):
@@ -174,11 +190,11 @@ def convert_sequence_ann(seq, Fs=1):
     Notebook: C5/C5S2_ChordRec_Eval.ipynb
 
     Args:
-        seq: Label sequence
-        Fs: Feature rate
+        seq (list): Label sequence
+        Fs (scalar): Feature rate (Default value = 1)
 
     Returns:
-        ann: Segment-based annotation for label sequence
+        ann (list): Segment-based annotation for label sequence
     """
     ann = []
     for m in range(len(seq)):
@@ -192,19 +208,20 @@ def convert_chord_ann_matrix(fn_ann, chord_labels, Fs=1, N=None, last=False):
     Notebook: C5/C5S2_ChordRec_Eval.ipynb
 
     Args:
-        fn_ann: Filename of segment-based chord annotation
-        chord_labels: List of chord labels
-        Fs: Feature rate
-        N: Number of frames to be generated (by cutting or extending)
-           Only enforced for ann_matrix, ann_frame, ann_seg_frame
-        last: If 'True' uses for extension last chord label, otherwise uses nonchord label 'N'
+        fn_ann (str): Filename of segment-based chord annotation
+        chord_labels (list): List of chord labels
+        Fs (scalar): Feature rate (Default value = 1)
+        N (int): Number of frames to be generated (by cutting or extending).
+            Only enforced for ann_matrix, ann_frame, ann_seg_frame (Default value = None)
+        last (bool): If 'True' uses for extension last chord label, otherwise uses nonchord label 'N'
+            (Default value = False)
 
     Returns:
-        ann_matrix: Encoding of label sequence in form of a binary time-chord representation
-        ann_frame: Label sequence (specified on the frame level)
-        ann_seg_frame: Encoding of label sequence as segment-based annotation (given in indices)
-        ann_seg_ind: Segment-based annotation with segments (given in indices)
-        ann_seg_sec: Segment-based annotation with segments (given in seconds)
+        ann_matrix (np.ndarray): Encoding of label sequence in form of a binary time-chord representation
+        ann_frame (list): Label sequence (specified on the frame level)
+        ann_seg_frame (list): Encoding of label sequence as segment-based annotation (given in indices)
+        ann_seg_ind (list): Segment-based annotation with segments (given in indices)
+        ann_seg_sec (list): Segment-based annotation with segments (given in seconds)
     """
     ann_seg_sec, _ = libfmp.c4.read_structure_annotation(fn_ann)
     ann_seg_sec = convert_chord_label(ann_seg_sec)
@@ -241,11 +258,16 @@ def compute_eval_measures(I_ref, I_est):
     Notebook: C5/C5S2_ChordRec_Eval.ipynb
 
     Args:
-        I_ref, I_est: Sets of positive items for reference and estimation
+        I_ref (np.ndarray): Reference set of items
+        I_est (np.ndarray): Set of estimated items
 
     Returns:
-        P, R, F: Precsion, recall, and F-measure
-        TP, FP, FN: Number of true positives, false positives, and false negatives
+        P (float): Precision
+        R (float): Recall
+        F (float): F-measure
+        num_TP (int): Number of true positives
+        num_FN (int): Number of false negatives
+        num_FP (int): Number of false positives
     """
     assert I_ref.shape == I_est.shape, "Dimension of input matrices must agree"
     TP = np.sum(np.logical_and(I_ref, I_est))
@@ -264,16 +286,20 @@ def compute_eval_measures(I_ref, I_est):
 def plot_matrix_chord_eval(I_ref, I_est, Fs=1, xlabel='Time (seconds)', ylabel='Chord',
                            title='', chord_labels=None, ax=None, grid=True, figsize=(9, 3.5)):
     """Plots TP-, FP-, and FN-items in a color-coded form in time–chord grid
+
     Notebook: C5/C5S2_ChordRec_Eval.ipynb
 
     Args:
-        I_ref, I_est: Sets of positive items for reference and estimation
-        Fs: Feature rate
-        xlable, ylable, title: Used for plot
-        chord_labels: List of chord labels used for vertical axis
-        ax: Array of axes
-        grid: If "True" the plot grid
-        figsize: Size of figure (if axes are not specified)
+        I_ref: Reference set of items
+        I_est: Set of estimated items
+        Fs: Feature rate (Default value = 1)
+        xlabel: Label for x-axis (Default value = 'Time (seconds)')
+        ylabel: Label for y-axis (Default value = 'Chord')
+        title: Title of figure (Default value = '')
+        chord_labels: List of chord labels used for vertical axis (Default value = None)
+        ax: Array of axes (Default value = None)
+        grid: If "True" the plot grid (Default value = True)
+        figsize: Size of figure (if axes are not specified) (Default value = (9, 3.5))
 
     Returns:
         fig: The created matplotlib figure or None if ax was given.

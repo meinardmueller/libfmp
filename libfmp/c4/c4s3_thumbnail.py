@@ -22,11 +22,11 @@ def colormap_penalty(penalty=-2, cmap=libfmp.b.compressed_gray_cmap(alpha=5)):
     Notebook: C4/C4S3_AudioThumbnailing.ipynb
 
     Args:
-        cmap: original colormap
-        penalty: negative number
+        penalty (float): Negative number (Default value = -2.0)
+        cmap (mpl.colors.Colormap): Original colormap (Default value = libfmp.b.compressed_gray_cmap(alpha=5))
 
     Returns:
-        cmap_penalty
+        cmap_penalty (mpl.colors.Colormap): Extended colormap
     """
     if isinstance(cmap, str):
         cmap = matplotlib.cm.get_cmap(cmap, 128)
@@ -40,18 +40,25 @@ def colormap_penalty(penalty=-2, cmap=libfmp.b.compressed_gray_cmap(alpha=5)):
 
 
 def normalization_properties_ssm(S):
-    """Normalizes self-similartiy matrix to fulfill S(n,n)=1
+    """Normalizes self-similartiy matrix to fulfill S(n,n)=1.
     Yields a warning if max(S)<=1 is not fulfilled
 
     Notebook: C4/C4S3_AudioThumbnailing.ipynb
+
+    Args:
+        S (np.ndarray): Self-similarity matrix (SSM)
+
+    Returns:
+        S_normalized (np.ndarray): Normalized self-similarity matrix
     """
-    N = S.shape[0]
+    S_normalized = S.copy()
+    N = S_normalized.shape[0]
     for n in range(N):
-        S[n, n] = 1
-        max_S = np.max(S)
+        S_normalized[n, n] = 1
+        max_S = np.max(S_normalized)
     if max_S > 1:
         print('Normalization condition for SSM not fulfill (max > 1)')
-    return S
+    return S_normalized
 
 
 def plot_ssm_ann(S, ann, Fs=1, cmap='gray_r', color_ann=[], ann_x=True, ann_y=True,
@@ -63,16 +70,22 @@ def plot_ssm_ann(S, ann, Fs=1, cmap='gray_r', color_ann=[], ann_x=True, ann_y=Tr
     Args:
         S: Self-similarity matrix
         ann: Annotations
-        Fs: Feature rate of path_family
-        cmap: Color map for S
-        color_ann: color scheme used for annotations
-        ann_x, ann_y: Plot annotation
-        fontsize: Font size used for annotation labels
-        figsize: Size of figure
-        xlabel, ylabel, title: labels used for figure
+        Fs: Feature rate of path_family (Default value = 1)
+        cmap: Color map for S (Default value = 'gray_r')
+        color_ann: color scheme used for annotations (see :func:`libfmp.b.b_plot.plot_segments`)
+            (Default value = [])
+        ann_x: Plot annotations on x-axis (Default value = True)
+        ann_y: Plot annotations on y-axis (Default value = True)
+        fontsize: Font size used for annotation labels (Default value = 12)
+        figsize: Size of figure (Default value = (5, 4.5))
+        xlabel: Label for x-axis (Default value = '')
+        ylabel: Label for y-axis (Default value = '')
+        title: Figure size (Default value = '')
 
     Returns:
-        fig, ax, im
+        fig: Handle for figure
+        ax: Handle for axes
+        im: Handle for imshow
     """
     fig, ax = plt.subplots(2, 2, gridspec_kw={'width_ratios': [1, 0.05],
                                               'height_ratios': [1, 0.1]}, figsize=figsize)
@@ -97,7 +110,7 @@ def plot_ssm_ann(S, ann, Fs=1, cmap='gray_r', color_ann=[], ann_x=True, ann_y=Tr
     return fig, ax, im
 
 
-def plot_path_family(ax, path_family, Fs=1, x_offset=0, y_offset=0, proj_x=True, w_x=7, proj_y=True, w_y=7, ):
+def plot_path_family(ax, path_family, Fs=1, x_offset=0, y_offset=0, proj_x=True, w_x=7, proj_y=True, w_y=7):
     """Plot path family into a given axis
 
     Notebook: C4/C4S3_AudioThumbnailing.ipynb
@@ -105,10 +118,13 @@ def plot_path_family(ax, path_family, Fs=1, x_offset=0, y_offset=0, proj_x=True,
     Args:
         ax: Axis of plot
         path_family: Path family
-        Fs: Feature rate of path_family
-        x_offset, y_offset: Offsets used for plotting path_family
-        proj_x, proj_y: Plot projection (induced segments)
-        w_x, w_y: Size of rectangle used to plot projection
+        Fs: Feature rate of path_family (Default value = 1)
+        x_offset: Offset x-axis (Default value = 0)
+        y_offset: Yffset x-axis (Default value = 0)
+        proj_x: Display projection on x-axis (Default value = True)
+        w_x: Width used for projection on x-axis (Default value = 7)
+        proj_y: Display projection on y-axis (Default value = True)
+        w_y: Width used for projection on y-axis (Default value = 7)
     """
     for path in path_family:
         y = [(path[i][0] + y_offset)/Fs for i in range(len(path))]
@@ -137,11 +153,11 @@ def compute_induced_segment_family_coverage(path_family):
     Notebook: C4/C4S3_AudioThumbnailing.ipynb
 
     Args:
-        path_family: Path family
+        path_family (list): Path family
 
-    Returns
-        segment_family: Induced segment family
-        coverage: Coverage of path family
+    Returns:
+        segment_family (np.ndarray): Induced segment family
+        coverage (float): Coverage of path family
     """
     num_path = len(path_family)
     coverage = 0
@@ -164,12 +180,12 @@ def compute_accumulated_score_matrix(S_seg):
     Notebook: C4/C4S3_AudioThumbnailing.ipynb
 
     Args:
-        S_seg: submatrix of an enhanced and normalized SSM S
-                 Note: S must satisfy S(n,m) <= 1 and S(n,n) = 1
+        S_seg (np.ndarray): Submatrix of an enhanced and normalized SSM ``S``.
+            Note: ``S`` must satisfy ``S(n,m) <= 1 and S(n,n) = 1``
 
     Returns:
-        D: Accumulated score matrix
-        score: Score of optimal path family
+        D (np.ndarray): Accumulated score matrix
+        score (float): Score of optimal path family
     """
     inf = math.inf
     N = S_seg.shape[0]
@@ -192,81 +208,6 @@ def compute_accumulated_score_matrix(S_seg):
 
     return D, score
 
-# Old version with bug
-# @jit(nopython=True)
-# def compute_optimal_path_family(D):
-#     """Compute an optimal path family given an accumulated score matrix
-#
-#     Notebook: C4/C4S3_AudioThumbnailing.ipynb
-#
-#     Args:
-#         D: Accumulated score matrix
-#
-#     Returns
-#         P: Optimal path family consisting of list of paths
-#            (each path being a list of index pairs)
-#     """
-#     # Initialization
-#     inf = math.inf
-#     N = D.shape[0]
-#     M = D.shape[1]
-#     n = N - 1
-#     m = 0
-#     path_family = []
-#     path = []
-#
-#     # Backtracking
-#     while n > 0 or m > 0:
-#
-#         # obtaining the set of possible predecesors given our current position
-#         if(n<=2 and m<=2):
-#             predecessors = [(n-1,m-1)]
-#         elif(n<=2 and m>2):
-#             predecessors = [(n-1,m-1),(n-1,m-2)]
-#         elif(n>2 and m<=2):
-#             predecessors = [(n-1,m-1),(n-2,m-1)]
-#         else:
-#             predecessors = [(n-1,m-1),(n-2,m-1),(n-1,m-2)]
-#
-#         # case for the first row. Only horizontal movements allowed
-#         if n == 0:
-#             cell = (0, m-1)
-#         # case for the elevator column: we can keep ging down the column or jumping to the end of the next row
-#         elif m == 0:
-#             if( D[n-1, M-1] > D[n-1, 0] ):
-#                 cell = (n-1, M-1)
-#                 path_point = (n-1, M-2)
-#                 if(len(path)>0):
-#                     path.reverse()
-#                     path_family.append(path)
-#                 path = []
-#                 path.append(path_point)
-#             else:
-#                 cell = (n-1, 0)
-#         # regular case
-#         else:
-#
-#             #obtaining the best of the possible predecesors
-#             max_val = -inf
-#             for i in range(len(predecessors)):
-#                 if( max_val<D[predecessors[i][0],predecessors[i][1]] ):
-#                     max_val = D[predecessors[i][0],predecessors[i][1]]
-#                     cell = predecessors[i]
-#
-#             #saving the point if we do not reach the elevator colum
-#             if(cell[1]>0):
-#                 path_point = (cell[0],cell[1]-1)
-#                 path.append(path_point)
-#
-#         (n, m) = cell
-#
-#     # adding last path to the path family
-#     path.reverse()
-#     path_family.append(path)
-#     path_family.reverse()
-#
-#     return path_family
-
 
 @jit(nopython=True)
 def compute_optimal_path_family(D):
@@ -275,11 +216,11 @@ def compute_optimal_path_family(D):
     Notebook: C4/C4S3_AudioThumbnailing.ipynb
 
     Args:
-        D: Accumulated score matrix
+        D (np.ndarray): Accumulated score matrix
 
-    Returns
-        P: Optimal path family consisting of list of paths
-           (each path being a list of index pairs)
+    Returns:
+        path_family (list): Optimal path family consisting of list of paths
+            (each path being a list of index pairs)
     """
     # Initialization
     inf = math.inf
@@ -357,17 +298,17 @@ def compute_fitness(path_family, score, N):
     Notebook: C4/C4S3_AudioThumbnailing.ipynb
 
     Args:
-        path_family: Path family
-        score: Score of path family
-        N: Length of feature sequence
+        path_family (list): Path family
+        score (float): Score
+        N (int): Length of feature sequence
 
-    Returns
-        fitness: Fitness
-        score: Score
-        score_n: Normalized score
-        coverage: Coverage
-        coverage_n: Normalized coverage
-        path_family_length: Length of path family (total number of cells)
+    Returns:
+        fitness (float): Fitness
+        score (float): Score
+        score_n (float): Normalized score
+        coverage (float): Coverage
+        coverage_n (float): Normalized coverage
+        path_family_length (int): Length of path family (total number of cells)
     """
     eps = 1e-16
     num_path = len(path_family)
@@ -399,15 +340,19 @@ def plot_ssm_ann_optimal_path_family(S, ann, seg, Fs=1, cmap='gray_r', color_ann
         S: Self-similarity matrix
         ann: Annotations
         seg: Segment for computing the optimal path family
-        Fs: Feature rate of path_family
-        cmap: Color map for S
-        color_ann: color scheme used for annotations
-        fontsize: Font size used for annotation labels
-        figsize: Size of figure
-        ylabel: label used for figure
+        Fs: Feature rate of path_family (Default value = 1)
+        cmap: Color map for S (Default value = 'gray_r')
+        color_ann: color scheme used for annotations (see :func:`libfmp.b.b_plot.plot_segments`)
+            (Default value = [])
+        fontsize: Font size used for annotation labels (Default value = 12)
+        figsize: Size of figure (Default value = (5, 4.5))
+        xlabel: Label for x-axis (Default value = '')
+        ylabel: Label for y-axis (Default value = '')
 
     Returns:
-        fig, ax, im
+        fig: Handle for figure
+        ax: Handle for axes
+        im: Handle for imshow
     """
     N = S.shape[0]
     S_seg = S[:, seg[0]:seg[1]+1]
@@ -432,11 +377,17 @@ def visualize_scape_plot(SP, Fs=1, ax=None, figsize=(4, 3), title='',
 
     Args:
         SP: Scape plot data (encodes as start-duration matrix)
-        Fs: Sampling rate
-        ax, figsize, title, xlabel, ylabel: Standard parameters for plotting
+        Fs: Sampling rate (Default value = 1)
+        ax: Used axes (Default value = None)
+        figsize: Figure size (Default value = (4, 3))
+        title: Title of figure (Default value = '')
+        xlabel: Label for x-axis (Default value = 'Center (seconds)')
+        ylabel: Label for y-axis (Default value = 'Length (seconds)')
 
     Returns:
-        fig, ax, im
+        fig: Handle for figure
+        ax: Handle for axes
+        im: Handle for imshow
     """
     fig = None
     if(ax is None):
@@ -449,7 +400,7 @@ def visualize_scape_plot(SP, Fs=1, ax=None, figsize=(4, 3), title='',
             center = start + length_minus_one//2
             SP_vis[length_minus_one, center] = SP[length_minus_one, start]
 
-    extent = np.array([-0.5, (N-1)+0.5, -0.5, (N-1)+0.5])/Fs
+    extent = np.array([-0.5, (N-1)+0.5, -0.5, (N-1)+0.5]) / Fs
     im = plt.imshow(SP_vis, cmap='hot_r', aspect='auto', origin='lower', extent=extent)
     x = np.asarray(range(N))
     x_half_lower = x/2
@@ -471,13 +422,13 @@ def visualize_scape_plot(SP, Fs=1, ax=None, figsize=(4, 3), title='',
 def compute_fitness_scape_plot(S):
     """Compute scape plot for fitness and other measures
 
-    Notebook: /C4/C4S3_ScapePlot.ipynb
+    Notebook: C4/C4S3_ScapePlot.ipynb
 
     Args:
-        S: Self-similarity matrix
+        S (np.ndarray): Self-similarity matrix
 
     Returns:
-        SP_all: Vector containing five different scape plots for five measures
+        SP_all (np.ndarray): Vector containing five different scape plots for five measures
             (fitness, score, normalized score, coverage, normlized coverage)
     """
     N = S.shape[0]
@@ -509,13 +460,13 @@ def seg_max_sp(SP):
     Notebook: C4/C4S3_ScapePlot.ipynb
 
     Args:
-        SP: Scape plot
+        SP (np.ndarray): Scape plot
 
     Returns:
-        seg: Segment [start_index:end_index]
+        seg (tuple): Segment ``(start_index, end_index)``
     """
     N = SP.shape[0]
-    #value_max = np.max(SP)
+    # value_max = np.max(SP)
     arg_max = np.argmax(SP)
     ind_max = np.unravel_index(arg_max, [N, N])
     seg = [ind_max[1], ind_max[1]+ind_max[0]]
@@ -529,9 +480,9 @@ def plot_seg_in_sp(ax, seg, S=None, Fs=1):
 
     Args:
         ax: Axis for image
-        seg: Segment [start_index:end_index]
-        S: Self-similarity matrix
-        Fs: Sampling rate
+        seg: Segment ``(start_index, end_index)``
+        S: Self-similarity matrix (Default value = None)
+        Fs: Sampling rate (Default value = 1)
     """
     if S is not None:
         S_seg = S[:, seg[0]:seg[1]+1]
@@ -550,7 +501,18 @@ def plot_seg_in_sp(ax, seg, S=None, Fs=1):
 
 def plot_sp_ssm(SP, seg, S, ann, color_ann=[], title='', figsize=(5, 4)):
     """Visulization of SP and SSM
-    Notebook: C4/C4S3_ScapePlot.ipynb"""
+
+    Notebook: C4/C4S3_ScapePlot.ipynb
+
+    Args:
+        SP: Scape plot
+        seg: Segment ``(start_index, end_index)``
+        S: Self-similarity matrix
+        ann: Annotation
+        color_ann: color scheme used for annotations (Default value = [])
+        title: Title of figure (Default value = '')
+        figsize: Figure size (Default value = (5, 4))
+    """
     float_box = libfmp.b.FloatingBox()
     fig, ax, im = visualize_scape_plot(SP, figsize=figsize, title=title,
                                        xlabel='Center (frames)', ylabel='Length (frames)')
@@ -567,16 +529,16 @@ def plot_sp_ssm(SP, seg, S, ann, color_ann=[], title='', figsize=(5, 4)):
 
 
 def check_segment(seg, S):
-    """Prints properties of segments with regard to SSM S
+    """Prints properties of segments with regard to SSM ``S``
 
     Notebook: C4/C4S3_ScapePlot.ipynb
 
     Args:
-        seg: Segment [start_index:end_index]
-        S: Self-similarity matrix
+        seg (tuple): Segment ``(start_index, end_index)``
+        S (np.ndarray): Self-similarity matrix
 
     Returns:
-        path_family: Optimal path family
+         path_family (list): Optimal path family
     """
     N = S.shape[0]
     S_seg = S[:, seg[0]:seg[1]+1]

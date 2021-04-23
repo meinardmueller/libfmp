@@ -13,8 +13,8 @@ from IPython.display import HTML, display
 
 
 class FloatingBox(object):
-    """
-    Inspired by https://stackoverflow.com/a/49566213/2812618
+    """Inspired by https://stackoverflow.com/a/49566213/2812618
+
     Floating box for matplotlib plots. The added figures are part of a floating box.
 
     Attributes:
@@ -57,6 +57,11 @@ class FloatingBox(object):
         plt.close(fig)
 
     def add_html(self, html):
+        """Add HTML to floating box
+
+        Args:
+            html: HTML string
+        """
 
         self.html += (
             f'<div class="{self.class_name}">' +
@@ -64,6 +69,5 @@ class FloatingBox(object):
             '</div>')
 
     def show(self):
-        """Display the accumulated HTML
-        """
+        """Display the accumulated HTML"""
         display(HTML(self.html))

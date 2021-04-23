@@ -18,31 +18,33 @@ def cyclic_shift(C, shift=1):
     Notebook: C3/C3S1_TranspositionTuning.ipynb
 
     Args:
-        C: Chromagram
-        shift: Number cyclic shifts
+        C (np.ndarray): Chromagram
+        shift (int): Tranposition shift (Default value = 1)
+
     Returns:
-        C_shift: Cyclically shifted chromagram
+        C_shift (np.ndarray): Cyclically shifted chromagram
     """
     C_shift = np.roll(C, shift=shift, axis=0)
     return C_shift
 
 
-def compute_freq_distribution(x, Fs, N=16384, gamma=100, local=True, filt=True, filt_len=101):
+def compute_freq_distribution(x, Fs, N=16384, gamma=100.0, local=True, filt=True, filt_len=101):
     """Compute an overall frequency distribution
 
     Notebook: C3/C3S1_TranspositionTuning.ipynb
 
     Args:
-        x: Signal
-        Fs: Sampling rate
-        N: Window size
-        gamma: Constant for logarithmic compression
-        local=True: Computes STFT and averages; otherwise computes global DFT
-        filt=True: Applies local frequency averaging and by rectification
-        filt_len: Filter length for local frequency averaging (length given in cents)
+        x (np.ndarray): Signal
+        Fs (scalar): Sampling rate
+        N (int): Window size (Default value = 16384)
+        gamma (float): Constant for logarithmic compression (Default value = 100.0)
+        local (bool): Computes STFT and averages; otherwise computes global DFT (Default value = True)
+        filt (bool): Applies local frequency averaging and by rectification (Default value = True)
+        filt_len (int): Filter length for local frequency averaging (length given in cents) (Default value = 101)
+
     Returns:
-        v: Vector representing an overall frequency distribution
-        F_coef_cents: Frequency axis (given in cents)
+        v (np.ndarray): Vector representing an overall frequency distribution
+        F_coef_cents (np.ndarray): Frequency axis (given in cents)
     """
     if local:
         # Compute an STFT and sum over time
@@ -90,10 +92,11 @@ def template_comb(M, theta=0):
     Notebook: C3/C3S1_TranspositionTuning.ipynb
 
     Args:
-        M: Length template (given in cents)
-        theta: Shift parameter (given in cents); -50 <= theta < 50
+        M (int): Length template (given in cents)
+        theta (int): Shift parameter (given in cents); -50 <= theta < 50 (Default value = 0)
+
     Returns:
-        template: comb template shifted by theta
+        template (np.ndarray): Comb template shifted by theta
     """
     template = np.zeros(M)
     peak_positions = (np.arange(0, M, 100) + theta)
@@ -108,13 +111,14 @@ def tuning_similarity(v):
     Notebook: C3/C3S1_TranspositionTuning.ipynb
 
     Args:
-        v: Vector representing an overall frequency distribution
+        v (np.ndarray): Vector representing an overall frequency distribution
+
     Returns:
-        theta_axis: Axis consisting of all tuning parameters -50 <= theta < 50
-        sim: Similarity values for all tuning parameters
-        ind_max: Maximizing index
-        theta_max: Maximizing tuning parameter
-        template_max: Similiarty-maximizing comb template
+        theta_axis (np.ndarray): Axis consisting of all tuning parameters -50 <= theta < 50
+        sim (np.ndarray): Similarity values for all tuning parameters
+        ind_max (int): Maximizing index
+        theta_max (int): Maximizing tuning parameter
+        template_max (np.ndarray): Similiarty-maximizing comb template
     """
     theta_axis = np.arange(-50, 50)  # Axis (given in cents)
     num_theta = len(theta_axis)
@@ -140,11 +144,14 @@ def plot_tuning_similarity(sim, theta_axis, theta_max, ax=None, title=None, figs
         sim: Similarity values
         theta_axis: Axis consisting of cent values [-50:49]
         theta_max: Maximizing tuning parameter
-        ax: Axis (in case of ax=None, figure is generated)
-        title: Title of figure (or subplot)
-        figsize: Size of figure (only used when ax=None)
+        ax: Axis (in case of ax=None, figure is generated) (Default value = None)
+        title: Title of figure (or subplot) (Default value = None)
+        figsize: Size of figure (only used when ax=None) (Default value = (4, 3))
+
     Returns:
-        fig, ax, line: Handles for figure, axis, and plot
+        fig: Handle for figure
+        ax: Handle for axes
+        line: handle for line plot
     """
     fig = None
     if ax is None:
@@ -174,11 +181,14 @@ def plot_freq_vector_template(v, F_coef_cents, template_max, theta_max, ax=None,
         F_coef_cents: Frequency axis
         template_max: Similarity-maximizing template
         theta_max: Maximizing tuning parameter
-        ax: Axis (in case of ax=None, figure is generated)
-        title: Title of figure (or subplot)
-        figsize: Size of figure (only used when ax=None)
+        ax: Axis (in case of ax=None, figure is generated) (Default value = None)
+        title: Title of figure (or subplot) (Default value = None)
+        figsize: Size of figure (only used when ax=None) (Default value = (8, 3))
+
     Returns:
-        fig, ax, line: Handles for figure, axis, and plot
+        fig: Handle for figure
+        ax: Handle for axes
+        line: handle for line plot
     """
     fig = None
     if ax is None:

@@ -16,12 +16,12 @@ def generate_function(Fs, dur=1):
     Notebook: C2/C2S2_DigitalSignalSampling.ipynb
 
     Args:
-        Fs: Sampling rate
-        dur: Duration (in seconds) of signal to be generated
+        Fs (scalar): Sampling rate
+        dur (float): Duration (in seconds) of signal to be generated (Default value = 1)
 
     Returns:
-        x: Signal
-        t: Time axis (in seconds)
+        x (np.ndarray): Signal
+        t (np.ndarray): Time axis (in seconds)
     """
     N = int(Fs * dur)
     t = np.arange(N) / Fs
@@ -37,14 +37,14 @@ def sampling_equidistant(x_1, t_1, Fs_2, dur=None):
     Notebook: C2/C2S2_DigitalSignalSampling.ipynb
 
     Args:
-        x_1: Signal to be interpolated and sampled
-        t_1: Time axis (in seconds) of x_1
-        Fs_2: Sampling rate used for equidistant sampling
-        dur: Duration (in seconds) of sampled signal
+        x_1 (np.ndarray): Signal to be interpolated and sampled
+        t_1 (np.ndarray): Time axis (in seconds) of x_1
+        Fs_2 (scalar): Sampling rate used for equidistant sampling
+        dur (float): Duration (in seconds) of sampled signal (Default value = None)
 
     Returns:
-        x_2: Sampled signal
-        t_2: time axis (in seconds) of sampled signal
+        x (np.ndarray): Sampled signal
+        t (np.ndarray): Time axis (in seconds) of sampled signal
     """
     if dur is None:
         dur = len(t_1) * t_1[1]
@@ -60,33 +60,33 @@ def reconstruction_sinc(x, t, t_sinc):
     Notebook: C2/C2S2_DigitalSignalSampling.ipynb
 
     Args:
-        x: Sampled signal
-        t: Equidistant discrete time axis (in seconds) of x
-        t_sinc: Equidistant discrete time axis (in seconds) of signal to be reconstructed
+        x (np.ndarray): Sampled signal
+        t (np.ndarray): Equidistant discrete time axis (in seconds) of x
+        t_sinc (np.ndarray): Equidistant discrete time axis (in seconds) of signal to be reconstructed
 
     Returns:
-        x_sinc: Reconstructed signal having time axis t_sinc
+        x_sinc (np.ndarray): Reconstructed signal having time axis t_sinc
     """
-    Fs = 1/t[1]
+    Fs = 1 / t[1]
     x_sinc = np.zeros(len(t_sinc))
     for n in range(0, len(t)):
         x_sinc += x[n] * np.sinc(Fs * t_sinc - n)
     return x_sinc
 
 
-def quantize_uniform(x, quant_min=-1, quant_max=1, quant_level=5):
+def quantize_uniform(x, quant_min=-1.0, quant_max=1.0, quant_level=5):
     """Uniform quantization approach
 
-    Notebook: C2S2_DigitalSignalQuantization.ipynb
+    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb
 
     Args:
-        x: Original signal
-        quant_min: Minimum quantization level
-        quant_max: Maximum quantization level
-        quant_level: Number of quantization levels
+        x (np.ndarray): Original signal
+        quant_min (float): Minimum quantization level (Default value = -1.0)
+        quant_max (float): Maximum quantization level (Default value = 1.0)
+        quant_level (int): Number of quantization levels (Default value = 5)
 
     Returns:
-        x_quant: Quantized signal
+        x_quant (np.ndarray): Quantized signal
     """
     x_normalize = (x-quant_min) * (quant_level-1) / (quant_max-quant_min)
     x_normalize[x_normalize > quant_level - 1] = quant_level - 1
@@ -96,9 +96,18 @@ def quantize_uniform(x, quant_min=-1, quant_max=1, quant_level=5):
     return x_quant
 
 
-def plot_graph_quant_function(ax, quant_min=-1, quant_max=1, quant_level=256, mu='255', quant='uniform'):
+def plot_graph_quant_function(ax, quant_min=-1.0, quant_max=1.0, quant_level=256, mu=255.0, quant='uniform'):
     """Helper function for plotting a graph of quantization function and quantization error
-    Notebook: C2S2_DigitalSignalQuantization.ipynb
+
+    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb
+
+    Args:
+        ax (mpl.axes.Axes): Axis
+        quant_min (float): Minimum quantization level (Default value = -1.0)
+        quant_max (float): Maximum quantization level (Default value = 1.0)
+        quant_level (int): Number of quantization levels (Default value = 256)
+        mu (float): Encoding parameter (Default value = 255.0)
+        quant (str): Type of quantization (Default value = 'uniform')
     """
     x = np.linspace(quant_min, quant_max, 1000)
     if quant == 'uniform':
@@ -123,7 +132,17 @@ def plot_graph_quant_function(ax, quant_min=-1, quant_max=1, quant_level=256, mu
 
 def plot_signal_quant(x, t, x_quant, figsize=(8, 2), xlim=None, ylim=None, title=''):
     """Helper function for plotting a signal and its quantized version
-    Notebook: C2S2_DigitalSignalQuantization.ipynb
+
+    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb
+
+    Args:
+        x: Original Signal
+        t: Time
+        x_quant: Quantized signal
+        figsize: Figure size (Default value = (8, 2))
+        xlim: Limits for x-axis (Default value = None)
+        ylim: Limits for y-axis (Default value = None)
+        title: Title of figure (Default value = '')
     """
     plt.figure(figsize=figsize)
     plt.plot(t, x, color='gray', linewidth=1.0, linestyle='-', label='Original signal')
@@ -145,14 +164,14 @@ def plot_signal_quant(x, t, x_quant, figsize=(8, 2), xlim=None, ylim=None, title
 def encoding_mu_law(v, mu=255.0):
     """mu-law encoding
 
-    Notebook: C2S2_DigitalSignalQuantization.ipynb
+    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb
 
     Args:
-        v: Value between -1 and 1
-        mu: Encoding parameter
+        v (float): Value between -1 and 1
+        mu (float): Encoding parameter (Default value = 255.0)
 
     Returns:
-        v_encode: Encoded value
+        v_encode (float): Encoded value
     """
     v_encode = np.sign(v) * (np.log(1.0 + mu * np.abs(v)) / np.log(1.0 + mu))
     return v_encode
@@ -161,14 +180,14 @@ def encoding_mu_law(v, mu=255.0):
 def decoding_mu_law(v, mu=255.0):
     """mu-law decoding
 
-    Notebook: C2S2_DigitalSignalQuantization.ipynb
+    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb
 
     Args:
-        v: Value between -1 and 1
-        mu: Dencoding parameter
+        v (float): Value between -1 and 1
+        mu (float): Dencoding parameter (Default value = 255.0)
 
     Returns:
-        v_decode: Decoded value
+        v_decode (float): Decoded value
     """
     v_decode = np.sign(v) * (1.0 / mu) * ((1.0 + mu)**np.abs(v) - 1.0)
     return v_decode
@@ -176,7 +195,13 @@ def decoding_mu_law(v, mu=255.0):
 
 def plot_mu_law(mu=255.0, figsize=(8.5, 4)):
     """Helper function for plotting a signal and its quantized version
-    Notebook: C2S2_DigitalSignalQuantization.ipynb"""
+
+    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb
+
+    Args:
+        mu (float): Dencoding parameter (Default value = 255.0)
+        figsize (tuple): Figure size (Default value = (8.5, 2))
+    """
     values = np.linspace(-1, 1, 1000)
     values_encoded = encoding_mu_law(values, mu=mu)
     values_decoded = encoding_mu_law(values, mu=mu)
@@ -185,9 +210,9 @@ def plot_mu_law(mu=255.0, figsize=(8.5, 4)):
     ax = plt.subplot(1, 2, 1)
     ax.plot(values, values, color='k', label='Original values')
     ax.plot(values, values_encoded, color='b', label='Encoded values')
-    ax.set_title('$\mu$-law encoding with $\mu=%.0f$' % mu)
+    ax.set_title(r'$\mu$-law encoding with $\mu=%.0f$' % mu)
     ax.set_xlabel('$v$')
-    ax.set_ylabel('$F_\mu(v)$')
+    ax.set_ylabel(r'$F_\mu(v)$')
     ax.set_xlim([-1, 1])
     ax.set_ylim([-1, 1])
     ax.grid('on')
@@ -196,9 +221,9 @@ def plot_mu_law(mu=255.0, figsize=(8.5, 4)):
     ax = plt.subplot(1, 2, 2)
     ax.plot(values, values, color='k', label='Original values')
     ax.plot(values, values_decoded, color='b', label='Decoded values')
-    ax.set_title('$\mu$-law decoding with $\mu=%.0f$' % mu)
+    ax.set_title(r'$\mu$-law decoding with $\mu=%.0f$' % mu)
     ax.set_xlabel('$v$')
-    ax.set_ylabel('$F_\mu^{-1}(v)$')
+    ax.set_ylabel(r'$F_\mu^{-1}(v)$')
     ax.set_xlim([-1, 1])
     ax.set_ylim([-1, 1])
     ax.grid('on')
@@ -208,18 +233,18 @@ def plot_mu_law(mu=255.0, figsize=(8.5, 4)):
     plt.show()
 
 
-def quantize_nonuniform_mu(x, mu=255, quant_level=256):
+def quantize_nonuniform_mu(x, mu=255.0, quant_level=256):
     """Nonuniform quantization approach using mu-encoding
 
-    Notebook: C2S2_DigitalSignalQuantization.ipynb
+    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb
 
     Args:
-        x: Original signal
-        mu: Encoding parameter
-        quant_level: Number of quantization levels
+        x (np.ndarray): Original signal
+        mu (float): Encoding parameter (Default value = 255.0)
+        quant_level (int): Number of quantization levels (Default value = 256)
 
     Returns:
-        x_quant: Quantized signal
+        x_quant (np.ndarray): Quantized signal
     """
     x_en = encoding_mu_law(x, mu=mu)
     x_en_quant = quantize_uniform(x_en, quant_min=-1, quant_max=1, quant_level=quant_level)

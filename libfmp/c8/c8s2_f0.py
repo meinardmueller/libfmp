@@ -23,13 +23,13 @@ def hz_to_cents(F, F_ref=55.0):
     Notebook: C8/C8S2_FundFreqTracking.ipynb
 
     Args:
-        F: Frequency value in Hz
-        F_ref: Reference frequency in Hz
+        F (float or np.ndarray): Frequency value in Hz
+        F_ref (float): Reference frequency in Hz (Default value = 55.0)
 
     Returns:
-        Frequency in cents
+        F_cent (float or np.ndarray): Frequency in cents
     """
-    F_cent = 1200*np.log2(F/F_ref)
+    F_cent = 1200 * np.log2(F / F_ref)
     return F_cent
 
 
@@ -39,13 +39,13 @@ def cents_to_hz(F_cent, F_ref=55.0):
     Notebook: C8/C8S2_FundFreqTracking.ipynb
 
     Args:
-        F: Frequency value in cents
-        F_ref: Reference frequency in Hz
+        F_cent (float or np.ndarray): Frequency in cents
+        F_ref (float): Reference frequency in Hz (Default value = 55.0)
 
     Returns:
-        Frequency in Hz
+        F (float or np.ndarray): Frequency in Hz
     """
-    F = F_ref * 2 ** (F_cent/1200)
+    F = F_ref * 2 ** (F_cent / 1200)
     return F
 
 
@@ -55,14 +55,14 @@ def sonify_trajectory_with_sinusoid(traj, audio_len, Fs=22050, amplitude=0.3, sm
     Notebook: C8/C8S2_FundFreqTracking.ipynb
 
     Args:
-        traj: F0 trajectory (time in seconds, frequency in Hz)
-        audio_len_samples: Desired audio length in samples
-        Fs: Sampling rate
-        sine_len: Length of sinusoidal components in sample (hop size)
-        smooth_len: Length of amplitude smoothing filter
+        traj (np.ndarray): F0 trajectory (time in seconds, frequency in Hz)
+        audio_len (int): Desired audio length in samples
+        Fs (scalar): Sampling rate (Default value = 22050)
+        amplitude (float): Amplitude (Default value = 0.3)
+        smooth_len (int): Length of amplitude smoothing filter (Default value = 11)
 
     Returns:
-        x_soni: Sonification
+        x_soni (np.ndarray): Sonification
     """
     # unit confidence if not specified
     if traj.shape[1] < 3:
@@ -77,7 +77,7 @@ def sonify_trajectory_with_sinusoid(traj, audio_len, Fs=22050, amplitude=0.3, sm
 
     # Computation of hop size
     # sine_len = int(2 ** np.round(np.log(traj[1, 0]*Fs) / np.log(2)))
-    sine_len = int(traj[1, 0]*Fs)
+    sine_len = int(traj[1, 0] * Fs)
 
     t = np.arange(0, sine_len) / Fs
     phase = 0
@@ -119,11 +119,15 @@ def visualize_salience_traj_constraints(Z, T_coef, F_coef_cents, F_ref=55.0, col
         Z: Salience representation
         T_coef: Time axis
         F_coef_cents: Frequency axis in cents
-        F_ref: Reference frequency
-        colorbar (bool): Show or hide colorbar
-        contour: F0 contour, time in seconds in 1st column, frequency in Hz in 2nd column
+        F_ref: Reference frequency (Default value = 55.0)
+        colorbar: Show or hide colorbar (Default value = True)
+        cmap: Color map (Default value = 'gray_r')
+        figsize: Figure size (Default value = (7, 4))
+        traj: F0 trajectory (time in seconds, frequency in Hz) (Default value = None)
         constraint_region: Constraint regions, row-format: (t_start_sec, t_end_sec, f_start_hz, f_end,hz)
-        ax: Handle to existing axis
+            (Default value = None)
+        ax: Handle to existing axis (Default value = None)
+
     Returns:
         fig: Handle to figure
         ax: Handle to cent axis
@@ -176,18 +180,19 @@ def visualize_salience_traj_constraints(Z, T_coef, F_coef_cents, F_ref=55.0, col
 
 
 # @jit(nopython=True)
-def define_transition_matrix(B, tol=0, score_low=0.01, score_high=1):
+def define_transition_matrix(B, tol=0, score_low=0.01, score_high=1.0):
     """Generate transition matrix
 
     Notebook: C8/C8S2_FundFreqTracking.ipynb
 
     Args:
-        B: Number of bins
-        tol: Tolerance parameter for transition matrix
-        score_low, score_high: Scores for transition matrix
+        B (int): Number of bins
+        tol (int): Tolerance parameter for transition matrix (Default value = 0)
+        score_low (float): Score (low) for transition matrix (Default value = 0.01)
+        score_high (float): Score (high) for transition matrix (Default value = 1.0)
 
     Returns:
-        T: Transition matrix
+        T (np.ndarray): Transition matrix
     """
     col = np.ones((B,)) * score_low
     col[0:tol+1] = np.ones((tol+1, )) * score_high
@@ -202,11 +207,11 @@ def compute_trajectory_dp(Z, T):
     Notebook: C8/C8S2_FundFreqTracking.ipynb
 
     Args:
-        salience: Salience representation
+        Z: Salience representation
         T: Transisition matrix
 
     Returns:
-        eta_DP: Trajectory indices
+        eta_DP (np.ndarray): Trajectory indices
     """
     B, N = Z.shape
     eps_machine = np.finfo(np.float32).eps
@@ -232,17 +237,17 @@ def compute_trajectory_dp(Z, T):
     return eta_DP.astype(np.int64)
 
 
-def convert_ann_to_constraint_region(ann, tol_freq_cents=300):
+def convert_ann_to_constraint_region(ann, tol_freq_cents=300.0):
     """Convert score annotations to constraint regions
 
     Notebook: C8/C8S2_FundFreqTracking.ipynb
 
     Args:
-        ann: score annotations [[start_time, end_time, MIDI_pitch], ...
-        tol_freq_cents: Tolerance in pitch directions specified in cents
+        ann (list): Score annotations [[start_time, end_time, MIDI_pitch], ...
+        tol_freq_cents (float): Tolerance in pitch directions specified in cents (Default value = 300.0)
 
     Returns:
-        eta_DP: Trajectory indices
+        constraint_region (np.ndarray): Constraint regions
     """
     tol_pitch = tol_freq_cents / 100
     freq_lower = 2 ** ((ann[:, 2] - tol_pitch - 69)/12) * 440
@@ -255,21 +260,23 @@ def convert_ann_to_constraint_region(ann, tol_freq_cents=300):
 
 # @jit(nopython=True)
 def compute_trajectory_cr(Z, T_coef, F_coef_hertz, constraint_region=None,
-                          tol=5, score_low=0.01, score_high=1):
+                          tol=5, score_low=0.01, score_high=1.0):
     """Trajectory tracking with constraint regions
 
     Notebook: C8/C8S2_FundFreqTracking.ipynb
 
     Args:
-        Z: Salience representation
-        T_coef: Time axis
-        F_coef_hertz: Frequency axis in Hz
-        constraint_region: Constraint regions, row-format: (t_start_sec, t_end_sec, f_start_hz, f_end_hz)
-        tol: Tolerance parameter for transition matrix
-        score_low, score_high: Scores for transition matrix
+        Z (np.ndarray): Salience representation
+        T_coef (np.ndarray): Time axis
+        F_coef_hertz (np.ndarray): Frequency axis in Hz
+        constraint_region (np.ndarray): Constraint regions, row-format: (t_start_sec, t_end_sec, f_start_hz, f_end_hz)
+            (Default value = None)
+        tol (int): Tolerance parameter for transition matrix (Default value = 5)
+        score_low (float): Score (low) for transition matrix (Default value = 0.01)
+        score_high (float): Score (high) for transition matrix (Default value = 1.0)
 
     Returns:
-        eta: Trajectory indices, unvoiced frames are indicated with -1
+        eta (np.ndarray): Trajectory indices, unvoiced frames are indicated with -1
     """
     # do tracking within every constraint region
     if constraint_region is not None:
@@ -303,31 +310,37 @@ def compute_trajectory_cr(Z, T_coef, F_coef_hertz, constraint_region=None,
     return eta
 
 
-def compute_traj_from_audio(x, Fs=22050, N=1024, H=128, R=10, F_min=55, F_max=1760,
-                            num_harm=10, freq_smooth_len=11, alpha=0.9, gamma=0,
-                            constraint_region=None, tol=5, score_low=0.01, score_high=1):
+def compute_traj_from_audio(x, Fs=22050, N=1024, H=128, R=10.0, F_min=55.0, F_max=1760.0,
+                            num_harm=10, freq_smooth_len=11, alpha=0.9, gamma=0.0,
+                            constraint_region=None, tol=5, score_low=0.01, score_high=1.0):
     """Compute F0 contour from audio signal
 
     Notebook: C8/C8S2_FundFreqTracking.ipynb
 
     Args:
-        x: Audio signal
-        Fs: Sampling frequency
-        N: Window length in samples
-        H: Hopsize in samples
-        R: Frequency resolution in cents
-        F_min: Lower frequency bound (reference frequency)
-        F_max: Upper frequency bound
-        num_harm: Number of harmonics
-        freq_smooth_len: Filter length for vertical smoothing
-        alpha: Weighting parameter for harmonics
-        gamma: Logarithmic compression factor
-        constraint_regions: Constraint regions, row-format: (t_start_sec, t_end_sec, f_start_hz, f_end,hz)
-        tol: Tolerance parameter for transition matrix
-        score_low, score_high: Scores for transition matrix
+        x (np.ndarray): Audio signal
+        Fs (scalar): Sampling frequency (Default value = 22050)
+        N (int): Window length in samples (Default value = 1024)
+        H (int): Hopsize in samples (Default value = 128)
+        R (float): Frequency resolution in cents (Default value = 10.0)
+        F_min (float): Lower frequency bound (reference frequency) (Default value = 55.0)
+        F_max (float): Upper frequency bound (Default value = 1760.0)
+        num_harm (int): Number of harmonics (Default value = 10)
+        freq_smooth_len (int): Filter length for vertical smoothing (Default value = 11)
+        alpha (float): Weighting parameter for harmonics (Default value = 0.9)
+        gamma (float): Logarithmic compression factor (Default value = 0.0)
+        constraint_region (np.ndarray): Constraint regions, row-format: (t_start_sec, t_end_sec, f_start_hz, f_end,hz)
+            (Default value = None)
+        tol (int): Tolerance parameter for transition matrix (Default value = 5)
+        score_low (float): Score (low) for transition matrix (Default value = 0.01)
+        score_high (float): Score (high) for transition matrix (Default value = 1.0)
 
     Returns:
-        contour: F0 contour, time in seconds in 1st column, frequency in Hz in 2nd column
+        traj (np.ndarray): F0 contour, time in seconds in 1st column, frequency in Hz in 2nd column
+        Z (np.ndarray): Salience representation
+        T_coef (np.ndarray): Time axis
+        F_coef_hertz (np.ndarray): Frequency axis in Hz
+        F_coef_cents (np.ndarray): Frequency axis in cents
     """
     Z, F_coef_hertz, F_coef_cents = libfmp.c8.compute_salience_rep(
         x, Fs, N=N, H=H, R=R, F_min=F_min, F_max=F_max, num_harm=num_harm, freq_smooth_len=freq_smooth_len,
@@ -348,13 +361,13 @@ def convert_trajectory_to_mask_bin(traj, F_coef, n_harmonics=1, tol_bin=0):
     Notebook: C8/C8S2_MelodyExtractSep.ipynb
 
     Args:
-        traj: F0 trajectory (time in seconds in 1st column, frequency in Hz in 2nd column)
-        F_coef: Frequency axis
-        n_harmonics: Number of harmonics
-        tol_bin: Tolerance in frequency bins
+        traj (np.ndarray): F0 trajectory (time in seconds in 1st column, frequency in Hz in 2nd column)
+        F_coef (np.ndarray): Frequency axis
+        n_harmonics (int): Number of harmonics (Default value = 1)
+        tol_bin (int): Tolerance in frequency bins (Default value = 0)
 
     Returns:
-        mask: Binary mask
+        mask (np.ndarray): Binary mask
     """
     # Compute STFT bin for trajectory
     traj_bin = np.argmin(np.abs(F_coef[:, None] - traj[:, 1][None, :]), axis=0)
@@ -375,19 +388,19 @@ def convert_trajectory_to_mask_bin(traj, F_coef, n_harmonics=1, tol_bin=0):
     return mask
 
 
-def convert_trajectory_to_mask_cent(traj, F_coef, n_harmonics=1, tol_cent=0):
+def convert_trajectory_to_mask_cent(traj, F_coef, n_harmonics=1, tol_cent=0.0):
     """Computes binary mask from F0 trajectory
 
     Notebook: C8/C8S2_MelodyExtractSep.ipynb
 
     Args:
-        traj: F0 trajectory (time in seconds in 1st column, frequency in Hz in 2nd column)
-        F_coef: Frequency axis
-        n_harmonics: Number of harmonics
-        tol_cent: Tolerance in cents
+        traj (np.ndarray): F0 trajectory (time in seconds in 1st column, frequency in Hz in 2nd column)
+        F_coef (np.ndarray): Frequency axis
+        n_harmonics (int): Number of harmonics (Default value = 1)
+        tol_cent (float): Tolerance in cents (Default value = 0.0)
 
     Returns:
-        mask: Binary mask
+        mask (np.ndarray): Binary mask
     """
     K = len(F_coef)
     N = traj.shape[0]
@@ -412,27 +425,27 @@ def convert_trajectory_to_mask_cent(traj, F_coef, n_harmonics=1, tol_cent=0):
     return mask
 
 
-def separate_melody_accompaniment(x, Fs, N, H, traj, n_harmonics=10, tol_cent=50):
+def separate_melody_accompaniment(x, Fs, N, H, traj, n_harmonics=10, tol_cent=50.0):
     """F0-based melody-accompaniement separation
 
     Notebook: C8/C8S2_MelodyExtractSep.ipynb
 
     Args:
-        x: Audio signal
-        Fs: Sampling frequency
-        N: Window size in samples
-        H: Hopsize in samples
-        traj: F0 traj (time in seconds in 1st column, frequency in Hz in 2nd column)
-        n_harmonics: Number of harmonics
-        tol_cent: Tolerance in cents
+        x (np.ndarray): Audio signal
+        Fs (scalar): Sampling frequency
+        N (int): Window size in samples
+        H (int): Hopsize in samples
+        traj (np.ndarray): F0 traj (time in seconds in 1st column, frequency in Hz in 2nd column)
+        n_harmonics (int): Number of harmonics (Default value = 10)
+        tol_cent (float): Tolerance in cents (Default value = 50.0)
 
     Returns:
-        x_mel: Reconstructed audio signal for melody
-        x_acc: Reconstructed audio signal for accompaniement
+        x_mel (np.ndarray): Reconstructed audio signal for melody
+        x_acc (np.ndarray): Reconstructed audio signal for accompaniement
     """
     # Compute STFT
     X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, pad_mode='constant')
-    Fs_feature = Fs/H
+    Fs_feature = Fs / H
     T_coef = np.arange(X.shape[1]) / Fs_feature
     freq_res = Fs / N
     F_coef = np.arange(X.shape[0]) * freq_res

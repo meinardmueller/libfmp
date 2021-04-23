@@ -16,21 +16,47 @@ import pandas as pd
 
 def median_filter_horizontal(x, filter_len):
     """Apply median filter in horizontal direction
+
     Notebook: C8/C8S1_HPS.ipynb
+
+    Args:
+        x (np.ndarray): Input matrix
+        filter_len (int): Filter length
+
+    Returns:
+        x_h (np.ndarray): Filtered matrix
     """
     return signal.medfilt(x, [1, filter_len])
 
 
 def median_filter_vertical(x, filter_len):
     """Apply median filter in vertical direction
+
     Notebook: C8/C8S1_HPS.ipynb
+
+    Args:
+        x: Input matrix
+        filter_len (int): Filter length
+
+    Returns:
+        x_p (np.ndarray): Filtered matrix
     """
     return signal.medfilt(x, [filter_len, 1])
 
 
 def convert_l_sec_to_frames(L_h_sec, Fs=22050, N=1024, H=512):
     """Convert filter length parameter from seconds to frame indices
+
     Notebook: C8/C8S1_HPS.ipynb
+
+    Args:
+        L_h_sec (float): Filter length (in seconds)
+        Fs (scalar): Sample rate (Default value = 22050)
+        N (int): Window size (Default value = 1024)
+        H (int): Hop size (Default value = 512)
+
+    Returns:
+        L_h (int): Filter length (in samples)
     """
     L_h = int(np.ceil(L_h_sec * Fs / H))
     return L_h
@@ -38,7 +64,17 @@ def convert_l_sec_to_frames(L_h_sec, Fs=22050, N=1024, H=512):
 
 def convert_l_hertz_to_bins(L_p_Hz, Fs=22050, N=1024, H=512):
     """Convert filter length parameter from Hertz to frequency bins
+
     Notebook: C8/C8S1_HPS.ipynb
+
+    Args:
+        L_p_Hz (float): Filter length (in Hertz)
+        Fs (scalar): Sample rate (Default value = 22050)
+        N (int): Window size (Default value = 1024)
+        H (int): Hop size (Default value = 512)
+
+    Returns:
+        L_p (int): Filter length (in frequency bins)
     """
     L_p = int(np.ceil(L_p_Hz * N / Fs))
     return L_p
@@ -46,7 +82,14 @@ def convert_l_hertz_to_bins(L_p_Hz, Fs=22050, N=1024, H=512):
 
 def make_integer_odd(n):
     """Convert integer into odd integer
+
     Notebook: C8/C8S1_HPS.ipynb
+
+    Args:
+        n (int): Integer
+
+    Returns:
+        n (int): Odd integer
     """
     if(n % 2 == 0):
         n += 1
@@ -59,21 +102,21 @@ def hps(x, Fs, N, H, L_h, L_p, L_unit='physical', mask='binary', eps=0.001, deta
     Notebook: C8/C8S1_HPS.ipynb
 
     Args:
-        x: Input signal
-        Fs: Sampling rate of x
-        N: Frame length
-        H: Hopsize
-        L_h: Horizontal median filter length given in seconds or frames
-        L_p: Percussive median filter length given in Hertz or bins
-        L_unit: Adjusts unit, either 'pyhsical' or 'indices'
-        mask: Either 'binary' or 'soft'
-        eps: Parameter used in soft maskig
-        detail (bool): Returns detailed information
+        x (np.ndarray): Input signal
+        Fs (scalar): Sampling rate of x
+        N (int): Frame length
+        H (int): Hopsize
+        L_h (float): Horizontal median filter length given in seconds or frames
+        L_p (float): Percussive median filter length given in Hertz or bins
+        L_unit (str): Adjusts unit, either 'pyhsical' or 'indices' (Default value = 'physical')
+        mask (str): Either 'binary' or 'soft' (Default value = 'binary')
+        eps (float): Parameter used in soft maskig (Default value = 0.001)
+        detail (bool): Returns detailed information (Default value = False)
 
     Returns:
-        x_h: Harmonic signal
-        x_p: Percussive signal
-        dict: dictionary containing detailed information; returned if "detail=True"
+        x_h (np.ndarray): Harmonic signal
+        x_p (np.ndarray): Percussive signal
+        details (dict): Dictionary containing detailed information; returned if ``detail=True``
     """
     assert L_unit in ['physical', 'indices']
     assert mask in ['binary', 'soft']
@@ -113,7 +156,17 @@ def hps(x, Fs, N, H, L_h, L_p, L_unit='physical', mask='binary', eps=0.001, deta
 
 def generate_audio_tag_html_list(list_x, Fs, width='150', height='40'):
     """Generates audio tag for html needed to be shown in table
+
     Notebook: C8/C8S1_HPS.ipynb
+
+    Args:
+        list_x (list): List of waveforms
+        Fs (scalar): Sample rate
+        width (str): Width in px (Default value = '150')
+        height (str): Height in px (Default value = '40')
+
+    Returns:
+        audio_tag_html_list (list): List of HTML strings with audio tags
     """
     audio_tag_html_list = []
     for i in range(len(list_x)):
@@ -125,27 +178,27 @@ def generate_audio_tag_html_list(list_x, Fs, width='150', height='40'):
     return audio_tag_html_list
 
 
-def hrps(x, Fs, N, H, L_h, L_p, beta=2, L_unit='physical', detail=False):
+def hrps(x, Fs, N, H, L_h, L_p, beta=2.0, L_unit='physical', detail=False):
     """Harmonic-residual-percussive separation (HRPS) algorithm
 
-    Notebook: C8/C8S1_HPS.ipynb
+    Notebook: C8/C8S1_HRPS.ipynb
 
     Args:
-        x: Input signal
-        Fs: Sampling rate of x
-        N: Frame length
-        H: Hopsize
-        L_h: Horizontal median filter length given in seconds or frames
-        L_p: Percussive median filter length given in Hertz or bins
-        beta: Separation factor
-        L_unit: Adjusts unit, either 'pyhsical' or 'indices'
-        detail (bool): Returns detailed information
+        x (np.ndarray): Input signal
+        Fs (scalar): Sampling rate of x
+        N (int): Frame length
+        H (int): Hopsize
+        L_h (float): Horizontal median filter length given in seconds or frames
+        L_p (float): Percussive median filter length given in Hertz or bins
+        beta (float): Separation factor (Default value = 2.0)
+        L_unit (str): Adjusts unit, either 'pyhsical' or 'indices' (Default value = 'physical')
+        detail (bool): Returns detailed information (Default value = False)
 
     Returns:
-        x_h: Harmonic signal
-        x_p: Percussive signal
-        x_r: Residual signal
-        dict: dictionary containing detailed information; returned if "detail=True"
+        x_h (np.ndarray): Harmonic signal
+        x_p (np.ndarray): Percussive signal
+        x_r (np.ndarray): Residual signal
+        details (dict): Dictionary containing detailed information; returned if "detail=True"
     """
     assert L_unit in ['physical', 'indices']
     # stft
@@ -180,9 +233,70 @@ def hrps(x, Fs, N, H, L_h, L_p, beta=2, L_unit='physical', detail=False):
         return x_h, x_p, x_r
 
 
+def experiment_hps_parameter(fn_wav, param_list):
+    """Script for running an HPS experiment over a parameter list, such as ``[[1024, 256, 0.1, 100], ...]``
+
+    Notebook: C8/C8S1_HPS.ipynb
+
+    Args:
+        fn_wav (str): Path to wave file
+        param_list (list): List of parameters
+    """
+    Fs = 22050
+    x, Fs = librosa.load(fn_wav, sr=Fs)
+
+    list_x = []
+    list_x_h = []
+    list_x_p = []
+    list_N = []
+    list_H = []
+    list_L_h_sec = []
+    list_L_p_Hz = []
+    list_L_h = []
+    list_L_p = []
+
+    for param in param_list:
+        N, H, L_h_sec, L_p_Hz = param
+        print('N=%4d, H=%4d, L_h_sec=%4.2f, L_p_Hz=%3.1f' % (N, H, L_h_sec, L_p_Hz))
+        x_h, x_p = hps(x, Fs=Fs, N=N, H=H, L_h=L_h_sec, L_p=L_p_Hz)
+        L_h = convert_l_sec_to_frames(L_h_sec=L_h_sec, Fs=Fs, N=N, H=H)
+        L_p = convert_l_hertz_to_bins(L_p_Hz=L_p_Hz, Fs=Fs, N=N, H=H)
+        list_x.append(x)
+        list_x_h.append(x_h)
+        list_x_p.append(x_p)
+        list_N.append(N)
+        list_H.append(H)
+        list_L_h_sec.append(L_h_sec)
+        list_L_p_Hz.append(L_p_Hz)
+        list_L_h.append(L_h)
+        list_L_p.append(L_p)
+
+    html_x = generate_audio_tag_html_list(list_x, Fs=Fs)
+    html_x_h = generate_audio_tag_html_list(list_x_h, Fs=Fs)
+    html_x_p = generate_audio_tag_html_list(list_x_p, Fs=Fs)
+
+    pd.options.display.float_format = '{:,.1f}'.format
+    pd.set_option('display.max_colwidth', None)
+    df = pd.DataFrame(OrderedDict([
+        ('$N$', list_N),
+        ('$H$', list_H),
+        ('$L_h$ (sec)', list_L_h_sec),
+        ('$L_p$ (Hz)', list_L_p_Hz),
+        ('$L_h$', list_L_h),
+        ('$L_p$', list_L_p),
+        ('$x$', html_x),
+        ('$x_h$', html_x_h),
+        ('$x_p$', html_x_p)]))
+    df.index = np.arange(1, len(df) + 1)
+    ipd.display(ipd.HTML(df.to_html(escape=False, index=False)))
+
+
 def experiment_hrps_parameter(fn_wav, param_list):
-    """Script for running experiment over parameter list [[1024, 256, 0.1, 100], ...
-    Notebook: C8/C8S1_HRPS.ipynb
+    """Script for running an HRPS experiment over a parameter list, such as ``[[1024, 256, 0.1, 100], ...]``
+
+    Args:
+        fn_wav (str): Path to wave file
+        param_list (list): List of parameters
     """
     Fs = 22050
     x, Fs = librosa.load(fn_wav, sr=Fs)

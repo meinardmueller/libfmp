@@ -16,12 +16,12 @@ def compute_cost_matrix(X, Y, metric='euclidean'):
     Notebook: C3/C3S2_DTWbasic.ipynb
 
     Args:
-        X: Sequence 1
-        Y: Sequence 2
-        metric: Cost metric, a valid strings for scipy.spatial.distance.cdist
+        X (np.ndarray): Sequence 1
+        Y (np.ndarray): Sequence 2
+        metric (str): Cost metric, a valid strings for scipy.spatial.distance.cdist (Default value = 'euclidean')
 
     Returns:
-        C: Cost matrix
+        C (np.ndarray): Cost matrix
     """
     X, Y = np.atleast_2d(X, Y)
     C = scipy.spatial.distance.cdist(X.T, Y.T, metric=metric)
@@ -35,10 +35,10 @@ def compute_accumulated_cost_matrix(C):
     Notebook: C3/C3S2_DTWbasic.ipynb
 
     Args:
-        C: cost matrix
+        C (np.ndarray): Cost matrix
 
     Returns:
-        D: Accumulated cost matrix
+        D (np.ndarray): Accumulated cost matrix
     """
     N = C.shape[0]
     M = C.shape[1]
@@ -61,10 +61,10 @@ def compute_optimal_warping_path(D):
     Notebook: C3/C3S2_DTWbasic.ipynb
 
     Args:
-        D: Accumulated cost matrix
+        D (np.ndarray): Accumulated cost matrix
 
-    Returns
-        P: Warping path (list of index pairs)
+    Returns:
+        P (np.ndarray): Optimal warping path
     """
     N = D.shape[0]
     M = D.shape[1]
@@ -97,10 +97,10 @@ def compute_accumulated_cost_matrix_21(C):
     Notebook: C3/C3S2_DTWvariants.ipynb
 
     Args:
-        C: cost matrix
+        C (np.ndarray): Cost matrix
 
     Returns:
-        D: Accumulated cost matrix
+        D (np.ndarray): Accumulated cost matrix
     """
     N = C.shape[0]
     M = C.shape[1]
@@ -125,10 +125,10 @@ def compute_optimal_warping_path_21(D):
     Notebook: C3/C3S2_DTWvariants.ipynb
 
     Args:
-        D: Accumulated cost matrix
+        D (np.ndarray): Accumulated cost matrix
 
-    Returns
-        P: Warping path (list of index pairs)
+    Returns:
+        P (np.ndarray): Optimal warping path
     """
     N = D.shape[0]
     M = D.shape[1]

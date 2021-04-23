@@ -17,12 +17,12 @@ def read_csv(fn, header=True, add_label=False):
     """Reads a CSV file
 
     Args:
-        fn: Filename
-        header: Boolean
-        add_label: Add column with constant value of `add_label`
+        fn (str): Filename
+        header (bool): Boolean (Default value = True)
+        add_label (bool): Add column with constant value of `add_label` (Default value = False)
 
     Returns:
-        df: Pandas DataFrame
+        df (pd.DataFrame): Pandas DataFrame
     """
     df = pd.read_csv(fn, sep=';', keep_default_na=False, header=0 if header else None)
     if add_label:
@@ -35,9 +35,9 @@ def write_csv(df, fn, header=True):
     """Writes a CSV file
 
     Args:
-        df: Pandas DataFrame
-        fn: Filename
-        header: Boolean
+        df (pd.DataFrame): Pandas DataFrame
+        fn (str): Filename
+        header (bool): Boolean (Default value = True)
     """
     df.to_csv(fn, sep=';', index=False, quoting=2, header=header)
 
@@ -45,19 +45,17 @@ def write_csv(df, fn, header=True):
 def cut_audio(fn_in, fn_out, start_sec, end_sec, normalize=True, write=True, Fs=22050):
     """Cuts an audio file
 
-    Notebook: B/B_Annotations_cut.ipynb
-
     Args:
-        fn_in: Filename and path for input audio file
-        fn_out: Filename and path for input audio file
-        start_sec: Start time position (in seconds) of cut
-        end_sec: End time position (in seconds) of cut
-        normalize: If True, then normalize audio (with max norm)
-        write: If True, then write audio
-        Fs: Sampling rate of audio
+        fn_in (str): Filename and path for input audio file
+        fn_out (str): Filename and path for input audio file
+        start_sec (float): Start time position (in seconds) of cut
+        end_sec (float): End time position (in seconds) of cut
+        normalize (bool): If True, then normalize audio (with max norm) (Default value = True)
+        write (bool): If True, then write audio (Default value = True)
+        Fs (scalar): Sampling rate of audio (Default value = 22050)
 
     Returns:
-        x_cut: Cut audio
+        x_cut (np.ndarray): Cut audio
     """
     x_cut, Fs = librosa.load(fn_in, sr=Fs, offset=start_sec, duration=end_sec-start_sec)
     if normalize is True:
@@ -70,17 +68,15 @@ def cut_audio(fn_in, fn_out, start_sec, end_sec, normalize=True, write=True, Fs=
 def cut_csv_file(fn_in, fn_out, start_sec, end_sec, write=True):
     """Cuts csv annotation file
 
-    Notebook: B/B_Annotations_cut.ipynb
-
     Args:
-        fn_in: Filename and path for input audio file
-        fn_out: Filename and path for input audio file
-        start_sec: Start time position (in seconds) of cut
-        end_sec: End time position (in seconds) of cut
-        write: If True, then write audio
+        fn_in (str): Filename and path for input audio file
+        fn_out (str): Filename and path for input audio file
+        start_sec (float): Start time position (in seconds) of cut
+        end_sec (float): End time position (in seconds) of cut
+        write (bool): If True, then write audio (Default value = True)
 
     Returns:
-        ann_cut: Cut annotation file
+        ann_cut (list): Cut annotation file
     """
     df = pd.read_csv(fn_in, sep=',', keep_default_na=False, header=None)
     ann_cut = []

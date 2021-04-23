@@ -13,7 +13,14 @@ import IPython.display as ipd
 
 def f_pitch(p):
     """Compute center frequency for (single or array of) MIDI note numbers
+
     Notebook: C1/C1S3_FrequencyPitch.ipynb
+
+    Args:
+        p (float or np.ndarray): MIDI note numbers
+
+    Returns:
+        freq_center (float or np.ndarray): Center frequency
     """
     freq_center = 2 ** ((p - 69) / 12) * 440
     return freq_center
@@ -21,7 +28,15 @@ def f_pitch(p):
 
 def difference_cents(freq_1, freq_2):
     """Difference between two frequency values specified in cents
+
     Notebook: C1/C1S3_FrequencyPitch.ipynb
+
+    Args:
+        freq_1 (float): First frequency
+        freq_2 (float): Second frequency
+
+    Returns:
+        delta (float): Difference in cents
     """
     delta = np.log2(freq_1 / freq_2) * 1200
     return delta
@@ -33,15 +48,16 @@ def generate_sinusoid(dur=5, Fs=1000, amp=1, freq=1, phase=0):
     Notebook: C1/C1S3_FrequencyPitch.ipynb
 
     Args:
-        dur: Duration (in seconds)
-        Fs: Sampling rate
-        amp: Amplitude of sinusoid
-        freq: Frequency of sinusoid
-        phase: Phase of sinusoid
+        dur (float): Duration (in seconds) (Default value = 5)
+        Fs (scalar): Sampling rate (Default value = 1000)
+        amp (float): Amplitude of sinusoid (Default value = 1)
+        freq (float): Frequency of sinusoid (Default value = 1)
+        phase (float): Phase of sinusoid (Default value = 0)
 
     Returns:
-        x: Signal
-        t: Time axis (in seconds)
+        x (np.ndarray): Signal
+        t (np.ndarray): Time axis (in seconds)
+
     """
     num_samples = int(Fs * dur)
     t = np.arange(num_samples) / Fs
@@ -55,13 +71,13 @@ def compute_power_db(x, Fs, win_len_sec=0.1, power_ref=10**(-12)):
     Notebook: C1/C1S3_Dynamics.ipynb
 
     Args:
-        x: Signal (waveform) to be analyzed
-        Fs: Sampling rate
-        win_len_sec: Length (seconds) of the window
-        power_ref: Reference power level (0 dB)
+        x (np.ndarray): Signal (waveform) to be analyzed
+        Fs (scalar): Sampling rate
+        win_len_sec (float): Length (seconds) of the window (Default value = 0.1)
+        power_ref (float): Reference power level (0 dB) (Default value = 10**(-12))
 
     Returns:
-        power_db: Signal power in dB
+        power_db (np.ndarray): Signal power in dB
     """
     win_len = round(win_len_sec * Fs)
     win = np.ones(win_len) / win_len
@@ -75,13 +91,13 @@ def compute_equal_loudness_contour(freq_min=30, freq_max=15000, num_points=100):
     Notebook: C1/C1S3_Dynamics.ipynb
 
     Args:
-        freq_min: Lowest frequency to be evaluated
-        freq_max: Highest frequency to be evaluated
-        num_points: Number of evaluation points
+        freq_min (float): Lowest frequency to be evaluated (Default value = 30)
+        freq_max (float): Highest frequency to be evaluated (Default value = 15000)
+        num_points (int): Number of evaluation points (Default value = 100)
 
     Returns:
-        equal_loudness_contour: Equal loudness contour (in dB)
-        freq_range: Evaluated frequency points
+        equal_loudness_contour (np.ndarray): Equal loudness contour (in dB)
+        freq_range (np.ndarray): Evaluated frequency points
     """
     freq_range = np.logspace(np.log10(freq_min), np.log10(freq_max), num=num_points)
     freq = 1000
@@ -102,15 +118,15 @@ def generate_chirp_exp(dur, freq_start, freq_end, Fs=22050):
     Notebook: C1/C1S3_Dynamics.ipynb
 
     Args:
-        dur: Length (seconds) of the signal
-        freq_start: Start frequency of the chirp
-        freq_end: End frequency of the chirp
-        Fs: Sampling rate
+        dur (float): Length (seconds) of the signal
+        freq_start (float): Start frequency of the chirp
+        freq_end (float): End frequency of the chirp
+        Fs (scalar): Sampling rate (Default value = 22050)
 
     Returns:
-        x: Generated chirp signal
-        t: Time axis (in seconds)
-        freq: Instant frequency (in Hz)
+        x (np.ndarray): Generated chirp signal
+        t (np.ndarray): Time axis (in seconds)
+        freq (np.ndarray): Instant frequency (in Hz)
     """
     N = int(dur * Fs)
     t = np.arange(N) / Fs
@@ -128,16 +144,16 @@ def generate_chirp_exp_equal_loudness(dur, freq_start, freq_end, Fs=22050):
     Notebook: C1/C1S3_Dynamics.ipynb
 
     Args:
-        dur: Length (seconds) of the signal
-        freq_start: Starting frequency of the chirp
-        freq_end: End frequency of the chirp
-        Fs: Sampling rate
+        dur (float): Length (seconds) of the signal
+        freq_start (float): Starting frequency of the chirp
+        freq_end (float): End frequency of the chirp
+        Fs (scalar): Sampling rate (Default value = 22050)
 
     Returns:
-        x: Generated chirp signal
-        t: Time axis (in seconds)
-        freq: Instant frequency (in Hz)
-        intensity: Instant intensity of the signal
+        x (np.ndarray): Generated chirp signal
+        t (np.ndarray): Time axis (in seconds)
+        freq (np.ndarray): Instant frequency (in Hz)
+        intensity (np.ndarray): Instant intensity of the signal
     """
     N = int(dur * Fs)
     t = np.arange(N) / Fs
@@ -150,17 +166,21 @@ def generate_chirp_exp_equal_loudness(dur, freq_start, freq_end, Fs=22050):
     return x, t, freq, intensity
 
 
-def compute_adsr(len_A=.10, len_D=10, len_S=60, len_R=10, height_A=1.0, height_S=0.5):
+def compute_adsr(len_A=10, len_D=10, len_S=60, len_R=10, height_A=1.0, height_S=0.5):
     """Computation of idealized ADSR model
 
     Notebook: C1/C1S3_Timbre.ipynb
 
     Args:
-        len_A, len_D, len_S, len_R: Length (samples) of A, D, S, R phases
-        height_A, height_S: height in A and S phases.
+        len_A (int): Length (samples) of A phase (Default value = 10)
+        len_D (int): Length (samples) of D phase (Default value = 10)
+        len_S (int): Length (samples) of S phase (Default value = 60)
+        len_R (int): Length (samples) of R phase (Default value = 10)
+        height_A (float): Height of A phase (Default value = 1.0)
+        height_S (float): Height of S phase (Default value = 0.5)
 
     Returns:
-        curve_ADSR: ADSR model
+        curve_ADSR (np.ndarray): ADSR model
     """
     curve_A = np.arange(len_A) * height_A / len_A
     curve_D = height_A - np.arange(len_D) * (height_A - height_S) / len_D
@@ -176,14 +196,14 @@ def compute_envelope(x, win_len_sec=0.01, Fs=4000):
     Notebook: C1/C1S3_Timbre.ipynb
 
     Args:
-        x: Signal (waveform) to be analyzed
-        win_len_sec: Length (seconds) of the window
-        Fs: Sampling rate
+        x (np.ndarray): Signal (waveform) to be analyzed
+        win_len_sec (float): Length (seconds) of the window (Default value = 0.01)
+        Fs (scalar): Sampling rate (Default value = 4000)
 
     Returns:
-        env: Magnitude envelope
-        env_upper: Upper envelope
-        env_lower: Lower envelope
+        env (np.ndarray): Magnitude envelope
+        env_upper (np.ndarray): Upper envelope
+        env_lower (np.ndarray): Lower envelope
     """
     win_len_half = round(win_len_sec * Fs * 0.5)
     N = x.shape[0]
@@ -205,14 +225,14 @@ def compute_plot_envelope(x, win_len_sec, Fs, figsize=(6, 3), title=''):
     Notebook: C1/C1S3_Timbre.ipynb
 
     Args:
-        x: Signal (waveform) to be analyzed
-        win_len_sec: Length (seconds) of the window
-        Fs: Sampling rate
-        figsize: Size of the figure
-        title: Title of the figure
+        x (np.ndarray): Signal (waveform) to be analyzed
+        win_len_sec (float): Length (seconds) of the window
+        Fs (scalar): Sampling rate
+        figsize (tuple): Size of the figure (Default value = (6, 3))
+        title (str): Title of the figure (Default value = '')
 
     Returns:
-        fig: Generated figure
+        fig (mpl.figure.Figure): Generated figure
     """
     t = np.arange(x.size)/Fs
     env, env_upper, env_lower = compute_envelope(x, win_len_sec=win_len_sec, Fs=Fs)
@@ -238,16 +258,17 @@ def generate_sinusoid_vibrato(dur=5, Fs=1000, amp=0.5, freq=440, vib_amp=1, vib_
     Notebook: C1/C1S3_Timbre.ipynb
 
     Args:
-        dur: Duration (in seconds)
-        Fs: Sampling rate
-        amp: Amplitude of sinusoid
-        freq: Frequency (Hz) of sinusoid
-        vib_amp: Amplitude (Hz) of the frequency oscillation
-        vib_rate: Rate (Hz) of the frequency oscillation
+        dur (float): Duration (in seconds) (Default value = 5)
+        Fs (scalar): Sampling rate (Default value = 1000)
+        amp (float): Amplitude of sinusoid (Default value = 0.5)
+        freq (float): Frequency (Hz) of sinusoid (Default value = 440)
+        vib_amp (float): Amplitude (Hz) of the frequency oscillation (Default value = 1)
+        vib_rate (float): Rate (Hz) of the frequency oscillation (Default value = 5)
 
     Returns:
-        x: Generated signal
-        t: Time axis (in seconds)
+        x (np.ndarray): Generated signal
+        t (np.ndarray): Time axis (in seconds)
+
     """
     num_samples = int(Fs * dur)
     t = np.arange(num_samples) / Fs
@@ -265,16 +286,16 @@ def generate_sinusoid_tremolo(dur=5, Fs=1000, amp=0.5, freq=440, trem_amp=0.1, t
     Notebook: C1/C1S3_Timbre.ipynb
 
     Args:
-        dur: Duration (in seconds)
-        Fs: Sampling rate
-        amp: Amplitude of sinusoid
-        freq: Frequency (Hz) of sinusoid
-        trem_amp: Amplitude of the amplitude oscillation
-        trem_rate: Rate (Hz) of the amplitude oscillation
+        dur (float): Duration (in seconds) (Default value = 5)
+        Fs (scalar): Sampling rate (Default value = 1000)
+        amp (float): Amplitude of sinusoid (Default value = 0.5)
+        freq (float): Frequency (Hz) of sinusoid (Default value = 440)
+        trem_amp (float): Amplitude of the amplitude oscillation (Default value = 0.1)
+        trem_rate (float): Rate (Hz) of the amplitude oscillation (Default value = 5)
 
     Returns:
-        x: Generated signal
-        t: Time axis (in seconds)
+        x (np.ndarray): Generated signal
+        t (np.ndarray): Time axis (in seconds)
     """
     num_samples = int(Fs * dur)
     t = np.arange(num_samples) / Fs
@@ -289,14 +310,14 @@ def generate_tone(p=60, weight_harmonic=np.ones([16, 1]), Fs=11025, dur=2):
     Notebook: C1/C1S3_Timbre.ipynb
 
     Args:
-        p: MIDI pitch of the tone
-        weight_harmonic: Weights for the different harmonics
-        Fs: Sampling frequency
-        dur: Duration (seconds) of the signal
+        p (float): MIDI pitch of the tone (Default value = 60)
+        weight_harmonic (np.ndarray): Weights for the different harmonics (Default value = np.ones([16, 1])
+        Fs (scalar): Sampling frequency (Default value = 11025)
+        dur (float): Duration (seconds) of the signal (Default value = 2)
 
     Returns:
-        x: Generated signal
-        t: Time axis (in seconds)
+        x (np.ndarray): Generated signal
+        t (np.ndarray): Time axis (in seconds)
     """
     freq = 2 ** ((p - 69) / 12) * 440
     num_samples = int(Fs * dur)
@@ -314,10 +335,11 @@ def plot_spectrogram(x, Fs=11025, N=4096, H=2048, figsize=(4, 2)):
 
     Args:
         x: Signal (waveform) to be analyzed
-        Fs: Sampling rate
-        N: FFT length
-        H: Hopsize
-        size_figure: Size of the figure
+        Fs: Sampling rate (Default value = 11025)
+        N: FFT length (Default value = 4096)
+        H: Hopsize (Default value = 2048)
+        figsize: Size of the figure (Default value = (4, 2))
+
     """
     N, H = 2048, 1024
     X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hanning')

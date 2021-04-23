@@ -23,19 +23,17 @@ def plot_signal(x, Fs=1, T_coef=None, ax=None, figsize=(6, 2), xlabel='Time (sec
                 ylim=True, **kwargs):
     """Plot a signal, e.g. a waveform or a novelty function
 
-    Notebook: B/B_PythonVisualization.ipynb
-
     Args:
         x: Input signal
-        Fs: Sample rate
-        T_coef: Time coeffients. If None, will be computed, based on Fs.
-        ax: The Axes instance to plot on. If None, will create a figure and axes.
-        figsize: Width, height in inches
-        xlabel: Label for x axis
-        ylabel: Label for y axis
-        title: Title for plot
-        dpi: Dots per inch
-        ylim: True or False (auto adjust ylim or nnot) or tuple with actual ylim
+        Fs: Sample rate (Default value = 1)
+        T_coef: Time coeffients. If None, will be computed, based on Fs. (Default value = None)
+        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)
+        figsize: Width, height in inches (Default value = (6, 2))
+        xlabel: Label for x axis (Default value = 'Time (seconds)')
+        ylabel: Label for y axis (Default value = '')
+        title: Title for plot (Default value = '')
+        dpi: Dots per inch (Default value = 72)
+        ylim: True or False (auto adjust ylim or nnot) or tuple with actual ylim (Default value = True)
         **kwargs: Keyword arguments for matplotlib.pyplot.plot
 
     Returns:
@@ -78,24 +76,25 @@ def plot_matrix(X, Fs=1, Fs_F=1, T_coef=None, F_coef=None, xlabel='Time (seconds
                 colorbar=True, colorbar_aspect=20.0, cbar_label='', ax=None, figsize=(6, 3), **kwargs):
     """Plot a matrix, e.g. a spectrogram or a tempogram
 
-    Notebook: B/B_PythonVisualization.ipynb
-
     Args:
         X: The matrix
-        Fs: Sample rate for axis 1
-        Fs_F: Sample rate for axis 0
-        T_coef: Time coeffients. If None, will be computed, based on Fs.
-        F_coef: Frequency coeffients. If None, will be computed, based on Fs_F.
-        xlabel, ylabel: Label for x axis and y axis
-        xlim, ylim, clim: Limits for x axis, yaxis, and image values
-        title: Title for plot
-        dpi: Dots per inch
-        colorbar: Create a colorbar.
-        colorbar_aspect: Aspect used for colorbar, in case only a single axes is used.
-        cbar_label: Label for colorbar
+        Fs: Sample rate for axis 1 (Default value = 1)
+        Fs_F: Sample rate for axis 0 (Default value = 1)
+        T_coef: Time coeffients. If None, will be computed, based on Fs. (Default value = None)
+        F_coef: Frequency coeffients. If None, will be computed, based on Fs_F. (Default value = None)
+        xlabel: Label for x-axis (Default value = 'Time (seconds)')
+        ylabel: Label for y-axis (Default value = 'Frequency (Hz)')
+        xlim: Limits for x-axis (Default value = None)
+        ylim: Limits for y-axis (Default value = None)
+        clim: Color limits (Default value = None)
+        title: Title for plot (Default value = '')
+        dpi: Dots per inch (Default value = 72)
+        colorbar: Create a colorbar. (Default value = True)
+        colorbar_aspect: Aspect used for colorbar, in case only a single axes is used. (Default value = 20.0)
+        cbar_label: Label for colorbar (Default value = '')
         ax: Either (1.) a list of two axes (first used for matrix, second for colorbar), or (2.) a list with a single
-            axes (used for matrix), or (3.) None (an axes will be created).
-        figsize: Width, height in inches
+            axes (used for matrix), or (3.) None (an axes will be created). (Default value = None)
+        figsize: Width, height in inches (Default value = (6, 3))
         **kwargs: Keyword arguments for matplotlib.pyplot.imshow
 
     Returns:
@@ -156,15 +155,7 @@ def plot_matrix(X, Fs=1, Fs_F=1, T_coef=None, F_coef=None, xlabel='Time (seconds
 def plot_chromagram(*args, chroma_yticks=np.arange(12), **kwargs):
     """Calls libfmp.b.plot_matrix and sets chroma labels
 
-    Notebook: B/B_PythonVisualization.ipynb
-
-    Args:
-        see libfmp.b.plot_matrix
-
-    Returns:
-        fig: The created matplotlib figure or None if ax was given.
-        ax: The used axes.
-        im: The image plot
+    See :func:`libfmp.b.b_plot.plot_matrix` for parameters and return values.
     """
     if 'ylabel' not in kwargs:
         kwargs['ylabel'] = 'Chroma'
@@ -180,17 +171,15 @@ def plot_chromagram(*args, chroma_yticks=np.arange(12), **kwargs):
 def compressed_gray_cmap(alpha=5, N=256, reverse=False):
     """Creates a logarithmically or exponentially compressed grayscale colormap
 
-    Notebook: B/B_PythonVisualization.ipynb
-
     Args:
-        alpha: The compression factor. If alpha > 0, it performs log compression (enhancing black colors).
+        alpha (float): The compression factor. If alpha > 0, it performs log compression (enhancing black colors).
             If alpha < 0, it performs exp compression (enhancing white colors).
-            Raises an error if alpha = 0.
-        N: The number of rgb quantization levels (usually 256 in matplotlib)
-        reverse: If False then "white to black", if True then "black to white"
+            Raises an error if alpha = 0. (Default value = 5)
+        N (int): The number of rgb quantization levels (usually 256 in matplotlib) (Default value = 256)
+        reverse (bool): If False then "white to black", if True then "black to white" (Default value = False)
 
     Returns:
-        color_wb: The colormap
+        color_wb (mpl.colors.LinearSegmentedColormap): The colormap
     """
     assert alpha != 0
 
@@ -211,11 +200,8 @@ def compressed_gray_cmap(alpha=5, N=256, reverse=False):
 
 
 class MultiplePlotsWithColorbar():
-    """
-    Two-column layout plot, where the first column is for user-given plots and the second column
+    """Two-column layout plot, where the first column is for user-given plots and the second column
     is for colorbars if the corresponding row needs a colorbar.
-
-    Notebook: B/B_PythonVisualization.ipynb
 
     Attributes:
         axes: A list of axes for the first column.
@@ -248,9 +234,7 @@ class MultiplePlotsWithColorbar():
             self.cbar_axes.append(plt.subplot(gs[i, 1]))
 
     def make_colorbars(self):
-        """
-        Creates colorbars if the corresponding row needs a colorbar, or hides the axis in other cases.
-        """
+        """Creates colorbars if the corresponding row needs a colorbar, or hides the axis in other cases."""
         for i in range(self.num_plots):
             ax_img = self.axes[i].get_images()
 
@@ -266,8 +250,8 @@ def color_argument_to_dict(colors, labels_set, default='gray'):
     """Creates a color dictionary
 
     Args:
-        colors: Several options: 1. string of FMP_COLORMAPS, 2. string of matplotlib colormap, 3. list or np.ndarray of
-            matplotlib color specifications, 4. dict that assigns labels  to colors
+        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap,
+            3. list or np.ndarray of matplotlib color specifications, 4. dict that assigns labels  to colors
         labels_set: List of all labels
         default: Default color, used for labels that are in labels_set, but not in colors
 
@@ -308,11 +292,12 @@ def check_line_annotations(annot, default_label=''):
     """Checks line annotation. If label is missing, adds an default label.
 
     Args:
-        annot: A List of the form of [(time_position, label), ...], or [(time_position, ), ...], or [time_position, ...]
+        annot: A List of the form of ``[(time_position, label), ...]``, or ``[(time_position, ), ...]``,
+            or ``[time_position, ...]``
         default_label: The default label used if label is missing
 
     Returns:
-        annot: A List of tuples in the form of [(time_position, label), ...]
+        annot: A List of tuples in the form of ``[(time_position, label), ...]``
     """
     if isinstance(annot[0], (list, np.ndarray, tuple)):
         len_annot = len(annot[0])
@@ -331,12 +316,12 @@ def check_segment_annotations(annot, default_label=''):
     """Checks segment annotation. If label is missing, adds an default label.
 
     Args:
-        annot: A List of the form of [(start_position, end_position, label), ...], or
-            [(start_position, end_position), ...]
+        annot: A List of the form of ``[(start_position, end_position, label), ...]``, or
+            ``[(start_position, end_position), ...]``
         default_label: The default label used if label is missing
 
     Returns:
-        annot: A List of tuples in the form of [(start_position, end_position, label), ...]
+        annot: A List of tuples in the form of ``[(start_position, end_position, label), ...]``
     """
     assert isinstance(annot[0], (list, np.ndarray, tuple))
     len_annot = len(annot[0])
@@ -353,21 +338,22 @@ def plot_annotation_line(annot, ax=None, label_keys={}, colors='FMP_1', figsize=
     """Creates a line plot for annotation data
 
     Args:
-        annot: A List of tuples in the form of [(time_position, label), ...]
-        ax: The Axes instance to plot on. If None, will create a figure and axes.
+        annot: A List of tuples in the form of ``[(time_position, label), ...]``
+        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)
         label_keys: A dict, where the keys are the labels used in `annot`. The values are dicts, which are used as
-            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline.
-        colors: Several options: 1. string of FMP_COLORMAPS, 2. string of matplotlib colormap, 3. list or np.ndarray of
-            matplotlib color specifications, 4. dict that assigns labels  to colors
-        figsize: Width, height in inches
-        direction: 'vertical' or 'horizontal'
-        time_min: Minimal limit for time axis. If None, will be min annotation.
-        time_max: Maximal limit for time axis. If None, will be max from annotation.
-        time_axis: Display time axis ticks or not
-        nontime_axis: Display non-time axis ticks or not
-        swap_time_ticks: For horizontal: xticks up; for vertical: yticks left
-        axis_off: Calls ax.axis('off')
-        dpi: Dots per inch
+            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = {})
+        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or
+            np.ndarray of matplotlib color specifications, 4. dict that assigns labels  to colors
+            (Default value = 'FMP_1')
+        figsize: Width, height in inches (Default value = (6, 1)
+        direction: 'vertical' or 'horizontal' (Default value = 'horizontal')
+        time_min: Minimal limit for time axis. If None, will be min annotation. (Default value = None)
+        time_max: Maximal limit for time axis. If None, will be max from annotation. (Default value = None)
+        time_axis: Display time axis ticks or not (Default value = True)
+        nontime_axis: Display non-time axis ticks or not (Default value = False)
+        swap_time_ticks: For horizontal: xticks up; for vertical: yticks left (Default value = False)
+        axis_off: Calls ax.axis('off') (Default value = False)
+        dpi: Dots per inch (Default value = 72)
 
     Returns:
         fig: The created matplotlib figure or None if ax was given.
@@ -430,11 +416,7 @@ def plot_annotation_line(annot, ax=None, label_keys={}, colors='FMP_1', figsize=
 def plot_annotation_line_overlay(*args, **kwargs):
     """Plot segment annotations as overlay
 
-    Args:
-        see libfmp.b.plot_annotation_line
-
-    Returns:
-        see libfmp.b.plot_annotation_line
+    See :func:`libfmp.b.b_plot.plot_annotation_line` for parameters and return values.
     """
     assert 'nontime_axis' not in kwargs
     kwargs['nontime_axis'] = True
@@ -447,21 +429,21 @@ def plot_annotation_multiline(annot, ax=None, label_keys={}, colors='FMP_1', fig
     """Creates a multi-line plot for annotation data
 
     Args:
-        annot: A List of tuples in the form of [(time_position, label), ...]
-        ax: The Axes instance to plot on. If None, will create a figure and axes.
+        annot: A List of tuples in the form of ``[(time_position, label), ...]``
+        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)
         label_keys: A dict, where the keys are the labels used in `annot`. The values are dicts, which are used as
-            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline.
-        colors: Several options: 1. string of FMP_COLORMAPS, 2. string of matplotlib colormap, 3. list or np.ndarray of
-            matplotlib color specifications, 4. dict that assigns labels  to colors
-        figsize: Width, height in inches
-        direction: 'vertical' or 'horizontal'
-        sort_labels: List of labels used for sorting the line plots
-        time_min: Minimal limit for time axis. If None, will be min annotation.
-        time_max: Maximal limit for time axis. If None, will be max from annotation.
-        time_axis: Display time axis ticks or not
-        swap_time_ticks: For horizontal: xticks up; for vertical: yticks left
-        axis_off: Calls ax.axis('off')
-        dpi: Dots per inch
+            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = {})
+        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or np.ndarray
+            of matplotlib color specifications, 4. dict that assigns labels  to colors (Default value = 'FMP_1')
+        figsize: Width, height in inches (Default value = (6, 1.5)
+        direction: 'vertical' or 'horizontal' (Default value = 'horizontal')
+        sort_labels: List of labels used for sorting the line plots (Default value = None)
+        time_min: Minimal limit for time axis. If None, will be min annotation. (Default value = None)
+        time_max: Maximal limit for time axis. If None, will be max from annotation. (Default value = None)
+        time_axis: Display time axis ticks or not (Default value = True)
+        swap_time_ticks: For horizontal: xticks up; for vertical: yticks left (Default value = False)
+        axis_off: Calls ax.axis('off') (Default value = False)
+        dpi: Dots per inch (Default value = 72)
 
     Returns:
         fig: The created matplotlib figure or None if ax was given.
@@ -544,30 +526,31 @@ def plot_segments(annot, ax=None, figsize=(6, 1), direction='horizontal', colors
     """Creates a multi-line plot for annotation data
 
     Args:
-        annot: A List of tuples in the form of [(start_position, end_position, label), ...]
-        ax: The Axes instance to plot on. If None, will create a figure and axes.
-        figsize: Width, height in inches
-        direction: 'vertical' or 'horizontal'
-        colors: Several options: 1. string of FMP_COLORMAPS, 2. string of matplotlib colormap, 3. list or np.ndarray of
-            matplotlib color specifications, 4. dict that assigns labels  to colors
-        time_min: Minimal limit for time axis. If None, will be min annotation.
-        time_max: Maximal limit for time axis. If None, will be max from annotation.
-        nontime_min: Minimal limit for non-time axis.
-        nontime_max: Maximal limit for non-time axis.
-        time_axis: Display time axis ticks or not
-        nontime_axis: Display non-time axis ticks or not
-        swap_time_ticks: For horizontal: xticks up; for vertical: yticks left
-        edgecolor: Color for edgelines of segment box
-        axis_off: Calls ax.axis('off')
-        dpi: Dots per inch
+        annot: A List of tuples in the form of ``[(start_position, end_position, label), ...]``
+        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)
+        figsize: Width, height in inches (Default value = (6, 1)
+        direction: 'vertical' or 'horizontal' (Default value = 'horizontal')
+        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or np.ndarray
+            of matplotlib color specifications, 4. dict that assigns labels  to colors (Default value = 'FMP_1')
+        time_min: Minimal limit for time axis. If None, will be min annotation. (Default value = None)
+        time_max: Maximal limit for time axis. If None, will be max from annotation. (Default value = None)
+        nontime_min: Minimal limit for non-time axis. (Default value = 0)
+        nontime_max: Maximal limit for non-time axis. (Default value = 1)
+        time_axis: Display time axis ticks or not (Default value = True)
+        nontime_axis: Display non-time axis ticks or not (Default value = False)
+        time_label: Label for time axes (Default value = None)
+        swap_time_ticks: For horizontal: xticks up; for vertical: yticks left (Default value = False)
+        edgecolor: Color for edgelines of segment box (Default value = 'k')
+        axis_off: Calls ax.axis('off') (Default value = False)
+        dpi: Dots per inch (Default value = 72)
         adjust_time_axislim: Adjust time-axis. Usually True for plotting on standalone axes and False for
-            overlay plotting
+            overlay plotting (Default value = True)
         adjust_nontime_axislim: Adjust non-time-axis. Usually True for plotting on standalone axes and False for
-            overlay plotting
-        alpha: Alpha value for rectangle
-        print_labels: Print labels inside Rectangles
-        label_ticks: Print labels as ticks
-        kwargs: Keyword arguments for matplotlib.pyplot.annotate
+            overlay plotting (Default value = True)
+        alpha: Alpha value for rectangle (Default value = None)
+        print_labels: Print labels inside Rectangles (Default value = True)
+        label_ticks: Print labels as ticks (Default value = False)
+        **kwargs:
 
     Returns:
         fig: The created matplotlib figure or None if ax was given.
@@ -671,11 +654,7 @@ def plot_segments(annot, ax=None, figsize=(6, 1), direction='horizontal', colors
 def plot_segments_overlay(*args, **kwargs):
     """Plot segment annotations as overlay
 
-    Args:
-        see libfmp.b.plot_segments
-
-    Returns:
-        see libfmp.b.plot_segments
+    See :func:`libfmp.b.b_plot.plot_segments` for parameters and return values.
     """
     assert 'ax' in kwargs
     ax = kwargs['ax']

@@ -17,22 +17,20 @@ from libfmp.c5 import get_chord_labels
 
 
 def generate_sequence_hmm(N, A, C, B, details=False):
-
     """Generate observation and state sequence from given HMM
 
     Notebook: C5/C5S3_HiddenMarkovModel.ipynb
 
     Args:
-        N: Number of observations to be generated
-        A: State transition probability matrix of dimension I x I
-        C: Initial state distribution  of dimension I
-        B: Output probability matrix of dimension I x K
-        details: If "True" then shows details
-
+        N (int): Number of observations to be generated
+        A (np.ndarray): State transition probability matrix of dimension I x I
+        C (np.ndarray): Initial state distribution of dimension I
+        B (np.ndarray): Output probability matrix of dimension I x K
+        details (bool): If "True" then shows details (Default value = False)
 
     Returns:
-        O: Observation sequence of length N
-        S: State sequence of length N
+        O (np.ndarray): Observation sequence of length N
+        S (np.ndarray): State sequence of length N
     """
     assert N > 0, "N should be at least one"
     I = A.shape[1]
@@ -58,19 +56,19 @@ def generate_sequence_hmm(N, A, C, B, details=False):
 
 def estimate_hmm_from_o_s(O, S, I, K):
     """Estimate the state transition and output probability matrices from
-       a given observation and state sequence
+    a given observation and state sequence
 
     Notebook: C5/C5S3_HiddenMarkovModel.ipynb
 
     Args:
-        O: Observation sequence of length N
-        S: State sequence of length N
-        I: Number of states
-        K: Number of observation symbols
+        O (np.ndarray): Observation sequence of length N
+        S (np.ndarray): State sequence of length N
+        I (int): Number of states
+        K (int): Number of observation symbols
 
     Returns:
-        A_est: State transition probability matrix of dimension I x I
-        B_est: Output probability matrix of dimension I x K
+        A_est (np.ndarray): State transition probability matrix of dimension I x I
+        B_est (np.ndarray): Output probability matrix of dimension I x K
     """
     # Estimate A
     A_est = np.zeros([I, I])
@@ -89,6 +87,7 @@ def estimate_hmm_from_o_s(O, S, I, K):
     B_est = normalize(B_est, axis=1, norm='l1')
     return A_est, B_est
 
+
 @jit(nopython=True)
 def viterbi(A, C, B, O):
     """Viterbi algorithm for solving the uncovering problem
@@ -96,15 +95,15 @@ def viterbi(A, C, B, O):
     Notebook: C5/C5S3_Viterbi.ipynb
 
     Args:
-        A: State transition probability matrix of dimension I x I
-        C: Initial state distribution  of dimension I
-        B: Output probability matrix of dimension I x K
-        O: Observation sequence of length N
+        A (np.ndarray): State transition probability matrix of dimension I x I
+        C (np.ndarray): Initial state distribution  of dimension I
+        B (np.ndarray): Output probability matrix of dimension I x K
+        O (np.ndarray): Observation sequence of length N
 
     Returns:
-        S_opt: Optimal state sequence of length N
-        D: Accumulated probability matrix
-        E: Backtracking matrix
+        S_opt (np.ndarray): Optimal state sequence of length N
+        D (np.ndarray): Accumulated probability matrix
+        E (np.ndarray): Backtracking matrix
     """
     I = A.shape[0]    # Number of states
     N = len(O)  # Length of observation sequence
@@ -112,7 +111,7 @@ def viterbi(A, C, B, O):
     # Initialize D and E matrices
     D = np.zeros((I, N))
     E = np.zeros((I, N-1)).astype(np.int32)
-    D[:, 0] = np.multiply(C, B[:, 0])
+    D[:, 0] = np.multiply(C, B[:, O[0]])
 
     # Compute D and E in a nested loop
     for n in range(1, N):
@@ -124,7 +123,7 @@ def viterbi(A, C, B, O):
     # Backtracking
     S_opt = np.zeros(N).astype(np.int32)
     S_opt[-1] = np.argmax(D[:, -1])
-    for n in range(N-2, 0, -1):
+    for n in range(N-2, -1, -1):
         S_opt[n] = E[int(S_opt[n+1]), n]
 
     return S_opt, D, E
@@ -137,15 +136,15 @@ def viterbi_log(A, C, B, O):
     Notebook: C5/C5S3_Viterbi.ipynb
 
     Args:
-        A: State transition probability matrix of dimension I x I
-        C: Initial state distribution  of dimension I
-        B: Output probability matrix of dimension I x K
-        O: Observation sequence of length N
+        A (np.ndarray): State transition probability matrix of dimension I x I
+        C (np.ndarray): Initial state distribution  of dimension I
+        B (np.ndarray): Output probability matrix of dimension I x K
+        O (np.ndarray): Observation sequence of length N
 
     Returns:
-        S_opt: Optimal state sequence of length N
-        D_log: Accumulated log probability matrix
-        E: Backtracking matrix
+        S_opt (np.ndarray): Optimal state sequence of length N
+        D_log (np.ndarray): Accumulated log probability matrix
+        E (np.ndarray): Backtracking matrix
     """
     I = A.shape[0]    # Number of states
     N = len(O)  # Length of observation sequence
@@ -157,7 +156,7 @@ def viterbi_log(A, C, B, O):
     # Initialize D and E matrices
     D_log = np.zeros((I, N))
     E = np.zeros((I, N-1)).astype(np.int32)
-    D_log[:, 0] = C_log + B_log[:, 0]
+    D_log[:, 0] = C_log + B_log[:, O[0]]
 
     # Compute D and E in a nested loop
     for n in range(1, N):
@@ -169,7 +168,7 @@ def viterbi_log(A, C, B, O):
     # Backtracking
     S_opt = np.zeros(N).astype(np.int32)
     S_opt[-1] = np.argmax(D_log[:, -1])
-    for n in range(N-2, 0, -1):
+    for n in range(N-2, -1, -1):
         S_opt[n] = E[int(S_opt[n+1]), n]
 
     return S_opt, D_log, E
@@ -180,16 +179,18 @@ def plot_transition_matrix(A, log=True, ax=None, figsize=(6, 5), title='',
                            cmap='gray_r', quadrant=False):
     """Plot a transition matrix for 24 chord models (12 major and 12 minor triads)
 
-    Notebook: B/B_PythonVisualization.ipynb
+    Notebook: C5/C5S3_ChordRec_HMM.ipynb
 
     Args:
         A: Transition matrix
-        ax: Axis
-        figsize: Width, height in inches (only used when ax=None)
-        title: Title for plot
-        xlabel, ylabel: Label for x axis and y axis
-        cmap: Color map
-        quadrant: Plots additional lines for C-major and C-minor quadrants
+        log: Show log probabilities (Default value = True)
+        ax: Axis (Default value = None)
+        figsize: Width, height in inches (only used when ax=None) (Default value = (6, 5))
+        title: Title for plot (Default value = '')
+        xlabel: Label for x-axis (Default value = 'State (chord label)')
+        ylabel: Label for y-axis (Default value = 'State (chord label)')
+        cmap: Color map (Default value = 'gray_r')
+        quadrant: Plots additional lines for C-major and C-minor quadrants (Default value = False)
 
     Returns:
         fig: The created matplotlib figure or None if ax was given.
@@ -237,13 +238,14 @@ def plot_transition_matrix(A, log=True, ax=None, figsize=(6, 5), title='',
 
 def matrix_circular_mean(A):
     """Computes circulant matrix with mean diagonal sums
+
     Notebook: C5/C5S3_ChordRec_HMM.ipynb
 
     Args:
-        A: Square matrix
+        A (np.ndarray): Square matrix
 
     Returns:
-        A_mean: Circulant output matrix
+        A_mean (np.ndarray): Circulant output matrix
     """
     N = A.shape[0]
     A_shear = np.zeros((N, N))
@@ -256,15 +258,15 @@ def matrix_circular_mean(A):
 
 def matrix_chord24_trans_inv(A):
     """Computes transposition-invariant matrix for transition matrix
-       based 12 major chords and 12 minor chords
+    based 12 major chords and 12 minor chords
 
     Notebook: C5/C5S3_ChordRec_HMM.ipynb
 
     Args:
-        A: Input transition matrix
+        A (np.ndarray): Input transition matrix
 
     Returns:
-        A_ti: Output transition matrix
+        A_ti (np.ndarray): Output transition matrix
     """
     A_ti = np.zeros(A.shape)
     A_ti[0:12, 0:12] = matrix_circular_mean(A[0:12, 0:12])
@@ -280,11 +282,11 @@ def uniform_transition_matrix(p=0.01, N=24):
     Notebook: C5/C5S3_ChordRec_HMM.ipynb
 
     Args:
-        p: Self transition probability
-        N: Column and row dimension
+        p (float): Self transition probability (Default value = 0.01)
+        N (int): Column and row dimension (Default value = 24)
 
     Returns:
-        A: Output transition matrix
+        A (np.ndarray): Output transition matrix
     """
     off_diag_entries = (1-p) / (N-1)     # rows should sum up to 1
     A = off_diag_entries * np.ones([N, N])
@@ -299,15 +301,15 @@ def viterbi_log_likelihood(A, C, B_O):
     Notebook: C5/C5S3_Viterbi.ipynb
 
     Args:
-        A: State transition probability matrix of dimension I x I
-        C: Initial state distribution  of dimension I
-        B_O: Likelihood matrix of dimension I x N
+        A (np.ndarray): State transition probability matrix of dimension I x I
+        C (np.ndarray): Initial state distribution  of dimension I
+        B_O (np.ndarray): Likelihood matrix of dimension I x N
 
     Returns:
-        S_opt: Optimal state sequence of length N
-        S_mat: Binary matrix representation of optimal state sequence
-        D_log: Accumulated log probability matrix
-        E: Backtracking matrix
+        S_opt (np.ndarray): Optimal state sequence of length N
+        S_mat (np.ndarray): Binary matrix representation of optimal state sequence
+        D_log (np.ndarray): Accumulated log probability matrix
+        E (np.ndarray): Backtracking matrix
     """
     I = A.shape[0]    # Number of states
     N = B_O.shape[1]  # Length of observation sequence
@@ -331,7 +333,7 @@ def viterbi_log_likelihood(A, C, B_O):
     # Backtracking
     S_opt = np.zeros(N).astype(np.int32)
     S_opt[-1] = np.argmax(D_log[:, -1])
-    for n in range(N-2, 0, -1):
+    for n in range(N-2, -1, -1):
         S_opt[n] = E[int(S_opt[n+1]), n]
 
     # Matrix representation of result
@@ -345,21 +347,21 @@ def viterbi_log_likelihood(A, C, B_O):
 def chord_recognition_all(X, ann_matrix, p=0.15, filt_len=None, filt_type='mean'):
     """Conduct template- and HMM-based chord recognition and evaluates the approaches
 
-    Notebook: C5//C5/C5S3_ChordRec_Beatles.ipynb
+    Notebook: C5/C5S3_ChordRec_Beatles.ipynb
 
     Args:
-        X: Chromagram
-        ann_matrix: Reference annotation as given as time-chord binary matrix
-        p: Self-transition probability used for HMM
-        filt_len: Filter length used for prefilitering
-        filt_type ('mean', 'meadian'): Filter type used for prefilitering
+        X (np.ndarray): Chromagram
+        ann_matrix (np.ndarray): Reference annotation as given as time-chord binary matrix
+        p (float): Self-transition probability used for HMM (Default value = 0.15)
+        filt_len (int): Filter length used for prefilitering (Default value = None)
+        filt_type (str): Filter type used for prefilitering (Default value = 'mean')
 
     Returns:
-        result_Tem, result_HMM: Chord recogntion evaluation results [P, R, F, TP, FP, FN]
-                                for template- and HMM-based approach
-        chord_Tem: Template-based chord recogntion result given as binary matrix
-        chord_HMM: HMM-based chord recogntion result given as binary matrix
-        chord_sim: Chord similarity matrix
+        result_Tem (tuple): Chord recogntion evaluation results ([P, R, F, TP, FP, FN]) for template-based approach
+        result_HMM (tuple): Chord recogntion evaluation results ([P, R, F, TP, FP, FN]) for HMM-based approach
+        chord_Tem (np.ndarray): Template-based chord recogntion result given as binary matrix
+        chord_HMM (np.ndarray): HMM-based chord recogntion result given as binary matrix
+        chord_sim (np.ndarray): Chord similarity matrix
     """
     if filt_len is not None:
         if filt_type == 'mean':

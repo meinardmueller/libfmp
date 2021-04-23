@@ -24,16 +24,16 @@ def compute_tempogram_fourier(x, Fs, N, H, Theta=np.arange(30, 601, 1)):
     Notebook: C6/C6S2_TempogramFourier.ipynb
 
     Args:
-        x: Input signal
-        Fs: Sampling rate
-        N: Window length
-        H: Hop size
-        Theta: Set of tempi (given in BPM)
+        x (np.ndarray): Input signal
+        Fs (scalar): Sampling rate
+        N (int): Window length
+        H (int): Hop size
+        Theta (np.ndarray): Set of tempi (given in BPM) (Default value = np.arange(30, 601, 1))
 
     Returns:
-        X: Tempogram
-        T_coef: Time axis (seconds)
-        F_coef_BPM: Tempo axis (BPM)
+        X (np.ndarray): Tempogram
+        T_coef (np.ndarray): Time axis (seconds)
+        F_coef_BPM (np.ndarray): Tempo axis (BPM)
     """
     win = np.hanning(N)
     N_left = N // 2
@@ -67,17 +67,17 @@ def compute_sinusoid_optimal(c, tempo, n, Fs, N, H):
     Notebook: C6/C6S2_TempogramFourier.ipynb
 
     Args:
-        c: Coefficient of tempogram (c=X(k,n))
-        tempo: Tempo parameter corresponding to c (tempo=F_coef_BPM[k])
-        n: Frame parameter of c
-        Fs: Sampling rate
-        N: Window length
-        H: Hop size
+        c (complex): Coefficient of tempogram (c=X(k,n))
+        tempo (float): Tempo parameter corresponding to c (tempo=F_coef_BPM[k])
+        n (int): Frame parameter of c
+        Fs (scalar): Sampling rate
+        N (int): Window length
+        H (int): Hop size
 
     Returns:
-        kernel: Windowed sinusoid
-        t_kernel: Time axis (samples) of kernel
-        t_kernel_sec: Time axis (seconds) of kernel
+        kernel (np.ndarray): Windowed sinusoid
+        t_kernel (np.ndarray): Time axis (samples) of kernel
+        t_kernel_sec (np.ndarray): Time axis (seconds) of kernel
     """
     win = np.hanning(N)
     N_left = N // 2
@@ -101,10 +101,12 @@ def plot_signal_kernel(x, t_x, kernel, t_kernel, xlim=None, figsize=(8, 2), titl
         t_x: Time axis of x (given in seconds)
         kernel: Local kernel
         t_kernel: Time axis of kernel (given in seconds)
-        figsize, title: Standard parameters for plotting
+        xlim: Limits for x-axis (Default value = None)
+        figsize: Figure size (Default value = (8, 2))
+        title: Title of figure (Default value = None)
 
     Returns:
-        fig:  Matplotlib figure handle
+        fig: Matplotlib figure handle
     """
     if xlim is None:
         xlim = [t_x[0], t_x[-1]]
@@ -124,18 +126,18 @@ def compute_autocorrelation_local(x, Fs, N, H, norm_sum=True):
     Notebook: C6/C6S2_TempogramAutocorrelation.ipynb
 
     Args:
-        x: Input signal
-        Fs: Sampling rate
-        N: Window length
-        H: Hop size
-        norm_sum: Normalizes by the number of summands in local autocorrelation
+        x (np.ndarray): Input signal
+        Fs (scalar): Sampling rate
+        N (int): Window length
+        H (int): Hop size
+        norm_sum (bool): Normalizes by the number of summands in local autocorrelation (Default value = True)
 
     Returns:
-        A: Time-lag representation
-        T_coef: Time axis (seconds)
-        F_coef_lag: Lag axis
+        A (np.ndarray): Time-lag representation
+        T_coef (np.ndarray): Time axis (seconds)
+        F_coef_lag (np.ndarray): Lag axis
     """
-    #L = len(x)
+    # L = len(x)
     L_left = round(N / 2)
     L_right = L_left
     x_pad = np.concatenate((np.zeros(L_left), x, np.zeros(L_right)))
@@ -171,10 +173,12 @@ def plot_signal_local_lag(x, t_x, local_lag, t_local_lag, lag, xlim=None, figsiz
         local_lag: Local lag
         t_local_lag: Time axis of kernel (given in seconds)
         lag: Lag (given in seconds)
-        figsize, title: Standard parameters for plotting
+        xlim: Limits for x-axis (Default value = None)
+        figsize: Figure size (Default value = (8, 1.5))
+        title: Title of figure (Default value = '')
 
     Returns:
-        fig:  Matplotlib figure handle
+        fig: Matplotlib figure handle
     """
     if xlim is None:
         xlim = [t_x[0], t_x[-1]]
@@ -190,31 +194,31 @@ def plot_signal_local_lag(x, t_x, local_lag, t_local_lag, lag, xlim=None, figsiz
 
 
 # @jit(nopython=True)
-def compute_tempogram_autocorr(x, Fs, N, H, norm_sum=True, Theta=np.arange(30, 601)):
+def compute_tempogram_autocorr(x, Fs, N, H, norm_sum=False, Theta=np.arange(30, 601)):
     """Compute autocorrelation-based tempogram
 
-    Notebook: C6/C6S2_TempogramFourier.ipynb
+    Notebook: C6/C6S2_TempogramAutocorrelation.ipynb
 
     Args:
-        x: Input signal
-        Fs: Sampling rate
-        N: Window length
-        H: Hop size
-        norm_sum:
-        Theta: Set of tempi (given in BPM)
+        x (np.ndarray): Input signal
+        Fs (scalar): Sampling rate
+        N (int): Window length
+        H (int): Hop size
+        norm_sum (bool): Normalizes by the number of summands in local autocorrelation (Default value = False)
+        Theta (np.ndarray): Set of tempi (given in BPM) (Default value = np.arange(30, 601))
 
     Returns:
-        tempogram: Tempogram
-        T_coef: Time axis (seconds)
-        F_coef_BPM: Tempo axis (BPM)
-        A_cut: Time-lag representation (cut according to Theta)
-        F_coef_lag_cut: Lag axis
+        tempogram (np.ndarray): Tempogram tempogram
+        T_coef (np.ndarray): Time axis T_coef (seconds)
+        F_coef_BPM (np.ndarray): Tempo axis F_coef_BPM (BPM)
+        A_cut (np.ndarray): Time-lag representation A_cut (cut according to Theta)
+        F_coef_lag_cut (np.ndarray): Lag axis F_coef_lag_cut
     """
     tempo_min = Theta[0]
     tempo_max = Theta[-1]
     lag_min = int(np.ceil(Fs * 60 / tempo_max))
     lag_max = int(np.ceil(Fs * 60 / tempo_min))
-    A, T_coef, F_coef_lag = compute_autocorrelation_local(x, Fs, N, H, norm_sum=False)
+    A, T_coef, F_coef_lag = compute_autocorrelation_local(x, Fs, N, H, norm_sum=norm_sum)
     A_cut = A[lag_min:lag_max+1, :]
     F_coef_lag_cut = F_coef_lag[lag_min:lag_max+1]
     F_coef_BPM_cut = 60 / F_coef_lag_cut
@@ -231,17 +235,17 @@ def compute_cyclic_tempogram(tempogram, F_coef_BPM, tempo_ref=30,
     Notebook: C6/C6S2_TempogramCyclic.ipynb
 
     Args:
-        tempogram: Input tempogram
-        F_coef_BPM: Tempo axis (BPM)
-        tempo_ref: Reference tempo (BPM)
-        octave_bin: Number of bin per tempo octave
-        octave_num: Number of tempo octaves to be considered
+        tempogram (np.ndarray): Input tempogram
+        F_coef_BPM (np.ndarray): Tempo axis (BPM)
+        tempo_ref (float): Reference tempo (BPM) (Default value = 30)
+        octave_bin (int): Number of bins per tempo octave (Default value = 40)
+        octave_num (int): Number of tempo octaves to be considered (Default value = 4)
 
     Returns:
-        tempogram_cyclic: Cyclic tempogram
-        F_coef_scale: Tempo axis with regard to scaling parameter
-        tempogram_log: Tempogram with logarithmic tempo axis
-        F_coef_BPM_log: Logarithmic tempo axis (BPM)
+        tempogram_cyclic (np.ndarray): Cyclic tempogram tempogram_cyclic
+        F_coef_scale (np.ndarray): Tempo axis with regard to scaling parameter
+        tempogram_log (np.ndarray): Tempogram with logarithmic tempo axis
+        F_coef_BPM_log (np.ndarray): Logarithmic tempo axis (BPM)
     """
     F_coef_BPM_log = tempo_ref * np.power(2, np.arange(0, octave_num*octave_bin)/octave_bin)
     F_coef_scale = np.power(2, np.arange(0, octave_bin)/octave_bin)
@@ -259,10 +263,10 @@ def set_yticks_tempogram_cyclic(ax, octave_bin, F_coef_scale, num_tick=5):
     Notebook: C6/C6S2_TempogramCyclic.ipynb
 
     Args:
-        ax: Figure axis
-        octave_bin: Number of bin per tempo octave
-        F_coef_scale: Tempo axis with regard to scaling parameter
-        num_tick: Number of yticks
+        ax (mpl.axes.Axes): Figure axis
+        octave_bin (int): Number of bins per tempo octave
+        F_coef_scale (np.ndarra): Tempo axis with regard to scaling parameter
+        num_tick (int): Number of yticks (Default value = 5)
     """
     yticks = np.arange(0, octave_bin, octave_bin // num_tick)
     ax.set_yticks(yticks)
@@ -276,14 +280,15 @@ def compute_plp(X, Fs, L, N, H, Theta):
     Notebook: C6/C6S3_PredominantLocalPulse.ipynb
 
     Args:
-        X: Fourier-based (complex-valued) tempogram
-        Fs: Sampling rate
-        N: Window length
-        H: Hop size
-        Theta: Set of tempi (given in BPM)
+        X (np.ndarray): Fourier-based (complex-valued) tempogram
+        Fs (scalar): Sampling rate
+        L (int): Length of novelty curve
+        N (int): Window length
+        H (int): Hop size
+        Theta (np.ndarray): Set of tempi (given in BPM)
 
     Returns:
-        nov_PLP: PLP function
+        nov_PLP (np.ndarray): PLP function
     """
     win = np.hanning(N)
     N_left = N // 2
@@ -312,7 +317,19 @@ def compute_plp(X, Fs, L, N, H, Theta):
 def compute_plot_tempogram_plp(fn_wav, Fs=22050, N=500, H=10, Theta=np.arange(30, 601),
                                title='', figsize=(8, 4), plot_maxtempo=False):
     """Compute and plot Fourier-based tempogram and PLP function
-    Notebook: C6/C6S3_PredominantLocalPulse.ipynb"""
+
+    Notebook: C6/C6S3_PredominantLocalPulse.ipynb
+
+    Args:
+        fn_wav: Filename of audio file
+        Fs: Sample rate (Default value = 22050)
+        N: Window size (Default value = 500)
+        H: Hop size (Default value = 10)
+        Theta: Set of tempi (given in BPM) (Default value = np.arange(30, 601))
+        title: Title of figure (Default value = '')
+        figsize: Figure size (Default value = (8, 4))
+        plot_maxtempo: Visualize tempo with greatest coefficients in tempogram (Default value = False)
+    """
     x, Fs = librosa.load(fn_wav, Fs)
 
     nov, Fs_nov = libfmp.c6.compute_novelty_spectrum(x, Fs=Fs, N=2048, H=512, gamma=100, M=10, norm=1)

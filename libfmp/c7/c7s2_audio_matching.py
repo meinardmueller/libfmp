@@ -20,11 +20,11 @@ def quantize_matrix(C, quant_fct=None):
     Notebook: C7/C7S2_CENS.ipynb
 
     Args:
-        C: Input matrix
-        quant_fct: List specifying the quantization function
+        C (np.ndarray): Input matrix
+        quant_fct (list): List specifying the quantization function (Default value = None)
 
     Returns:
-        C_quant: Output matrix
+        C_quant (np.ndarray): Output matrix
     """
     C_quant = np.empty_like(C)
     if quant_fct is None:
@@ -41,15 +41,15 @@ def compute_cens_from_chromagram(C, Fs=1, ell=41, d=10, quant=True):
     Notebook: C7/C7S2_CENS.ipynb
 
     Args:
-        C: Input chromagram
-        Fs: Feature rate of chromagram
-        ell: Smoothing length
-        d: Downsampling factor
-        quant: Apply quantization
+        C (np.ndarray): Input chromagram
+        Fs (scalar): Feature rate of chromagram (Default value = 1)
+        ell (int): Smoothing length (Default value = 41)
+        d (int): Downsampling factor (Default value = 10)
+        quant (bool): Apply quantization (Default value = True)
 
     Returns:
-        C_CENS: CENS features
-        F_CENS: Feature rate of CENS features
+        C_CENS (np.ndarray): CENS features
+        Fs_CENS (scalar): Feature rate of CENS features
     """
     C_norm = libfmp.c3.normalize_feature_sequence(C, norm='1')
     C_Q = quantize_matrix(C_norm) if quant else C_norm
@@ -67,12 +67,12 @@ def scale_tempo_sequence(X, factor=1):
     Notebook: C7/C7S2_DiagonalMatching.ipynb
 
     Args:
-        X: Feature sequences (given as K x N matrix)
-        factor: Scaling factor (resulting in length "round(factor * N)"")
+        X (np.ndarray): Feature sequences (given as K x N matrix)
+        factor (float): Scaling factor (resulting in length "round(factor * N)"") (Default value = 1)
 
     Returns:
-        X_new: Scaled feature sequence
-        N_new: Length of scaled feature sequence
+        X_new (np.ndarray): Scaled feature sequence
+        N_new (int): Length of scaled feature sequence
     """
     N = X.shape[1]
     t = np.linspace(0, 1, num=N, endpoint=True)
@@ -88,10 +88,11 @@ def cost_matrix_dot(X, Y):
     Notebook: C7/C7S2_DiagonalMatching.ipynb
 
     Args:
-        X, Y: Feature seqeuences (given as K x N and K x M matrices)
+        X (np.ndarray): First sequence (K x N matrix)
+        Y (np.ndarray): Second sequence (K x M matrix)
 
     Returns:
-        C: cost matrix
+        C (np.ndarray): Cost matrix
     """
     return 1 - np.dot(X.T, Y)
 
@@ -102,11 +103,11 @@ def matching_function_diag(C, cyclic=False):
     Notebook: C7/C7S2_DiagonalMatching.ipynb
 
     Args:
-        C: Cost matrix
-        cyclic: If "True" then matching is done cyclically
+        C (np.ndarray): Cost matrix
+        cyclic (bool): If "True" then matching is done cyclically (Default value = False)
 
     Returns:
-        Delta: Matching function
+        Delta (np.ndarray): Matching function
     """
     N, M = C.shape
     assert N <= M, "N <= M is required"
@@ -125,13 +126,13 @@ def mininma_from_matching_function(Delta, rho=2, tau=0.2, num=None):
     Notebook: C7/C7S2_DiagonalMatching.ipynb
 
     Args:
-        Delta: Matching function
-        rho: Parameter to exclude neighborhood of a matching position for subsequent matches
-        tau: Threshold for maximum Delta value allowed for matches
-        num: Maximum number of matches
+        Delta (np.ndarray): Matching function
+        rho (int): Parameter to exclude neighborhood of a matching position for subsequent matches (Default value = 2)
+        tau (float): Threshold for maximum Delta value allowed for matches (Default value = 0.2)
+        num (int): Maximum number of matches (Default value = None)
 
     Returns:
-        pos: Array of local minima
+        pos (np.ndarray): Array of local minima
     """
     Delta_tmp = Delta.copy()
     M = len(Delta)
@@ -155,11 +156,11 @@ def matches_diag(pos, Delta_N):
     Notebook: C7/C7S2_DiagonalMatching.ipynb
 
     Args:
-        pos: Starting positions of matches
-        Delta_N: Length of match (a single number or a list of same length as Delta)
+        pos (np.ndarray or list): Starting positions of matches
+        Delta_N (int or np.ndarray or list): Length of match (a single number or a list of same length as Delta)
 
     Returns:
-        matches: Array containing matches (start, end)
+        matches (np.ndarray): Array containing matches (start, end)
     """
     matches = np.zeros((len(pos), 2)).astype(int)
     for k in range(len(pos)):
@@ -180,9 +181,12 @@ def plot_matches(ax, matches, Delta, Fs=1, alpha=0.2, color='r', s_marker='o', t
     Args:
         ax: Axis
         matches: Array of matches (start, end)
-        alpha: Transparency pramaeter for match visualization
-        color: Color used to indicated matches
-        s_marker, t_marker: Marker used to indicate start and end of matches
+        Delta: Matching function
+        Fs: Feature rate (Default value = 1)
+        alpha: Transparency pramaeter for match visualization (Default value = 0.2)
+        color: Color used to indicated matches (Default value = 'r')
+        s_marker: Marker used to indicate start of matches (Default value = 'o')
+        t_marker: Marker used to indicate end of matches (Default value = '')
     """
     y_min, y_max = ax.get_ylim()
     for (s, t) in matches:
@@ -198,12 +202,15 @@ def matching_function_diag_multiple(X, Y, tempo_rel_set=[1], cyclic=False):
     Notebook: C7/C7S2_DiagonalMatching.ipynb
 
     Args:
-        X, Y: Feature seqeuences (given as K x N and K x M matrices)
-        tempo_rel_set: Set of relative tempo values (scaling)
-        cyclic: If "True" then matching is done cyclically
+        X (np.ndarray): First sequence (K x N matrix)
+        Y (np.ndarray): Second sequence (K x M matrix)
+        tempo_rel_set (np.ndarray): Set of relative tempo values (scaling) (Default value = [1])
+        cyclic (bool): If "True" then matching is done cyclically (Default value = False)
 
     Returns:
-        Delta: Matching function
+        Delta_min (np.ndarray): Matching function (obtained by from minimizing over several matching functions)
+        Delta_N (np.ndarray): Query length of best match for each time position
+        Delta_scale (np.ndarray): Set of matching functions (for each of the scaled versions of the query)
     """
     M = Y.shape[1]
     num_tempo = len(tempo_rel_set)
@@ -222,15 +229,15 @@ def matching_function_diag_multiple(X, Y, tempo_rel_set=[1], cyclic=False):
 @jit(nopython=True)
 def compute_accumulated_cost_matrix_subsequence_dtw(C):
     """Given the cost matrix, compute the accumulated cost matrix for
-       subsequence dynamic time warping with step sizes {(1, 0), (0, 1), (1, 1)}
+    subsequence dynamic time warping with step sizes {(1, 0), (0, 1), (1, 1)}
 
     Notebook: C7/C7S2_SubsequenceDTW.ipynb
 
     Args:
-        C: cost matrix
+        C (np.ndarray): Cost matrix
 
     Returns:
-        D: Accumulated cost matrix
+        D (np.ndarray): Accumulated cost matrix
     """
     N, M = C.shape
     D = np.zeros((N, M))
@@ -245,16 +252,16 @@ def compute_accumulated_cost_matrix_subsequence_dtw(C):
 @jit(nopython=True)
 def compute_optimal_warping_path_subsequence_dtw(D, m=-1):
     """Given an accumulated cost matrix, compute the warping path for
-       subsequence dynamic time warping with step sizes {(1, 0), (0, 1), (1, 1)}
+    subsequence dynamic time warping with step sizes {(1, 0), (0, 1), (1, 1)}
 
     Notebook: C7/C7S2_SubsequenceDTW.ipynb
 
     Args:
-        D: Accumulated cost matrix
-        m: Index to start back tracking; if set to -1, optimal m is used
+        D (np.ndarray): Accumulated cost matrix
+        m (int): Index to start back tracking; if set to -1, optimal m is used (Default value = -1)
 
-    Returns
-        P: Warping path (list of index pairs)
+    Returns:
+        P (np.ndarray): Optimal warping path (array of index pairs)
     """
     N, M = D.shape
     n = N - 1
@@ -288,10 +295,10 @@ def compute_accumulated_cost_matrix_subsequence_dtw_21(C):
     Notebook: C7/C7S2_SubsequenceDTW.ipynb
 
     Args:
-        C: cost matrix
+        C (np.ndarray): Cost matrix
 
     Returns:
-        D: Accumulated cost matrix
+        D (np.ndarray): Accumulated cost matrix
     """
     N, M = C.shape
     D = np.zeros((N + 1, M + 2))
@@ -317,11 +324,11 @@ def compute_optimal_warping_path_subsequence_dtw_21(D, m=-1):
     Notebook: C7/C7S2_SubsequenceDTW.ipynb
 
     Args:
-        D: Accumulated cost matrix
-        m: Index to start back tracking; if set to -1, optimal m is used
+        D (np.ndarray): Accumulated cost matrix
+        m (int): Index to start back tracking; if set to -1, optimal m is used (Default value = -1)
 
-    Returns
-        P: Warping path (list of index pairs)
+    Returns:
+        P (np.ndarray): Optimal warping path (array of index pairs)
     """
     N, M = D.shape
     n = N - 1
@@ -353,24 +360,25 @@ def compute_cens_from_file(fn_wav, Fs=22050, N=4410, H=2205, ell=21, d=5):
     Notebook: C7/C7S2_AudioMatching.ipynb
 
     Args:
-        fn_wav: Filename of wav file
-        Fs: Feature rate of wav file
-        N: Window size for STFT
-        H: Hope size for STFT
-        ell: Smoothing length
-        d: Downsampling factor
+        fn_wav (str): Filename of wav file
+        Fs (scalar): Feature rate of wav file (Default value = 22050)
+        N (int): Window size for STFT (Default value = 4410)
+        H (int): Hope size for STFT (Default value = 2205)
+        ell (int): Smoothing length (Default value = 21)
+        d (int): Downsampling factor (Default value = 5)
 
     Returns:
-        C_CENS: CENS features
-        F_CENS: Feature rate of CENS features
-        x_duration: Duration (seconds) of wav file
+        X_CENS (np.ndarray): CENS features
+        L (int): Length of CENS feature sequence
+        Fs_CENS (scalar): Feature rate of CENS features
+        x_duration (float): Duration (seconds) of wav file
     """
     x, Fs = librosa.load(fn_wav, sr=Fs)
     x_duration = x.shape[0] / Fs
     X_chroma = librosa.feature.chroma_stft(y=x, sr=Fs, tuning=0, norm=None, hop_length=H, n_fft=N)
     X_CENS, Fs_CENS = libfmp.c7.compute_cens_from_chromagram(X_chroma, Fs=Fs/H, ell=ell, d=d)
-    N = X_CENS.shape[1]
-    return X_CENS, N, Fs_CENS, x_duration
+    L = X_CENS.shape[1]
+    return X_CENS, L, Fs_CENS, x_duration
 
 
 def compute_matching_function_dtw(X, Y, stepsize=2):
@@ -379,14 +387,14 @@ def compute_matching_function_dtw(X, Y, stepsize=2):
     Notebook: C7/C7S2_AudioMatching.ipynb
 
     Args:
-        X: Query feature sequence (given as K x N matrix)
-        Y: Database feature sequence (given as K x M matrix)
-        stepsize: Parameter for step size condition (1 or 2)
+        X (np.ndarray): Query feature sequence (given as K x N matrix)
+        Y (np.ndarray): Database feature sequence (given as K x M matrix)
+        stepsize (int): Parameter for step size condition (1 or 2) (Default value = 2)
 
     Returns:
-        Delta: DTW-based matching function
-        C: Cost matrix
-        D: Accumulated cost matrix
+        Delta (np.ndarray): DTW-based matching function
+        C (np.ndarray): Cost matrix
+        D (np.ndarray): Accumulated cost matrix
     """
     C = libfmp.c7.cost_matrix_dot(X, Y)
     if stepsize == 1:
@@ -404,11 +412,12 @@ def matches_dtw(pos, D, stepsize=2):
     Notebook: C7/C7S2_AudioMatching.ipynb
 
     Args:
-        pos: End positions of matches
-        D: Accumulated cost matrix
+        pos (np.ndarray): End positions of matches
+        D (np.ndarray): Accumulated cost matrix
+        stepsize (int): Parameter for step size condition (1 or 2) (Default value = 2)
 
     Returns:
-        matches: Array containing matches (start, end)
+        matches (np.ndarray): Array containing matches (start, end)
     """
     matches = np.zeros((len(pos), 2)).astype(int)
     for k in range(len(pos)):
@@ -429,15 +438,15 @@ def compute_matching_function_dtw_ti(X, Y, cyc=np.arange(12), stepsize=2):
     Notebook: C7/C7S2_AudioMatching.ipynb
 
     Args:
-        X: Query feature sequence (given as K x N matrix)
-        Y: Database feature sequence (given as K x M matrix)
-        cyc: Set of cyclic shift indices to be considered
-        stepsize: Parameter for step size condition (1 or 2)
+        X (np.ndarray): Query feature sequence (given as K x N matrix)
+        Y (np.ndarray): Database feature sequence (given as K x M matrix)
+        cyc (np.nda(rray): Set of cyclic shift indices to be considered (Default value = np.arange(12))
+        stepsize (int): Parameter for step size condition (1 or 2) (Default value = 2)
 
     Returns:
-        Delta_TI: Transposition-invariant matching function
-        Delta_ind: Cost-minimizing indices
-        Delta_cyc: Array containing all matching functions
+        Delta_TI (np.ndarray): Transposition-invariant matching function
+        Delta_ind (np.ndarray): Cost-minimizing indices
+        Delta_cyc (np.ndarray): Array containing all matching functions
     """
     M = Y.shape[1]
     num_cyc = len(cyc)

@@ -14,7 +14,19 @@ import libfmp.b
 
 def measure_prf(num_TP, num_FN, num_FP):
     """Compute P, R, and F from size of TP, FN, and FP [FMP, Section 4.5.1]
-    Notebook: C4/C4S5_Evaluation.ipynb"""
+
+    Notebook: C4/C4S5_Evaluation.ipynb
+
+    Args:
+        num_TP (int): True positives
+        num_FN (int): False negative
+        num_FP (int): False positives
+
+    Returns:
+        P (float): Precision
+        R (float): Recall
+        F (float): F-measure
+    """
     P = num_TP / (num_TP + num_FP)
     R = num_TP / (num_TP + num_FN)
     if (P + R) > 0:
@@ -26,7 +38,20 @@ def measure_prf(num_TP, num_FN, num_FP):
 
 def measure_prf_sets(I, I_ref_pos, I_est_pos, details=False):
     """Compute P, R, and F from sets I, I_ref_pos, I_est_pos [FMP, Section 4.5.1]
-    Notebook: C4/C4S5_Evaluation.ipynb"""
+
+    Notebook: C4/C4S5_Evaluation.ipynb
+
+    Args:
+        I: Set of items
+        I_ref_pos: Reference set of positive items
+        I_est_pos: Set of items being estimated as positive
+        details: Print details (Default value = False)
+
+    Returns:
+        P (float): Precision
+        R (float): Recall
+        F (float): F-measure
+    """
     I_ref_neg = I.difference(I_ref_pos)
     I_est_neg = I.difference(I_est_pos)
     TP = I_est_pos.intersection(I_ref_pos)
@@ -46,10 +71,10 @@ def convert_ann_to_seq_label(ann):
     Notebook: C4/C4S5_Evaluation.ipynb
 
     Args:
-        ann: Annotation (list  [[s,t,'label'], ...], with s,t being integers)
+        ann (list): Annotation (list ``[[s, t, 'label'], ...]``, with ``s``, ``t`` being integers)
 
     Returns:
-        X: Sequencs of labels
+        X (list): Sequencs of labels
     """
     X = []
     for seg in ann:
@@ -68,13 +93,15 @@ def plot_seq_label(ax, X, Fs=1, color_label=[], direction='horizontal',
     Args:
         ax: Axis used for plotting
         X: Label sequence
-        Fs: Sampling rate
-        color_label: List of colors for labels
-        direction, fontsize, time_axis, print_labels:
-            Paramters used in libfmp.b.plot_segments
+        Fs: Sampling rate (Default value = 1)
+        color_label: List of colors for labels (Default value = [])
+        direction: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = 'horizontal')
+        fontsize: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = 10)
+        time_axis: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = False)
+        print_labels: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = True)
 
     Returns:
-        ann_X: Structure annotation for label sequence
+         ann_X: Structure annotation for label sequence
     """
     ann_X = []
     for m in range(len(X)):
@@ -86,7 +113,15 @@ def plot_seq_label(ax, X, Fs=1, color_label=[], direction='horizontal',
 
 def compare_pairwise(X):
     """Compute set of positive items from label sequence [FMP, Section 4.5.3]
-    Notebook: C4/C4S5_Evaluation.ipynb"""
+
+    Notebook: C4/C4S5_Evaluation.ipynb
+
+    Args:
+        X (list or np.ndarray): Label sequence
+
+    Returns:
+        I_pos (np.ndarray): Set of positive items
+    """
     N = len(X)
     I_pos = np.zeros((N, N))
     for n in range(1, N):
@@ -102,11 +137,17 @@ def evaluate_pairwise(I_ref_pos, I_est_pos):
     Notebook: C4/C4S5_Evaluation.ipynb
 
     Args:
-        I_ref_pos, I_est_pos: Sets of positive items for reference and estimation
+        I_ref_pos (np.ndarray): Referenence set of positive items
+        I_est_pos (np.ndarray): Set of items being estimated as positive
 
     Returns:
-        P, R, F, num_TP, num_FN, num_FP: Evaluation measures
-        I_eval: Data structure encoding TP, FN, FP
+        P (float): Precision
+        R (float): Recall
+        F (float): F-measure
+        num_TP (int): Number of true positives
+        num_FN (int): Number of false negatives
+        num_FP (int): Number of false positives
+        I_eval (np.ndarray): Data structure encoding TP, FN, FP
     """
     I_eval = np.zeros(I_ref_pos.shape)
     TP = (I_ref_pos + I_est_pos) > 1
@@ -122,10 +163,24 @@ def evaluate_pairwise(I_ref_pos, I_est_pos):
     return P, R, F, num_TP, num_FN, num_FP, I_eval
 
 
-def plot_matrix_label(M, X, color_label=None, title='', clim=[0, 1], figsize=(3, 3),
-                      cmap='gray_r', fontsize=8, print_labels=True):
+def plot_matrix_label(M, X, color_label=None, figsize=(3, 3), cmap='gray_r', fontsize=8, print_labels=True):
     """Plot matrix and label sequence
-    Notebook: C4/C4S5_Evaluation.ipynb"""
+
+    Notebook: C4/C4S5_Evaluation.ipynb
+
+    Args:
+        M: Matrix
+        X: Label sequence
+        color_label: List of colors for labels (Default value = None)
+        figsize: Figure size (Default value = (3, 3))
+        cmap: Colormap for imshow (Default value = 'gray_r')
+        fontsize: Font size (Default value = 8)
+        print_labels: Display labels inside Rectangles (Default value = True)
+
+    Returns:
+        fig: Handle for figure
+        ax: Handle for axes
+    """
     fig, ax = plt.subplots(2, 3, gridspec_kw={'width_ratios': [0.1, 1, 0.05],
                                               'wspace': 0.2, 'height_ratios': [1, 0.1]},
                            figsize=figsize)
@@ -147,8 +202,18 @@ def plot_matrix_label(M, X, color_label=None, title='', clim=[0, 1], figsize=(3,
 
 
 def plot_matrix_pairwise(I_eval, figsize=(3, 2.5)):
-    """Plot matrix I_eval encoding TP, FN, FP (see libfmp.c4.evaluate_pairwise)
-    Notebook: C4/C4S5_Evaluation.ipynb"""
+    """Plot matrix I_eval encoding TP, FN, FP (see :func:`libfmp.c4.c4s5_evaluation.evaluate_pairwise`)
+
+    Notebook: C4/C4S5_Evaluation.ipynb
+
+    Args:
+        I_eval: Data structure encoding TP, FN, FP
+        figsize: Figure size (Default value = (3, 2.5))
+
+    Returns:
+        fig: Handle for figure
+        im: Handle for imshow
+    """
     fig = plt.figure(figsize=figsize)
     colorList = np.array([[1, 1, 1, 1], [0, 0.7, 0, 1], [1, 0, 0, 1], [1, 0.5, 0.5, 1]])
     cmap = ListedColormap(colorList)
@@ -168,14 +233,20 @@ def evaluate_boundary(B_ref, B_est, tau):
     Notebook: C4/C4S5_Evaluation.ipynb
 
     Args:
-        B_ref, B_est: Boundary annotations for reference and estimation
-        tau: Tolerance parameter
-             Note: Condition |b_{k+1}-b_k|>2tau should be fulfilled [FMP, Eq. 4.58]
+        B_ref (np.ndarray): Reference boundary annotations
+        B_est (np.ndarray): Estimated boundary annotations
+        tau (int): Tolerance parameter.
+            Note: Condition ``|b_{k+1}-b_k|>2tau`` should be fulfilled [FMP, Eq. 4.58]
 
     Returns:
-        P, R, F, num_TP, num_FN, num_FP: Evaluation measures
-        B_tol: Data structure encoding B_ref with tolerance
-        B_eval: Data structure encoding TP, FN, FP
+        P (float): Precision
+        R (float): Recall
+        F (float): F-measure
+        num_TP (int): Number of true positives
+        num_FN (int): Number of false negatives
+        num_FP (int): Number of false positives
+        B_tol (np.ndarray): Data structure encoding B_ref with tolerance
+        I_eval (np.ndarray): Data structure encoding TP, FN, FP
     """
     N = len(B_ref)
     num_TP = 0
@@ -205,9 +276,21 @@ def evaluate_boundary(B_ref, B_est, tau):
     return P, R, F, num_TP, num_FN, num_FP, B_tol, B_eval
 
 
-def plot_boundary_measures(B_ref, B_est, tau, figsize=(8, 2.5), details=False):
-    """Plot B_tol, B_est, and B_eval (see libfmp.c4.evaluate_boundary)
-    Notebook: C4/C4S5_Evaluation.ipynb"""
+def plot_boundary_measures(B_ref, B_est, tau, figsize=(8, 2.5)):
+    """Plot B_ref and B_est (see :func:`libfmp.c4.c4s5_evaluation.evaluate_boundary`)
+
+    Notebook: C4/C4S5_Evaluation.ipynb
+
+    Args:
+        B_ref: Reference boundary annotations
+        B_est: Estimated boundary annotations
+        tau: Tolerance parameter
+        figsize: Figure size (Default value = (8, 2.5))
+
+    Returns:
+        fig: Handle for figure
+        ax: Handle for axes
+    """
     P, R, F, num_TP, num_FN, num_FP, B_tol, B_eval = evaluate_boundary(B_ref, B_est, tau)
 
     colorList = np.array([[1., 1., 1., 1.], [0., 0., 0., 1.], [0.7, 0.7, 0.7, 1.]])

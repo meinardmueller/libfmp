@@ -15,12 +15,12 @@ def compute_f_coef_linear(N, Fs, rho=1):
     Notebook: C2/C2_STFT-FreqGridInterpol.ipynb
 
     Args:
-        N: Window size
-        Fs: Sampling rate
-        rho: Factor for refinement
+        N (int): Window size
+        Fs (scalar): Sampling rate
+        rho (int): Factor for refinement (Default value = 1)
 
     Returns:
-        F_coef_linear: Refined frequency vector
+        F_coef_new (np.ndarray): Refined frequency vector
     """
     L = rho * N
     F_coef_new = np.arange(0, L//2+1) * Fs / L
@@ -33,14 +33,14 @@ def compute_f_coef_log(R, F_min, F_max):
     Notebook: C2/C2_STFT-FreqGridInterpol.ipynb
 
     Args:
-        R: Resolution (cents)
-        F_min: minimum frequency
-        F_max: maximum frequency (not included)
+        R (scalar): Resolution (cents)
+        F_min (float): Minimum frequency
+        F_max (float): Maximum frequency (not included)
 
     Returns:
-        F_coef_log: Refined frequency vector with values given in Hz)
-        F_coef_cents: Refined frequency vector with values given in cents
-                      Note: F_min serves as reference (0 cents)
+        F_coef_log (np.ndarray): Refined frequency vector with values given in Hz)
+        F_coef_cents (np.ndarray): Refined frequency vector with values given in cents.
+            Note: F_min serves as reference (0 cents)
     """
     n_bins = np.ceil(1200 * np.log2(F_max / F_min) / R).astype(int)
     F_coef_log = 2 ** (np.arange(0, n_bins) * R / 1200) * F_min
@@ -54,12 +54,12 @@ def interpolate_freq_stft(Y, F_coef, F_coef_new):
     Notebook: C2/C2_STFT-FreqGridInterpol.ipynb
 
     Args:
-        Y: Magnitude STFT
-        F_coef: Vector of frequency values
-        F_coef_new: Vector of new frequency values
+        Y (np.ndarray): Magnitude STFT
+        F_coef (np.ndarray): Vector of frequency values
+        F_coef_new (np.ndarray): Vector of new frequency values
 
     Returns:
-        Y_interpol: Interploated magnitude STFT
+        Y_interpol (np.ndarray): Interploated magnitude STFT
     """
     compute_Y_interpol = interp1d(F_coef, Y, kind='cubic', axis=0)
     Y_interpol = compute_Y_interpol(F_coef_new)

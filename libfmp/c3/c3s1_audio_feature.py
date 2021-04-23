@@ -16,31 +16,31 @@ def f_pitch(p, pitch_ref=69, freq_ref=440.0):
     Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb
 
     Args:
-        p: MIDI pitch value(s)
-        pitch_ref: Reference pitch (default: 69)
-        freq_ref: Frequency of reference pitch (default: 440.0)
+        p (float): MIDI pitch value(s)
+        pitch_ref (float): Reference pitch (default: 69)
+        freq_ref (float): Frequency of reference pitch (default: 440.0)
 
     Returns:
-        im: Frequency value(s)
+        freqs (float): Frequency value(s)
     """
     return 2 ** ((p - pitch_ref) / 12) * freq_ref
 
 
 @jit(nopython=True)
-def pool_pitch(p, Fs, N, pitch_ref=69, freq_ref=440):
+def pool_pitch(p, Fs, N, pitch_ref=69, freq_ref=440.0):
     """Computes the set of frequency indices that are assigned to a given pitch
 
     Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb
 
     Args:
-        p: MIDI pitch value
-        Fs: Sampling rate
-        N: Window size of Fourier fransform
-        pitch_ref: Reference pitch (default: 69)
-        freq_ref:  Frequency of reference pitch (default: 440.0)
+        p (float): MIDI pitch value
+        Fs (scalar): Sampling rate
+        N (int): Window size of Fourier fransform
+        pitch_ref (float): Reference pitch (default: 69)
+        freq_ref (float): Frequency of reference pitch (default: 440.0)
 
     Returns:
-        im: Set of frequency indices
+        k (np.ndarray): Set of frequency indices
     """
     lower = f_pitch(p - 0.5, pitch_ref, freq_ref)
     upper = f_pitch(p + 0.5, pitch_ref, freq_ref)
@@ -57,15 +57,13 @@ def compute_spec_log_freq(Y, Fs, N):
     Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb
 
     Args:
-        Y: Magnitude or power spectrogram
-        Fs: Sampling rate
-        N: Window size of Fourier fransform
-        pitch_ref: Reference pitch (default: 69)
-        freq_ref: Frequency of reference pitch (default: 440.0)
+        Y (np.ndarray): Magnitude or power spectrogram
+        Fs (scalar): Sampling rate
+        N (int): Window size of Fourier fransform
 
     Returns:
-        Y_LF: Log-frequency spectrogram
-        F_coef_pitch: Pitch values
+        Y_LF (np.ndarray): Log-frequency spectrogram
+        F_coef_pitch (np.ndarray): Pitch values
     """
     Y_LF = np.zeros((128, Y.shape[1]))
     for p in range(128):
@@ -82,10 +80,10 @@ def compute_chromagram(Y_LF):
     Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb
 
     Args:
-        Y_LF: Log-frequency spectrogram
+        Y_LF (np.ndarray): Log-frequency spectrogram
 
     Returns:
-        C: Chromagram
+        C (np.ndarray): Chromagram
     """
     C = np.zeros((12, Y_LF.shape[1]))
     p = np.arange(128)
@@ -101,10 +99,10 @@ def note_name(p):
     Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb
 
     Args:
-        p: Pitch value
+        p (int): Pitch value
 
     Returns:
-        name: Note name
+        name (str): Note name
     """
     chroma = ['A', 'A$^\\sharp$', 'B', 'C', 'C$^\\sharp$', 'D', 'D$^\\sharp$', 'E', 'F', 'F$^\\sharp$', 'G',
               'G$^\\sharp$']

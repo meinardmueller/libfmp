@@ -12,16 +12,16 @@ import numpy as np
 def generate_sinusoid_scale(pitches=[69], duration=0.5, Fs=4000, amplitude_max=0.5):
     """Generate synthetic sound of scale using sinusoids
 
-    Notebook: C5/C5S1_Chords.ipynb
+    Notebook: C5/C5S1_Scales_CircleFifth.ipynb
 
     Args:
-        pitches: List of pitchs (MIDI note numbers)
-        duration: Duration (seconds)
-        Fs: Sampling rate
-        amplitude_max: Amplitude
+        pitches (list): List of pitchs (MIDI note numbers) (Default value = [69])
+        duration (float): Duration (seconds) (Default value = 0.5)
+        Fs (scalar): Sampling rate (Default value = 4000)
+        amplitude_max (float): Amplitude (Default value = 0.5)
 
     Returns:
-        x: Synthesized signal
+        x (np.ndarray): Synthesized signal
     """
     N = int(duration * Fs)
     t = np.arange(0, N) / Fs
@@ -39,13 +39,13 @@ def generate_sinusoid_chord(pitches=[69], duration=1, Fs=4000, amplitude_max=0.5
     Notebook: C5/C5S1_Chords.ipynb
 
     Args:
-        pitches: List of pitches (MIDI note numbers)
-        duration: Duration (seconds)
-        Fs: Sampling rate
-        amplitude_max: Amplitude
+        pitches (list): List of pitches (MIDI note numbers) (Default value = [69])
+        duration (float): Duration (seconds) (Default value = 1)
+        Fs (scalar): Sampling rate (Default value = 4000)
+        amplitude_max (float): Amplitude (Default value = 0.5)
 
     Returns:
-        x: Synthesized signal
+        x (np.ndarray): Synthesized signal
     """
     N = int(duration * Fs)
     t = np.arange(0, N) / Fs

@@ -16,13 +16,13 @@ def read_audio(path, Fs=None, mono=False):
     """Reads an audio file
 
     Args:
-        path: Path to audio file
-        Fs: Resample audio to given sampling rate. Use native sampling rate if None.
-        mono (bool): Convert multi-channel file to mono.
+        path (str): Path to audio file
+        Fs (scalar): Resample audio to given sampling rate. Use native sampling rate if None. (Default value = None)
+        mono (bool): Convert multi-channel file to mono. (Default value = False)
 
     Returns:
-        x: Waveform signal
-        Fs: Sampling rate
+        x (np.ndarray): Waveform signal
+        Fs (scalar): Sampling rate
     """
     return librosa.load(path, sr=Fs, mono=mono)
 
@@ -31,25 +31,25 @@ def write_audio(path, x, Fs):
     """Writes an audio file
 
     Args:
-        path: Path to audio file
-        x: Waveform signal
-        Fs: Sampling rate
+        path (str): Path to audio file
+        x (np.ndarray): Waveform signal
+        Fs (scalar): Sampling rate
     """
     sf.write(path, x, Fs)
 
 
 def audio_player_list(signals, rates, width=270, height=40, columns=None, column_align='center'):
-    """Generate list of audio players
+    """Generates list of audio players
 
     Notebook: B/B_PythonAudio.ipynb
 
     Args:
-        signals: List of audio signals
-        rates: List of sample rates
-        width: Width of player (either number or list)
-        height: Height of player (either number or list)
-        columns: Column headings
-        column_align: Left, center, right
+        signals (list): List of audio signals
+        rates (list): List of sample rates
+        width (int): Width of player (either number or list) (Default value = 270)
+        height (int): Height of player (either number or list) (Default value = 40)
+        columns (list): Column headings (Default value = None)
+        column_align (str): Left, center, right (Default value = 'center')
     """
     pd.set_option('display.max_colwidth', None)
 

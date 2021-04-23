@@ -16,17 +16,17 @@ import libfmp.b
 
 
 def compute_penalty(N, beat_ref):
-    """Compute penalty funtion used for beat tracking [FMP, Section 6.3.2]
-    Note: Concatenation of '0' because of Python indexing conventions
+    """| Compute penalty funtion used for beat tracking [FMP, Section 6.3.2]
+    | Note: Concatenation of '0' because of Python indexing conventions
 
     Notebook: C6/C6S3_BeatTracking.ipynb
 
     Args:
-        N: Length of vector representing penalty function
-        beat_ref: Reference beat period (given in samples)
+        N (int): Length of vector representing penalty function
+        beat_ref (int): Reference beat period (given in samples)
 
     Returns:
-        penalty: Penalty function
+        penalty (np.ndarray): Penalty function
     """
     t = np.arange(1, N) / beat_ref
     penalty = -np.square(np.log2(t))
@@ -35,23 +35,23 @@ def compute_penalty(N, beat_ref):
     return penalty
 
 
-def compute_beat_sequence(novelty, beat_ref, penalty=None, factor=1, return_all=False):
-    """Compute beat sequence using dynamic programming [FMP, Section 6.3.2]
-    Note: Concatenation of '0' because of Python indexing conventions
+def compute_beat_sequence(novelty, beat_ref, penalty=None, factor=1.0, return_all=False):
+    """| Compute beat sequence using dynamic programming [FMP, Section 6.3.2]
+    | Note: Concatenation of '0' because of Python indexing conventions
 
     Notebook: C6/C6S3_BeatTracking.ipynb
 
     Args:
-        novelty: Novelty function
-        beat_ref: Reference beat period (given in samples)
-        penalty: Penalty function (is computed when set to None)
-        factor: Weight parameter for adjusting the penalty
-        return_all: Return details (D, P)
+        novelty (np.ndarray): Novelty function
+        beat_ref (int): Reference beat period
+        penalty (np.ndarray): Penalty function (Default value = None)
+        factor (float): Weight parameter for adjusting the penalty (Default value = 1.0)
+        return_all (bool): Return details (Default value = False)
 
     Returns:
-        B: Optimal beat sequence
-        D: Accumulated score
-        P: Maximization information
+        B (np.ndarray): Optimal beat sequence
+        D (np.ndarray): Accumulated score
+        P (np.ndarray): Maximization information
     """
     N = len(novelty)
     if penalty is None:
@@ -91,14 +91,35 @@ def compute_beat_sequence(novelty, beat_ref, penalty=None, factor=1, return_all=
 
 def beat_period_to_tempo(beat, Fs):
     """Convert beat period (samples) to tempo (BPM) [FMP, Section 6.3.2]
-    Notebook: C6/C6S3_BeatTracking.ipynb"""
-    tempo = 60 / (beat/Fs)
+
+    Notebook: C6/C6S3_BeatTracking.ipynb
+
+    Args:
+        beat (int): Beat period (samples)
+        Fs (scalar): Sample rate
+
+    Returns:
+        tempo (float): Tempo (BPM)
+    """
+    tempo = 60 / (beat / Fs)
     return tempo
 
 
 def compute_plot_sonify_beat(x, Fs, nov, Fs_nov, beat_ref, factor, title=None, figsize=(6, 2)):
     """Compute, plot, and sonfy beat sequence from novelty function [FMP, Section 6.3.2]
-    Notebook: C6/C6S3_BeatTracking.ipynb"""
+
+    Notebook: C6/C6S3_BeatTracking.ipynb
+
+    Args:
+        x: Novelty function
+        Fs: Sample rate
+        nov: Novelty function
+        Fs_nov: Rate of novelty function
+        beat_ref: Reference beat period
+        factor: Weight parameter for adjusting the penalty
+        title: Title of figure (Default value = None)
+        figsize: Size of figure (Default value = (6, 2))
+    """
     B = compute_beat_sequence(nov, beat_ref=beat_ref, factor=factor)
 
     beats = np.zeros(len(nov))

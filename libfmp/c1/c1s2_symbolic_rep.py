@@ -20,11 +20,11 @@ def csv_to_list(csv):
     Notebook: C1/C1S2_CSV.ipynb
 
     Args:
-        csv: Either a path to a csv file or a data frame
+        csv (str or pd.DataFrame): Either a path to a csv file or a data frame
 
     Returns:
-        score: A list of note events where each note is specified as
-               [start, duration, pitch, velocity, label]
+        score (list): A list of note events where each note is specified as
+            ``[start, duration, pitch, velocity, label]``
     """
 
     if isinstance(csv, str):
@@ -46,16 +46,16 @@ def midi_to_list(midi):
     Notebook: C1/C1S2_MIDI.ipynb
 
     Args:
-        midi: Either a path to a midi file or a data frame
+        midi (str or pretty_midi.pretty_midi.PrettyMIDI): Either a path to a midi file or PrettyMIDI object
 
     Returns:
-        score: A list of note events where each note is specified as
-               [start, duration, pitch, velocity, label]
+        score (list): A list of note events where each note is specified as
+            ``[start, duration, pitch, velocity, label]``
     """
 
     if isinstance(midi, str):
         midi_data = pretty_midi.pretty_midi.PrettyMIDI(midi)
-    elif isinstance(midi, pd.DataFrame):
+    elif isinstance(midi, pretty_midi.pretty_midi.PrettyMIDI):
         midi_data = midi
     else:
         raise RuntimeError('midi must be a path to a midi file or pretty_midi.PrettyMIDI')
@@ -78,11 +78,11 @@ def xml_to_list(xml):
     Notebook: C1/C1S2_MusicXML.ipynb
 
     Args:
-        xml: Either a path to a music xml file or a music21.stream.Score
+        xml (str or music21.stream.Score): Either a path to a music xml file or a music21.stream.Score
 
     Returns:
-        score: A list of note events where each note is specified as
-               [start, duration, pitch, velocity, label]
+        score (list): A list of note events where each note is specified as
+            ``[start, duration, pitch, velocity, label]``
     """
 
     if isinstance(xml, str):
@@ -122,11 +122,9 @@ def xml_to_list(xml):
 def list_to_csv(score, fn_out):
     """Convert a list of note events to a csv file
 
-    Notebook: C1/C1S2_CSV.ipynb
-
     Args:
-        score: List of note events
-        fn_out: The path of the csv file to be created
+        score (list): List of note events
+        fn_out (str): The path of the csv file to be created
     """
     df = pd.DataFrame(score, columns=['Start', 'Duration', 'Pitch', 'Velocity', 'Instrument'])
     # ideally, I would like to use float_format='%.3f', but then the numeric columns are considered as strings and,
@@ -142,14 +140,16 @@ def visualize_piano_roll(score, xlabel='Time (seconds)', ylabel='Pitch', colors=
 
     Args:
         score: List of note events
-        xlabel: Label for x axis
-        ylabel: Label for y axis
-        colors: Several options: 1. string of FMP_COLORMAPS, 2. string of matplotlib colormap, 3. list or np.ndarray of
-            matplotlib color specifications, 4. dict that assigns labels  to colors
-        velocity_alpha (bool): Use the velocity value for the alpha value of the corresponding rectangle
-        figsize: Width, height in inches
-        ax: The Axes instance to plot on
-        dpi: Dots per inch
+        xlabel: Label for x axis (Default value = 'Time (seconds)')
+        ylabel: Label for y axis (Default value = 'Pitch')
+        colors: Several options: 1. string of FMP_COLORMAPS, 2. string of matplotlib colormap,
+            3. list or np.ndarray of matplotlib color specifications,
+            4. dict that assigns labels  to colors (Default value = 'FMP_1')
+        velocity_alpha: Use the velocity value for the alpha value of the corresponding rectangle
+            (Default value = False)
+        figsize: Width, height in inches (Default value = (12)
+        ax: The Axes instance to plot on (Default value = None)
+        dpi: Dots per inch (Default value = 72)
 
     Returns:
         fig: The created matplotlib figure or None if ax was given.

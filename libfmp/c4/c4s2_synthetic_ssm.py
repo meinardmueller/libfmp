@@ -9,24 +9,24 @@ import numpy as np
 import scipy.ndimage
 
 
-def generate_ssm_from_annotation(ann, label_ann=None, score_path=1, score_block=0.5, main_diagonal=True,
-                                 smooth_sigma=0, noise_power=0):
+def generate_ssm_from_annotation(ann, label_ann=None, score_path=1.0, score_block=0.5, main_diagonal=True,
+                                 smooth_sigma=0.0, noise_power=0.0):
     """Generation of a SSM
 
     Notebook: C4/C4S2_SSM-Synthetic.ipynb
 
     Args:
-        ann: Description of sections (see explanation above)
-        label_ann: Specification of property (path, block relation)
-        score_path: SSM values for occurring paths
-        score_block: SSM values of blocks covering the same labels
-        main_diagonal: True if a filled main diagonal should be enforced
-        smooth_sigma: Standard deviation of a Gaussian smoothing filter
-                    filter length is 4*smooth_sigma
-        noise_power: variance of additive white Gaussian noise
+        ann (list): Description of sections (see explanation above)
+        label_ann (dict): Specification of property (path, block relation) (Default value = None)
+        score_path (float): SSM values for occurring paths (Default value = 1.0)
+        score_block (float): SSM values of blocks covering the same labels (Default value = 0.5)
+        main_diagonal (bool): True if a filled main diagonal should be enforced (Default value = True)
+        smooth_sigma (float): Standard deviation of a Gaussian smoothing filter.
+            filter length is 4*smooth_sigma (Default value = 0.0)
+        noise_power (float): Variance of additive white Gaussian noise (Default value = 0.0)
 
     Returns:
-        S: Generated SSM
+        S (np.ndarray): Generated SSM
     """
     N = ann[-1][1] + 1
     S = np.zeros((N, N))

@@ -19,7 +19,15 @@ import libfmp.c4
 @jit(nopython=True)
 def compute_sm_dot(X, Y):
     """Computes similarty matrix from feature sequences using dot (inner) product
+
     Notebook: C4/C4S2_SSM.ipynb
+
+    Args:
+        X (np.ndarray): First sequence
+        Y (np.ndarray): Second Sequence
+
+    Returns:
+        S (float): Dot product
     """
     S = np.dot(np.transpose(X), Y)
     return S
@@ -29,7 +37,28 @@ def plot_feature_ssm(X, Fs_X, S, Fs_S, ann, duration, color_ann=None,
                      title='', label='Time (seconds)', time=True,
                      figsize=(5, 6), fontsize=10, clim_X=None, clim=None):
     """Plot SSM along with feature representation and annotations (standard setting is time in seconds)
+
     Notebook: C4/C4S2_SSM.ipynb
+
+    Args:
+        X: Feature representation
+        Fs_X: Feature rate of ``X``
+        S: Similarity matrix (SM)
+        Fs_S: Feature rate of ``S``
+        ann: Annotaions
+        duration: Duration
+        color_ann: Color annotations (see :func:`libfmp.b.b_plot.plot_segments`) (Default value = None)
+        title: Figure title (Default value = '')
+        label: Label for time axes (Default value = 'Time (seconds)')
+        time: Display time axis ticks or not (Default value = True)
+        figsize: Figure size (Default value = (5, 6))
+        fontsize: Font size (Default value = 10)
+        clim_X: Color limits for matrix X (Default value = None)
+        clim: Color limits for matrix ``S`` (Default value = None)
+
+    Returns:
+        fig: Handle for figure
+        ax: Handle for axes
     """
     cmap = libfmp.b.compressed_gray_cmap(alpha=-10)
     fig, ax = plt.subplots(3, 3, gridspec_kw={'width_ratios': [0.1, 1, 0.05],
@@ -43,11 +72,11 @@ def plot_feature_ssm(X, Fs_X, S, Fs_S, ann, duration, color_ann=None,
                          title='', xlabel='', ylabel='', colorbar=True)
     ax[1, 1].set_xticks([])
     ax[1, 1].set_yticks([])
-    libfmp.b.plot_segments(ann, ax=ax[2, 1], time_axis=True, fontsize=fontsize,
+    libfmp.b.plot_segments(ann, ax=ax[2, 1], time_axis=time, fontsize=fontsize,
                            colors=color_ann,
                            time_label=label, time_max=duration*Fs_X)
     ax[2, 2].axis('off'), ax[2, 0].axis('off')
-    libfmp.b.plot_segments(ann, ax=ax[1, 0], time_axis=True, fontsize=fontsize,
+    libfmp.b.plot_segments(ann, ax=ax[1, 0], time_axis=time, fontsize=fontsize,
                            direction='vertical', colors=color_ann,
                            time_label=label, time_max=duration*Fs_X)
     return fig, ax
@@ -60,11 +89,11 @@ def filter_diag_sm(S, L):
     Notebook: C4/C4S2_SSM-PathEnhancement.ipynb
 
     Args:
-        S: Similarity matrix (SM)
-        L: Length of filter
+        S (np.ndarray): Similarity matrix (SM)
+        L (int): Length of filter
 
     Returns:
-        S_L: Smoothed SM
+        S_L (np.ndarray): Smoothed SM
     """
     N = S.shape[0]
     M = S.shape[1]
@@ -81,7 +110,25 @@ def subplot_matrix_colorbar(S, fig, ax, title='', Fs=1,
                             xlabel='Time (seconds)', ylabel='Time (seconds)',
                             clim=None, xlim=None, ylim=None, cmap=None):
     """Visualization function for showing zoomed sections of matrices
-    Notebook: C4/C4S2_SSM-PathEnhancement.ipynb"""
+
+    Notebook: C4/C4S2_SSM-PathEnhancement.ipynb
+
+    Args:
+        S: Similarity matrix (SM)
+        fig: Figure handle
+        ax: Axes handle
+        title: Title for figure (Default value = '')
+        Fs: Feature rate (Default value = 1)
+        xlabel: Label for x-axis (Default value = 'Time (seconds)')
+        ylabel: Label for y-axis (Default value = 'Time (seconds)')
+        clim: Color limits (Default value = None)
+        xlim: Limits for x-axis (Default value = None)
+        ylim: Limits for x-axis (Default value = None)
+        cmap: Colormap for imshow (Default value = None)
+
+    Returns:
+        im: Imshow handle
+    """
     if cmap is None:
         cmap = libfmp.b.compressed_gray_cmap(alpha=-100)
     len_sec = S.shape[0] / Fs
@@ -108,12 +155,12 @@ def compute_tempo_rel_set(tempo_rel_min, tempo_rel_max, num):
     Notebook: C4/C4S2_SSM-PathEnhancement.ipynb
 
     Args:
-        tempo_rel_min: Minimum relative tempo
-        tempo_rel_max: Maximum relative tempo
-        num: Number of relative tempo values (inlcuding the min and max)
+        tempo_rel_min (float): Minimum relative tempo
+        tempo_rel_max (float): Maximum relative tempo
+        num (int): Number of relative tempo values (inlcuding the min and max)
 
     Returns:
-        tempo_rel_set: Set of relative tempo values
+        tempo_rel_set (np.ndarray): Set of relative tempo values
     """
     tempo_rel_set = np.exp(np.linspace(np.log(tempo_rel_min), np.log(tempo_rel_max), num))
     return tempo_rel_set
@@ -122,19 +169,19 @@ def compute_tempo_rel_set(tempo_rel_min, tempo_rel_max, num):
 @jit(nopython=True)
 def filter_diag_mult_sm(S, L=1, tempo_rel_set=np.asarray([1]), direction=0):
     """Path smoothing of similarity matrix by filtering in forward or backward direction
-    along various directions around main diagonal
+    along various directions around main diagonal.
     Note: Directions are simulated by resampling one axis using relative tempo values
 
     Notebook: C4/C4S2_SSM-PathEnhancement.ipynb
 
     Args:
-        S: Self-similarity matrix (SSM)
-        L: Length of filter
-        tempo_rel_set: Set of relative tempo values
-        direction: Direction of smoothing (0: forward; 1: backward)
+        S (np.ndarray): Self-similarity matrix (SSM)
+        L (int): Length of filter (Default value = 1)
+        tempo_rel_set (np.ndarray): Set of relative tempo values (Default value = np.asarray([1]))
+        direction (int): Direction of smoothing (0: forward; 1: backward) (Default value = 0)
 
     Returns:
-        S_L_final: Smoothed SM
+        S_L_final (np.ndarray): Smoothed SM
     """
     N = S.shape[0]
     M = S.shape[1]
@@ -142,7 +189,7 @@ def filter_diag_mult_sm(S, L=1, tempo_rel_set=np.asarray([1]), direction=0):
     S_L_final = np.zeros((N, M))
 
     for s in range(0, num):
-        M_ceil = int(np.ceil(M/tempo_rel_set[s]))
+        M_ceil = int(np.ceil(M / tempo_rel_set[s]))
         resample = np.multiply(np.divide(np.arange(1, M_ceil+1), M_ceil), M)
         np.around(resample, 0, resample)
         resample = resample - 1
@@ -183,11 +230,11 @@ def shift_cyc_matrix(X, shift=0):
     Notebook: C4/C4S2_SSM-TranspositionInvariance.ipynb
 
     Args:
-        X: Feature respresentation
-        shift: Number of bins to be shifted
+        X (np.ndarray): Feature respresentation
+        shift (int): Number of bins to be shifted (Default value = 0)
 
     Returns:
-        X_cyc: Cyclically shifted feature matrix
+        X_cyc (np.ndarray): Cyclically shifted feature matrix
     """
     # Note: X_cyc = np.roll(X, shift=shift, axis=0) does to work for jit
     K, N = X.shape
@@ -205,15 +252,16 @@ def compute_sm_ti(X, Y, L=1, tempo_rel_set=np.asarray([1]), shift_set=np.asarray
     Notebook: C4/C4S2_SSM-TranspositionInvariance.ipynb
 
     Args:
-        X, Y: Input feature sequences
-        L: Length of filter
-        tempo_rel_set: Set of relative tempo values
-        shift_set: Set of shift indices
-        direction: Direction of smoothing (0: forward; 1: backward; 2: both directions)
+        X (np.ndarray): First feature sequence
+        Y (np.ndarray): Second feature sequence
+        L (int): Length of filter (Default value = 1)
+        tempo_rel_set (np.ndarray): Set of relative tempo values (Default value = np.asarray([1]))
+        shift_set (np.ndarray): Set of shift indices (Default value = np.asarray([0]))
+        direction (int): Direction of smoothing (0: forward; 1: backward; 2: both directions) (Default value = 2)
 
     Returns:
-        S_TI: Transposition-invariant SM
-        I_TI: Transposition index matrix
+        S_TI (np.ndarray): Transposition-invariant SM
+        I_TI (np.ndarray): Transposition index matrix
     """
     for shift in shift_set:
         Y_cyc = shift_cyc_matrix(Y, shift)
@@ -241,9 +289,29 @@ def compute_sm_ti(X, Y, L=1, tempo_rel_set=np.asarray([1]), shift_set=np.asarray
 
 
 def subplot_matrix_ti_colorbar(S, fig, ax, title='', Fs=1, xlabel='Time (seconds)', ylabel='Time (seconds)',
-                               clim=None, xlim=None, ylim=None, cmap=None, alpha=1, ind_zero=0):
+                               clim=None, xlim=None, ylim=None, cmap=None, alpha=1, ind_zero=False):
     """Visualization function for showing transposition index matrix
-    Notebook: C4/C4S2_SSM-TranspositionInvariance.ipynb"""
+
+    Notebook: C4/C4S2_SSM-TranspositionInvariance.ipynb
+
+    Args:
+        S: Self-similarity matrix (SSM)
+        fig: Figure handle
+        ax: Axes handle
+        title: Title for figure (Default value = '')
+        Fs: Feature rate (Default value = 1)
+        xlabel: Label for x-axis (Default value = 'Time (seconds)')
+        ylabel: Label for y-axis (Default value = 'Time (seconds)')
+        clim: Color limits (Default value = None)
+        xlim: Limits for x-axis (Default value = None)
+        ylim: Limits for y-axis (Default value = None)
+        cmap: Color map (Default value = None)
+        alpha: Alpha value for imsow (Default value = 1)
+        ind_zero: Use white (True) or black (False) color for index zero (Default value = False)
+
+    Returns:
+        im: Imshow handle
+    """
     if cmap is None:
         color_ind_zero = np.array([0, 0, 0, 1])
         if ind_zero == 0:
@@ -274,31 +342,42 @@ def subplot_matrix_ti_colorbar(S, fig, ax, title='', Fs=1, xlabel='Time (seconds
 
 
 def compute_sm_from_filename(fn_wav, L=21, H=5, L_smooth=16, tempo_rel_set=np.array([1]),
-                             shift_set=np.array([0]), strategy='relative', scale=1, thresh=0.15,
-                             penalty=0, binarize=0):
+                             shift_set=np.array([0]), strategy='relative', scale=True, thresh=0.15,
+                             penalty=0.0, binarize=False):
     """Compute an SSM
 
-    Notebook: C4S2_SSM-Thresholding.ipynb
+    Notebook: C4/C4S2_SSM-Thresholding.ipynb
 
     Args:
-        fn_wav: Path and filename of wav file
-        L, H: Parameters for computing smoothed chroma features
-        L_smooth, tempo_rel_set, shift_set: Parameters for computing SSM
-        strategy, scale, thresh, penalty, binarize: Parameters used thresholding SSM
+        fn_wav (str): Path and filename of wav file
+        L (int): Length of smoothing filter (Default value = 21)
+        H (int): Downsampling factor (Default value = 5)
+        L_smooth (int): Length of filter (Default value = 16)
+        tempo_rel_set (np.ndarray):  Set of relative tempo values (Default value = np.array([1]))
+        shift_set (np.ndarray): Set of shift indices (Default value = np.array([0]))
+        strategy (str): Thresholding strategy (see :func:`libfmp.c4.c4s2_ssm.compute_sm_ti`)
+            (Default value = 'relative')
+        scale (bool): If scale=True, then scaling of positive values to range [0,1] (Default value = True)
+        thresh (float): Treshold (meaning depends on strategy) (Default value = 0.15)
+        penalty (float): Set values below treshold to value specified (Default value = 0.0)
+        binarize (bool): Binarizes final matrix (positive: 1; otherwise: 0) (Default value = False)
 
     Returns:
-        x, x_duration: Audio signal and its duration (seconds)
-        X, Fs_feature: Feature sequence and feature rate
-        S_thresh, I: SSM and index matrix
+        x (np.ndarray): Audio signal
+        x_duration (float): Duration of audio signal (seconds)
+        X (np.ndarray): Feature sequence
+        Fs_feature (scalar): Feature rate
+        S_thresh (np.ndarray): SSM
+        I (np.ndarray): Index matrix
     """
     # Waveform
     Fs = 22050
     x, Fs = librosa.load(fn_wav, Fs)
-    x_duration = (x.shape[0])/Fs
+    x_duration = x.shape[0] / Fs
 
     # Chroma Feature Sequence and SSM (10 Hz)
     C = librosa.feature.chroma_stft(y=x, sr=Fs, tuning=0, norm=2, hop_length=2205, n_fft=4410)
-    Fs_C = Fs/2205
+    Fs_C = Fs / 2205
 
     # Chroma Feature Sequence and SSM
     X, Fs_feature = libfmp.c3.smooth_downsample_feature_sequence(C, Fs_C, filt_len=L, down_sampling=H)

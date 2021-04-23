@@ -17,11 +17,11 @@ def generate_matrix_dft(N, K):
     Notebook: C2/C2_DFT-FFT.ipynb
 
     Args:
-        N: Number of samples
-        K: Number of frequency bins
+        N (int): Number of samples
+        K (int): Number of frequency bins
 
     Returns:
-        dft: The DFT matrix
+        dft (np.ndarray): The DFT matrix
     """
     dft = np.zeros((K, N), dtype=np.complex128)
     for n in range(N):
@@ -37,11 +37,11 @@ def generate_matrix_dft_inv(N, K):
     Notebook: C2/C2_STFT-Inverse.ipynb
 
     Args:
-        N: Number of samples
-        K: Number of frequency bins
+        N (int): Number of samples
+        K (int): Number of frequency bins
 
     Returns:
-        dft: The IDFT matrix
+        dft (np.ndarray): The IDFT matrix
     """
     dft = np.zeros((K, N), dtype=np.complex128)
     for n in range(N):
@@ -57,10 +57,10 @@ def dft(x):
     Notebook: C2/C2_DFT-FFT.ipynb
 
     Args:
-        x: Signal to be transformed
+        x (np.ndarray): Signal to be transformed
 
     Returns:
-        X: Fourier transform of x
+        X (np.ndarray): Fourier transform of x
     """
     x = x.astype(np.complex128)
     N = len(x)
@@ -69,21 +69,19 @@ def dft(x):
 
 
 @jit(nopython=True)
-def idft(x):
+def idft(X):
     """Compute the inverse discrete Fourier transfrom (IDFT)
 
-    Notebook: C2/C2_STFT-Inverse.ipynb
-
     Args:
-        x: Signal to be transformed
+        X (np.ndarray): Signal to be transformed
 
     Returns:
-        X: Fourier transform of x
+        x (np.ndarray): Inverse Fourier transform of X
     """
-    x = x.astype(np.complex128)
-    N = len(x)
+    X = X.astype(np.complex128)
+    N = len(X)
     dft_mat = generate_matrix_dft_inv(N, N)
-    return np.dot(dft_mat, x)
+    return np.dot(dft_mat, X)
 
 
 @jit(nopython=True)
@@ -93,10 +91,10 @@ def twiddle(N):
     Notebook: C2/C2_DFT-FFT.ipynb
 
     Args:
-        N: Number of samples
+        N (int): Number of samples
 
     Returns:
-        sigma: The twiddle factors
+        sigma (np.ndarray): The twiddle factors
     """
     k = np.arange(N // 2)
     sigma = np.exp(-2j * np.pi * k / N)
@@ -107,13 +105,11 @@ def twiddle(N):
 def twiddle_inv(N):
     """Generate the twiddle factors used in the computation of the Inverse fast Fourier transform (IFFT)
 
-    Notebook: C2/C2_DFT-FFT.ipynb
-
     Args:
-        N: Number of samples
+        N (int): Number of samples
 
     Returns:
-        sigma: The twiddle factors
+        sigma (np.ndarray): The twiddle factors
     """
     n = np.arange(N // 2)
     sigma = np.exp(2j * np.pi * n / N)
@@ -127,10 +123,10 @@ def fft(x):
     Notebook: C2/C2_DFT-FFT.ipynb
 
     Args:
-        x: Signal to be transformed
+        x (np.ndarray): Signal to be transformed
 
     Returns:
-        X: Fourier transform of x
+        X (np.ndarray): Fourier transform of x
     """
     x = x.astype(np.complex128)
     N = len(x)
@@ -154,13 +150,11 @@ def fft(x):
 def ifft_noscale(X):
     """Compute the inverse fast Fourier transform (IFFT) without the final scaling factor of 1/N
 
-    Notebook: C2/C2_DFT-FFT.ipynb
-
     Args:
-        X: Fourier transform of x
+        X (np.ndarray): Fourier transform of x
 
     Returns:
-        x: Inverse Fourier transform of x
+        x (np.ndarray): Inverse Fourier transform of X
     """
     X = X.astype(np.complex128)
     N = len(X)
@@ -184,13 +178,11 @@ def ifft_noscale(X):
 def ifft(X):
     """Compute the inverse fast Fourier transform (IFFT)
 
-    Notebook: C2/C2_DFT-FFT.ipynb
-
     Args:
-        X: Fourier transform of x
+        X (np.ndarray): Fourier transform of x
 
     Returns:
-        x: Inverse Fourier transform of x
+        x (np.ndarray): Inverse Fourier transform of X
     """
     return ifft_noscale(X) / len(X)
 
@@ -201,13 +193,14 @@ def stft_basic(x, w, H=8, only_positive_frequencies=False):
     Notebook: C2/C2_STFT-Basic.ipynb
 
     Args:
-        x: Signal to be transformed
-        w: Window function
-        H: Hopsize
-        only_positive_frequencies: Return only positive frequency part of spectrum (non-invertible)
+        x (np.ndarray): Signal to be transformed
+        w (np.ndarray): Window function
+        H (int): Hopsize (Default value = 8)
+        only_positive_frequencies (bool): Return only positive frequency part of spectrum (non-invertible)
+            (Default value = False)
 
     Returns:
-        X: The discrete short-time Fourier transform
+        X (np.ndarray): The discrete short-time Fourier transform
     """
     N = len(w)
     L = len(x)
@@ -230,13 +223,13 @@ def istft_basic(X, w, H, L):
     Notebook: C2/C2_STFT-Inverse.ipynb
 
     Args:
-        X: The discrete short-time Fourier transform
-        w: Window function
-        H: Hopsize
-        L: Length of time signal
+        X (np.ndarray): The discrete short-time Fourier transform
+        w (np.ndarray): Window function
+        H (int): Hopsize
+        L (int): Length of time signal
 
     Returns:
-        x: Time signal
+        x (np.ndarray): Time signal
     """
     N = len(w)
     M = X.shape[1]
@@ -260,18 +253,17 @@ def istft_basic(X, w, H, L):
 def stft(x, w, H=512, zero_padding=0, only_positive_frequencies=False):
     """Compute the discrete short-time Fourier transform (STFT)
 
-    Notebook: C2/C2_STFT-Basic.ipynb
-
     Args:
-        x: Signal to be transformed
-        w: Window function
-        H: Hopsize
-        zero_padding: Number of zeros to be padded after windowing and before the Fourier transform of a frame
-            (Note: The purpose of this step is to increase the frequency sampling.)
-        only_positive_frequencies: Return only positive frequency part of spectrum (non-invertible)
+        x (np.ndarray): Signal to be transformed
+        w (np.ndarray): Window function
+        H (int): Hopsize (Default value = 512)
+        zero_padding (bool): Number of zeros to be padded after windowing and before the Fourier transform of a frame
+            (Note: The purpose of this step is to increase the frequency sampling.) (Default value = 0)
+        only_positive_frequencies (bool): Return only positive frequency part of spectrum (non-invertible)
+            (Default value = False)
 
     Returns:
-        X: The discrete short-time Fourier transform
+        X (np.ndarray): The discrete short-time Fourier transform
     """
 
     N = len(w)
@@ -301,17 +293,16 @@ def stft(x, w, H=512, zero_padding=0, only_positive_frequencies=False):
 def istft(X, w, H, L, zero_padding=0):
     """Compute the inverse discrete short-time Fourier transform (ISTFT)
 
-    Notebook: C2/C2_STFT-Inverse.ipynb
-
     Args:
-        X: The discrete short-time Fourier transform
-        w: Window function
-        H: Hopsize
-        L: Length of time signal
-        zero_padding: Number of zeros to be padded after windowing and before the Fourier transform of a frame
+        X (np.ndarray): The discrete short-time Fourier transform
+        w (np.ndarray): Window function
+        H (int): Hopsize
+        L (int): Length of time signal
+        zero_padding (bool): Number of zeros to be padded after windowing and before the Fourier transform of a frame
+            (Default value = 0)
 
     Returns:
-        x_rec: Reconstructed time signal
+        x (np.ndarray): Reconstructed time signal
     """
     N = len(w)
     L = L + N
@@ -352,17 +343,17 @@ def stft_convention_fmp(x, Fs, N, H, pad_mode='constant', center=True, mag=False
     Notebook: C2/C2_STFT-FreqGridInterpol.ipynb
 
     Args:
-        x: Signal to be transformed
-        Fs: Sampling rate
-        N: Window size
-        H: Hopsize
-        pad_mode: Padding strategy is used in librosa
-        center: Centric view as used in librosa
-        mag: Computes magnitude STFT if mag==True
-        gamma: Constant for logarithmic compression (only applied when mag==True)
+        x (np.ndarray): Signal to be transformed
+        Fs (scalar): Sampling rate
+        N (int): Window size
+        H (int): Hopsize
+        pad_mode (str): Padding strategy is used in librosa (Default value = 'constant')
+        center (bool): Centric view as used in librosa (Default value = True)
+        mag (bool): Computes magnitude STFT if mag==True (Default value = False)
+        gamma (float): Constant for logarithmic compression (only applied when mag==True) (Default value = 0)
 
     Returns:
-        X: Discrete (magnitude) short-time Fourier transform
+        X (np.ndarray): Discrete (magnitude) short-time Fourier transform
     """
     X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N,
                      window='hann', pad_mode=pad_mode, center=center)

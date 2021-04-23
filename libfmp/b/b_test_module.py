@@ -13,15 +13,16 @@ a, b, c = 1, 2, 3
 def add(a, b=0, c=0):
     """Function to add three numbers
 
-    Notebook: B/B_libfmp.ipynb
+    | Notebook: B/B_libfmp.ipynb and
+    | Notebook: B/B_PythonBasics.ipynb
 
     Args:
-        a: first number
-        b: second number (default: 0)
-        c: third number (default: 0)
+        a (float): First number
+        b (float): Second number (default: 0)
+        c (float): Third number (default: 0)
 
     Returns:
-        Sum of a, b and c
+        d (float): Sum
     """
     d = a + b + c
     print('Addition: ', a, ' + ', b, ' + ', c, ' = ', d)
