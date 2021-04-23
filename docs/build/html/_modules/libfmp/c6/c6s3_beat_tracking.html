@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c6.c6s3_beat_tracking &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c6.c6s3_beat_tracking</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c6.c6s3_beat_tracking</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c6.c6s3_beat_tracking</span>
+<span class="sd">Author: Meinard Müller</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">IPython.display</span> <span class="k">as</span> <span class="nn">ipd</span>
+
+<span class="kn">import</span> <span class="nn">libfmp.b</span>
+
+
+<div class="viewcode-block" id="compute_penalty"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s3_beat_tracking.compute_penalty">[docs]</a><span class="k">def</span> <span class="nf">compute_penalty</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">beat_ref</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;| Compute penalty funtion used for beat tracking [FMP, Section 6.3.2]</span>
+<span class="sd">    | Note: Concatenation of &#39;0&#39; because of Python indexing conventions</span>
+
+<span class="sd">    Notebook: C6/C6S3_BeatTracking.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        N (int): Length of vector representing penalty function</span>
+<span class="sd">        beat_ref (int): Reference beat period (given in samples)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        penalty (np.ndarray): Penalty function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">beat_ref</span>
+    <span class="n">penalty</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="n">t</span><span class="p">))</span>
+    <span class="n">penalty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="n">penalty</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">penalty</span></div>
+
+
+<div class="viewcode-block" id="compute_beat_sequence"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s3_beat_tracking.compute_beat_sequence">[docs]</a><span class="k">def</span> <span class="nf">compute_beat_sequence</span><span class="p">(</span><span class="n">novelty</span><span class="p">,</span> <span class="n">beat_ref</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">return_all</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;| Compute beat sequence using dynamic programming [FMP, Section 6.3.2]</span>
+<span class="sd">    | Note: Concatenation of &#39;0&#39; because of Python indexing conventions</span>
+
+<span class="sd">    Notebook: C6/C6S3_BeatTracking.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        novelty (np.ndarray): Novelty function</span>
+<span class="sd">        beat_ref (int): Reference beat period</span>
+<span class="sd">        penalty (np.ndarray): Penalty function (Default value = None)</span>
+<span class="sd">        factor (float): Weight parameter for adjusting the penalty (Default value = 1.0)</span>
+<span class="sd">        return_all (bool): Return details (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        B (np.ndarray): Optimal beat sequence</span>
+<span class="sd">        D (np.ndarray): Accumulated score</span>
+<span class="sd">        P (np.ndarray): Maximization information</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">novelty</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">penalty</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">penalty</span> <span class="o">=</span> <span class="n">compute_penalty</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">beat_ref</span><span class="p">)</span>
+    <span class="n">penalty</span> <span class="o">=</span> <span class="n">penalty</span> <span class="o">*</span> <span class="n">factor</span>
+    <span class="n">novelty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="n">novelty</span><span class="p">))</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">novelty</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># forward calculation</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">m_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">m_indices</span><span class="p">]</span> <span class="o">+</span> <span class="n">penalty</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">m_indices</span><span class="p">]</span>
+        <span class="n">maxium</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">maxium</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">novelty</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+            <span class="n">P</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">novelty</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">maxium</span>
+            <span class="n">P</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="c1"># backtracking</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">B</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">B</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">return_all</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">B</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">P</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">B</span></div>
+
+
+<div class="viewcode-block" id="beat_period_to_tempo"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s3_beat_tracking.beat_period_to_tempo">[docs]</a><span class="k">def</span> <span class="nf">beat_period_to_tempo</span><span class="p">(</span><span class="n">beat</span><span class="p">,</span> <span class="n">Fs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert beat period (samples) to tempo (BPM) [FMP, Section 6.3.2]</span>
+
+<span class="sd">    Notebook: C6/C6S3_BeatTracking.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        beat (int): Beat period (samples)</span>
+<span class="sd">        Fs (scalar): Sample rate</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tempo (float): Tempo (BPM)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tempo</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">/</span> <span class="p">(</span><span class="n">beat</span> <span class="o">/</span> <span class="n">Fs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tempo</span></div>
+
+
+<div class="viewcode-block" id="compute_plot_sonify_beat"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s3_beat_tracking.compute_plot_sonify_beat">[docs]</a><span class="k">def</span> <span class="nf">compute_plot_sonify_beat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">nov</span><span class="p">,</span> <span class="n">Fs_nov</span><span class="p">,</span> <span class="n">beat_ref</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Compute, plot, and sonfy beat sequence from novelty function [FMP, Section 6.3.2]</span>
+
+<span class="sd">    Notebook: C6/C6S3_BeatTracking.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x: Novelty function</span>
+<span class="sd">        Fs: Sample rate</span>
+<span class="sd">        nov: Novelty function</span>
+<span class="sd">        Fs_nov: Rate of novelty function</span>
+<span class="sd">        beat_ref: Reference beat period</span>
+<span class="sd">        factor: Weight parameter for adjusting the penalty</span>
+<span class="sd">        title: Title of figure (Default value = None)</span>
+<span class="sd">        figsize: Size of figure (Default value = (6, 2))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">compute_beat_sequence</span><span class="p">(</span><span class="n">nov</span><span class="p">,</span> <span class="n">beat_ref</span><span class="o">=</span><span class="n">beat_ref</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="n">factor</span><span class="p">)</span>
+
+    <span class="n">beats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nov</span><span class="p">))</span>
+    <span class="n">beats</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tempo</span> <span class="o">=</span> <span class="n">beat_period_to_tempo</span><span class="p">(</span><span class="n">beat_ref</span><span class="p">,</span> <span class="n">Fs_nov</span><span class="p">)</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Optimal beat sequence ($\hat{\delta}=</span><span class="si">%d</span><span class="s1">$, $F_\mathrm</span><span class="si">{s}</span><span class="s1">=</span><span class="si">%d</span><span class="s1">$, &#39;</span>
+                 <span class="sa">r</span><span class="s1">&#39;$\hat{\tau}=</span><span class="si">%0.0f</span><span class="s1">$ BPM, $\lambda=</span><span class="si">%0.2f</span><span class="s1">$)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">beat_ref</span><span class="p">,</span> <span class="n">Fs_nov</span><span class="p">,</span> <span class="n">tempo</span><span class="p">,</span> <span class="n">factor</span><span class="p">))</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">plot_signal</span><span class="p">(</span><span class="n">nov</span><span class="p">,</span> <span class="n">Fs_nov</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">T_coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nov</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">Fs_nov</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_coef</span><span class="p">,</span> <span class="n">beats</span><span class="p">,</span> <span class="s1">&#39;:r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">beats_sec</span> <span class="o">=</span> <span class="n">T_coef</span><span class="p">[</span><span class="n">B</span><span class="p">]</span>
+    <span class="n">x_peaks</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">clicks</span><span class="p">(</span><span class="n">beats_sec</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">click_freq</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">ipd</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">ipd</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">x_peaks</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">Fs</span><span class="p">))</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c1.c1s3_audio_rep &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c1.c1s3_audio_rep</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c1.c1s3_audio_rep</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c1.c1s3_audio_rep</span>
+<span class="sd">Author: Meinard Müller</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">import</span> <span class="nn">IPython.display</span> <span class="k">as</span> <span class="nn">ipd</span>
+
+
+<div class="viewcode-block" id="f_pitch"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.f_pitch">[docs]</a><span class="k">def</span> <span class="nf">f_pitch</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute center frequency for (single or array of) MIDI note numbers</span>
+
+<span class="sd">    Notebook: C1/C1S3_FrequencyPitch.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        p (float or np.ndarray): MIDI note numbers</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        freq_center (float or np.ndarray): Center frequency</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">freq_center</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">((</span><span class="n">p</span> <span class="o">-</span> <span class="mi">69</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span> <span class="o">*</span> <span class="mi">440</span>
+    <span class="k">return</span> <span class="n">freq_center</span></div>
+
+
+<div class="viewcode-block" id="difference_cents"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.difference_cents">[docs]</a><span class="k">def</span> <span class="nf">difference_cents</span><span class="p">(</span><span class="n">freq_1</span><span class="p">,</span> <span class="n">freq_2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Difference between two frequency values specified in cents</span>
+
+<span class="sd">    Notebook: C1/C1S3_FrequencyPitch.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        freq_1 (float): First frequency</span>
+<span class="sd">        freq_2 (float): Second frequency</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        delta (float): Difference in cents</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">freq_1</span> <span class="o">/</span> <span class="n">freq_2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1200</span>
+    <span class="k">return</span> <span class="n">delta</span></div>
+
+
+<div class="viewcode-block" id="generate_sinusoid"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.generate_sinusoid">[docs]</a><span class="k">def</span> <span class="nf">generate_sinusoid</span><span class="p">(</span><span class="n">dur</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">amp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generation of sinusoid</span>
+
+<span class="sd">    Notebook: C1/C1S3_FrequencyPitch.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dur (float): Duration (in seconds) (Default value = 5)</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 1000)</span>
+<span class="sd">        amp (float): Amplitude of sinusoid (Default value = 1)</span>
+<span class="sd">        freq (float): Frequency of sinusoid (Default value = 1)</span>
+<span class="sd">        phase (float): Phase of sinusoid (Default value = 0)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x (np.ndarray): Signal</span>
+<span class="sd">        t (np.ndarray): Time axis (in seconds)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Fs</span> <span class="o">*</span> <span class="n">dur</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">amp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">freq</span><span class="o">*</span><span class="n">t</span><span class="o">-</span><span class="n">phase</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span></div>
+
+
+<div class="viewcode-block" id="compute_power_db"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.compute_power_db">[docs]</a><span class="k">def</span> <span class="nf">compute_power_db</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">win_len_sec</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">power_ref</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Computation of the signal power in dB</span>
+
+<span class="sd">    Notebook: C1/C1S3_Dynamics.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Signal (waveform) to be analyzed</span>
+<span class="sd">        Fs (scalar): Sampling rate</span>
+<span class="sd">        win_len_sec (float): Length (seconds) of the window (Default value = 0.1)</span>
+<span class="sd">        power_ref (float): Reference power level (0 dB) (Default value = 10**(-12))</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        power_db (np.ndarray): Signal power in dB</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">win_len</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">win_len_sec</span> <span class="o">*</span> <span class="n">Fs</span><span class="p">)</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">win_len</span><span class="p">)</span> <span class="o">/</span> <span class="n">win_len</span>
+    <span class="n">power_db</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">win</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">power_ref</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">power_db</span></div>
+
+
+<div class="viewcode-block" id="compute_equal_loudness_contour"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.compute_equal_loudness_contour">[docs]</a><span class="k">def</span> <span class="nf">compute_equal_loudness_contour</span><span class="p">(</span><span class="n">freq_min</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">freq_max</span><span class="o">=</span><span class="mi">15000</span><span class="p">,</span> <span class="n">num_points</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computation of the equal loudness contour</span>
+
+<span class="sd">    Notebook: C1/C1S3_Dynamics.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        freq_min (float): Lowest frequency to be evaluated (Default value = 30)</span>
+<span class="sd">        freq_max (float): Highest frequency to be evaluated (Default value = 15000)</span>
+<span class="sd">        num_points (int): Number of evaluation points (Default value = 100)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        equal_loudness_contour (np.ndarray): Equal loudness contour (in dB)</span>
+<span class="sd">        freq_range (np.ndarray): Evaluated frequency points</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">freq_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">freq_min</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">freq_max</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="n">num_points</span><span class="p">)</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="c1"># Function D from https://bar.wikipedia.org/wiki/Datei:Acoustic_weighting_curves.svg</span>
+    <span class="n">h_freq</span> <span class="o">=</span> <span class="p">((</span><span class="mf">1037918.48</span> <span class="o">-</span> <span class="n">freq</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">1080768.16</span> <span class="o">*</span> <span class="n">freq</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="mi">9837328</span> <span class="o">-</span> <span class="n">freq</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">11723776</span> <span class="o">*</span> <span class="n">freq</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">n_freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">freq</span> <span class="o">/</span> <span class="p">(</span><span class="mf">6.8966888496476</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">h_freq</span> <span class="o">/</span> <span class="p">((</span><span class="n">freq</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">79919.29</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">freq</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1345600</span><span class="p">)))</span>
+    <span class="n">h_freq_range</span> <span class="o">=</span> <span class="p">((</span><span class="mf">1037918.48</span> <span class="o">-</span> <span class="n">freq_range</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">1080768.16</span> <span class="o">*</span> <span class="n">freq_range</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="mi">9837328</span> <span class="o">-</span> <span class="n">freq_range</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+                                                                                     <span class="o">+</span> <span class="mi">11723776</span> <span class="o">*</span> <span class="n">freq_range</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">n_freq_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">freq_range</span> <span class="o">/</span> <span class="p">(</span><span class="mf">6.8966888496476</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">h_freq_range</span> <span class="o">/</span> <span class="p">((</span><span class="n">freq_range</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">79919.29</span><span class="p">)</span> <span class="o">*</span>
+                                                                         <span class="p">(</span><span class="n">freq_range</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1345600</span><span class="p">)))</span>
+    <span class="n">equal_loudness_contour</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">n_freq</span> <span class="o">/</span> <span class="n">n_freq_range</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">equal_loudness_contour</span><span class="p">,</span> <span class="n">freq_range</span></div>
+
+
+<div class="viewcode-block" id="generate_chirp_exp"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.generate_chirp_exp">[docs]</a><span class="k">def</span> <span class="nf">generate_chirp_exp</span><span class="p">(</span><span class="n">dur</span><span class="p">,</span> <span class="n">freq_start</span><span class="p">,</span> <span class="n">freq_end</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generation chirp with exponential frequency increase</span>
+
+<span class="sd">    Notebook: C1/C1S3_Dynamics.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dur (float): Length (seconds) of the signal</span>
+<span class="sd">        freq_start (float): Start frequency of the chirp</span>
+<span class="sd">        freq_end (float): End frequency of the chirp</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 22050)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x (np.ndarray): Generated chirp signal</span>
+<span class="sd">        t (np.ndarray): Time axis (in seconds)</span>
+<span class="sd">        freq (np.ndarray): Instant frequency (in Hz)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dur</span> <span class="o">*</span> <span class="n">Fs</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">freq_start</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">freq_end</span><span class="p">),</span> <span class="n">N</span><span class="p">))</span>
+    <span class="n">phases</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">phases</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">phases</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phases</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">freq</span></div>
+
+
+<div class="viewcode-block" id="generate_chirp_exp_equal_loudness"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.generate_chirp_exp_equal_loudness">[docs]</a><span class="k">def</span> <span class="nf">generate_chirp_exp_equal_loudness</span><span class="p">(</span><span class="n">dur</span><span class="p">,</span> <span class="n">freq_start</span><span class="p">,</span> <span class="n">freq_end</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generation chirp with exponential frequency increase and equal loudness</span>
+
+<span class="sd">    Notebook: C1/C1S3_Dynamics.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dur (float): Length (seconds) of the signal</span>
+<span class="sd">        freq_start (float): Starting frequency of the chirp</span>
+<span class="sd">        freq_end (float): End frequency of the chirp</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 22050)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x (np.ndarray): Generated chirp signal</span>
+<span class="sd">        t (np.ndarray): Time axis (in seconds)</span>
+<span class="sd">        freq (np.ndarray): Instant frequency (in Hz)</span>
+<span class="sd">        intensity (np.ndarray): Instant intensity of the signal</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dur</span> <span class="o">*</span> <span class="n">Fs</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">intensity</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">compute_equal_loudness_contour</span><span class="p">(</span><span class="n">freq_min</span><span class="o">=</span><span class="n">freq_start</span><span class="p">,</span> <span class="n">freq_max</span><span class="o">=</span><span class="n">freq_end</span><span class="p">,</span> <span class="n">num_points</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">amp</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">intensity</span> <span class="o">/</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">phases</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">phases</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">phases</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">amp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phases</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">intensity</span></div>
+
+
+<div class="viewcode-block" id="compute_adsr"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.compute_adsr">[docs]</a><span class="k">def</span> <span class="nf">compute_adsr</span><span class="p">(</span><span class="n">len_A</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">len_D</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">len_S</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">len_R</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">height_A</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">height_S</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computation of idealized ADSR model</span>
+
+<span class="sd">    Notebook: C1/C1S3_Timbre.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        len_A (int): Length (samples) of A phase (Default value = 10)</span>
+<span class="sd">        len_D (int): Length (samples) of D phase (Default value = 10)</span>
+<span class="sd">        len_S (int): Length (samples) of S phase (Default value = 60)</span>
+<span class="sd">        len_R (int): Length (samples) of R phase (Default value = 10)</span>
+<span class="sd">        height_A (float): Height of A phase (Default value = 1.0)</span>
+<span class="sd">        height_S (float): Height of S phase (Default value = 0.5)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        curve_ADSR (np.ndarray): ADSR model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">curve_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">len_A</span><span class="p">)</span> <span class="o">*</span> <span class="n">height_A</span> <span class="o">/</span> <span class="n">len_A</span>
+    <span class="n">curve_D</span> <span class="o">=</span> <span class="n">height_A</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">len_D</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">height_A</span> <span class="o">-</span> <span class="n">height_S</span><span class="p">)</span> <span class="o">/</span> <span class="n">len_D</span>
+    <span class="n">curve_S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">len_S</span><span class="p">)</span> <span class="o">*</span> <span class="n">height_S</span>
+    <span class="n">curve_R</span> <span class="o">=</span> <span class="n">height_S</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">len_R</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">len_R</span><span class="p">)</span>
+    <span class="n">curve_ADSR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">curve_A</span><span class="p">,</span> <span class="n">curve_D</span><span class="p">,</span> <span class="n">curve_S</span><span class="p">,</span> <span class="n">curve_R</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">curve_ADSR</span></div>
+
+
+<div class="viewcode-block" id="compute_envelope"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.compute_envelope">[docs]</a><span class="k">def</span> <span class="nf">compute_envelope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">win_len_sec</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">4000</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computation of a signal&#39;s envelopes</span>
+
+<span class="sd">    Notebook: C1/C1S3_Timbre.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Signal (waveform) to be analyzed</span>
+<span class="sd">        win_len_sec (float): Length (seconds) of the window (Default value = 0.01)</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 4000)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        env (np.ndarray): Magnitude envelope</span>
+<span class="sd">        env_upper (np.ndarray): Upper envelope</span>
+<span class="sd">        env_lower (np.ndarray): Lower envelope</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">win_len_half</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">win_len_sec</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">env_upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">env_lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">i_start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">win_len_half</span><span class="p">)</span>
+        <span class="n">i_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">win_len_half</span><span class="p">)</span>
+        <span class="n">env</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="n">i_start</span><span class="p">:</span><span class="n">i_end</span><span class="p">])</span>
+        <span class="n">env_upper</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i_start</span><span class="p">:</span><span class="n">i_end</span><span class="p">])</span>
+        <span class="n">env_lower</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i_start</span><span class="p">:</span><span class="n">i_end</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">env</span><span class="p">,</span> <span class="n">env_upper</span><span class="p">,</span> <span class="n">env_lower</span></div>
+
+
+<div class="viewcode-block" id="compute_plot_envelope"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.compute_plot_envelope">[docs]</a><span class="k">def</span> <span class="nf">compute_plot_envelope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">win_len_sec</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computation and subsequent plotting of a signal&#39;s envelope</span>
+
+<span class="sd">    Notebook: C1/C1S3_Timbre.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Signal (waveform) to be analyzed</span>
+<span class="sd">        win_len_sec (float): Length (seconds) of the window</span>
+<span class="sd">        Fs (scalar): Sampling rate</span>
+<span class="sd">        figsize (tuple): Size of the figure (Default value = (6, 3))</span>
+<span class="sd">        title (str): Title of the figure (Default value = &#39;&#39;)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig (mpl.figure.Figure): Generated figure</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">/</span><span class="n">Fs</span>
+    <span class="n">env</span><span class="p">,</span> <span class="n">env_upper</span><span class="p">,</span> <span class="n">env_lower</span> <span class="o">=</span> <span class="n">compute_envelope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">win_len_sec</span><span class="o">=</span><span class="n">win_len_sec</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Waveform&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">env_upper</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Upper envelope&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">env_lower</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lower envelope&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Magnitude envelope&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">ipd</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">ipd</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">Fs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+<div class="viewcode-block" id="generate_sinusoid_vibrato"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.generate_sinusoid_vibrato">[docs]</a><span class="k">def</span> <span class="nf">generate_sinusoid_vibrato</span><span class="p">(</span><span class="n">dur</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">amp</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">440</span><span class="p">,</span> <span class="n">vib_amp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vib_rate</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generation of a sinusoid signal with vibrato</span>
+
+<span class="sd">    Notebook: C1/C1S3_Timbre.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dur (float): Duration (in seconds) (Default value = 5)</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 1000)</span>
+<span class="sd">        amp (float): Amplitude of sinusoid (Default value = 0.5)</span>
+<span class="sd">        freq (float): Frequency (Hz) of sinusoid (Default value = 440)</span>
+<span class="sd">        vib_amp (float): Amplitude (Hz) of the frequency oscillation (Default value = 1)</span>
+<span class="sd">        vib_rate (float): Rate (Hz) of the frequency oscillation (Default value = 5)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x (np.ndarray): Generated signal</span>
+<span class="sd">        t (np.ndarray): Time axis (in seconds)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Fs</span> <span class="o">*</span> <span class="n">dur</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">freq_vib</span> <span class="o">=</span> <span class="n">freq</span> <span class="o">+</span> <span class="n">vib_amp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">vib_rate</span><span class="p">)</span>
+    <span class="n">phase_vib</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">):</span>
+        <span class="n">phase_vib</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">phase_vib</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq_vib</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">amp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phase_vib</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span></div>
+
+
+<div class="viewcode-block" id="generate_sinusoid_tremolo"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.generate_sinusoid_tremolo">[docs]</a><span class="k">def</span> <span class="nf">generate_sinusoid_tremolo</span><span class="p">(</span><span class="n">dur</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">amp</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">440</span><span class="p">,</span> <span class="n">trem_amp</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">trem_rate</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generation of a sinusoid signal with tremolo</span>
+
+<span class="sd">    Notebook: C1/C1S3_Timbre.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dur (float): Duration (in seconds) (Default value = 5)</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 1000)</span>
+<span class="sd">        amp (float): Amplitude of sinusoid (Default value = 0.5)</span>
+<span class="sd">        freq (float): Frequency (Hz) of sinusoid (Default value = 440)</span>
+<span class="sd">        trem_amp (float): Amplitude of the amplitude oscillation (Default value = 0.1)</span>
+<span class="sd">        trem_rate (float): Rate (Hz) of the amplitude oscillation (Default value = 5)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x (np.ndarray): Generated signal</span>
+<span class="sd">        t (np.ndarray): Time axis (in seconds)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Fs</span> <span class="o">*</span> <span class="n">dur</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">amps</span> <span class="o">=</span> <span class="n">amp</span> <span class="o">+</span> <span class="n">trem_amp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">trem_rate</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">amps</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">freq</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span></div>
+
+
+<div class="viewcode-block" id="generate_tone"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.generate_tone">[docs]</a><span class="k">def</span> <span class="nf">generate_tone</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">weight_harmonic</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">11025</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generation of a tone with harmonics</span>
+
+<span class="sd">    Notebook: C1/C1S3_Timbre.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        p (float): MIDI pitch of the tone (Default value = 60)</span>
+<span class="sd">        weight_harmonic (np.ndarray): Weights for the different harmonics (Default value = np.ones([16, 1])</span>
+<span class="sd">        Fs (scalar): Sampling frequency (Default value = 11025)</span>
+<span class="sd">        dur (float): Duration (seconds) of the signal (Default value = 2)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x (np.ndarray): Generated signal</span>
+<span class="sd">        t (np.ndarray): Time axis (in seconds)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">((</span><span class="n">p</span> <span class="o">-</span> <span class="mi">69</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span> <span class="o">*</span> <span class="mi">440</span>
+    <span class="n">num_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Fs</span> <span class="o">*</span> <span class="n">dur</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">weight_harmonic</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">w</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">*</span> <span class="p">(</span><span class="n">h</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span></div>
+
+
+<div class="viewcode-block" id="plot_spectrogram"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s3_audio_rep.plot_spectrogram">[docs]</a><span class="k">def</span> <span class="nf">plot_spectrogram</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">11025</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Computation and subsequent plotting of the spectrogram of a signal</span>
+
+<span class="sd">    Notebook: C1/C1S3_Timbre.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x: Signal (waveform) to be analyzed</span>
+<span class="sd">        Fs: Sampling rate (Default value = 11025)</span>
+<span class="sd">        N: FFT length (Default value = 4096)</span>
+<span class="sd">        H: Hopsize (Default value = 2048)</span>
+<span class="sd">        figsize: Size of the figure (Default value = (4, 2))</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hanning&#39;</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">amplitude_to_db</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">),</span>
+                             <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">])</span>
+    <span class="c1"># plt.colorbar(format=&#39;%+2.0f dB&#39;)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

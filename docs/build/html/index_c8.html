@@ -1,0 +1,1155 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Musically Informed Audio Decomposition (libfmp.c8) &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Index" href="genindex.html" />
+    <link rel="prev" title="Content-Based Audio Retrieval (libfmp.c7)" href="index_c7.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Musically Informed Audio Decomposition (libfmp.c8)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index_c8.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="musically-informed-audio-decomposition-libfmp-c8">
+<h1>Musically Informed Audio Decomposition (libfmp.c8)<a class="headerlink" href="#musically-informed-audio-decomposition-libfmp-c8" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://www.audiolabs-erlangen.de/FMP">FMP notebooks</a> provide detailed textbook-like explanations of central techniques and algorithms implemented in the libfmp.
+The part of FMP related to this module is available at the following URL:</p>
+<p><a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8.html">https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8.html</a></p>
+<span class="target" id="module-libfmp.c8"></span><span class="target" id="module-libfmp.c8.c8s1_hps"></span><dl class="py function">
+<dt id="libfmp.c8.c8s1_hps.convert_l_hertz_to_bins">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s1_hps.</span></code><code class="sig-name descname"><span class="pre">convert_l_hertz_to_bins</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L_p_Hz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s1_hps.html#convert_l_hertz_to_bins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s1_hps.convert_l_hertz_to_bins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert filter length parameter from Hertz to frequency bins</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S1_HPS.html">C8/C8S1_HPS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L_p_Hz</strong> (<em>float</em>) – Filter length (in Hertz)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sample rate (Default value = 22050)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size (Default value = 1024)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size (Default value = 512)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>L_p</strong> (<em>int</em>) – Filter length (in frequency bins)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s1_hps.convert_l_sec_to_frames">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s1_hps.</span></code><code class="sig-name descname"><span class="pre">convert_l_sec_to_frames</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L_h_sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s1_hps.html#convert_l_sec_to_frames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s1_hps.convert_l_sec_to_frames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert filter length parameter from seconds to frame indices</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S1_HPS.html">C8/C8S1_HPS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L_h_sec</strong> (<em>float</em>) – Filter length (in seconds)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sample rate (Default value = 22050)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size (Default value = 1024)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size (Default value = 512)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>L_h</strong> (<em>int</em>) – Filter length (in samples)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s1_hps.experiment_hps_parameter">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s1_hps.</span></code><code class="sig-name descname"><span class="pre">experiment_hps_parameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_wav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s1_hps.html#experiment_hps_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s1_hps.experiment_hps_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Script for running an HPS experiment over a parameter list, such as <code class="docutils literal notranslate"><span class="pre">[[1024,</span> <span class="pre">256,</span> <span class="pre">0.1,</span> <span class="pre">100],</span> <span class="pre">...]</span></code></p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S1_HPS.html">C8/C8S1_HPS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_wav</strong> (<em>str</em>) – Path to wave file</p></li>
+<li><p><strong>param_list</strong> (<em>list</em>) – List of parameters</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s1_hps.experiment_hrps_parameter">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s1_hps.</span></code><code class="sig-name descname"><span class="pre">experiment_hrps_parameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_wav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s1_hps.html#experiment_hrps_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s1_hps.experiment_hrps_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Script for running an HRPS experiment over a parameter list, such as <code class="docutils literal notranslate"><span class="pre">[[1024,</span> <span class="pre">256,</span> <span class="pre">0.1,</span> <span class="pre">100],</span> <span class="pre">...]</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_wav</strong> (<em>str</em>) – Path to wave file</p></li>
+<li><p><strong>param_list</strong> (<em>list</em>) – List of parameters</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s1_hps.generate_audio_tag_html_list">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s1_hps.</span></code><code class="sig-name descname"><span class="pre">generate_audio_tag_html_list</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'150'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'40'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s1_hps.html#generate_audio_tag_html_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s1_hps.generate_audio_tag_html_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates audio tag for html needed to be shown in table</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S1_HPS.html">C8/C8S1_HPS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list_x</strong> (<em>list</em>) – List of waveforms</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sample rate</p></li>
+<li><p><strong>width</strong> (<em>str</em>) – Width in px (Default value = ‘150’)</p></li>
+<li><p><strong>height</strong> (<em>str</em>) – Height in px (Default value = ‘40’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>audio_tag_html_list</strong> (<em>list</em>) – List of HTML strings with audio tags</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s1_hps.hps">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s1_hps.</span></code><code class="sig-name descname"><span class="pre">hps</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'physical'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'binary'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s1_hps.html#hps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s1_hps.hps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Harmonic-percussive separation (HPS) algorithm</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S1_HPS.html">C8/C8S1_HPS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Input signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate of x</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Frame length</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hopsize</p></li>
+<li><p><strong>L_h</strong> (<em>float</em>) – Horizontal median filter length given in seconds or frames</p></li>
+<li><p><strong>L_p</strong> (<em>float</em>) – Percussive median filter length given in Hertz or bins</p></li>
+<li><p><strong>L_unit</strong> (<em>str</em>) – Adjusts unit, either ‘pyhsical’ or ‘indices’ (Default value = ‘physical’)</p></li>
+<li><p><strong>mask</strong> (<em>str</em>) – Either ‘binary’ or ‘soft’ (Default value = ‘binary’)</p></li>
+<li><p><strong>eps</strong> (<em>float</em>) – Parameter used in soft maskig (Default value = 0.001)</p></li>
+<li><p><strong>detail</strong> (<em>bool</em>) – Returns detailed information (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x_h</strong> (<em>np.ndarray</em>) – Harmonic signal</p></li>
+<li><p><strong>x_p</strong> (<em>np.ndarray</em>) – Percussive signal</p></li>
+<li><p><strong>details</strong> (<em>dict</em>) – Dictionary containing detailed information; returned if <code class="docutils literal notranslate"><span class="pre">detail=True</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s1_hps.hrps">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s1_hps.</span></code><code class="sig-name descname"><span class="pre">hrps</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'physical'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s1_hps.html#hrps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s1_hps.hrps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Harmonic-residual-percussive separation (HRPS) algorithm</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S1_HRPS.html">C8/C8S1_HRPS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Input signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate of x</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Frame length</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hopsize</p></li>
+<li><p><strong>L_h</strong> (<em>float</em>) – Horizontal median filter length given in seconds or frames</p></li>
+<li><p><strong>L_p</strong> (<em>float</em>) – Percussive median filter length given in Hertz or bins</p></li>
+<li><p><strong>beta</strong> (<em>float</em>) – Separation factor (Default value = 2.0)</p></li>
+<li><p><strong>L_unit</strong> (<em>str</em>) – Adjusts unit, either ‘pyhsical’ or ‘indices’ (Default value = ‘physical’)</p></li>
+<li><p><strong>detail</strong> (<em>bool</em>) – Returns detailed information (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x_h</strong> (<em>np.ndarray</em>) – Harmonic signal</p></li>
+<li><p><strong>x_p</strong> (<em>np.ndarray</em>) – Percussive signal</p></li>
+<li><p><strong>x_r</strong> (<em>np.ndarray</em>) – Residual signal</p></li>
+<li><p><strong>details</strong> (<em>dict</em>) – Dictionary containing detailed information; returned if “detail=True”</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s1_hps.make_integer_odd">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s1_hps.</span></code><code class="sig-name descname"><span class="pre">make_integer_odd</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s1_hps.html#make_integer_odd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s1_hps.make_integer_odd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert integer into odd integer</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S1_HPS.html">C8/C8S1_HPS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – Integer</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>n</strong> (<em>int</em>) – Odd integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s1_hps.median_filter_horizontal">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s1_hps.</span></code><code class="sig-name descname"><span class="pre">median_filter_horizontal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_len</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s1_hps.html#median_filter_horizontal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s1_hps.median_filter_horizontal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply median filter in horizontal direction</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S1_HPS.html">C8/C8S1_HPS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Input matrix</p></li>
+<li><p><strong>filter_len</strong> (<em>int</em>) – Filter length</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>x_h</strong> (<em>np.ndarray</em>) – Filtered matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s1_hps.median_filter_vertical">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s1_hps.</span></code><code class="sig-name descname"><span class="pre">median_filter_vertical</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_len</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s1_hps.html#median_filter_vertical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s1_hps.median_filter_vertical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply median filter in vertical direction</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S1_HPS.html">C8/C8S1_HPS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Input matrix</p></li>
+<li><p><strong>filter_len</strong> (<em>int</em>) – Filter length</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>x_p</strong> (<em>np.ndarray</em>) – Filtered matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c8.c8s2_f0"></span><dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.cents_to_hz">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">cents_to_hz</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F_cent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">55.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#cents_to_hz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.cents_to_hz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts frequency in cents to Hz</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_FundFreqTracking.html">C8/C8S2_FundFreqTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>F_cent</strong> (<em>float</em><em> or </em><em>np.ndarray</em>) – Frequency in cents</p></li>
+<li><p><strong>F_ref</strong> (<em>float</em>) – Reference frequency in Hz (Default value = 55.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>F</strong> (<em>float or np.ndarray</em>) – Frequency in Hz</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.compute_traj_from_audio">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">compute_traj_from_audio</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">55.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1760.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_harm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_smooth_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_region</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#compute_traj_from_audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.compute_traj_from_audio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute F0 contour from audio signal</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_FundFreqTracking.html">C8/C8S2_FundFreqTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Audio signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling frequency (Default value = 22050)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window length in samples (Default value = 1024)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hopsize in samples (Default value = 128)</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Frequency resolution in cents (Default value = 10.0)</p></li>
+<li><p><strong>F_min</strong> (<em>float</em>) – Lower frequency bound (reference frequency) (Default value = 55.0)</p></li>
+<li><p><strong>F_max</strong> (<em>float</em>) – Upper frequency bound (Default value = 1760.0)</p></li>
+<li><p><strong>num_harm</strong> (<em>int</em>) – Number of harmonics (Default value = 10)</p></li>
+<li><p><strong>freq_smooth_len</strong> (<em>int</em>) – Filter length for vertical smoothing (Default value = 11)</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Weighting parameter for harmonics (Default value = 0.9)</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – Logarithmic compression factor (Default value = 0.0)</p></li>
+<li><p><strong>constraint_region</strong> (<em>np.ndarray</em>) – Constraint regions, row-format: (t_start_sec, t_end_sec, f_start_hz, f_end,hz)
+(Default value = None)</p></li>
+<li><p><strong>tol</strong> (<em>int</em>) – Tolerance parameter for transition matrix (Default value = 5)</p></li>
+<li><p><strong>score_low</strong> (<em>float</em>) – Score (low) for transition matrix (Default value = 0.01)</p></li>
+<li><p><strong>score_high</strong> (<em>float</em>) – Score (high) for transition matrix (Default value = 1.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>traj</strong> (<em>np.ndarray</em>) – F0 contour, time in seconds in 1st column, frequency in Hz in 2nd column</p></li>
+<li><p><strong>Z</strong> (<em>np.ndarray</em>) – Salience representation</p></li>
+<li><p><strong>T_coef</strong> (<em>np.ndarray</em>) – Time axis</p></li>
+<li><p><strong>F_coef_hertz</strong> (<em>np.ndarray</em>) – Frequency axis in Hz</p></li>
+<li><p><strong>F_coef_cents</strong> (<em>np.ndarray</em>) – Frequency axis in cents</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.compute_trajectory_cr">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">compute_trajectory_cr</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_coef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef_hertz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_region</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#compute_trajectory_cr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.compute_trajectory_cr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trajectory tracking with constraint regions</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_FundFreqTracking.html">C8/C8S2_FundFreqTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Z</strong> (<em>np.ndarray</em>) – Salience representation</p></li>
+<li><p><strong>T_coef</strong> (<em>np.ndarray</em>) – Time axis</p></li>
+<li><p><strong>F_coef_hertz</strong> (<em>np.ndarray</em>) – Frequency axis in Hz</p></li>
+<li><p><strong>constraint_region</strong> (<em>np.ndarray</em>) – Constraint regions, row-format: (t_start_sec, t_end_sec, f_start_hz, f_end_hz)
+(Default value = None)</p></li>
+<li><p><strong>tol</strong> (<em>int</em>) – Tolerance parameter for transition matrix (Default value = 5)</p></li>
+<li><p><strong>score_low</strong> (<em>float</em>) – Score (low) for transition matrix (Default value = 0.01)</p></li>
+<li><p><strong>score_high</strong> (<em>float</em>) – Score (high) for transition matrix (Default value = 1.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>eta</strong> (<em>np.ndarray</em>) – Trajectory indices, unvoiced frames are indicated with -1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.compute_trajectory_dp">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">compute_trajectory_dp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#compute_trajectory_dp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.compute_trajectory_dp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trajectory tracking using dynamic programming</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_FundFreqTracking.html">C8/C8S2_FundFreqTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Z</strong> – Salience representation</p></li>
+<li><p><strong>T</strong> – Transisition matrix</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>eta_DP</strong> (<em>np.ndarray</em>) – Trajectory indices</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.convert_ann_to_constraint_region">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">convert_ann_to_constraint_region</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_freq_cents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#convert_ann_to_constraint_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.convert_ann_to_constraint_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert score annotations to constraint regions</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_FundFreqTracking.html">C8/C8S2_FundFreqTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ann</strong> (<em>list</em>) – Score annotations [[start_time, end_time, MIDI_pitch], …</p></li>
+<li><p><strong>tol_freq_cents</strong> (<em>float</em>) – Tolerance in pitch directions specified in cents (Default value = 300.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>constraint_region</strong> (<em>np.ndarray</em>) – Constraint regions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.convert_trajectory_to_mask_bin">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">convert_trajectory_to_mask_bin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">traj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_harmonics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_bin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#convert_trajectory_to_mask_bin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.convert_trajectory_to_mask_bin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes binary mask from F0 trajectory</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_MelodyExtractSep.html">C8/C8S2_MelodyExtractSep.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>traj</strong> (<em>np.ndarray</em>) – F0 trajectory (time in seconds in 1st column, frequency in Hz in 2nd column)</p></li>
+<li><p><strong>F_coef</strong> (<em>np.ndarray</em>) – Frequency axis</p></li>
+<li><p><strong>n_harmonics</strong> (<em>int</em>) – Number of harmonics (Default value = 1)</p></li>
+<li><p><strong>tol_bin</strong> (<em>int</em>) – Tolerance in frequency bins (Default value = 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>mask</strong> (<em>np.ndarray</em>) – Binary mask</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.convert_trajectory_to_mask_cent">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">convert_trajectory_to_mask_cent</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">traj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_harmonics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_cent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#convert_trajectory_to_mask_cent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.convert_trajectory_to_mask_cent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes binary mask from F0 trajectory</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_MelodyExtractSep.html">C8/C8S2_MelodyExtractSep.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>traj</strong> (<em>np.ndarray</em>) – F0 trajectory (time in seconds in 1st column, frequency in Hz in 2nd column)</p></li>
+<li><p><strong>F_coef</strong> (<em>np.ndarray</em>) – Frequency axis</p></li>
+<li><p><strong>n_harmonics</strong> (<em>int</em>) – Number of harmonics (Default value = 1)</p></li>
+<li><p><strong>tol_cent</strong> (<em>float</em>) – Tolerance in cents (Default value = 0.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>mask</strong> (<em>np.ndarray</em>) – Binary mask</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.define_transition_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">define_transition_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#define_transition_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.define_transition_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate transition matrix</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_FundFreqTracking.html">C8/C8S2_FundFreqTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>B</strong> (<em>int</em>) – Number of bins</p></li>
+<li><p><strong>tol</strong> (<em>int</em>) – Tolerance parameter for transition matrix (Default value = 0)</p></li>
+<li><p><strong>score_low</strong> (<em>float</em>) – Score (low) for transition matrix (Default value = 0.01)</p></li>
+<li><p><strong>score_high</strong> (<em>float</em>) – Score (high) for transition matrix (Default value = 1.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>T</strong> (<em>np.ndarray</em>) – Transition matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.hz_to_cents">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">hz_to_cents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">55.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#hz_to_cents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.hz_to_cents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts frequency in Hz to cents</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_FundFreqTracking.html">C8/C8S2_FundFreqTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>F</strong> (<em>float</em><em> or </em><em>np.ndarray</em>) – Frequency value in Hz</p></li>
+<li><p><strong>F_ref</strong> (<em>float</em>) – Reference frequency in Hz (Default value = 55.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>F_cent</strong> (<em>float or np.ndarray</em>) – Frequency in cents</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.separate_melody_accompaniment">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">separate_melody_accompaniment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_harmonics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_cent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#separate_melody_accompaniment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.separate_melody_accompaniment" title="Permalink to this definition">¶</a></dt>
+<dd><p>F0-based melody-accompaniement separation</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_MelodyExtractSep.html">C8/C8S2_MelodyExtractSep.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Audio signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling frequency</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size in samples</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hopsize in samples</p></li>
+<li><p><strong>traj</strong> (<em>np.ndarray</em>) – F0 traj (time in seconds in 1st column, frequency in Hz in 2nd column)</p></li>
+<li><p><strong>n_harmonics</strong> (<em>int</em>) – Number of harmonics (Default value = 10)</p></li>
+<li><p><strong>tol_cent</strong> (<em>float</em>) – Tolerance in cents (Default value = 50.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x_mel</strong> (<em>np.ndarray</em>) – Reconstructed audio signal for melody</p></li>
+<li><p><strong>x_acc</strong> (<em>np.ndarray</em>) – Reconstructed audio signal for accompaniement</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.sonify_trajectory_with_sinusoid">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">sonify_trajectory_with_sinusoid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">traj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#sonify_trajectory_with_sinusoid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.sonify_trajectory_with_sinusoid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sonification of trajectory with sinusoidal</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_FundFreqTracking.html">C8/C8S2_FundFreqTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>traj</strong> (<em>np.ndarray</em>) – F0 trajectory (time in seconds, frequency in Hz)</p></li>
+<li><p><strong>audio_len</strong> (<em>int</em>) – Desired audio length in samples</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 22050)</p></li>
+<li><p><strong>amplitude</strong> (<em>float</em>) – Amplitude (Default value = 0.3)</p></li>
+<li><p><strong>smooth_len</strong> (<em>int</em>) – Length of amplitude smoothing filter (Default value = 11)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>x_soni</strong> (<em>np.ndarray</em>) – Sonification</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_f0.visualize_salience_traj_constraints">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_f0.</span></code><code class="sig-name descname"><span class="pre">visualize_salience_traj_constraints</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_coef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef_cents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">55.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray_r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_region</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_f0.html#visualize_salience_traj_constraints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_f0.visualize_salience_traj_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualize salience representation with optional F0-trajectory and constraint regions</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_FundFreqTracking.html">C8/C8S2_FundFreqTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Z</strong> – Salience representation</p></li>
+<li><p><strong>T_coef</strong> – Time axis</p></li>
+<li><p><strong>F_coef_cents</strong> – Frequency axis in cents</p></li>
+<li><p><strong>F_ref</strong> – Reference frequency (Default value = 55.0)</p></li>
+<li><p><strong>colorbar</strong> – Show or hide colorbar (Default value = True)</p></li>
+<li><p><strong>cmap</strong> – Color map (Default value = ‘gray_r’)</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (7, 4))</p></li>
+<li><p><strong>traj</strong> – F0 trajectory (time in seconds, frequency in Hz) (Default value = None)</p></li>
+<li><p><strong>constraint_region</strong> – Constraint regions, row-format: (t_start_sec, t_end_sec, f_start_hz, f_end,hz)
+(Default value = None)</p></li>
+<li><p><strong>ax</strong> – Handle to existing axis (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle to figure</p></li>
+<li><p><strong>ax</strong> – Handle to cent axis</p></li>
+<li><p><strong>ax_f</strong> – Handle to frequency axis</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c8.c8s2_salience"></span><dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.compute_if">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">compute_if</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#compute_if"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.compute_if" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantenous frequency (IF) estamation</p>
+<div class="line-block">
+<div class="line">Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_InstantFreqEstimation.html">C8/C8S2_InstantFreqEstimation.ipynb</a>, see also</div>
+<div class="line">Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_NoveltyPhase.html">C6/C6S1_NoveltyPhase.ipynb</a></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – STFT</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size in samples</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size in samples</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>F_coef_IF</strong> (<em>np.ndarray</em>) – Matrix of IF values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.compute_salience_rep">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">compute_salience_rep</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">55.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1760.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_harm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_smooth_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#compute_salience_rep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.compute_salience_rep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Salience representation [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Eq. (8.56)]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_SalienceRepresentation.html">C8/C8S2_SalienceRepresentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Audio signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling frequency</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window length in samples</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hopsize in samples</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Frequency resolution in cents</p></li>
+<li><p><strong>F_min</strong> (<em>float</em>) – Lower frequency bound (reference frequency) (Default value = 55.0)</p></li>
+<li><p><strong>F_max</strong> (<em>float</em>) – Upper frequency bound (Default value = 1760.0)</p></li>
+<li><p><strong>num_harm</strong> (<em>int</em>) – Number of harmonics (Default value = 10)</p></li>
+<li><p><strong>freq_smooth_len</strong> (<em>int</em>) – Filter length for vertical smoothing (Default value = 11)</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Weighting parameter (Default value = 1.0)</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – Logarithmic compression factor (Default value = 0.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Z</strong> (<em>np.ndarray</em>) – Salience representation</p></li>
+<li><p><strong>F_coef_hertz</strong> (<em>np.ndarray</em>) – Frequency axis in Hz</p></li>
+<li><p><strong>F_coef_cents</strong> (<em>np.ndarray</em>) – Frequency axis in cents</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.compute_y_lf_bin">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">compute_y_lf_bin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">55.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1760.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#compute_y_lf_bin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.compute_y_lf_bin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log-frequency Spectrogram with variable frequency resolution using binning</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_SalienceRepresentation.html">C8/C8S2_SalienceRepresentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Magnitude spectrogram</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate in Hz</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window length in samples</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Frequency resolution in cents (Default value = 10.0)</p></li>
+<li><p><strong>F_min</strong> (<em>float</em>) – Lower frequency bound (reference frequency) (Default value = 55.0)</p></li>
+<li><p><strong>F_max</strong> (<em>float</em>) – Upper frequency bound (is included) (Default value = 1760.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Y_LF_bin</strong> (<em>np.ndarray</em>) – Binned log-frequency spectrogram</p></li>
+<li><p><strong>F_coef_hertz</strong> (<em>np.ndarray</em>) – Frequency axis in Hz</p></li>
+<li><p><strong>F_coef_cents</strong> (<em>np.ndarray</em>) – Frequency axis in cents</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.compute_y_lf_if_bin">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">compute_y_lf_if_bin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">55.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1760.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#compute_y_lf_if_bin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.compute_y_lf_if_bin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binned Log-frequency Spectrogram with variable frequency resolution based on instantaneous frequency</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_SalienceRepresentation.html">C8/C8S2_SalienceRepresentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Complex spectrogram</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate in Hz</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window length in samples</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hopsize in samples</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Frequency resolution in cents (Default value = 10)</p></li>
+<li><p><strong>F_min</strong> (<em>float</em>) – Lower frequency bound (reference frequency) (Default value = 55.0)</p></li>
+<li><p><strong>F_max</strong> (<em>float</em>) – Upper frequency bound (Default value = 1760.0)</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – Logarithmic compression factor (Default value = 0.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Y_LF_IF_bin</strong> (<em>np.ndarray</em>) – Binned log-frequency spectrogram using instantaneous frequency</p></li>
+<li><p><strong>F_coef_hertz</strong> (<em>np.ndarray</em>) – Frequency axis in Hz</p></li>
+<li><p><strong>F_coef_cents</strong> (<em>np.ndarray</em>) – Frequency axis in cents</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.f_coef">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">f_coef</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#f_coef"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.f_coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>STFT center frequency</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_SalienceRepresentation.html">C8/C8S2_SalienceRepresentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> (<em>int</em>) – Coefficient number</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate in Hz</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window length in samples</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>freq</strong> (<em>float</em>) – STFT center frequency</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.frequency_to_bin_index">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">frequency_to_bin_index</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">55.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#frequency_to_bin_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.frequency_to_bin_index" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Binning function with variable frequency resolution</div>
+<div class="line">Note: Indexing starts with 0 (opposed to [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Eq. (8.49)])</div>
+</div>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_SalienceRepresentation.html">C8/C8S2_SalienceRepresentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>F</strong> (<em>float</em>) – Frequency in Hz</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Frequency resolution in cents (Default value = 10.0)</p></li>
+<li><p><strong>F_ref</strong> (<em>float</em>) – Reference frequency in Hz (Default value = 55.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>bin_index</strong> (<em>int</em>) – Index for bin (starting with index 0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.harmonic_summation">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">harmonic_summation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_harm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#harmonic_summation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.harmonic_summation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Harmonic summation for spectrogram [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Eq. (8.54)]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_SalienceRepresentation.html">C8/C8S2_SalienceRepresentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Magnitude spectrogram</p></li>
+<li><p><strong>num_harm</strong> (<em>int</em>) – Number of harmonics (Default value = 10)</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Weighting parameter (Default value = 1.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Y_HS</strong> (<em>np.ndarray</em>) – Spectrogram after harmonic summation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.harmonic_summation_lf">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">harmonic_summation_lf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y_LF_bin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_harm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#harmonic_summation_lf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.harmonic_summation_lf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Harmonic summation for log-frequency spectrogram [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Eq. (8.55)]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_SalienceRepresentation.html">C8/C8S2_SalienceRepresentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y_LF_bin</strong> (<em>np.ndarray</em>) – Log-frequency spectrogram</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Frequency resolution in cents</p></li>
+<li><p><strong>num_harm</strong> (<em>int</em>) – Number of harmonics (Default value = 10)</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Weighting parameter (Default value = 1.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Y_LF_bin_HS</strong> (<em>np.ndarray</em>) – Log-frequency spectrogram after harmonic summation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.p_bin">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">p_bin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">55.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#p_bin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.p_bin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes binning mask [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Eq. (8.50)]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_SalienceRepresentation.html">C8/C8S2_SalienceRepresentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>b</strong> (<em>int</em>) – Bin index</p></li>
+<li><p><strong>freq</strong> (<em>float</em>) – Center frequency</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Frequency resolution in cents (Default value = 10.0)</p></li>
+<li><p><strong>F_ref</strong> (<em>float</em>) – Reference frequency in Hz (Default value = 55.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>mask</strong> (<em>float</em>) – Binning mask</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.p_bin_if">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">p_bin_if</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef_IF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">55.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#p_bin_if"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.p_bin_if" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes binning mask for instantaneous frequency binning [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Eq. (8.52)]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_SalienceRepresentation.html">C8/C8S2_SalienceRepresentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>b</strong> (<em>int</em>) – Bin index</p></li>
+<li><p><strong>F_coef_IF</strong> (<em>float</em>) – Instantaneous frequencies</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Frequency resolution in cents (Default value = 10.0)</p></li>
+<li><p><strong>F_ref</strong> (<em>float</em>) – Reference frequency in Hz (Default value = 55.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>mask</strong> (<em>np.ndarray</em>) – Binning mask</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s2_salience.principal_argument">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s2_salience.</span></code><code class="sig-name descname"><span class="pre">principal_argument</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s2_salience.html#principal_argument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s2_salience.principal_argument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Principal argument function</p>
+<div class="line-block">
+<div class="line">Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_NoveltyPhase.html">C6/C6S1_NoveltyPhase.ipynb</a>, see also</div>
+<div class="line">Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_InstantFreqEstimation.html">C8/C8S2_InstantFreqEstimation.ipynb</a></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>v</strong> (<em>float</em><em> or </em><em>np.ndarray</em>) – Value (or vector of values)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>w</strong> (<em>float or np.ndarray</em>) – Principle value of v</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c8.c8s3_nmf"></span><dl class="py function">
+<dt id="libfmp.c8.c8s3_nmf.init_nmf_activation_score">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s3_nmf.</span></code><code class="sig-name descname"><span class="pre">init_nmf_activation_score</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_note</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.2,</span> <span class="pre">0.5]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s3_nmf.html#init_nmf_activation_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s3_nmf.init_nmf_activation_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes activation matrix for given score annotations</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S3_NMFSpecFac.html">C8/C8S3_NMFSpecFac.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>int</em>) – Number of frames</p></li>
+<li><p><strong>annotation</strong> (<em>list</em>) – Annotation data</p></li>
+<li><p><strong>frame_res</strong> (<em>time</em>) – Time resolution</p></li>
+<li><p><strong>tol_note</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Tolerance (seconds) for beginning and end of a note (Default value = [0.2, 0.5])</p></li>
+<li><p><strong>pitch_set</strong> (<em>np.ndarray</em>) – Set of occurring pitches (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>H</strong> (<em>np.ndarray</em>) – Nonnegative matrix of size R x N</p></li>
+<li><p><strong>pitch_set</strong> (<em>np.ndarray</em>) – Set of occurring pitches</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s3_nmf.init_nmf_activation_score_onset">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s3_nmf.</span></code><code class="sig-name descname"><span class="pre">init_nmf_activation_score_onset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_note</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.2,</span> <span class="pre">0.5]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_onset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.3,</span> <span class="pre">0.1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s3_nmf.html#init_nmf_activation_score_onset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s3_nmf.init_nmf_activation_score_onset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes activation matrix with onsets for given score annotations</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S3_NMFSpecFac.html">C8/C8S3_NMFSpecFac.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>int</em>) – Number of frames</p></li>
+<li><p><strong>annotation</strong> (<em>list</em>) – Annotation data</p></li>
+<li><p><strong>frame_res</strong> (<em>float</em>) – Time resolution</p></li>
+<li><p><strong>tol_note</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Tolerance (seconds) for beginning and end of a note (Default value = [0.2, 0.5])</p></li>
+<li><p><strong>tol_onset</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Tolerance (seconds) for beginning and end of an onset
+(Default value = [0.3, 0.1])</p></li>
+<li><p><strong>pitch_set</strong> (<em>np.ndarray</em>) – Set of occurring pitches (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>H</strong> (<em>np.ndarray</em>) – Nonnegative matrix of size (2R) x N</p></li>
+<li><p><strong>pitch_set</strong> (<em>np.ndarray</em>) – Set of occurring pitches</p></li>
+<li><p><strong>label_pitch</strong> (<em>np.ndarray</em>) – Pitch labels for the templates</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s3_nmf.init_nmf_template_pitch">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s3_nmf.</span></code><code class="sig-name descname"><span class="pre">init_nmf_template_pitch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s3_nmf.html#init_nmf_template_pitch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s3_nmf.init_nmf_template_pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes template matrix for a given set of pitches</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S3_NMFSpecFac.html">C8/C8S3_NMFSpecFac.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>K</strong> (<em>int</em>) – Number of frequency points</p></li>
+<li><p><strong>pitch_set</strong> (<em>np.ndarray</em>) – Set of fundamental pitches</p></li>
+<li><p><strong>freq_res</strong> (<em>float</em>) – Frequency resolution</p></li>
+<li><p><strong>tol_pitch</strong> (<em>float</em>) – Relative frequency tolerance for the harmonics (Default value = 0.05)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>W</strong> (<em>np.ndarray</em>) – Nonnegative matrix of size K x R with R = len(pitch_set)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s3_nmf.init_nmf_template_pitch_onset">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s3_nmf.</span></code><code class="sig-name descname"><span class="pre">init_nmf_template_pitch_onset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s3_nmf.html#init_nmf_template_pitch_onset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s3_nmf.init_nmf_template_pitch_onset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes template matrix with onsets for a given set of pitches</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S3_NMFSpecFac.html">C8/C8S3_NMFSpecFac.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>K</strong> (<em>int</em>) – Number of frequency points</p></li>
+<li><p><strong>pitch_set</strong> (<em>np.ndarray</em>) – Set of fundamental pitches</p></li>
+<li><p><strong>freq_res</strong> (<em>float</em>) – Frequency resolution</p></li>
+<li><p><strong>tol_pitch</strong> (<em>float</em>) – Relative frequency tolerance for the harmonics (Default value = 0.05)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>W</strong> (<em>np.ndarray</em>) – Nonnegative matrix of size K x (2R) with R = len(pitch_set)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s3_nmf.nmf">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s3_nmf.</span></code><code class="sig-name descname"><span class="pre">nmf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s3_nmf.html#nmf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s3_nmf.nmf" title="Permalink to this definition">¶</a></dt>
+<dd><p>NMF algorithm with Euclidean distance</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S3_NMFbasic.html">C8/C8S3_NMFbasic.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>V</strong> (<em>np.ndarray</em>) – Nonnegative matrix of size K x N</p></li>
+<li><p><strong>R</strong> (<em>int</em>) – Rank parameter</p></li>
+<li><p><strong>thresh</strong> (<em>float</em>) – Threshold used as stop criterion (Default value = 0.001)</p></li>
+<li><p><strong>L</strong> (<em>int</em>) – Maximal number of iteration (Default value = 1000)</p></li>
+<li><p><strong>W</strong> (<em>np.ndarray</em>) – Nonnegative matrix of size K x R used for initialization (Default value = None)</p></li>
+<li><p><strong>H</strong> (<em>np.ndarray</em>) – Nonnegative matrix of size R x N used for initialization (Default value = None)</p></li>
+<li><p><strong>norm</strong> (<em>bool</em>) – Applies max-normalization of columns of final W (Default value = False)</p></li>
+<li><p><strong>report</strong> (<em>bool</em>) – Reports errors during runtime (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>W</strong> (<em>np.ndarray</em>) – Nonnegative matrix of size K x R</p></li>
+<li><p><strong>H</strong> (<em>np.ndarray</em>) – Nonnegative matrix of size R x N</p></li>
+<li><p><strong>V_approx</strong> (<em>np.ndarray</em>) – Nonnegative matrix W*H of size K x N</p></li>
+<li><p><strong>V_approx_err</strong> (<em>float</em>) – Error between V and V_approx</p></li>
+<li><p><strong>H_W_error</strong> (<em>np.ndarray</em>) – History of errors of subsequent H and W matrices</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s3_nmf.pitch_from_annotation">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s3_nmf.</span></code><code class="sig-name descname"><span class="pre">pitch_from_annotation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s3_nmf.html#pitch_from_annotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s3_nmf.pitch_from_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract set of occurring pitches from annotation</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S3_NMFSpecFac.html">C8/C8S3_NMFSpecFac.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>annotation</strong> (<em>list</em>) – Annotation data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>pitch_set</strong> (<em>np.ndarray</em>) – Set of occurring pitches</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s3_nmf.plot_nmf_factors">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s3_nmf.</span></code><code class="sig-name descname"><span class="pre">plot_nmf_factors</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N_fft</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H_fft</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'H'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'V'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(13,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s3_nmf.html#plot_nmf_factors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s3_nmf.plot_nmf_factors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the factore of an NMF-based spectral decomposition</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S3_NMFSpecFac.html">C8/C8S3_NMFSpecFac.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>W</strong> – Template matrix</p></li>
+<li><p><strong>H</strong> – Activation matrix</p></li>
+<li><p><strong>V</strong> – Reconstructed input matrix</p></li>
+<li><p><strong>Fs</strong> – Sampling frequency</p></li>
+<li><p><strong>N_fft</strong> – FFT length</p></li>
+<li><p><strong>H_fft</strong> – Hopsize</p></li>
+<li><p><strong>freq_max</strong> – Maximum frequency to be plotted</p></li>
+<li><p><strong>label_pitch</strong> – Labels for the different pitches (Default value = None)</p></li>
+<li><p><strong>title_W</strong> – Title for imshow of matrix W (Default value = ‘W’)</p></li>
+<li><p><strong>title_H</strong> – Title for imshow of matrix H (Default value = ‘H’)</p></li>
+<li><p><strong>title_V</strong> – Title for imshow of matrix V (Default value = ‘V’)</p></li>
+<li><p><strong>figsize</strong> – Size of the figure (Default value = (13, 3))</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s3_nmf.split_annotation_lh_rh">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s3_nmf.</span></code><code class="sig-name descname"><span class="pre">split_annotation_lh_rh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ann</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s3_nmf.html#split_annotation_lh_rh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s3_nmf.split_annotation_lh_rh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splitting of the annotation data in left and right hand</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S3_NMFAudioDecomp.html">C8/C8S3_NMFAudioDecomp.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ann</strong> (<em>list</em>) – Annotation data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ann_lh</strong> (<em>list</em>) – Annotation data for left hand</p></li>
+<li><p><strong>ann_rh</strong> (<em>list</em>) – Annotation data for right hand</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c8.c8s3_nmf.template_pitch">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c8.c8s3_nmf.</span></code><code class="sig-name descname"><span class="pre">template_pitch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c8/c8s3_nmf.html#template_pitch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c8.c8s3_nmf.template_pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines spectral template for a given pitch</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S3_NMFSpecFac.html">C8/C8S3_NMFSpecFac.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>K</strong> (<em>int</em>) – Number of frequency points</p></li>
+<li><p><strong>pitch</strong> (<em>float</em>) – Fundamental pitch</p></li>
+<li><p><strong>freq_res</strong> (<em>float</em>) – Frequency resolution</p></li>
+<li><p><strong>tol_pitch</strong> (<em>float</em>) – Relative frequency tolerance for the harmonics (Default value = 0.05)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>template</strong> (<em>np.ndarray</em>) – Nonnegative template vector of size K</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="genindex.html" class="btn btn-neutral float-right" title="Index" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index_c7.html" class="btn btn-neutral float-left" title="Content-Based Audio Retrieval (libfmp.c7)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

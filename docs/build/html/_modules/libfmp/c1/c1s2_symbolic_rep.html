@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c1.c1s2_symbolic_rep &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c1.c1s2_symbolic_rep</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c1.c1s2_symbolic_rep</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c1.c1s2_symbolic_rep</span>
+<span class="sd">Author: Frank Zalkow, Meinard Müller</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">patches</span>
+<span class="kn">import</span> <span class="nn">pretty_midi</span>
+<span class="kn">import</span> <span class="nn">music21</span> <span class="k">as</span> <span class="nn">m21</span>
+
+<span class="kn">import</span> <span class="nn">libfmp.b</span>
+
+
+<div class="viewcode-block" id="csv_to_list"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s2_symbolic_rep.csv_to_list">[docs]</a><span class="k">def</span> <span class="nf">csv_to_list</span><span class="p">(</span><span class="n">csv</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a csv score file to a list of note events</span>
+
+<span class="sd">    Notebook: C1/C1S2_CSV.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        csv (str or pd.DataFrame): Either a path to a csv file or a data frame</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        score (list): A list of note events where each note is specified as</span>
+<span class="sd">            ``[start, duration, pitch, velocity, label]``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">csv</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;csv must be a path to a csv file or pd.DataFrame&#39;</span><span class="p">)</span>
+
+    <span class="n">score</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">start</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">label</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">score</span></div>
+
+
+<div class="viewcode-block" id="midi_to_list"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s2_symbolic_rep.midi_to_list">[docs]</a><span class="k">def</span> <span class="nf">midi_to_list</span><span class="p">(</span><span class="n">midi</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a midi file to a list of note events</span>
+
+<span class="sd">    Notebook: C1/C1S2_MIDI.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        midi (str or pretty_midi.pretty_midi.PrettyMIDI): Either a path to a midi file or PrettyMIDI object</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        score (list): A list of note events where each note is specified as</span>
+<span class="sd">            ``[start, duration, pitch, velocity, label]``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">midi_data</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="o">.</span><span class="n">pretty_midi</span><span class="o">.</span><span class="n">PrettyMIDI</span><span class="p">(</span><span class="n">midi</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="n">pretty_midi</span><span class="o">.</span><span class="n">pretty_midi</span><span class="o">.</span><span class="n">PrettyMIDI</span><span class="p">):</span>
+        <span class="n">midi_data</span> <span class="o">=</span> <span class="n">midi</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;midi must be a path to a midi file or pretty_midi.PrettyMIDI&#39;</span><span class="p">)</span>
+
+    <span class="n">score</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">instrument</span> <span class="ow">in</span> <span class="n">midi_data</span><span class="o">.</span><span class="n">instruments</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">instrument</span><span class="o">.</span><span class="n">notes</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">start</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+            <span class="n">pitch</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">pitch</span>
+            <span class="n">velocity</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">velocity</span> <span class="o">/</span> <span class="mf">128.</span>
+            <span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">start</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">score</span></div>
+
+
+<div class="viewcode-block" id="xml_to_list"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s2_symbolic_rep.xml_to_list">[docs]</a><span class="k">def</span> <span class="nf">xml_to_list</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a music xml file to a list of note events</span>
+
+<span class="sd">    Notebook: C1/C1S2_MusicXML.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        xml (str or music21.stream.Score): Either a path to a music xml file or a music21.stream.Score</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        score (list): A list of note events where each note is specified as</span>
+<span class="sd">            ``[start, duration, pitch, velocity, label]``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">xml_data</span> <span class="o">=</span> <span class="n">m21</span><span class="o">.</span><span class="n">converter</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xml</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">m21</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">Score</span><span class="p">):</span>
+        <span class="n">xml_data</span> <span class="o">=</span> <span class="n">xml</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;midi must be a path to a midi file or music21.stream.Score&#39;</span><span class="p">)</span>
+
+    <span class="n">score</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">xml_data</span><span class="o">.</span><span class="n">parts</span><span class="p">:</span>
+        <span class="n">instrument</span> <span class="o">=</span> <span class="n">part</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">instrumentName</span>
+
+        <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">flat</span><span class="o">.</span><span class="n">notes</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">note</span><span class="o">.</span><span class="n">isChord</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">offset</span>
+                <span class="n">duration</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">quarterLength</span>
+
+                <span class="k">for</span> <span class="n">chord_note</span> <span class="ow">in</span> <span class="n">note</span><span class="o">.</span><span class="n">pitches</span><span class="p">:</span>
+                    <span class="n">pitch</span> <span class="o">=</span> <span class="n">chord_note</span><span class="o">.</span><span class="n">ps</span>
+                    <span class="n">volume</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">realized</span>
+                    <span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">start</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">instrument</span><span class="p">])</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">offset</span>
+                <span class="n">duration</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">quarterLength</span>
+                <span class="n">pitch</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">pitch</span><span class="o">.</span><span class="n">ps</span>
+                <span class="n">volume</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">realized</span>
+                <span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">start</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">instrument</span><span class="p">])</span>
+
+    <span class="n">score</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">score</span></div>
+
+
+<div class="viewcode-block" id="list_to_csv"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s2_symbolic_rep.list_to_csv">[docs]</a><span class="k">def</span> <span class="nf">list_to_csv</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">fn_out</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a list of note events to a csv file</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        score (list): List of note events</span>
+<span class="sd">        fn_out (str): The path of the csv file to be created</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Start&#39;</span><span class="p">,</span> <span class="s1">&#39;Duration&#39;</span><span class="p">,</span> <span class="s1">&#39;Pitch&#39;</span><span class="p">,</span> <span class="s1">&#39;Velocity&#39;</span><span class="p">,</span> <span class="s1">&#39;Instrument&#39;</span><span class="p">])</span>
+    <span class="c1"># ideally, I would like to use float_format=&#39;%.3f&#39;, but then the numeric columns are considered as strings and,</span>
+    <span class="c1"># therefore, are quoted</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fn_out</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="visualize_piano_roll"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s2_symbolic_rep.visualize_piano_roll">[docs]</a><span class="k">def</span> <span class="nf">visualize_piano_roll</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Pitch&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">velocity_alpha</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                         <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot a pianoroll visualization</span>
+
+<span class="sd">    Notebook: C1/C1S2_CSV.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        score: List of note events</span>
+<span class="sd">        xlabel: Label for x axis (Default value = &#39;Time (seconds)&#39;)</span>
+<span class="sd">        ylabel: Label for y axis (Default value = &#39;Pitch&#39;)</span>
+<span class="sd">        colors: Several options: 1. string of FMP_COLORMAPS, 2. string of matplotlib colormap,</span>
+<span class="sd">            3. list or np.ndarray of matplotlib color specifications,</span>
+<span class="sd">            4. dict that assigns labels  to colors (Default value = &#39;FMP_1&#39;)</span>
+<span class="sd">        velocity_alpha: Use the velocity value for the alpha value of the corresponding rectangle</span>
+<span class="sd">            (Default value = False)</span>
+<span class="sd">        figsize: Width, height in inches (Default value = (12)</span>
+<span class="sd">        ax: The Axes instance to plot on (Default value = None)</span>
+<span class="sd">        dpi: Dots per inch (Default value = 72)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: The created matplotlib figure or None if ax was given.</span>
+<span class="sd">        ax: The used axes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">labels_set</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">note</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">score</span><span class="p">]))</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">color_argument_to_dict</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">labels_set</span><span class="p">)</span>
+
+    <span class="n">pitch_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">score</span><span class="p">)</span>
+    <span class="n">pitch_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">score</span><span class="p">)</span>
+    <span class="n">time_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">score</span><span class="p">)</span>
+    <span class="n">time_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">note</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">score</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">score</span><span class="p">:</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">pitch</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">duration</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                 <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="n">velocity</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">pitch_min</span> <span class="o">-</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">pitch_max</span> <span class="o">+</span> <span class="mf">1.5</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">time_min</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">time_max</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axisbelow</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="n">patches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">labels_set</span><span class="p">],</span>
+              <span class="n">labels_set</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

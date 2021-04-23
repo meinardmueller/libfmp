@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c8.c8s1_hps &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c8.c8s1_hps</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c8.c8s1_hps</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c8.c8s1_hps</span>
+<span class="sd">Author: Meinard Müller, Frank Zalkow</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">import</span> <span class="nn">IPython.display</span> <span class="k">as</span> <span class="nn">ipd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="median_filter_horizontal"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s1_hps.median_filter_horizontal">[docs]</a><span class="k">def</span> <span class="nf">median_filter_horizontal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">filter_len</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Apply median filter in horizontal direction</span>
+
+<span class="sd">    Notebook: C8/C8S1_HPS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Input matrix</span>
+<span class="sd">        filter_len (int): Filter length</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x_h (np.ndarray): Filtered matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">filter_len</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="median_filter_vertical"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s1_hps.median_filter_vertical">[docs]</a><span class="k">def</span> <span class="nf">median_filter_vertical</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">filter_len</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Apply median filter in vertical direction</span>
+
+<span class="sd">    Notebook: C8/C8S1_HPS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x: Input matrix</span>
+<span class="sd">        filter_len (int): Filter length</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x_p (np.ndarray): Filtered matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="n">filter_len</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="convert_l_sec_to_frames"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s1_hps.convert_l_sec_to_frames">[docs]</a><span class="k">def</span> <span class="nf">convert_l_sec_to_frames</span><span class="p">(</span><span class="n">L_h_sec</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert filter length parameter from seconds to frame indices</span>
+
+<span class="sd">    Notebook: C8/C8S1_HPS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        L_h_sec (float): Filter length (in seconds)</span>
+<span class="sd">        Fs (scalar): Sample rate (Default value = 22050)</span>
+<span class="sd">        N (int): Window size (Default value = 1024)</span>
+<span class="sd">        H (int): Hop size (Default value = 512)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        L_h (int): Filter length (in samples)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">L_h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">L_h_sec</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">H</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">L_h</span></div>
+
+
+<div class="viewcode-block" id="convert_l_hertz_to_bins"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s1_hps.convert_l_hertz_to_bins">[docs]</a><span class="k">def</span> <span class="nf">convert_l_hertz_to_bins</span><span class="p">(</span><span class="n">L_p_Hz</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert filter length parameter from Hertz to frequency bins</span>
+
+<span class="sd">    Notebook: C8/C8S1_HPS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        L_p_Hz (float): Filter length (in Hertz)</span>
+<span class="sd">        Fs (scalar): Sample rate (Default value = 22050)</span>
+<span class="sd">        N (int): Window size (Default value = 1024)</span>
+<span class="sd">        H (int): Hop size (Default value = 512)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        L_p (int): Filter length (in frequency bins)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">L_p</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">L_p_Hz</span> <span class="o">*</span> <span class="n">N</span> <span class="o">/</span> <span class="n">Fs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">L_p</span></div>
+
+
+<div class="viewcode-block" id="make_integer_odd"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s1_hps.make_integer_odd">[docs]</a><span class="k">def</span> <span class="nf">make_integer_odd</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert integer into odd integer</span>
+
+<span class="sd">    Notebook: C8/C8S1_HPS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): Integer</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        n (int): Odd integer</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">n</span></div>
+
+
+<div class="viewcode-block" id="hps"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s1_hps.hps">[docs]</a><span class="k">def</span> <span class="nf">hps</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L_h</span><span class="p">,</span> <span class="n">L_p</span><span class="p">,</span> <span class="n">L_unit</span><span class="o">=</span><span class="s1">&#39;physical&#39;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Harmonic-percussive separation (HPS) algorithm</span>
+
+<span class="sd">    Notebook: C8/C8S1_HPS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Input signal</span>
+<span class="sd">        Fs (scalar): Sampling rate of x</span>
+<span class="sd">        N (int): Frame length</span>
+<span class="sd">        H (int): Hopsize</span>
+<span class="sd">        L_h (float): Horizontal median filter length given in seconds or frames</span>
+<span class="sd">        L_p (float): Percussive median filter length given in Hertz or bins</span>
+<span class="sd">        L_unit (str): Adjusts unit, either &#39;pyhsical&#39; or &#39;indices&#39; (Default value = &#39;physical&#39;)</span>
+<span class="sd">        mask (str): Either &#39;binary&#39; or &#39;soft&#39; (Default value = &#39;binary&#39;)</span>
+<span class="sd">        eps (float): Parameter used in soft maskig (Default value = 0.001)</span>
+<span class="sd">        detail (bool): Returns detailed information (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x_h (np.ndarray): Harmonic signal</span>
+<span class="sd">        x_p (np.ndarray): Percussive signal</span>
+<span class="sd">        details (dict): Dictionary containing detailed information; returned if ``detail=True``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">L_unit</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;physical&#39;</span><span class="p">,</span> <span class="s1">&#39;indices&#39;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">mask</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="s1">&#39;soft&#39;</span><span class="p">]</span>
+    <span class="c1"># stft</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pad_mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
+    <span class="c1"># power spectrogram</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="c1"># median filtering</span>
+    <span class="k">if</span> <span class="n">L_unit</span> <span class="o">==</span> <span class="s1">&#39;physical&#39;</span><span class="p">:</span>
+        <span class="n">L_h</span> <span class="o">=</span> <span class="n">convert_l_sec_to_frames</span><span class="p">(</span><span class="n">L_h_sec</span><span class="o">=</span><span class="n">L_h</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
+        <span class="n">L_p</span> <span class="o">=</span> <span class="n">convert_l_hertz_to_bins</span><span class="p">(</span><span class="n">L_p_Hz</span><span class="o">=</span><span class="n">L_p</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
+    <span class="n">L_h</span> <span class="o">=</span> <span class="n">make_integer_odd</span><span class="p">(</span><span class="n">L_h</span><span class="p">)</span>
+    <span class="n">L_p</span> <span class="o">=</span> <span class="n">make_integer_odd</span><span class="p">(</span><span class="n">L_p</span><span class="p">)</span>
+    <span class="n">Y_h</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">L_h</span><span class="p">])</span>
+    <span class="n">Y_p</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="p">[</span><span class="n">L_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># masking</span>
+    <span class="k">if</span> <span class="n">mask</span> <span class="o">==</span> <span class="s1">&#39;binary&#39;</span><span class="p">:</span>
+        <span class="n">M_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">(</span><span class="n">Y_h</span> <span class="o">&gt;=</span> <span class="n">Y_p</span><span class="p">)</span>
+        <span class="n">M_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">(</span><span class="n">Y_h</span> <span class="o">&lt;</span> <span class="n">Y_p</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mask</span> <span class="o">==</span> <span class="s1">&#39;soft&#39;</span><span class="p">:</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="mf">0.00001</span>
+        <span class="n">M_h</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y_h</span> <span class="o">+</span> <span class="n">eps</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Y_h</span> <span class="o">+</span> <span class="n">Y_p</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+        <span class="n">M_p</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y_p</span> <span class="o">+</span> <span class="n">eps</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Y_h</span> <span class="o">+</span> <span class="n">Y_p</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+    <span class="n">X_h</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">M_h</span>
+    <span class="n">X_p</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">M_p</span>
+
+    <span class="c1"># istft</span>
+    <span class="n">x_h</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">istft</span><span class="p">(</span><span class="n">X_h</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">x_p</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">istft</span><span class="p">(</span><span class="n">X_p</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">detail</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x_h</span><span class="p">,</span> <span class="n">x_p</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">Y_h</span><span class="o">=</span><span class="n">Y_h</span><span class="p">,</span> <span class="n">Y_p</span><span class="o">=</span><span class="n">Y_p</span><span class="p">,</span> <span class="n">M_h</span><span class="o">=</span><span class="n">M_h</span><span class="p">,</span> <span class="n">M_p</span><span class="o">=</span><span class="n">M_p</span><span class="p">,</span> <span class="n">X_h</span><span class="o">=</span><span class="n">X_h</span><span class="p">,</span> <span class="n">X_p</span><span class="o">=</span><span class="n">X_p</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x_h</span><span class="p">,</span> <span class="n">x_p</span></div>
+
+
+<div class="viewcode-block" id="generate_audio_tag_html_list"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s1_hps.generate_audio_tag_html_list">[docs]</a><span class="k">def</span> <span class="nf">generate_audio_tag_html_list</span><span class="p">(</span><span class="n">list_x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;150&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;40&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates audio tag for html needed to be shown in table</span>
+
+<span class="sd">    Notebook: C8/C8S1_HPS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        list_x (list): List of waveforms</span>
+<span class="sd">        Fs (scalar): Sample rate</span>
+<span class="sd">        width (str): Width in px (Default value = &#39;150&#39;)</span>
+<span class="sd">        height (str): Height in px (Default value = &#39;40&#39;)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        audio_tag_html_list (list): List of HTML strings with audio tags</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">audio_tag_html_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_x</span><span class="p">)):</span>
+        <span class="n">audio_tag</span> <span class="o">=</span> <span class="n">ipd</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">list_x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rate</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+        <span class="n">audio_tag_html</span> <span class="o">=</span> <span class="n">audio_tag</span><span class="o">.</span><span class="n">_repr_html_</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">audio_tag_html</span> <span class="o">=</span> <span class="n">audio_tag_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;audio &#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;&lt;audio style=&quot;width: &#39;</span><span class="o">+</span><span class="n">width</span><span class="o">+</span><span class="s1">&#39;px; height: &#39;</span><span class="o">+</span><span class="n">height</span><span class="o">+</span><span class="s1">&#39;px;&quot;&#39;</span><span class="p">)</span>
+        <span class="n">audio_tag_html_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">audio_tag_html</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">audio_tag_html_list</span></div>
+
+
+<div class="viewcode-block" id="hrps"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s1_hps.hrps">[docs]</a><span class="k">def</span> <span class="nf">hrps</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L_h</span><span class="p">,</span> <span class="n">L_p</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">L_unit</span><span class="o">=</span><span class="s1">&#39;physical&#39;</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Harmonic-residual-percussive separation (HRPS) algorithm</span>
+
+<span class="sd">    Notebook: C8/C8S1_HRPS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Input signal</span>
+<span class="sd">        Fs (scalar): Sampling rate of x</span>
+<span class="sd">        N (int): Frame length</span>
+<span class="sd">        H (int): Hopsize</span>
+<span class="sd">        L_h (float): Horizontal median filter length given in seconds or frames</span>
+<span class="sd">        L_p (float): Percussive median filter length given in Hertz or bins</span>
+<span class="sd">        beta (float): Separation factor (Default value = 2.0)</span>
+<span class="sd">        L_unit (str): Adjusts unit, either &#39;pyhsical&#39; or &#39;indices&#39; (Default value = &#39;physical&#39;)</span>
+<span class="sd">        detail (bool): Returns detailed information (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x_h (np.ndarray): Harmonic signal</span>
+<span class="sd">        x_p (np.ndarray): Percussive signal</span>
+<span class="sd">        x_r (np.ndarray): Residual signal</span>
+<span class="sd">        details (dict): Dictionary containing detailed information; returned if &quot;detail=True&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">L_unit</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;physical&#39;</span><span class="p">,</span> <span class="s1">&#39;indices&#39;</span><span class="p">]</span>
+    <span class="c1"># stft</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pad_mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
+    <span class="c1"># power spectrogram</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="c1"># median filtering</span>
+    <span class="k">if</span> <span class="n">L_unit</span> <span class="o">==</span> <span class="s1">&#39;physical&#39;</span><span class="p">:</span>
+        <span class="n">L_h</span> <span class="o">=</span> <span class="n">convert_l_sec_to_frames</span><span class="p">(</span><span class="n">L_h_sec</span><span class="o">=</span><span class="n">L_h</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
+        <span class="n">L_p</span> <span class="o">=</span> <span class="n">convert_l_hertz_to_bins</span><span class="p">(</span><span class="n">L_p_Hz</span><span class="o">=</span><span class="n">L_p</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
+    <span class="n">L_h</span> <span class="o">=</span> <span class="n">make_integer_odd</span><span class="p">(</span><span class="n">L_h</span><span class="p">)</span>
+    <span class="n">L_p</span> <span class="o">=</span> <span class="n">make_integer_odd</span><span class="p">(</span><span class="n">L_p</span><span class="p">)</span>
+    <span class="n">Y_h</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">L_h</span><span class="p">])</span>
+    <span class="n">Y_p</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="p">[</span><span class="n">L_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># masking</span>
+    <span class="n">M_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">(</span><span class="n">Y_h</span> <span class="o">&gt;=</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">Y_p</span><span class="p">)</span>
+    <span class="n">M_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">(</span><span class="n">Y_p</span> <span class="o">&gt;</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">Y_h</span><span class="p">)</span>
+    <span class="n">M_r</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">M_h</span> <span class="o">+</span> <span class="n">M_p</span><span class="p">)</span>
+    <span class="n">X_h</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">M_h</span>
+    <span class="n">X_p</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">M_p</span>
+    <span class="n">X_r</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">M_r</span>
+
+    <span class="c1"># istft</span>
+    <span class="n">x_h</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">istft</span><span class="p">(</span><span class="n">X_h</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">x_p</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">istft</span><span class="p">(</span><span class="n">X_p</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">x_r</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">istft</span><span class="p">(</span><span class="n">X_r</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">detail</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x_h</span><span class="p">,</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">x_r</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">Y_h</span><span class="o">=</span><span class="n">Y_h</span><span class="p">,</span> <span class="n">Y_p</span><span class="o">=</span><span class="n">Y_p</span><span class="p">,</span> <span class="n">M_h</span><span class="o">=</span><span class="n">M_h</span><span class="p">,</span> <span class="n">M_r</span><span class="o">=</span><span class="n">M_r</span><span class="p">,</span> <span class="n">M_p</span><span class="o">=</span><span class="n">M_p</span><span class="p">,</span> <span class="n">X_h</span><span class="o">=</span><span class="n">X_h</span><span class="p">,</span> <span class="n">X_r</span><span class="o">=</span><span class="n">X_r</span><span class="p">,</span> <span class="n">X_p</span><span class="o">=</span><span class="n">X_p</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x_h</span><span class="p">,</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">x_r</span></div>
+
+
+<div class="viewcode-block" id="experiment_hps_parameter"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s1_hps.experiment_hps_parameter">[docs]</a><span class="k">def</span> <span class="nf">experiment_hps_parameter</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">param_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Script for running an HPS experiment over a parameter list, such as ``[[1024, 256, 0.1, 100], ...]``</span>
+
+<span class="sd">    Notebook: C8/C8S1_HPS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_wav (str): Path to wave file</span>
+<span class="sd">        param_list (list): List of parameters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Fs</span> <span class="o">=</span> <span class="mi">22050</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+
+    <span class="n">list_x</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_x_h</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_x_p</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_N</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_H</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_L_h_sec</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_L_p_Hz</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_L_h</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_L_p</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">param_list</span><span class="p">:</span>
+        <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L_h_sec</span><span class="p">,</span> <span class="n">L_p_Hz</span> <span class="o">=</span> <span class="n">param</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;N=</span><span class="si">%4d</span><span class="s1">, H=</span><span class="si">%4d</span><span class="s1">, L_h_sec=</span><span class="si">%4.2f</span><span class="s1">, L_p_Hz=</span><span class="si">%3.1f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L_h_sec</span><span class="p">,</span> <span class="n">L_p_Hz</span><span class="p">))</span>
+        <span class="n">x_h</span><span class="p">,</span> <span class="n">x_p</span> <span class="o">=</span> <span class="n">hps</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">L_h</span><span class="o">=</span><span class="n">L_h_sec</span><span class="p">,</span> <span class="n">L_p</span><span class="o">=</span><span class="n">L_p_Hz</span><span class="p">)</span>
+        <span class="n">L_h</span> <span class="o">=</span> <span class="n">convert_l_sec_to_frames</span><span class="p">(</span><span class="n">L_h_sec</span><span class="o">=</span><span class="n">L_h_sec</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
+        <span class="n">L_p</span> <span class="o">=</span> <span class="n">convert_l_hertz_to_bins</span><span class="p">(</span><span class="n">L_p_Hz</span><span class="o">=</span><span class="n">L_p_Hz</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
+        <span class="n">list_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">list_x_h</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_h</span><span class="p">)</span>
+        <span class="n">list_x_p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
+        <span class="n">list_N</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">list_H</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+        <span class="n">list_L_h_sec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L_h_sec</span><span class="p">)</span>
+        <span class="n">list_L_p_Hz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L_p_Hz</span><span class="p">)</span>
+        <span class="n">list_L_h</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L_h</span><span class="p">)</span>
+        <span class="n">list_L_p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L_p</span><span class="p">)</span>
+
+    <span class="n">html_x</span> <span class="o">=</span> <span class="n">generate_audio_tag_html_list</span><span class="p">(</span><span class="n">list_x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+    <span class="n">html_x_h</span> <span class="o">=</span> <span class="n">generate_audio_tag_html_list</span><span class="p">(</span><span class="n">list_x_h</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+    <span class="n">html_x_p</span> <span class="o">=</span> <span class="n">generate_audio_tag_html_list</span><span class="p">(</span><span class="n">list_x_p</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+
+    <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;$N$&#39;</span><span class="p">,</span> <span class="n">list_N</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$H$&#39;</span><span class="p">,</span> <span class="n">list_H</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$L_h$ (sec)&#39;</span><span class="p">,</span> <span class="n">list_L_h_sec</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$L_p$ (Hz)&#39;</span><span class="p">,</span> <span class="n">list_L_p_Hz</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$L_h$&#39;</span><span class="p">,</span> <span class="n">list_L_h</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$L_p$&#39;</span><span class="p">,</span> <span class="n">list_L_p</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">html_x</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$x_h$&#39;</span><span class="p">,</span> <span class="n">html_x_h</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$x_p$&#39;</span><span class="p">,</span> <span class="n">html_x_p</span><span class="p">)]))</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ipd</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">ipd</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">escape</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="experiment_hrps_parameter"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s1_hps.experiment_hrps_parameter">[docs]</a><span class="k">def</span> <span class="nf">experiment_hrps_parameter</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">param_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Script for running an HRPS experiment over a parameter list, such as ``[[1024, 256, 0.1, 100], ...]``</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_wav (str): Path to wave file</span>
+<span class="sd">        param_list (list): List of parameters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Fs</span> <span class="o">=</span> <span class="mi">22050</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+
+    <span class="n">list_x</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_x_h</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_x_p</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_x_r</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_N</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_H</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_L_h_sec</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_L_p_Hz</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_L_h</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_L_p</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_beta</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">param_list</span><span class="p">:</span>
+        <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L_h_sec</span><span class="p">,</span> <span class="n">L_p_Hz</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="n">param</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;N=</span><span class="si">%4d</span><span class="s1">, H=</span><span class="si">%4d</span><span class="s1">, L_h_sec=</span><span class="si">%4.2f</span><span class="s1">, L_p_Hz=</span><span class="si">%3.1f</span><span class="s1">, beta=</span><span class="si">%3.1f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L_h_sec</span><span class="p">,</span> <span class="n">L_p_Hz</span><span class="p">,</span> <span class="n">beta</span><span class="p">))</span>
+        <span class="n">x_h</span><span class="p">,</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">x_r</span> <span class="o">=</span> <span class="n">hrps</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">L_h</span><span class="o">=</span><span class="n">L_h_sec</span><span class="p">,</span> <span class="n">L_p</span><span class="o">=</span><span class="n">L_p_Hz</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">)</span>
+        <span class="n">L_h</span> <span class="o">=</span> <span class="n">convert_l_sec_to_frames</span><span class="p">(</span><span class="n">L_h_sec</span><span class="o">=</span><span class="n">L_h_sec</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
+        <span class="n">L_p</span> <span class="o">=</span> <span class="n">convert_l_hertz_to_bins</span><span class="p">(</span><span class="n">L_p_Hz</span><span class="o">=</span><span class="n">L_p_Hz</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
+        <span class="n">list_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">list_x_h</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_h</span><span class="p">)</span>
+        <span class="n">list_x_p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
+        <span class="n">list_x_r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_r</span><span class="p">)</span>
+        <span class="n">list_N</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">list_H</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+        <span class="n">list_L_h_sec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L_h_sec</span><span class="p">)</span>
+        <span class="n">list_L_p_Hz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L_p_Hz</span><span class="p">)</span>
+        <span class="n">list_L_h</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L_h</span><span class="p">)</span>
+        <span class="n">list_L_p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L_p</span><span class="p">)</span>
+        <span class="n">list_beta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+
+    <span class="n">html_x</span> <span class="o">=</span> <span class="n">generate_audio_tag_html_list</span><span class="p">(</span><span class="n">list_x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+    <span class="n">html_x_h</span> <span class="o">=</span> <span class="n">generate_audio_tag_html_list</span><span class="p">(</span><span class="n">list_x_h</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+    <span class="n">html_x_p</span> <span class="o">=</span> <span class="n">generate_audio_tag_html_list</span><span class="p">(</span><span class="n">list_x_p</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+    <span class="n">html_x_r</span> <span class="o">=</span> <span class="n">generate_audio_tag_html_list</span><span class="p">(</span><span class="n">list_x_r</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+
+    <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;$N$&#39;</span><span class="p">,</span> <span class="n">list_N</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$H$&#39;</span><span class="p">,</span> <span class="n">list_H</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$L_h$ (sec)&#39;</span><span class="p">,</span> <span class="n">list_L_h_sec</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$L_p$ (Hz)&#39;</span><span class="p">,</span> <span class="n">list_L_p_Hz</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$L_h$&#39;</span><span class="p">,</span> <span class="n">list_L_h</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$L_p$&#39;</span><span class="p">,</span> <span class="n">list_L_p</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">beta$&#39;</span><span class="p">,</span> <span class="n">list_beta</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">html_x</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$x_h$&#39;</span><span class="p">,</span> <span class="n">html_x_h</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$x_r$&#39;</span><span class="p">,</span> <span class="n">html_x_r</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;$x_p$&#39;</span><span class="p">,</span> <span class="n">html_x_p</span><span class="p">)]))</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ipd</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">ipd</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">escape</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

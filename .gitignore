@@ -5,3 +5,6 @@
 build/
 dist/
 libfmp.egg-info/
+
+# do not ignore build of docs
+!docs/build/

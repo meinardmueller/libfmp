@@ -1,0 +1,786 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Music Synchronization (libfmp.c3) &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Music Structure Analysis (libfmp.c4)" href="index_c4.html" />
+    <link rel="prev" title="Fourier Analysis of Signals (libfmp.c2)" href="index_c2.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Music Synchronization (libfmp.c3)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index_c3.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="music-synchronization-libfmp-c3">
+<h1>Music Synchronization (libfmp.c3)<a class="headerlink" href="#music-synchronization-libfmp-c3" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://www.audiolabs-erlangen.de/FMP">FMP notebooks</a> provide detailed textbook-like explanations of central techniques and algorithms implemented in the libfmp.
+The part of FMP related to this module is available at the following URL:</p>
+<p><a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3.html">https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3.html</a></p>
+<span class="target" id="module-libfmp.c3"></span><span class="target" id="module-libfmp.c3.c3s1_audio_feature"></span><dl class="py function">
+<dt id="libfmp.c3.c3s1_audio_feature.compute_chromagram">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_audio_feature.</span></code><code class="sig-name descname"><span class="pre">compute_chromagram</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y_LF</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_audio_feature.html#compute_chromagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_audio_feature.compute_chromagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a chromagram</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html">C3/C3S1_SpecLogFreq-Chromagram.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Y_LF</strong> (<em>np.ndarray</em>) – Log-frequency spectrogram</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>C</strong> (<em>np.ndarray</em>) – Chromagram</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_audio_feature.compute_spec_log_freq">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_audio_feature.</span></code><code class="sig-name descname"><span class="pre">compute_spec_log_freq</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_audio_feature.html#compute_spec_log_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_audio_feature.compute_spec_log_freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a log-frequency spectrogram</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html">C3/C3S1_SpecLogFreq-Chromagram.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Magnitude or power spectrogram</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size of Fourier fransform</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Y_LF</strong> (<em>np.ndarray</em>) – Log-frequency spectrogram</p></li>
+<li><p><strong>F_coef_pitch</strong> (<em>np.ndarray</em>) – Pitch values</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_audio_feature.f_pitch">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_audio_feature.</span></code><code class="sig-name descname"><span class="pre">f_pitch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">69</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">440.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_audio_feature.html#f_pitch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_audio_feature.f_pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the center frequency/ies of a MIDI pitch</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html">C3/C3S1_SpecLogFreq-Chromagram.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<em>float</em>) – MIDI pitch value(s)</p></li>
+<li><p><strong>pitch_ref</strong> (<em>float</em>) – Reference pitch (default: 69)</p></li>
+<li><p><strong>freq_ref</strong> (<em>float</em>) – Frequency of reference pitch (default: 440.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>freqs</strong> (<em>float</em>) – Frequency value(s)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_audio_feature.note_name">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_audio_feature.</span></code><code class="sig-name descname"><span class="pre">note_name</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_audio_feature.html#note_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_audio_feature.note_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns note name of pitch</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html">C3/C3S1_SpecLogFreq-Chromagram.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>int</em>) – Pitch value</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>name</strong> (<em>str</em>) – Note name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_audio_feature.pool_pitch">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_audio_feature.</span></code><code class="sig-name descname"><span class="pre">pool_pitch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">69</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">440.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_audio_feature.html#pool_pitch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_audio_feature.pool_pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the set of frequency indices that are assigned to a given pitch</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html">C3/C3S1_SpecLogFreq-Chromagram.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<em>float</em>) – MIDI pitch value</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size of Fourier fransform</p></li>
+<li><p><strong>pitch_ref</strong> (<em>float</em>) – Reference pitch (default: 69)</p></li>
+<li><p><strong>freq_ref</strong> (<em>float</em>) – Frequency of reference pitch (default: 440.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>k</strong> (<em>np.ndarray</em>) – Set of frequency indices</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c3.c3s1_post_processing"></span><dl class="py function">
+<dt id="libfmp.c3.c3s1_post_processing.log_compression">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_post_processing.</span></code><code class="sig-name descname"><span class="pre">log_compression</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_post_processing.html#log_compression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_post_processing.log_compression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logarithmically compresses a value or array</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_LogCompression.html">C3/C3S1_LogCompression.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> (<em>float</em><em> or </em><em>np.ndarray</em>) – Value or array</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – Compression factor (Default value = 1.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>v_compressed</strong> (<em>float or np.ndarray</em>) – Compressed value or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_post_processing.median_downsample_feature_sequence">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_post_processing.</span></code><code class="sig-name descname"><span class="pre">median_downsample_feature_sequence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filt_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">41</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">down_sampling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_post_processing.html#median_downsample_feature_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_post_processing.median_downsample_feature_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smoothes and downsamples a feature sequence. Smoothing is achieved by median filtering</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_FeatureSmoothing.html">C3/C3S1_FeatureSmoothing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Feature sequence</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Frame rate of <code class="docutils literal notranslate"><span class="pre">X</span></code></p></li>
+<li><p><strong>filt_len</strong> (<em>int</em>) – Length of smoothing filter (Default value = 41)</p></li>
+<li><p><strong>down_sampling</strong> (<em>int</em>) – Downsampling factor (Default value = 10)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>X_smooth</strong> (<em>np.ndarray</em>) – Smoothed and downsampled feature sequence</p></li>
+<li><p><strong>Fs_feature</strong> (<em>scalar</em>) – Frame rate of <code class="docutils literal notranslate"><span class="pre">X_smooth</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_post_processing.normalize_feature_sequence">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_post_processing.</span></code><code class="sig-name descname"><span class="pre">normalize_feature_sequence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_post_processing.html#normalize_feature_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_post_processing.normalize_feature_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes the columns of a feature sequence</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_FeatureNormalization.html">C3/C3S1_FeatureNormalization.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Feature sequence</p></li>
+<li><p><strong>norm</strong> (<em>str</em>) – The norm to be applied. ‘1’, ‘2’, ‘max’ or ‘z’ (Default value = ‘2’)</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – An threshold below which the vector <code class="docutils literal notranslate"><span class="pre">v</span></code> used instead of normalization
+(Default value = 0.0001)</p></li>
+<li><p><strong>v</strong> (<em>float</em>) – Used instead of normalization below <code class="docutils literal notranslate"><span class="pre">threshold</span></code>. If None, uses unit vector for given norm
+(Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X_norm</strong> (<em>np.ndarray</em>) – Normalized feature sequence</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_post_processing.smooth_downsample_feature_sequence">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_post_processing.</span></code><code class="sig-name descname"><span class="pre">smooth_downsample_feature_sequence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filt_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">41</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">down_sampling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'boxcar'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_post_processing.html#smooth_downsample_feature_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_post_processing.smooth_downsample_feature_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smoothes and downsamples a feature sequence. Smoothing is achieved by convolution with a filter kernel</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_FeatureSmoothing.html">C3/C3S1_FeatureSmoothing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Feature sequence</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Frame rate of <code class="docutils literal notranslate"><span class="pre">X</span></code></p></li>
+<li><p><strong>filt_len</strong> (<em>int</em>) – Length of smoothing filter (Default value = 41)</p></li>
+<li><p><strong>down_sampling</strong> (<em>int</em>) – Downsampling factor (Default value = 10)</p></li>
+<li><p><strong>w_type</strong> (<em>str</em>) – Window type of smoothing filter (Default value = ‘boxcar’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>X_smooth</strong> (<em>np.ndarray</em>) – Smoothed and downsampled feature sequence</p></li>
+<li><p><strong>Fs_feature</strong> (<em>scalar</em>) – Frame rate of <code class="docutils literal notranslate"><span class="pre">X_smooth</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c3.c3s1_transposition_tuning"></span><dl class="py function">
+<dt id="libfmp.c3.c3s1_transposition_tuning.compute_freq_distribution">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_transposition_tuning.</span></code><code class="sig-name descname"><span class="pre">compute_freq_distribution</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16384</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filt_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">101</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_transposition_tuning.html#compute_freq_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_transposition_tuning.compute_freq_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute an overall frequency distribution</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_TranspositionTuning.html">C3/C3S1_TranspositionTuning.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size (Default value = 16384)</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – Constant for logarithmic compression (Default value = 100.0)</p></li>
+<li><p><strong>local</strong> (<em>bool</em>) – Computes STFT and averages; otherwise computes global DFT (Default value = True)</p></li>
+<li><p><strong>filt</strong> (<em>bool</em>) – Applies local frequency averaging and by rectification (Default value = True)</p></li>
+<li><p><strong>filt_len</strong> (<em>int</em>) – Filter length for local frequency averaging (length given in cents) (Default value = 101)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>v</strong> (<em>np.ndarray</em>) – Vector representing an overall frequency distribution</p></li>
+<li><p><strong>F_coef_cents</strong> (<em>np.ndarray</em>) – Frequency axis (given in cents)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_transposition_tuning.cyclic_shift">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_transposition_tuning.</span></code><code class="sig-name descname"><span class="pre">cyclic_shift</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_transposition_tuning.html#cyclic_shift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_transposition_tuning.cyclic_shift" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cyclically shift a chromagram</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_TranspositionTuning.html">C3/C3S1_TranspositionTuning.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>C</strong> (<em>np.ndarray</em>) – Chromagram</p></li>
+<li><p><strong>shift</strong> (<em>int</em>) – Tranposition shift (Default value = 1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>C_shift</strong> (<em>np.ndarray</em>) – Cyclically shifted chromagram</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_transposition_tuning.plot_freq_vector_template">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_transposition_tuning.</span></code><code class="sig-name descname"><span class="pre">plot_freq_vector_template</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef_cents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_transposition_tuning.html#plot_freq_vector_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_transposition_tuning.plot_freq_vector_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots frequency distribution and similarity-maximizing template</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_TranspositionTuning.html">C3/C3S1_TranspositionTuning.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> – Vector representing an overall frequency distribution</p></li>
+<li><p><strong>F_coef_cents</strong> – Frequency axis</p></li>
+<li><p><strong>template_max</strong> – Similarity-maximizing template</p></li>
+<li><p><strong>theta_max</strong> – Maximizing tuning parameter</p></li>
+<li><p><strong>ax</strong> – Axis (in case of ax=None, figure is generated) (Default value = None)</p></li>
+<li><p><strong>title</strong> – Title of figure (or subplot) (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Size of figure (only used when ax=None) (Default value = (8, 3))</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle for figure</p></li>
+<li><p><strong>ax</strong> – Handle for axes</p></li>
+<li><p><strong>line</strong> – handle for line plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_transposition_tuning.plot_tuning_similarity">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_transposition_tuning.</span></code><code class="sig-name descname"><span class="pre">plot_tuning_similarity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(4,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_transposition_tuning.html#plot_tuning_similarity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_transposition_tuning.plot_tuning_similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots tuning similarity</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_TranspositionTuning.html">C3/C3S1_TranspositionTuning.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim</strong> – Similarity values</p></li>
+<li><p><strong>theta_axis</strong> – Axis consisting of cent values [-50:49]</p></li>
+<li><p><strong>theta_max</strong> – Maximizing tuning parameter</p></li>
+<li><p><strong>ax</strong> – Axis (in case of ax=None, figure is generated) (Default value = None)</p></li>
+<li><p><strong>title</strong> – Title of figure (or subplot) (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Size of figure (only used when ax=None) (Default value = (4, 3))</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle for figure</p></li>
+<li><p><strong>ax</strong> – Handle for axes</p></li>
+<li><p><strong>line</strong> – handle for line plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_transposition_tuning.template_comb">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_transposition_tuning.</span></code><code class="sig-name descname"><span class="pre">template_comb</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_transposition_tuning.html#template_comb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_transposition_tuning.template_comb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a comb template on a pitch axis</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_TranspositionTuning.html">C3/C3S1_TranspositionTuning.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> (<em>int</em>) – Length template (given in cents)</p></li>
+<li><p><strong>theta</strong> (<em>int</em>) – Shift parameter (given in cents); -50 &lt;= theta &lt; 50 (Default value = 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>template</strong> (<em>np.ndarray</em>) – Comb template shifted by theta</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s1_transposition_tuning.tuning_similarity">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s1_transposition_tuning.</span></code><code class="sig-name descname"><span class="pre">tuning_similarity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s1_transposition_tuning.html#tuning_similarity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s1_transposition_tuning.tuning_similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute tuning similarity</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_TranspositionTuning.html">C3/C3S1_TranspositionTuning.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>v</strong> (<em>np.ndarray</em>) – Vector representing an overall frequency distribution</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>theta_axis</strong> (<em>np.ndarray</em>) – Axis consisting of all tuning parameters -50 &lt;= theta &lt; 50</p></li>
+<li><p><strong>sim</strong> (<em>np.ndarray</em>) – Similarity values for all tuning parameters</p></li>
+<li><p><strong>ind_max</strong> (<em>int</em>) – Maximizing index</p></li>
+<li><p><strong>theta_max</strong> (<em>int</em>) – Maximizing tuning parameter</p></li>
+<li><p><strong>template_max</strong> (<em>np.ndarray</em>) – Similiarty-maximizing comb template</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c3.c3s2_dtw"></span><dl class="py function">
+<dt id="libfmp.c3.c3s2_dtw.compute_accumulated_cost_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s2_dtw.</span></code><code class="sig-name descname"><span class="pre">compute_accumulated_cost_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s2_dtw.html#compute_accumulated_cost_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s2_dtw.compute_accumulated_cost_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the accumulated cost matrix given the cost matrix</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S2_DTWbasic.html">C3/C3S2_DTWbasic.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>C</strong> (<em>np.ndarray</em>) – Cost matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated cost matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s2_dtw.compute_accumulated_cost_matrix_21">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s2_dtw.</span></code><code class="sig-name descname"><span class="pre">compute_accumulated_cost_matrix_21</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s2_dtw.html#compute_accumulated_cost_matrix_21"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s2_dtw.compute_accumulated_cost_matrix_21" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the accumulated cost matrix given the cost matrix</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S2_DTWvariants.html">C3/C3S2_DTWvariants.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>C</strong> (<em>np.ndarray</em>) – Cost matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated cost matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s2_dtw.compute_cost_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s2_dtw.</span></code><code class="sig-name descname"><span class="pre">compute_cost_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s2_dtw.html#compute_cost_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s2_dtw.compute_cost_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the cost matrix of two feature sequences</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S2_DTWbasic.html">C3/C3S2_DTWbasic.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Sequence 1</p></li>
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Sequence 2</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – Cost metric, a valid strings for scipy.spatial.distance.cdist (Default value = ‘euclidean’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>C</strong> (<em>np.ndarray</em>) – Cost matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s2_dtw.compute_optimal_warping_path">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s2_dtw.</span></code><code class="sig-name descname"><span class="pre">compute_optimal_warping_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s2_dtw.html#compute_optimal_warping_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s2_dtw.compute_optimal_warping_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the warping path given an accumulated cost matrix</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S2_DTWbasic.html">C3/C3S2_DTWbasic.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated cost matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>P</strong> (<em>np.ndarray</em>) – Optimal warping path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s2_dtw.compute_optimal_warping_path_21">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s2_dtw.</span></code><code class="sig-name descname"><span class="pre">compute_optimal_warping_path_21</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s2_dtw.html#compute_optimal_warping_path_21"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s2_dtw.compute_optimal_warping_path_21" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the warping path given an accumulated cost matrix</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S2_DTWvariants.html">C3/C3S2_DTWvariants.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated cost matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>P</strong> (<em>np.ndarray</em>) – Optimal warping path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c3.c3s2_dtw_plot"></span><dl class="py function">
+<dt id="libfmp.c3.c3s2_dtw_plot.plot_matrix_with_points">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s2_dtw_plot.</span></code><code class="sig-name descname"><span class="pre">plot_matrix_with_points</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.empty((0,</span> <span class="pre">2))</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'o'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s2_dtw_plot.html#plot_matrix_with_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s2_dtw_plot.plot_matrix_with_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the cost matrix of two feature sequences</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>C</strong> – Matrix to be plotted</p></li>
+<li><p><strong>P</strong> – List of index pairs, to be visualized on the matrix (Default value = np.empty((0, 2)))</p></li>
+<li><p><strong>color</strong> – The color of the line plot (Default value = ‘r’).
+See <a class="reference external" href="https://matplotlib.org/users/colors.html">https://matplotlib.org/users/colors.html</a></p></li>
+<li><p><strong>marker</strong> – The marker of the line plot (Default value = ‘o’).
+See <a class="reference external" href="https://matplotlib.org/3.1.0/api/markers_api.html">https://matplotlib.org/3.1.0/api/markers_api.html</a></p></li>
+<li><p><strong>linestyle</strong> – The line-style of the line plot (Default value = ‘’).
+See <a class="reference external" href="https://matplotlib.org/gallery/lines_bars_and_markers/line_styles_reference.html">https://matplotlib.org/gallery/lines_bars_and_markers/line_styles_reference.html</a></p></li>
+<li><p><strong>**kwargs</strong> – keyword arguments for <a class="reference internal" href="index_b.html#libfmp.b.b_plot.plot_matrix" title="libfmp.b.b_plot.plot_matrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_matrix()</span></code></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle for figure</p></li>
+<li><p><strong>im</strong> – Handle for imshow</p></li>
+<li><p><strong>line</strong> – handle for line plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c3.c3s3_tempo_curve"></span><dl class="py function">
+<dt id="libfmp.c3.c3s3_tempo_curve.compute_score_chromagram">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s3_tempo_curve.</span></code><code class="sig-name descname"><span class="pre">compute_score_chromagram</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_beat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s3_tempo_curve.html#compute_score_chromagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s3_tempo_curve.compute_score_chromagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute chromagram from score representation</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S3_MusicAppTempoCurve.html">C3/C3S3_MusicAppTempoCurve.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>score</strong> (<em>list</em>) – Score representation</p></li>
+<li><p><strong>Fs_beat</strong> (<em>scalar</em>) – Sampling rate for beat axis</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>X_score</strong> (<em>np.ndarray</em>) – Chromagram representation X_score</p></li>
+<li><p><strong>t_beat</strong> (<em>np.ndarray</em>) – Time axis t_beat (given in beats)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s3_tempo_curve.compute_strict_alignment_path">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s3_tempo_curve.</span></code><code class="sig-name descname"><span class="pre">compute_strict_alignment_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s3_tempo_curve.html#compute_strict_alignment_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s3_tempo_curve.compute_strict_alignment_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute strict alignment path from a warping path</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S3_MusicAppTempoCurve.html">C3/C3S3_MusicAppTempoCurve.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>P</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Warping path</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>P_mod</strong> (<em>list or np.ndarray</em>) – Strict alignment path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s3_tempo_curve.compute_strict_alignment_path_mask">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s3_tempo_curve.</span></code><code class="sig-name descname"><span class="pre">compute_strict_alignment_path_mask</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s3_tempo_curve.html#compute_strict_alignment_path_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s3_tempo_curve.compute_strict_alignment_path_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute strict alignment path from a warping path</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S3_MusicAppTempoCurve.html">C3/C3S3_MusicAppTempoCurve.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>P</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Wapring path</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>P_mod</strong> (<em>list or np.ndarray</em>) – Strict alignment path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s3_tempo_curve.compute_tempo_curve">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s3_tempo_curve.</span></code><code class="sig-name descname"><span class="pre">compute_tempo_curve</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_beat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4410</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2205</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array([[1,</span> <span class="pre">0],</span> <span class="pre">[0,</span> <span class="pre">1],</span> <span class="pre">[2,</span> <span class="pre">1],</span> <span class="pre">[1,</span> <span class="pre">2],</span> <span class="pre">[1,</span> <span class="pre">1]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_len_beat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s3_tempo_curve.html#compute_tempo_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s3_tempo_curve.compute_tempo_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a tempo curve</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S3_MusicAppTempoCurve.html">C3/C3S3_MusicAppTempoCurve.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>score</strong> (<em>list</em>) – Score representation</p></li>
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Audio signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Samping rate of audio signal (Default value = 22050)</p></li>
+<li><p><strong>Fs_beat</strong> (<em>scalar</em>) – Sampling rate for beat axis (Default value = 10)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size for computing audio chromagram (Default value = 4410)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hope size for computing audio chromagram (Default value = 2205)</p></li>
+<li><p><strong>shift</strong> (<em>int</em>) – Cyclic chroma shift applied to audio chromagram (Default value = 0)</p></li>
+<li><p><strong>sigma</strong> (<em>np.ndarray</em>) – Step size set used for DTW
+(Default value = np.array([[1, 0], [0, 1], [2, 1], [1, 2], [1, 1]]))</p></li>
+<li><p><strong>win_len_beat</strong> (<em>float</em>) – Window length (given in beats) used for smoothing tempo curve (Default value = 4)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>f_tempo</strong> (<em>np.ndarray</em>) – Tempo curve</p></li>
+<li><p><strong>t_beat</strong> (<em>np.ndarray</em>) – Time axis (given in beats)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s3_tempo_curve.plot_measure">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s3_tempo_curve.</span></code><code class="sig-name descname"><span class="pre">plot_measure</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure_pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s3_tempo_curve.html#plot_measure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s3_tempo_curve.plot_measure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot measure positions</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S3_MusicAppTempoCurve.html">C3/C3S3_MusicAppTempoCurve.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>mpl.axes.Axes</em>) – Figure axis</p></li>
+<li><p><strong>measure_pos</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Array containing measure positions</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c3.c3s3_tempo_curve.plot_tempo_curve">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c3.c3s3_tempo_curve.</span></code><code class="sig-name descname"><span class="pre">plot_tempo_curve</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_tempo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_beat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(beats)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Temp</span> <span class="pre">(BPM)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure_pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c3/c3s3_tempo_curve.html#plot_tempo_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c3.c3s3_tempo_curve.plot_tempo_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a tempo curve</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S3_MusicAppTempoCurve.html">C3/C3S3_MusicAppTempoCurve.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f_tempo</strong> – Tempo curve</p></li>
+<li><p><strong>t_beat</strong> – Time axis of tempo curve (given as sampled beat axis)</p></li>
+<li><p><strong>ax</strong> – Plot either as figure (ax==None) or into axis (ax==True) (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Size of figure (Default value = (8, 2))</p></li>
+<li><p><strong>color</strong> – Color of tempo curve (Default value = ‘k’)</p></li>
+<li><p><strong>logscale</strong> – Use linear (logscale==False) or logartihmic (logscale==True) tempo axis (Default value = False)</p></li>
+<li><p><strong>xlabel</strong> – Label for x-axis (Default value = ‘Time (beats)’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y-axis (Default value = ‘Temp (BPM)’)</p></li>
+<li><p><strong>xlim</strong> – Limits for x-axis (Default value = None)</p></li>
+<li><p><strong>ylim</strong> – Limits for x-axis (Default value = None)</p></li>
+<li><p><strong>label</strong> – Figure labels when plotting into axis (ax==True) (Default value = ‘’)</p></li>
+<li><p><strong>measure_pos</strong> – Plot measure positions as spefified (Default value = [])</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – figure handle</p></li>
+<li><p><strong>ax</strong> – axes handle</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="index_c4.html" class="btn btn-neutral float-right" title="Music Structure Analysis (libfmp.c4)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index_c2.html" class="btn btn-neutral float-left" title="Fourier Analysis of Signals (libfmp.c2)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

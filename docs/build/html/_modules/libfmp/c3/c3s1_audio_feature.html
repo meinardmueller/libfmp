@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c3.c3s1_audio_feature &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c3.c3s1_audio_feature</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c3.c3s1_audio_feature</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c3.c3s1_audio_feature</span>
+<span class="sd">Author: Frank Zalkow, Meinard Müller</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+
+
+<div class="viewcode-block" id="f_pitch"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_audio_feature.f_pitch">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f_pitch</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">pitch_ref</span><span class="o">=</span><span class="mi">69</span><span class="p">,</span> <span class="n">freq_ref</span><span class="o">=</span><span class="mf">440.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the center frequency/ies of a MIDI pitch</span>
+
+<span class="sd">    Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        p (float): MIDI pitch value(s)</span>
+<span class="sd">        pitch_ref (float): Reference pitch (default: 69)</span>
+<span class="sd">        freq_ref (float): Frequency of reference pitch (default: 440.0)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        freqs (float): Frequency value(s)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">((</span><span class="n">p</span> <span class="o">-</span> <span class="n">pitch_ref</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span> <span class="o">*</span> <span class="n">freq_ref</span></div>
+
+
+<div class="viewcode-block" id="pool_pitch"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_audio_feature.pool_pitch">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">pool_pitch</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">pitch_ref</span><span class="o">=</span><span class="mi">69</span><span class="p">,</span> <span class="n">freq_ref</span><span class="o">=</span><span class="mf">440.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the set of frequency indices that are assigned to a given pitch</span>
+
+<span class="sd">    Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        p (float): MIDI pitch value</span>
+<span class="sd">        Fs (scalar): Sampling rate</span>
+<span class="sd">        N (int): Window size of Fourier fransform</span>
+<span class="sd">        pitch_ref (float): Reference pitch (default: 69)</span>
+<span class="sd">        freq_ref (float): Frequency of reference pitch (default: 440.0)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        k (np.ndarray): Set of frequency indices</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lower</span> <span class="o">=</span> <span class="n">f_pitch</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">pitch_ref</span><span class="p">,</span> <span class="n">freq_ref</span><span class="p">)</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="n">f_pitch</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">pitch_ref</span><span class="p">,</span> <span class="n">freq_ref</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">k_freq</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">N</span>  <span class="c1"># F_coef(k, Fs, N)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">lower</span> <span class="o">&lt;=</span> <span class="n">k_freq</span><span class="p">,</span> <span class="n">k_freq</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">k</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="compute_spec_log_freq"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_audio_feature.compute_spec_log_freq">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_spec_log_freq</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes a log-frequency spectrogram</span>
+
+<span class="sd">    Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        Y (np.ndarray): Magnitude or power spectrogram</span>
+<span class="sd">        Fs (scalar): Sampling rate</span>
+<span class="sd">        N (int): Window size of Fourier fransform</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Y_LF (np.ndarray): Log-frequency spectrogram</span>
+<span class="sd">        F_coef_pitch (np.ndarray): Pitch values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Y_LF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">128</span><span class="p">,</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">128</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">pool_pitch</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+        <span class="n">Y_LF</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">F_coef_pitch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Y_LF</span><span class="p">,</span> <span class="n">F_coef_pitch</span></div>
+
+
+<div class="viewcode-block" id="compute_chromagram"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_audio_feature.compute_chromagram">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_chromagram</span><span class="p">(</span><span class="n">Y_LF</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes a chromagram</span>
+
+<span class="sd">    Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        Y_LF (np.ndarray): Log-frequency spectrogram</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        C (np.ndarray): Chromagram</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span> <span class="n">Y_LF</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">%</span> <span class="mi">12</span><span class="p">)</span> <span class="o">==</span> <span class="n">c</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Y_LF</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">C</span></div>
+
+
+<div class="viewcode-block" id="note_name"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_audio_feature.note_name">[docs]</a><span class="k">def</span> <span class="nf">note_name</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns note name of pitch</span>
+
+<span class="sd">    Notebook: C3/C3S1_SpecLogFreq-Chromagram.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        p (int): Pitch value</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        name (str): Note name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">chroma</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A$^</span><span class="se">\\</span><span class="s1">sharp$&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C$^</span><span class="se">\\</span><span class="s1">sharp$&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D$^</span><span class="se">\\</span><span class="s1">sharp$&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;F$^</span><span class="se">\\</span><span class="s1">sharp$&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;G$^</span><span class="se">\\</span><span class="s1">sharp$&#39;</span><span class="p">]</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">chroma</span><span class="p">[(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">69</span><span class="p">)</span> <span class="o">%</span> <span class="mi">12</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span> <span class="o">//</span> <span class="mi">12</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">name</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

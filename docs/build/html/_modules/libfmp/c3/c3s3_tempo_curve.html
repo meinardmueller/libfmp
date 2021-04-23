@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c3.c3s3_tempo_curve &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c3.c3s3_tempo_curve</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c3.c3s3_tempo_curve</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c3.c3s3_tempo_curve</span>
+<span class="sd">Author: Meinard Müller, Frank Zalkow</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">ScalarFormatter</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">import</span> <span class="nn">scipy.ndimage.filters</span>
+
+<span class="kn">import</span> <span class="nn">libfmp.c3</span>
+
+
+<div class="viewcode-block" id="compute_score_chromagram"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s3_tempo_curve.compute_score_chromagram">[docs]</a><span class="k">def</span> <span class="nf">compute_score_chromagram</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">Fs_beat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute chromagram from score representation</span>
+
+<span class="sd">    Notebook: C3/C3S3_MusicAppTempoCurve.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        score (list): Score representation</span>
+<span class="sd">        Fs_beat (scalar): Sampling rate for beat axis</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        X_score (np.ndarray): Chromagram representation X_score</span>
+<span class="sd">        t_beat (np.ndarray): Time axis t_beat (given in beats)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">score_beat_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">score</span><span class="p">)</span>
+    <span class="n">score_beat_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">score</span><span class="p">)</span>
+    <span class="n">beat_res</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">Fs_beat</span>
+    <span class="n">t_beat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">score_beat_min</span><span class="p">,</span> <span class="n">score_beat_max</span><span class="p">,</span> <span class="n">beat_res</span><span class="p">)</span>
+    <span class="n">X_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t_beat</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">score</span><span class="p">:</span>
+        <span class="n">start_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">start</span> <span class="o">/</span> <span class="n">beat_res</span><span class="p">))</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">start</span> <span class="o">+</span> <span class="n">duration</span><span class="p">)</span> <span class="o">/</span> <span class="n">beat_res</span><span class="p">))</span>
+        <span class="n">cur_chroma</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">pitch</span><span class="p">))</span> <span class="o">%</span> <span class="mi">12</span>
+        <span class="n">X_score</span><span class="p">[</span><span class="n">cur_chroma</span><span class="p">,</span> <span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">velocity</span>
+
+    <span class="n">X_score</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">X_score</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X_score</span><span class="p">,</span> <span class="n">t_beat</span></div>
+
+
+<div class="viewcode-block" id="plot_measure"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s3_tempo_curve.plot_measure">[docs]</a><span class="k">def</span> <span class="nf">plot_measure</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">measure_pos</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot measure positions</span>
+
+<span class="sd">    Notebook: C3/C3S3_MusicAppTempoCurve.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ax (mpl.axes.Axes): Figure axis</span>
+<span class="sd">        measure_pos (list or np.ndarray): Array containing measure positions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">measure_pos</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">measure_pos</span><span class="p">)):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">measure_pos</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">y_max</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;mistyrose&#39;</span><span class="p">,</span>
+                <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="compute_strict_alignment_path"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s3_tempo_curve.compute_strict_alignment_path">[docs]</a><span class="k">def</span> <span class="nf">compute_strict_alignment_path</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute strict alignment path from a warping path</span>
+
+<span class="sd">    Notebook: C3/C3S3_MusicAppTempoCurve.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        P (list or np.ndarray): Warping path</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        P_mod (list or np.ndarray): Strict alignment path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Initialize P_mod and enforce start boundary condition</span>
+    <span class="n">P_mod</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">P_mod</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># Go through all cells of P until reaching last row or column</span>
+    <span class="k">assert</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">M</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Length of sequences must be longer than one.&#39;</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">n1</span><span class="p">,</span> <span class="n">m1</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">n2</span><span class="p">,</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">n2</span> <span class="o">==</span> <span class="n">N</span> <span class="ow">or</span> <span class="n">m2</span> <span class="o">==</span> <span class="n">M</span><span class="p">:</span>
+            <span class="c1"># If last row or column is reached, quit loop</span>
+            <span class="k">break</span>
+        <span class="k">if</span> <span class="n">n2</span> <span class="o">&gt;</span> <span class="n">n1</span> <span class="ow">and</span> <span class="n">m2</span> <span class="o">&gt;</span> <span class="n">m1</span><span class="p">:</span>
+            <span class="c1"># Strict monotonicity condition is fulfuilled</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">P_mod</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">n2</span><span class="p">,</span> <span class="n">m2</span>
+            <span class="n">n1</span><span class="p">,</span> <span class="n">m1</span> <span class="o">=</span> <span class="n">n2</span><span class="p">,</span> <span class="n">m2</span>
+    <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># Enforce end boundary condition</span>
+    <span class="n">P_mod</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">P_mod</span> <span class="o">=</span> <span class="n">P_mod</span><span class="p">[:</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">P_mod</span></div>
+
+
+<div class="viewcode-block" id="compute_strict_alignment_path_mask"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s3_tempo_curve.compute_strict_alignment_path_mask">[docs]</a><span class="k">def</span> <span class="nf">compute_strict_alignment_path_mask</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute strict alignment path from a warping path</span>
+
+<span class="sd">    Notebook: C3/C3S3_MusicAppTempoCurve.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        P (list or np.ndarray): Wapring path</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        P_mod (list or np.ndarray): Strict alignment path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># Get indices for strict monotonicity</span>
+    <span class="n">keep_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">P</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">P</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="c1"># Add first index to enforce start boundary condition</span>
+    <span class="n">keep_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="kc">True</span><span class="p">],</span> <span class="n">keep_mask</span><span class="p">))</span>
+    <span class="c1"># Remove all indices for of last row or column</span>
+    <span class="n">keep_mask</span><span class="p">[(</span><span class="n">P</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">N</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">P</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">M</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="c1"># Add last index to enforce end boundary condition</span>
+    <span class="n">keep_mask</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">P_mod</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">keep_mask</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="k">return</span> <span class="n">P_mod</span></div>
+
+
+<div class="viewcode-block" id="plot_tempo_curve"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s3_tempo_curve.plot_tempo_curve">[docs]</a><span class="k">def</span> <span class="nf">plot_tempo_curve</span><span class="p">(</span><span class="n">f_tempo</span><span class="p">,</span> <span class="n">t_beat</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">logscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                     <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (beats)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Temp (BPM)&#39;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">measure_pos</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="sd">&quot;&quot;&quot;Plot a tempo curve</span>
+
+<span class="sd">    Notebook: C3/C3S3_MusicAppTempoCurve.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        f_tempo: Tempo curve</span>
+<span class="sd">        t_beat: Time axis of tempo curve (given as sampled beat axis)</span>
+<span class="sd">        ax: Plot either as figure (ax==None) or into axis (ax==True) (Default value = None)</span>
+<span class="sd">        figsize: Size of figure (Default value = (8, 2))</span>
+<span class="sd">        color: Color of tempo curve (Default value = &#39;k&#39;)</span>
+<span class="sd">        logscale: Use linear (logscale==False) or logartihmic (logscale==True) tempo axis (Default value = False)</span>
+<span class="sd">        xlabel: Label for x-axis (Default value = &#39;Time (beats)&#39;)</span>
+<span class="sd">        ylabel: Label for y-axis (Default value = &#39;Temp (BPM)&#39;)</span>
+<span class="sd">        xlim: Limits for x-axis (Default value = None)</span>
+<span class="sd">        ylim: Limits for x-axis (Default value = None)</span>
+<span class="sd">        label: Figure labels when plotting into axis (ax==True) (Default value = &#39;&#39;)</span>
+<span class="sd">        measure_pos: Plot measure positions as spefified (Default value = [])</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: figure handle</span>
+<span class="sd">        ax: axes handle</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_beat</span><span class="p">,</span> <span class="n">f_tempo</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Tempo curve&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">xlim</span> <span class="o">=</span> <span class="p">[</span><span class="n">t_beat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t_beat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ylim</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">f_tempo</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">f_tempo</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (beats)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Tempo (BPM)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">logscale</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ScalarFormatter</span><span class="p">())</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">ScalarFormatter</span><span class="p">())</span>
+        <span class="c1"># ax.set_yticks([], minor=True)</span>
+        <span class="c1"># yticks = np.arange(ylim[0], ylim[1]+1, 10)</span>
+        <span class="c1"># ax.set_yticks(yticks)</span>
+    <span class="n">plot_measure</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">measure_pos</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="compute_tempo_curve"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s3_tempo_curve.compute_tempo_curve">[docs]</a><span class="k">def</span> <span class="nf">compute_tempo_curve</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">Fs_beat</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">4410</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">2205</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                        <span class="n">sigma</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+                        <span class="n">win_len_beat</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute a tempo curve</span>
+
+<span class="sd">    Notebook: C3/C3S3_MusicAppTempoCurve.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        score (list): Score representation</span>
+<span class="sd">        x (np.ndarray): Audio signal</span>
+<span class="sd">        Fs (scalar): Samping rate of audio signal (Default value = 22050)</span>
+<span class="sd">        Fs_beat (scalar): Sampling rate for beat axis (Default value = 10)</span>
+<span class="sd">        N (int): Window size for computing audio chromagram (Default value = 4410)</span>
+<span class="sd">        H (int): Hope size for computing audio chromagram (Default value = 2205)</span>
+<span class="sd">        shift (int): Cyclic chroma shift applied to audio chromagram (Default value = 0)</span>
+<span class="sd">        sigma (np.ndarray): Step size set used for DTW</span>
+<span class="sd">            (Default value = np.array([[1, 0], [0, 1], [2, 1], [1, 2], [1, 1]]))</span>
+<span class="sd">        win_len_beat (float): Window length (given in beats) used for smoothing tempo curve (Default value = 4)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        f_tempo (np.ndarray): Tempo curve</span>
+<span class="sd">        t_beat (np.ndarray): Time axis (given in beats)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Compute score an audio chromagram</span>
+    <span class="n">X_score</span><span class="p">,</span> <span class="n">t_beat</span> <span class="o">=</span> <span class="n">compute_score_chromagram</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">Fs_beat</span><span class="p">)</span>
+    <span class="n">Fs_X</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">H</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">chroma_stft</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Apply DTW to compte C, D, P</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">compute_cost_matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X_score</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+    <span class="n">D</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">dtw</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">,</span> <span class="n">step_sizes_sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">P</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># reverse P</span>
+    <span class="n">P_mod</span> <span class="o">=</span> <span class="n">compute_strict_alignment_path</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+
+    <span class="c1"># Convert path into beat-time function and interpolte</span>
+    <span class="n">t_path_beat</span> <span class="o">=</span> <span class="n">P_mod</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">Fs_beat</span>
+    <span class="n">f_path_sec</span> <span class="o">=</span> <span class="n">P_mod</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">Fs_X</span>
+    <span class="n">f_sec</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">t_path_beat</span><span class="p">,</span> <span class="n">f_path_sec</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;extrapolate&#39;</span><span class="p">)(</span><span class="n">t_beat</span><span class="p">)</span>
+
+    <span class="c1"># Compute difference and smooth with Hann window</span>
+    <span class="n">f_diff_sec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f_sec</span><span class="p">)</span> <span class="o">*</span> <span class="n">Fs_beat</span>
+    <span class="n">pad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f_diff_sec</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">f_diff_sec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">f_diff_sec</span><span class="p">,</span> <span class="n">pad</span><span class="p">))</span>
+    <span class="c1"># f_diff_sec = np.concatenate((f_diff_sec, np.array([0]) ))</span>
+    <span class="n">filt_len</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">win_len_beat</span> <span class="o">*</span> <span class="n">Fs_beat</span><span class="p">)</span>
+    <span class="n">filt_win</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="n">filt_len</span><span class="p">)</span>
+    <span class="n">filt_win</span> <span class="o">=</span> <span class="n">filt_win</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">filt_win</span><span class="p">)</span>
+    <span class="n">f_diff_smooth_sec</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">ndimage</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">f_diff_sec</span><span class="p">,</span> <span class="n">filt_win</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;reflect&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Compute tempo curve</span>
+    <span class="n">f_tempo</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">f_diff_smooth_sec</span> <span class="o">*</span> <span class="mi">60</span>
+
+    <span class="k">return</span> <span class="n">f_tempo</span><span class="p">,</span> <span class="n">t_beat</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

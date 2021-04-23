@@ -1,0 +1,526 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c6.c6s1_onset_detection &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c6.c6s1_onset_detection</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c6.c6s1_onset_detection</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c6.c6s1_onset_detection</span>
+<span class="sd">Author: Meinard Müller, Angel Villar-Corrales</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">import</span> <span class="nn">libfmp.b</span>
+
+
+<div class="viewcode-block" id="read_annotation_pos"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.read_annotation_pos">[docs]</a><span class="k">def</span> <span class="nf">read_annotation_pos</span><span class="p">(</span><span class="n">fn_ann</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">print_table</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Read and convert file containing either list of pairs (number,label) or list of (number)</span>
+
+<span class="sd">    Notebook: C6/C6S1_OnsetDetection.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_ann (str): Name of file</span>
+<span class="sd">        label (str): Name of label (Default value = &#39;&#39;)</span>
+<span class="sd">        header (bool): Assumes header (True) or not (False) (Default value = True)</span>
+<span class="sd">        print_table (bool): Prints table if True (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ann (list): List of annotations</span>
+<span class="sd">        label_keys (dict): Dictionaries specifying color and line style used for labels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fn_ann</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">print_table</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">num_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">num_col</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+    <span class="n">ann</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="n">label_keys</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;beat&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;r&#39;</span><span class="p">},</span>
+                  <span class="s1">&#39;onset&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;r&#39;</span><span class="p">}}</span>
+    <span class="k">return</span> <span class="n">ann</span><span class="p">,</span> <span class="n">label_keys</span></div>
+
+
+<div class="viewcode-block" id="compute_novelty_energy"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.compute_novelty_energy">[docs]</a><span class="k">def</span> <span class="nf">compute_novelty_energy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute energy-based novelty function</span>
+
+<span class="sd">    Notebook: C6/C6S1_NoveltyEnergy.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Signal</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 1)</span>
+<span class="sd">        N (int): Window size (Default value = 2048)</span>
+<span class="sd">        H (int): Hope size (Default value = 128)</span>
+<span class="sd">        gamma (float): Parameter for logarithmic compression (Default value = 10.0)</span>
+<span class="sd">        norm (bool): Apply max norm (if norm==True) (Default value = True)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        novelty_energy (np.ndarray): Energy-based novelty function</span>
+<span class="sd">        Fs_feature (scalar): Feature rate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># x_power = x**2</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">Fs_feature</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">H</span>
+    <span class="n">energy_local</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;same&#39;</span><span class="p">)</span>
+    <span class="n">energy_local</span> <span class="o">=</span> <span class="n">energy_local</span><span class="p">[::</span><span class="n">H</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">gamma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">energy_local</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">energy_local</span><span class="p">)</span>
+    <span class="n">energy_local_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">energy_local</span><span class="p">)</span>
+    <span class="n">energy_local_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">energy_local_diff</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">])))</span>
+    <span class="n">novelty_energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">energy_local_diff</span><span class="p">)</span>
+    <span class="n">novelty_energy</span><span class="p">[</span><span class="n">energy_local_diff</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">novelty_energy</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">novelty_energy</span> <span class="o">=</span> <span class="n">novelty_energy</span> <span class="o">/</span> <span class="n">max_value</span>
+    <span class="k">return</span> <span class="n">novelty_energy</span><span class="p">,</span> <span class="n">Fs_feature</span></div>
+
+
+<div class="viewcode-block" id="compute_local_average"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.compute_local_average">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_local_average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute local average of signal</span>
+
+<span class="sd">    Notebook: C6/C6S1_NoveltySpectral.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Signal</span>
+<span class="sd">        M (int): Determines size (2M+1) in samples of centric window  used for local average</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        local_average (np.ndarray): Local average signal</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">local_average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">M</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="n">M</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+        <span class="n">local_average</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">M</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">a</span><span class="p">:</span><span class="n">b</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">local_average</span></div>
+
+
+<div class="viewcode-block" id="compute_novelty_spectrum"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.compute_novelty_spectrum">[docs]</a><span class="k">def</span> <span class="nf">compute_novelty_spectrum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute spectral-based novelty function</span>
+
+<span class="sd">    Notebook: C6/C6S1_NoveltySpectral.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Signal</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 1)</span>
+<span class="sd">        N (int): Window size (Default value = 1024)</span>
+<span class="sd">        H (int): Hope size (Default value = 256)</span>
+<span class="sd">        gamma (float): Parameter for logarithmic compression (Default value = 100.0)</span>
+<span class="sd">        M (int): Size (frames) of local average (Default value = 10)</span>
+<span class="sd">        norm (bool): Apply max norm (if norm==True) (Default value = True)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        novelty_spectrum (np.ndarray): Energy-based novelty function</span>
+<span class="sd">        Fs_feature (scalar): Feature rate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hanning&#39;</span><span class="p">)</span>
+    <span class="n">Fs_feature</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">H</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+    <span class="n">Y_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+    <span class="n">Y_diff</span><span class="p">[</span><span class="n">Y_diff</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">novelty_spectrum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y_diff</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">novelty_spectrum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">novelty_spectrum</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">])))</span>
+    <span class="k">if</span> <span class="n">M</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">local_average</span> <span class="o">=</span> <span class="n">compute_local_average</span><span class="p">(</span><span class="n">novelty_spectrum</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+        <span class="n">novelty_spectrum</span> <span class="o">=</span> <span class="n">novelty_spectrum</span> <span class="o">-</span> <span class="n">local_average</span>
+        <span class="n">novelty_spectrum</span><span class="p">[</span><span class="n">novelty_spectrum</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">novelty_spectrum</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">novelty_spectrum</span> <span class="o">=</span> <span class="n">novelty_spectrum</span> <span class="o">/</span> <span class="n">max_value</span>
+    <span class="k">return</span> <span class="n">novelty_spectrum</span><span class="p">,</span> <span class="n">Fs_feature</span></div>
+
+
+<div class="viewcode-block" id="principal_argument"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.principal_argument">[docs]</a><span class="k">def</span> <span class="nf">principal_argument</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Principal argument function</span>
+
+<span class="sd">    | Notebook: C6/C6S1_NoveltyPhase.ipynb, see also</span>
+<span class="sd">    | Notebook: C8/C8S2_InstantFreqEstimation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        v (float or np.ndarray): Value (or vector of values)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        w (float or np.ndarray): Principle value of v</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">v</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
+    <span class="k">return</span> <span class="n">w</span></div>
+
+
+<div class="viewcode-block" id="compute_novelty_phase"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.compute_novelty_phase">[docs]</a><span class="k">def</span> <span class="nf">compute_novelty_phase</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute phase-based novelty function</span>
+
+<span class="sd">    Notebook: C6/C6S1_NoveltyPhase.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Signal</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 1)</span>
+<span class="sd">        N (int): Window size (Default value = 1024)</span>
+<span class="sd">        H (int): Hop size (Default value = 64)</span>
+<span class="sd">        M (int): Determines size (2M+1) in samples of centric window  used for local average (Default value = 40)</span>
+<span class="sd">        norm (bool): Apply max norm (if norm==True) (Default value = True)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        novelty_phase (np.ndarray): Energy-based novelty function</span>
+<span class="sd">        Fs_feature (scalar): Feature rate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hanning&#39;</span><span class="p">)</span>
+    <span class="n">Fs_feature</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">H</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">phase_diff</span> <span class="o">=</span> <span class="n">principal_argument</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phase</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">phase_diff2</span> <span class="o">=</span> <span class="n">principal_argument</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phase_diff</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">novelty_phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">phase_diff2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">novelty_phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">novelty_phase</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])))</span>
+    <span class="k">if</span> <span class="n">M</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">local_average</span> <span class="o">=</span> <span class="n">compute_local_average</span><span class="p">(</span><span class="n">novelty_phase</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+        <span class="n">novelty_phase</span> <span class="o">=</span> <span class="n">novelty_phase</span> <span class="o">-</span> <span class="n">local_average</span>
+        <span class="n">novelty_phase</span><span class="p">[</span><span class="n">novelty_phase</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">novelty_phase</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">novelty_phase</span> <span class="o">=</span> <span class="n">novelty_phase</span> <span class="o">/</span> <span class="n">max_value</span>
+    <span class="k">return</span> <span class="n">novelty_phase</span><span class="p">,</span> <span class="n">Fs_feature</span></div>
+
+
+<div class="viewcode-block" id="compute_novelty_complex"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.compute_novelty_complex">[docs]</a><span class="k">def</span> <span class="nf">compute_novelty_complex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute complex-domain novelty function</span>
+
+<span class="sd">    Notebook: C6/C6S1_NoveltyComplex.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Signal</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 1)</span>
+<span class="sd">        N (int): Window size (Default value = 1024)</span>
+<span class="sd">        H (int): Hop size (Default value = 64)</span>
+<span class="sd">        gamma (float): Parameter for logarithmic compression (Default value = 10.0)</span>
+<span class="sd">        M (int): Determines size (2M+1) in samples of centric window used for local average (Default value = 40)</span>
+<span class="sd">        norm (bool): Apply max norm (if norm==True) (Default value = True)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        novelty_complex (np.ndarray): Energy-based novelty function</span>
+<span class="sd">        Fs_feature (scalar): Feature rate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hanning&#39;</span><span class="p">)</span>
+    <span class="n">Fs_feature</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">H</span>
+    <span class="n">mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">gamma</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">mag</span><span class="p">)</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">phase_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phase</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">phase_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">phase_diff</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">phase</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">X_hat</span> <span class="o">=</span> <span class="n">mag</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">phase</span><span class="o">+</span><span class="n">phase_diff</span><span class="p">))</span>
+    <span class="n">X_prime</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_hat</span> <span class="o">-</span> <span class="n">X</span><span class="p">)</span>
+    <span class="n">X_plus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">X_prime</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mag</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&lt;</span> <span class="n">mag</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
+        <span class="n">X_plus</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">novelty_complex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X_plus</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">M</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">local_average</span> <span class="o">=</span> <span class="n">compute_local_average</span><span class="p">(</span><span class="n">novelty_complex</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+        <span class="n">novelty_complex</span> <span class="o">=</span> <span class="n">novelty_complex</span> <span class="o">-</span> <span class="n">local_average</span>
+        <span class="n">novelty_complex</span><span class="p">[</span><span class="n">novelty_complex</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">novelty_complex</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">novelty_complex</span> <span class="o">=</span> <span class="n">novelty_complex</span> <span class="o">/</span> <span class="n">max_value</span>
+    <span class="k">return</span> <span class="n">novelty_complex</span><span class="p">,</span> <span class="n">Fs_feature</span></div>
+
+
+<div class="viewcode-block" id="resample_signal"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.resample_signal">[docs]</a><span class="k">def</span> <span class="nf">resample_signal</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span> <span class="n">Fs_in</span><span class="p">,</span> <span class="n">Fs_out</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">time_max_sec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Resample and smooth signal</span>
+
+<span class="sd">    Notebook: C6/C6S1_NoveltyComparison.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x_in (np.ndarray): Input signal</span>
+<span class="sd">        Fs_in (scalar): Sampling rate of input signal</span>
+<span class="sd">        Fs_out (scalar): Sampling rate of output signal (Default value = 100)</span>
+<span class="sd">        norm (bool): Apply max norm (if norm==True) (Default value = True)</span>
+<span class="sd">        time_max_sec (float): Duration of output signal (given in seconds) (Default value = None)</span>
+<span class="sd">        sigma (float): Standard deviation for smoothing Gaussian kernel (Default value = None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x_out (np.ndarray): Output signal</span>
+<span class="sd">        Fs_out (scalar): Feature rate of output signal</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">x_in</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="n">T_coef_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_in</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">Fs_in</span>
+    <span class="n">time_in_max_sec</span> <span class="o">=</span> <span class="n">T_coef_in</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">time_max_sec</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">time_max_sec</span> <span class="o">=</span> <span class="n">time_in_max_sec</span>
+    <span class="n">N_out</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">time_max_sec</span><span class="o">*</span><span class="n">Fs_out</span><span class="p">))</span>
+    <span class="n">T_coef_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N_out</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs_out</span>
+    <span class="k">if</span> <span class="n">T_coef_out</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">time_in_max_sec</span><span class="p">:</span>
+        <span class="n">x_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">T_coef_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T_coef_in</span><span class="p">,</span> <span class="p">[</span><span class="n">T_coef_out</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">x_out</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">T_coef_in</span><span class="p">,</span> <span class="n">x_in</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)(</span><span class="n">T_coef_out</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>
+        <span class="n">x_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x_out</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x_max</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">x_out</span> <span class="o">=</span> <span class="n">x_out</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">x_out</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x_out</span><span class="p">,</span> <span class="n">Fs_out</span></div>
+
+
+<div class="viewcode-block" id="average_nov_dic"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.average_nov_dic">[docs]</a><span class="k">def</span> <span class="nf">average_nov_dic</span><span class="p">(</span><span class="n">nov_dic</span><span class="p">,</span> <span class="n">time_max_sec</span><span class="p">,</span> <span class="n">Fs_out</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Average respamples set of novelty functions</span>
+
+<span class="sd">    Notebook: C6/C6S1_NoveltyComparison.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nov_dic (dict): Dictionary of novelty functions</span>
+<span class="sd">        time_max_sec (float): Duration of output signals (given in seconds)</span>
+<span class="sd">        Fs_out (scalar): Sampling rate of output signal (Default value = 100)</span>
+<span class="sd">        norm (bool): Apply max norm (if norm==True) (Default value = True)</span>
+<span class="sd">        sigma (float): Standard deviation for smoothing Gaussian kernel (Default value = None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        nov_matrix (np.ndarray): Matrix containing resampled output signal (last one is average)</span>
+<span class="sd">        Fs_out (scalar): Sampling rate of output signals</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nov_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nov_dic</span><span class="p">)</span>
+    <span class="n">N_out</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">time_max_sec</span><span class="o">*</span><span class="n">Fs_out</span><span class="p">))</span>
+    <span class="n">nov_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">nov_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N_out</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nov_num</span><span class="p">):</span>
+        <span class="n">nov</span> <span class="o">=</span> <span class="n">nov_dic</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">Fs_nov</span> <span class="o">=</span> <span class="n">nov_dic</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">nov_out</span><span class="p">,</span> <span class="n">Fs_out</span> <span class="o">=</span> <span class="n">resample_signal</span><span class="p">(</span><span class="n">nov</span><span class="p">,</span> <span class="n">Fs_in</span><span class="o">=</span><span class="n">Fs_nov</span><span class="p">,</span> <span class="n">Fs_out</span><span class="o">=</span><span class="n">Fs_out</span><span class="p">,</span>
+                                          <span class="n">time_max_sec</span><span class="o">=</span><span class="n">time_max_sec</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="n">nov_matrix</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">nov_out</span>
+    <span class="n">nov_average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">nov_matrix</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="n">nov_num</span>
+    <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">nov_average</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">nov_average</span> <span class="o">=</span> <span class="n">nov_average</span> <span class="o">/</span> <span class="n">max_value</span>
+    <span class="n">nov_matrix</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">nov_average</span>
+    <span class="k">return</span> <span class="n">nov_matrix</span><span class="p">,</span> <span class="n">Fs_out</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

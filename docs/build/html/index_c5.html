@@ -1,0 +1,728 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chord Recognition (libfmp.c5) &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tempo and Beat Tracking (libfmp.c6)" href="index_c6.html" />
+    <link rel="prev" title="Music Structure Analysis (libfmp.c4)" href="index_c4.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Chord Recognition (libfmp.c5)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index_c5.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chord-recognition-libfmp-c5">
+<h1>Chord Recognition (libfmp.c5)<a class="headerlink" href="#chord-recognition-libfmp-c5" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://www.audiolabs-erlangen.de/FMP">FMP notebooks</a> provide detailed textbook-like explanations of central techniques and algorithms implemented in the libfmp.
+The part of FMP related to this module is available at the following URL:</p>
+<p><a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5.html">https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5.html</a></p>
+<span class="target" id="module-libfmp.c5"></span><span class="target" id="module-libfmp.c5.c5s1_basic_theory_harmony"></span><dl class="py function">
+<dt id="libfmp.c5.c5s1_basic_theory_harmony.generate_sinusoid_chord">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s1_basic_theory_harmony.</span></code><code class="sig-name descname"><span class="pre">generate_sinusoid_chord</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[69]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s1_basic_theory_harmony.html#generate_sinusoid_chord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s1_basic_theory_harmony.generate_sinusoid_chord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate synthetic sound of chord using sinusoids</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S1_Chords.html">C5/C5S1_Chords.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pitches</strong> (<em>list</em>) – List of pitches (MIDI note numbers) (Default value = [69])</p></li>
+<li><p><strong>duration</strong> (<em>float</em>) – Duration (seconds) (Default value = 1)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 4000)</p></li>
+<li><p><strong>amplitude_max</strong> (<em>float</em>) – Amplitude (Default value = 0.5)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>x</strong> (<em>np.ndarray</em>) – Synthesized signal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s1_basic_theory_harmony.generate_sinusoid_scale">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s1_basic_theory_harmony.</span></code><code class="sig-name descname"><span class="pre">generate_sinusoid_scale</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[69]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s1_basic_theory_harmony.html#generate_sinusoid_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s1_basic_theory_harmony.generate_sinusoid_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate synthetic sound of scale using sinusoids</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S1_Scales_CircleFifth.html">C5/C5S1_Scales_CircleFifth.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pitches</strong> (<em>list</em>) – List of pitchs (MIDI note numbers) (Default value = [69])</p></li>
+<li><p><strong>duration</strong> (<em>float</em>) – Duration (seconds) (Default value = 0.5)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 4000)</p></li>
+<li><p><strong>amplitude_max</strong> (<em>float</em>) – Amplitude (Default value = 0.5)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>x</strong> (<em>np.ndarray</em>) – Synthesized signal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c5.c5s2_chord_rec_template"></span><dl class="py function">
+<dt id="libfmp.c5.c5s2_chord_rec_template.chord_recognition_template">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s2_chord_rec_template.</span></code><code class="sig-name descname"><span class="pre">chord_recognition_template</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm_sim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonchord</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s2_chord_rec_template.html#chord_recognition_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s2_chord_rec_template.chord_recognition_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conducts template-based chord recognition
+with major and minor triads (and possibly nonchord)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S2_ChordRec_Templates.html">C5/C5S2_ChordRec_Templates.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Chromagram</p></li>
+<li><p><strong>norm_sim</strong> (<em>str</em>) – Specifies norm used for normalizing chord similarity matrix (Default value = ‘1’)</p></li>
+<li><p><strong>nonchord</strong> (<em>bool</em>) – If “True” then add nonchord template (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>chord_sim</strong> (<em>np.ndarray</em>) – Chord similarity matrix</p></li>
+<li><p><strong>chord_max</strong> (<em>np.ndarray</em>) – Binarized chord similarity matrix only containing maximizing chord</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s2_chord_rec_template.compute_chromagram_from_filename">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s2_chord_rec_template.</span></code><code class="sig-name descname"><span class="pre">compute_chromagram_from_filename</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_wav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4096</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'STFT'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s2_chord_rec_template.html#compute_chromagram_from_filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s2_chord_rec_template.compute_chromagram_from_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute chromagram for WAV file specified by filename</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S2_ChordRec_Templates.html">C5/C5S2_ChordRec_Templates.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_wav</strong> (<em>str</em>) – Filenname of WAV</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 22050)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size (Default value = 4096)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size (Default value = 2048)</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – Constant for logarithmic compression (Default value = None)</p></li>
+<li><p><strong>version</strong> (<em>str</em>) – Technique used for front-end decomposition (‘STFT’, ‘IIS’, ‘CQT’) (Default value = ‘STFT’)</p></li>
+<li><p><strong>norm</strong> (<em>str</em>) – If not ‘None’, chroma vectors are normalized by norm as specified (‘1’, ‘2’, ‘max’)
+(Default value = ‘2’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Chromagram</p></li>
+<li><p><strong>Fs_X</strong> (<em>scalar</em>) – Feature reate of chromagram</p></li>
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Audio signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate of audio signal</p></li>
+<li><p><strong>x_dur</strong> (<em>float</em>) – Duration (seconds) of audio signal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s2_chord_rec_template.compute_eval_measures">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s2_chord_rec_template.</span></code><code class="sig-name descname"><span class="pre">compute_eval_measures</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">I_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I_est</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s2_chord_rec_template.html#compute_eval_measures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s2_chord_rec_template.compute_eval_measures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute evaluation measures including precision, recall, and F-measure</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S2_ChordRec_Eval.html">C5/C5S2_ChordRec_Eval.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>I_ref</strong> (<em>np.ndarray</em>) – Reference set of items</p></li>
+<li><p><strong>I_est</strong> (<em>np.ndarray</em>) – Set of estimated items</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>P</strong> (<em>float</em>) – Precision</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Recall</p></li>
+<li><p><strong>F</strong> (<em>float</em>) – F-measure</p></li>
+<li><p><strong>num_TP</strong> (<em>int</em>) – Number of true positives</p></li>
+<li><p><strong>num_FN</strong> (<em>int</em>) – Number of false negatives</p></li>
+<li><p><strong>num_FP</strong> (<em>int</em>) – Number of false positives</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s2_chord_rec_template.convert_chord_ann_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s2_chord_rec_template.</span></code><code class="sig-name descname"><span class="pre">convert_chord_ann_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chord_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s2_chord_rec_template.html#convert_chord_ann_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s2_chord_rec_template.convert_chord_ann_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert segment-based chord annotation into various formats</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S2_ChordRec_Eval.html">C5/C5S2_ChordRec_Eval.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_ann</strong> (<em>str</em>) – Filename of segment-based chord annotation</p></li>
+<li><p><strong>chord_labels</strong> (<em>list</em>) – List of chord labels</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Feature rate (Default value = 1)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Number of frames to be generated (by cutting or extending).
+Only enforced for ann_matrix, ann_frame, ann_seg_frame (Default value = None)</p></li>
+<li><p><strong>last</strong> (<em>bool</em>) – If ‘True’ uses for extension last chord label, otherwise uses nonchord label ‘N’
+(Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ann_matrix</strong> (<em>np.ndarray</em>) – Encoding of label sequence in form of a binary time-chord representation</p></li>
+<li><p><strong>ann_frame</strong> (<em>list</em>) – Label sequence (specified on the frame level)</p></li>
+<li><p><strong>ann_seg_frame</strong> (<em>list</em>) – Encoding of label sequence as segment-based annotation (given in indices)</p></li>
+<li><p><strong>ann_seg_ind</strong> (<em>list</em>) – Segment-based annotation with segments (given in indices)</p></li>
+<li><p><strong>ann_seg_sec</strong> (<em>list</em>) – Segment-based annotation with segments (given in seconds)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s2_chord_rec_template.convert_chord_label">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s2_chord_rec_template.</span></code><code class="sig-name descname"><span class="pre">convert_chord_label</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ann</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s2_chord_rec_template.html#convert_chord_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s2_chord_rec_template.convert_chord_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace for segment-based annotation in each chord label the string ‘:min’ by ‘m’
+and convert flat chords into sharp chords using enharmonic equivalence</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S2_ChordRec_Eval.html">C5/C5S2_ChordRec_Eval.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ann</strong> (<em>list</em>) – Segment-based annotation with chord labels</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ann_conv</strong> (<em>list</em>) – Converted segment-based annotation with chord labels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s2_chord_rec_template.convert_sequence_ann">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s2_chord_rec_template.</span></code><code class="sig-name descname"><span class="pre">convert_sequence_ann</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s2_chord_rec_template.html#convert_sequence_ann"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s2_chord_rec_template.convert_sequence_ann" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert label sequence into segment-based annotation</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S2_ChordRec_Eval.html">C5/C5S2_ChordRec_Eval.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq</strong> (<em>list</em>) – Label sequence</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Feature rate (Default value = 1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ann</strong> (<em>list</em>) – Segment-based annotation for label sequence</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s2_chord_rec_template.generate_chord_templates">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s2_chord_rec_template.</span></code><code class="sig-name descname"><span class="pre">generate_chord_templates</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nonchord</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s2_chord_rec_template.html#generate_chord_templates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s2_chord_rec_template.generate_chord_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate chord templates of major and minor triads (and possibly nonchord)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S2_ChordRec_Templates.html">C5/C5S2_ChordRec_Templates.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nonchord</strong> (<em>bool</em>) – If “True” then add nonchord template (Default value = False)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>chord_templates</strong> (<em>np.ndarray</em>) – Matrix containing chord_templates as columns</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s2_chord_rec_template.get_chord_labels">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s2_chord_rec_template.</span></code><code class="sig-name descname"><span class="pre">get_chord_labels</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ext_minor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'m'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonchord</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s2_chord_rec_template.html#get_chord_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s2_chord_rec_template.get_chord_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate chord labels for major and minor triads (and possibly nonchord label)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S2_ChordRec_Templates.html">C5/C5S2_ChordRec_Templates.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ext_minor</strong> (<em>str</em>) – Extension for minor chords (Default value = ‘m’)</p></li>
+<li><p><strong>nonchord</strong> (<em>bool</em>) – If “True” then add nonchord label (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>chord_labels</strong> (<em>list</em>) – List of chord labels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s2_chord_rec_template.plot_chromagram_annotation">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s2_chord_rec_template.</span></code><code class="sig-name descname"><span class="pre">plot_chromagram_annotation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_dur</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray_r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s2_chord_rec_template.html#plot_chromagram_annotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s2_chord_rec_template.plot_chromagram_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot chromagram and annotation</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S2_ChordRec_Templates.html">C5/C5S2_ChordRec_Templates.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – Axes handle</p></li>
+<li><p><strong>X</strong> – Feature representation</p></li>
+<li><p><strong>Fs_X</strong> – Feature rate</p></li>
+<li><p><strong>ann</strong> – Annotations</p></li>
+<li><p><strong>color_ann</strong> – Color for annotations</p></li>
+<li><p><strong>x_dur</strong> – Duration of feature representation</p></li>
+<li><p><strong>cmap</strong> – Color map for imshow (Default value = ‘gray_r’)</p></li>
+<li><p><strong>title</strong> – Title for figure (Default value = ‘’)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s2_chord_rec_template.plot_matrix_chord_eval">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s2_chord_rec_template.</span></code><code class="sig-name descname"><span class="pre">plot_matrix_chord_eval</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">I_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I_est</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(seconds)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Chord'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chord_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(9,</span> <span class="pre">3.5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s2_chord_rec_template.html#plot_matrix_chord_eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s2_chord_rec_template.plot_matrix_chord_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots TP-, FP-, and FN-items in a color-coded form in time–chord grid</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S2_ChordRec_Eval.html">C5/C5S2_ChordRec_Eval.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>I_ref</strong> – Reference set of items</p></li>
+<li><p><strong>I_est</strong> – Set of estimated items</p></li>
+<li><p><strong>Fs</strong> – Feature rate (Default value = 1)</p></li>
+<li><p><strong>xlabel</strong> – Label for x-axis (Default value = ‘Time (seconds)’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y-axis (Default value = ‘Chord’)</p></li>
+<li><p><strong>title</strong> – Title of figure (Default value = ‘’)</p></li>
+<li><p><strong>chord_labels</strong> – List of chord labels used for vertical axis (Default value = None)</p></li>
+<li><p><strong>ax</strong> – Array of axes (Default value = None)</p></li>
+<li><p><strong>grid</strong> – If “True” the plot grid (Default value = True)</p></li>
+<li><p><strong>figsize</strong> – Size of figure (if axes are not specified) (Default value = (9, 3.5))</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – The created matplotlib figure or None if ax was given.</p></li>
+<li><p><strong>ax</strong> – The used axes</p></li>
+<li><p><strong>im</strong> – The image plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c5.c5s3_chord_rec_hmm"></span><dl class="py function">
+<dt id="libfmp.c5.c5s3_chord_rec_hmm.chord_recognition_all">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s3_chord_rec_hmm.</span></code><code class="sig-name descname"><span class="pre">chord_recognition_all</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ann_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filt_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filt_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s3_chord_rec_hmm.html#chord_recognition_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s3_chord_rec_hmm.chord_recognition_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conduct template- and HMM-based chord recognition and evaluates the approaches</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_ChordRec_Beatles.html">C5/C5S3_ChordRec_Beatles.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Chromagram</p></li>
+<li><p><strong>ann_matrix</strong> (<em>np.ndarray</em>) – Reference annotation as given as time-chord binary matrix</p></li>
+<li><p><strong>p</strong> (<em>float</em>) – Self-transition probability used for HMM (Default value = 0.15)</p></li>
+<li><p><strong>filt_len</strong> (<em>int</em>) – Filter length used for prefilitering (Default value = None)</p></li>
+<li><p><strong>filt_type</strong> (<em>str</em>) – Filter type used for prefilitering (Default value = ‘mean’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>result_Tem</strong> (<em>tuple</em>) – Chord recogntion evaluation results ([P, R, F, TP, FP, FN]) for template-based approach</p></li>
+<li><p><strong>result_HMM</strong> (<em>tuple</em>) – Chord recogntion evaluation results ([P, R, F, TP, FP, FN]) for HMM-based approach</p></li>
+<li><p><strong>chord_Tem</strong> (<em>np.ndarray</em>) – Template-based chord recogntion result given as binary matrix</p></li>
+<li><p><strong>chord_HMM</strong> (<em>np.ndarray</em>) – HMM-based chord recogntion result given as binary matrix</p></li>
+<li><p><strong>chord_sim</strong> (<em>np.ndarray</em>) – Chord similarity matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s3_chord_rec_hmm.estimate_hmm_from_o_s">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s3_chord_rec_hmm.</span></code><code class="sig-name descname"><span class="pre">estimate_hmm_from_o_s</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">O</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s3_chord_rec_hmm.html#estimate_hmm_from_o_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s3_chord_rec_hmm.estimate_hmm_from_o_s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the state transition and output probability matrices from
+a given observation and state sequence</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_HiddenMarkovModel.html">C5/C5S3_HiddenMarkovModel.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>O</strong> (<em>np.ndarray</em>) – Observation sequence of length N</p></li>
+<li><p><strong>S</strong> (<em>np.ndarray</em>) – State sequence of length N</p></li>
+<li><p><strong>I</strong> (<em>int</em>) – Number of states</p></li>
+<li><p><strong>K</strong> (<em>int</em>) – Number of observation symbols</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>A_est</strong> (<em>np.ndarray</em>) – State transition probability matrix of dimension I x I</p></li>
+<li><p><strong>B_est</strong> (<em>np.ndarray</em>) – Output probability matrix of dimension I x K</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s3_chord_rec_hmm.generate_sequence_hmm">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s3_chord_rec_hmm.</span></code><code class="sig-name descname"><span class="pre">generate_sequence_hmm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">details</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s3_chord_rec_hmm.html#generate_sequence_hmm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s3_chord_rec_hmm.generate_sequence_hmm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate observation and state sequence from given HMM</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_HiddenMarkovModel.html">C5/C5S3_HiddenMarkovModel.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>int</em>) – Number of observations to be generated</p></li>
+<li><p><strong>A</strong> (<em>np.ndarray</em>) – State transition probability matrix of dimension I x I</p></li>
+<li><p><strong>C</strong> (<em>np.ndarray</em>) – Initial state distribution of dimension I</p></li>
+<li><p><strong>B</strong> (<em>np.ndarray</em>) – Output probability matrix of dimension I x K</p></li>
+<li><p><strong>details</strong> (<em>bool</em>) – If “True” then shows details (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>O</strong> (<em>np.ndarray</em>) – Observation sequence of length N</p></li>
+<li><p><strong>S</strong> (<em>np.ndarray</em>) – State sequence of length N</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s3_chord_rec_hmm.matrix_chord24_trans_inv">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s3_chord_rec_hmm.</span></code><code class="sig-name descname"><span class="pre">matrix_chord24_trans_inv</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s3_chord_rec_hmm.html#matrix_chord24_trans_inv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s3_chord_rec_hmm.matrix_chord24_trans_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes transposition-invariant matrix for transition matrix
+based 12 major chords and 12 minor chords</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_ChordRec_HMM.html">C5/C5S3_ChordRec_HMM.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>A</strong> (<em>np.ndarray</em>) – Input transition matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>A_ti</strong> (<em>np.ndarray</em>) – Output transition matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s3_chord_rec_hmm.matrix_circular_mean">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s3_chord_rec_hmm.</span></code><code class="sig-name descname"><span class="pre">matrix_circular_mean</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s3_chord_rec_hmm.html#matrix_circular_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s3_chord_rec_hmm.matrix_circular_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes circulant matrix with mean diagonal sums</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_ChordRec_HMM.html">C5/C5S3_ChordRec_HMM.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>A</strong> (<em>np.ndarray</em>) – Square matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>A_mean</strong> (<em>np.ndarray</em>) – Circulant output matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s3_chord_rec_hmm.plot_transition_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s3_chord_rec_hmm.</span></code><code class="sig-name descname"><span class="pre">plot_transition_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'State</span> <span class="pre">(chord</span> <span class="pre">label)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'State</span> <span class="pre">(chord</span> <span class="pre">label)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray_r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quadrant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s3_chord_rec_hmm.html#plot_transition_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s3_chord_rec_hmm.plot_transition_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a transition matrix for 24 chord models (12 major and 12 minor triads)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_ChordRec_HMM.html">C5/C5S3_ChordRec_HMM.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – Transition matrix</p></li>
+<li><p><strong>log</strong> – Show log probabilities (Default value = True)</p></li>
+<li><p><strong>ax</strong> – Axis (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Width, height in inches (only used when ax=None) (Default value = (6, 5))</p></li>
+<li><p><strong>title</strong> – Title for plot (Default value = ‘’)</p></li>
+<li><p><strong>xlabel</strong> – Label for x-axis (Default value = ‘State (chord label)’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y-axis (Default value = ‘State (chord label)’)</p></li>
+<li><p><strong>cmap</strong> – Color map (Default value = ‘gray_r’)</p></li>
+<li><p><strong>quadrant</strong> – Plots additional lines for C-major and C-minor quadrants (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – The created matplotlib figure or None if ax was given.</p></li>
+<li><p><strong>ax</strong> – The used axes.</p></li>
+<li><p><strong>im</strong> – The image plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s3_chord_rec_hmm.uniform_transition_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s3_chord_rec_hmm.</span></code><code class="sig-name descname"><span class="pre">uniform_transition_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">24</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s3_chord_rec_hmm.html#uniform_transition_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s3_chord_rec_hmm.uniform_transition_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes uniform transition matrix</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_ChordRec_HMM.html">C5/C5S3_ChordRec_HMM.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<em>float</em>) – Self transition probability (Default value = 0.01)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Column and row dimension (Default value = 24)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>A</strong> (<em>np.ndarray</em>) – Output transition matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s3_chord_rec_hmm.viterbi">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s3_chord_rec_hmm.</span></code><code class="sig-name descname"><span class="pre">viterbi</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">O</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s3_chord_rec_hmm.html#viterbi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s3_chord_rec_hmm.viterbi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Viterbi algorithm for solving the uncovering problem</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_Viterbi.html">C5/C5S3_Viterbi.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (<em>np.ndarray</em>) – State transition probability matrix of dimension I x I</p></li>
+<li><p><strong>C</strong> (<em>np.ndarray</em>) – Initial state distribution  of dimension I</p></li>
+<li><p><strong>B</strong> (<em>np.ndarray</em>) – Output probability matrix of dimension I x K</p></li>
+<li><p><strong>O</strong> (<em>np.ndarray</em>) – Observation sequence of length N</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>S_opt</strong> (<em>np.ndarray</em>) – Optimal state sequence of length N</p></li>
+<li><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated probability matrix</p></li>
+<li><p><strong>E</strong> (<em>np.ndarray</em>) – Backtracking matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s3_chord_rec_hmm.viterbi_log">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s3_chord_rec_hmm.</span></code><code class="sig-name descname"><span class="pre">viterbi_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">O</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s3_chord_rec_hmm.html#viterbi_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s3_chord_rec_hmm.viterbi_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Viterbi algorithm (log variant) for solving the uncovering problem</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_Viterbi.html">C5/C5S3_Viterbi.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (<em>np.ndarray</em>) – State transition probability matrix of dimension I x I</p></li>
+<li><p><strong>C</strong> (<em>np.ndarray</em>) – Initial state distribution  of dimension I</p></li>
+<li><p><strong>B</strong> (<em>np.ndarray</em>) – Output probability matrix of dimension I x K</p></li>
+<li><p><strong>O</strong> (<em>np.ndarray</em>) – Observation sequence of length N</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>S_opt</strong> (<em>np.ndarray</em>) – Optimal state sequence of length N</p></li>
+<li><p><strong>D_log</strong> (<em>np.ndarray</em>) – Accumulated log probability matrix</p></li>
+<li><p><strong>E</strong> (<em>np.ndarray</em>) – Backtracking matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c5.c5s3_chord_rec_hmm.viterbi_log_likelihood">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c5.c5s3_chord_rec_hmm.</span></code><code class="sig-name descname"><span class="pre">viterbi_log_likelihood</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_O</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c5/c5s3_chord_rec_hmm.html#viterbi_log_likelihood"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c5.c5s3_chord_rec_hmm.viterbi_log_likelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Viterbi algorithm (log variant) for solving the uncovering problem</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C5/C5S3_Viterbi.html">C5/C5S3_Viterbi.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (<em>np.ndarray</em>) – State transition probability matrix of dimension I x I</p></li>
+<li><p><strong>C</strong> (<em>np.ndarray</em>) – Initial state distribution  of dimension I</p></li>
+<li><p><strong>B_O</strong> (<em>np.ndarray</em>) – Likelihood matrix of dimension I x N</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>S_opt</strong> (<em>np.ndarray</em>) – Optimal state sequence of length N</p></li>
+<li><p><strong>S_mat</strong> (<em>np.ndarray</em>) – Binary matrix representation of optimal state sequence</p></li>
+<li><p><strong>D_log</strong> (<em>np.ndarray</em>) – Accumulated log probability matrix</p></li>
+<li><p><strong>E</strong> (<em>np.ndarray</em>) – Backtracking matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="index_c6.html" class="btn btn-neutral float-right" title="Tempo and Beat Tracking (libfmp.c6)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index_c4.html" class="btn btn-neutral float-left" title="Music Structure Analysis (libfmp.c4)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

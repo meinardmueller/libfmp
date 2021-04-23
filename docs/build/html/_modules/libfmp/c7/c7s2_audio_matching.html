@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c7.c7s2_audio_matching &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c7.c7s2_audio_matching</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c7.c7s2_audio_matching</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c7.c7s2_audio_matching</span>
+<span class="sd">Author: Meinard Mueller, Frank Zalkow</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">patches</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+
+<span class="kn">import</span> <span class="nn">libfmp.c3</span>
+
+
+<div class="viewcode-block" id="quantize_matrix"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.quantize_matrix">[docs]</a><span class="k">def</span> <span class="nf">quantize_matrix</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">quant_fct</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Quantize matrix values in a logarithmic manner (as done for CENS features)</span>
+
+<span class="sd">    Notebook: C7/C7S2_CENS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        C (np.ndarray): Input matrix</span>
+<span class="sd">        quant_fct (list): List specifying the quantization function (Default value = None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        C_quant (np.ndarray): Output matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">C_quant</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">quant_fct</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">quant_fct</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">,</span> <span class="n">target_val</span> <span class="ow">in</span> <span class="n">quant_fct</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">min_val</span> <span class="o">&lt;=</span> <span class="n">C</span><span class="p">,</span> <span class="n">C</span> <span class="o">&lt;</span> <span class="n">max_val</span><span class="p">)</span>
+        <span class="n">C_quant</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_val</span>
+    <span class="k">return</span> <span class="n">C_quant</span></div>
+
+
+<div class="viewcode-block" id="compute_cens_from_chromagram"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_cens_from_chromagram">[docs]</a><span class="k">def</span> <span class="nf">compute_cens_from_chromagram</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ell</span><span class="o">=</span><span class="mi">41</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">quant</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute CENS features from chromagram</span>
+
+<span class="sd">    Notebook: C7/C7S2_CENS.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        C (np.ndarray): Input chromagram</span>
+<span class="sd">        Fs (scalar): Feature rate of chromagram (Default value = 1)</span>
+<span class="sd">        ell (int): Smoothing length (Default value = 41)</span>
+<span class="sd">        d (int): Downsampling factor (Default value = 10)</span>
+<span class="sd">        quant (bool): Apply quantization (Default value = True)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        C_CENS (np.ndarray): CENS features</span>
+<span class="sd">        Fs_CENS (scalar): Feature rate of CENS features</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">C_norm</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">normalize_feature_sequence</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+    <span class="n">C_Q</span> <span class="o">=</span> <span class="n">quantize_matrix</span><span class="p">(</span><span class="n">C_norm</span><span class="p">)</span> <span class="k">if</span> <span class="n">quant</span> <span class="k">else</span> <span class="n">C_norm</span>
+
+    <span class="n">C_smooth</span><span class="p">,</span> <span class="n">Fs_CENS</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">smooth_downsample_feature_sequence</span><span class="p">(</span><span class="n">C_Q</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">filt_len</span><span class="o">=</span><span class="n">ell</span><span class="p">,</span>
+                                                                     <span class="n">down_sampling</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">w_type</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">)</span>
+    <span class="n">C_CENS</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">normalize_feature_sequence</span><span class="p">(</span><span class="n">C_smooth</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">C_CENS</span><span class="p">,</span> <span class="n">Fs_CENS</span></div>
+
+
+<div class="viewcode-block" id="scale_tempo_sequence"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.scale_tempo_sequence">[docs]</a><span class="k">def</span> <span class="nf">scale_tempo_sequence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Scales a sequence (given as feature matrix) along time (second dimension)</span>
+
+<span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (np.ndarray): Feature sequences (given as K x N matrix)</span>
+<span class="sd">        factor (float): Scaling factor (resulting in length &quot;round(factor * N)&quot;&quot;) (Default value = 1)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        X_new (np.ndarray): Scaled feature sequence</span>
+<span class="sd">        N_new (int): Length of scaled feature sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">N_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">t_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">N_new</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">X_new</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)(</span><span class="n">t_new</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X_new</span><span class="p">,</span> <span class="n">N_new</span></div>
+
+
+<div class="viewcode-block" id="cost_matrix_dot"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.cost_matrix_dot">[docs]</a><span class="k">def</span> <span class="nf">cost_matrix_dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes cost matrix via dot product</span>
+
+<span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (np.ndarray): First sequence (K x N matrix)</span>
+<span class="sd">        Y (np.ndarray): Second sequence (K x M matrix)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        C (np.ndarray): Cost matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="matching_function_diag"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matching_function_diag">[docs]</a><span class="k">def</span> <span class="nf">matching_function_diag</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">cyclic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes diagonal matching function</span>
+
+<span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        C (np.ndarray): Cost matrix</span>
+<span class="sd">        cyclic (bool): If &quot;True&quot; then matching is done cyclically (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Delta (np.ndarray): Matching function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">assert</span> <span class="n">N</span> <span class="o">&lt;=</span> <span class="n">M</span><span class="p">,</span> <span class="s2">&quot;N &lt;= M is required&quot;</span>
+    <span class="n">Delta</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">Delta</span> <span class="o">=</span> <span class="n">Delta</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:],</span> <span class="o">-</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">Delta</span> <span class="o">=</span> <span class="n">Delta</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="k">if</span> <span class="n">cyclic</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">Delta</span><span class="p">[</span><span class="n">M</span><span class="o">-</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="k">return</span> <span class="n">Delta</span></div>
+
+
+<div class="viewcode-block" id="mininma_from_matching_function"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.mininma_from_matching_function">[docs]</a><span class="k">def</span> <span class="nf">mininma_from_matching_function</span><span class="p">(</span><span class="n">Delta</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Derives local minima positions of matching function in an iterative fashion</span>
+
+<span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        Delta (np.ndarray): Matching function</span>
+<span class="sd">        rho (int): Parameter to exclude neighborhood of a matching position for subsequent matches (Default value = 2)</span>
+<span class="sd">        tau (float): Threshold for maximum Delta value allowed for matches (Default value = 0.2)</span>
+<span class="sd">        num (int): Maximum number of matches (Default value = None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pos (np.ndarray): Array of local minima</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Delta_tmp</span> <span class="o">=</span> <span class="n">Delta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Delta</span><span class="p">)</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">num_pos</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="n">M</span>
+    <span class="k">while</span> <span class="n">num_pos</span> <span class="o">&lt;</span> <span class="n">num</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Delta_tmp</span> <span class="o">&lt;</span> <span class="n">tau</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">Delta_tmp</span><span class="p">)</span>
+        <span class="n">pos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">num_pos</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">Delta_tmp</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span> <span class="o">-</span> <span class="n">rho</span><span class="p">):</span><span class="nb">min</span><span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="n">rho</span><span class="p">,</span> <span class="n">M</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pos</span></div>
+
+
+<div class="viewcode-block" id="matches_diag"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matches_diag">[docs]</a><span class="k">def</span> <span class="nf">matches_diag</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">Delta_N</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Derives matches from positions in the case of diagonal matching</span>
+
+<span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pos (np.ndarray or list): Starting positions of matches</span>
+<span class="sd">        Delta_N (int or np.ndarray or list): Length of match (a single number or a list of same length as Delta)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        matches (np.ndarray): Array containing matches (start, end)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">matches</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Delta_N</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">matches</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">Delta_N</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">matches</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">Delta_N</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">matches</span></div>
+
+
+<div class="viewcode-block" id="plot_matches"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.plot_matches">[docs]</a><span class="k">def</span> <span class="nf">plot_matches</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">matches</span><span class="p">,</span> <span class="n">Delta</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s_marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">t_marker</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plots matches into existing axis</span>
+
+<span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ax: Axis</span>
+<span class="sd">        matches: Array of matches (start, end)</span>
+<span class="sd">        Delta: Matching function</span>
+<span class="sd">        Fs: Feature rate (Default value = 1)</span>
+<span class="sd">        alpha: Transparency pramaeter for match visualization (Default value = 0.2)</span>
+<span class="sd">        color: Color used to indicated matches (Default value = &#39;r&#39;)</span>
+<span class="sd">        s_marker: Marker used to indicate start of matches (Default value = &#39;o&#39;)</span>
+<span class="sd">        t_marker: Marker used to indicate end of matches (Default value = &#39;&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="o">/</span><span class="n">Fs</span><span class="p">,</span> <span class="n">Delta</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">s_marker</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">Fs</span><span class="p">,</span> <span class="n">Delta</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">t_marker</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(((</span><span class="n">s</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="n">Fs</span><span class="p">,</span> <span class="n">y_min</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">Fs</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="matching_function_diag_multiple"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matching_function_diag_multiple">[docs]</a><span class="k">def</span> <span class="nf">matching_function_diag_multiple</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cyclic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes diagonal matching function using multiple query strategy</span>
+
+<span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (np.ndarray): First sequence (K x N matrix)</span>
+<span class="sd">        Y (np.ndarray): Second sequence (K x M matrix)</span>
+<span class="sd">        tempo_rel_set (np.ndarray): Set of relative tempo values (scaling) (Default value = [1])</span>
+<span class="sd">        cyclic (bool): If &quot;True&quot; then matching is done cyclically (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Delta_min (np.ndarray): Matching function (obtained by from minimizing over several matching functions)</span>
+<span class="sd">        Delta_N (np.ndarray): Query length of best match for each time position</span>
+<span class="sd">        Delta_scale (np.ndarray): Set of matching functions (for each of the scaled versions of the query)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">num_tempo</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tempo_rel_set</span><span class="p">)</span>
+    <span class="n">Delta_scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_tempo</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+    <span class="n">N_scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_tempo</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_tempo</span><span class="p">):</span>
+        <span class="n">X_scale</span><span class="p">,</span> <span class="n">N_scale</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale_tempo_sequence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="n">tempo_rel_set</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">C_scale</span> <span class="o">=</span> <span class="n">cost_matrix_dot</span><span class="p">(</span><span class="n">X_scale</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+        <span class="n">Delta_scale</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">matching_function_diag</span><span class="p">(</span><span class="n">C_scale</span><span class="p">,</span> <span class="n">cyclic</span><span class="o">=</span><span class="n">cyclic</span><span class="p">)</span>
+    <span class="n">Delta_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Delta_scale</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">Delta_argmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">Delta_scale</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">Delta_N</span> <span class="o">=</span> <span class="n">N_scale</span><span class="p">[</span><span class="n">Delta_argmin</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Delta_min</span><span class="p">,</span> <span class="n">Delta_N</span><span class="p">,</span> <span class="n">Delta_scale</span></div>
+
+
+<div class="viewcode-block" id="compute_accumulated_cost_matrix_subsequence_dtw"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_accumulated_cost_matrix_subsequence_dtw">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_accumulated_cost_matrix_subsequence_dtw</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given the cost matrix, compute the accumulated cost matrix for</span>
+<span class="sd">    subsequence dynamic time warping with step sizes {(1, 0), (0, 1), (1, 1)}</span>
+
+<span class="sd">    Notebook: C7/C7S2_SubsequenceDTW.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        C (np.ndarray): Cost matrix</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        D (np.ndarray): Accumulated cost matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+    <span class="n">D</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">C</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="nb">min</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">],</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">D</span></div>
+
+
+<div class="viewcode-block" id="compute_optimal_warping_path_subsequence_dtw"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_optimal_warping_path_subsequence_dtw">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_optimal_warping_path_subsequence_dtw</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">m</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given an accumulated cost matrix, compute the warping path for</span>
+<span class="sd">    subsequence dynamic time warping with step sizes {(1, 0), (0, 1), (1, 1)}</span>
+
+<span class="sd">    Notebook: C7/C7S2_SubsequenceDTW.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        D (np.ndarray): Accumulated cost matrix</span>
+<span class="sd">        m (int): Index to start back tracking; if set to -1, optimal m is used (Default value = -1)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        P (np.ndarray): Optimal warping path (array of index pairs)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">[(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)]</span>
+
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">],</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">]:</span>
+                <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">P</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">cell</span>
+    <span class="n">P</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">P</span></div>
+
+
+<div class="viewcode-block" id="compute_accumulated_cost_matrix_subsequence_dtw_21"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_accumulated_cost_matrix_subsequence_dtw_21">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_accumulated_cost_matrix_subsequence_dtw_21</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given the cost matrix, compute the accumulated cost matrix for</span>
+<span class="sd">    subsequence dynamic time warping with step sizes {(1, 1), (2, 1), (1, 2)}</span>
+
+<span class="sd">    Notebook: C7/C7S2_SubsequenceDTW.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        C (np.ndarray): Cost matrix</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        D (np.ndarray): Accumulated cost matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="n">D</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+    <span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="nb">min</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">2</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">D</span></div>
+
+
+<div class="viewcode-block" id="compute_optimal_warping_path_subsequence_dtw_21"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_optimal_warping_path_subsequence_dtw_21">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_optimal_warping_path_subsequence_dtw_21</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">m</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given an accumulated cost matrix, compute the warping path for</span>
+<span class="sd">    subsequence dynamic time warping with step sizes {(1, 1), (2, 1), (1, 2)}</span>
+
+<span class="sd">    Notebook: C7/C7S2_SubsequenceDTW.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        D (np.ndarray): Accumulated cost matrix</span>
+<span class="sd">        m (int): Index to start back tracking; if set to -1, optimal m is used (Default value = -1)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        P (np.ndarray): Optimal warping path (array of index pairs)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">[(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)]</span>
+
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">P</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">cell</span>
+    <span class="n">P</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">P</span></div>
+
+
+<div class="viewcode-block" id="compute_cens_from_file"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_cens_from_file">[docs]</a><span class="k">def</span> <span class="nf">compute_cens_from_file</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">4410</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">2205</span><span class="p">,</span> <span class="n">ell</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute CENS features from file</span>
+
+<span class="sd">    Notebook: C7/C7S2_AudioMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_wav (str): Filename of wav file</span>
+<span class="sd">        Fs (scalar): Feature rate of wav file (Default value = 22050)</span>
+<span class="sd">        N (int): Window size for STFT (Default value = 4410)</span>
+<span class="sd">        H (int): Hope size for STFT (Default value = 2205)</span>
+<span class="sd">        ell (int): Smoothing length (Default value = 21)</span>
+<span class="sd">        d (int): Downsampling factor (Default value = 5)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        X_CENS (np.ndarray): CENS features</span>
+<span class="sd">        L (int): Length of CENS feature sequence</span>
+<span class="sd">        Fs_CENS (scalar): Feature rate of CENS features</span>
+<span class="sd">        x_duration (float): Duration (seconds) of wav file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+    <span class="n">x_duration</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">X_chroma</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">chroma_stft</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">X_CENS</span><span class="p">,</span> <span class="n">Fs_CENS</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c7</span><span class="o">.</span><span class="n">compute_cens_from_chromagram</span><span class="p">(</span><span class="n">X_chroma</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="o">/</span><span class="n">H</span><span class="p">,</span> <span class="n">ell</span><span class="o">=</span><span class="n">ell</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">X_CENS</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">X_CENS</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Fs_CENS</span><span class="p">,</span> <span class="n">x_duration</span></div>
+
+
+<div class="viewcode-block" id="compute_matching_function_dtw"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_matching_function_dtw">[docs]</a><span class="k">def</span> <span class="nf">compute_matching_function_dtw</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute CENS features from file</span>
+
+<span class="sd">    Notebook: C7/C7S2_AudioMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (np.ndarray): Query feature sequence (given as K x N matrix)</span>
+<span class="sd">        Y (np.ndarray): Database feature sequence (given as K x M matrix)</span>
+<span class="sd">        stepsize (int): Parameter for step size condition (1 or 2) (Default value = 2)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Delta (np.ndarray): DTW-based matching function</span>
+<span class="sd">        C (np.ndarray): Cost matrix</span>
+<span class="sd">        D (np.ndarray): Accumulated cost matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c7</span><span class="o">.</span><span class="n">cost_matrix_dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">stepsize</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c7</span><span class="o">.</span><span class="n">compute_accumulated_cost_matrix_subsequence_dtw</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">stepsize</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c7</span><span class="o">.</span><span class="n">compute_accumulated_cost_matrix_subsequence_dtw_21</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">Delta</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="k">return</span> <span class="n">Delta</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span></div>
+
+
+<div class="viewcode-block" id="matches_dtw"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matches_dtw">[docs]</a><span class="k">def</span> <span class="nf">matches_dtw</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Derives matches from positions for DTW-based strategy</span>
+
+<span class="sd">    Notebook: C7/C7S2_AudioMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pos (np.ndarray): End positions of matches</span>
+<span class="sd">        D (np.ndarray): Accumulated cost matrix</span>
+<span class="sd">        stepsize (int): Parameter for step size condition (1 or 2) (Default value = 2)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        matches (np.ndarray): Array containing matches (start, end)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">matches</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+        <span class="k">if</span> <span class="n">stepsize</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c7</span><span class="o">.</span><span class="n">compute_optimal_warping_path_subsequence_dtw</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stepsize</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c7</span><span class="o">.</span><span class="n">compute_optimal_warping_path_subsequence_dtw_21</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">matches</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+    <span class="k">return</span> <span class="n">matches</span></div>
+
+
+<div class="viewcode-block" id="compute_matching_function_dtw_ti"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_matching_function_dtw_ti">[docs]</a><span class="k">def</span> <span class="nf">compute_matching_function_dtw_ti</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">cyc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute transposition-invariant matching function</span>
+
+<span class="sd">    Notebook: C7/C7S2_AudioMatching.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (np.ndarray): Query feature sequence (given as K x N matrix)</span>
+<span class="sd">        Y (np.ndarray): Database feature sequence (given as K x M matrix)</span>
+<span class="sd">        cyc (np.nda(rray): Set of cyclic shift indices to be considered (Default value = np.arange(12))</span>
+<span class="sd">        stepsize (int): Parameter for step size condition (1 or 2) (Default value = 2)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Delta_TI (np.ndarray): Transposition-invariant matching function</span>
+<span class="sd">        Delta_ind (np.ndarray): Cost-minimizing indices</span>
+<span class="sd">        Delta_cyc (np.ndarray): Array containing all matching functions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">num_cyc</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cyc</span><span class="p">)</span>
+    <span class="n">Delta_cyc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_cyc</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_cyc</span><span class="p">):</span>
+        <span class="n">X_cyc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">Delta_cyc</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:],</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">compute_matching_function_dtw</span><span class="p">(</span><span class="n">X_cyc</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="n">stepsize</span><span class="p">)</span>
+    <span class="n">Delta_TI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Delta_cyc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">Delta_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">Delta_cyc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Delta_TI</span><span class="p">,</span> <span class="n">Delta_ind</span><span class="p">,</span> <span class="n">Delta_cyc</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

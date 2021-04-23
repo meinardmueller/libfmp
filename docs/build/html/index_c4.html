@@ -1,0 +1,1266 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Music Structure Analysis (libfmp.c4) &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chord Recognition (libfmp.c5)" href="index_c5.html" />
+    <link rel="prev" title="Music Synchronization (libfmp.c3)" href="index_c3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Music Structure Analysis (libfmp.c4)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index_c4.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="music-structure-analysis-libfmp-c4">
+<h1>Music Structure Analysis (libfmp.c4)<a class="headerlink" href="#music-structure-analysis-libfmp-c4" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://www.audiolabs-erlangen.de/FMP">FMP notebooks</a> provide detailed textbook-like explanations of central techniques and algorithms implemented in the libfmp.
+The part of FMP related to this module is available at the following URL:</p>
+<p><a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4.html">https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4.html</a></p>
+<span class="target" id="module-libfmp.c4"></span><span class="target" id="module-libfmp.c4.c4s1_annotation"></span><dl class="py function">
+<dt id="libfmp.c4.c4s1_annotation.convert_structure_annotation">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s1_annotation.</span></code><code class="sig-name descname"><span class="pre">convert_structure_annotation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_digits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s1_annotation.html#convert_structure_annotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s1_annotation.convert_structure_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert structure annotations</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S1_MusicStructureGeneral.html">C4/C4S1_MusicStructureGeneral.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ann</strong> (<em>list</em>) – Structure annotions</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 1)</p></li>
+<li><p><strong>remove_digits</strong> (<em>bool</em>) – Remove digits from labels (Default value = False)</p></li>
+<li><p><strong>index</strong> (<em>bool</em>) – Round to nearest integer (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ann_converted</strong> (<em>list</em>) – Converted annotation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s1_annotation.get_color_for_annotation_file">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s1_annotation.</span></code><code class="sig-name descname"><span class="pre">get_color_for_annotation_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s1_annotation.html#get_color_for_annotation_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s1_annotation.get_color_for_annotation_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets color dict for annotation file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Annotation file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>color_ann</strong> (<em>dict</em>) – Dictionary encoding color scheme</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s1_annotation.read_structure_annotation">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s1_annotation.</span></code><code class="sig-name descname"><span class="pre">read_structure_annotation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn_ann_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_digits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s1_annotation.html#read_structure_annotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s1_annotation.read_structure_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and convert structure annotation and colors</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S1_MusicStructureGeneral.html">C4/C4S1_MusicStructureGeneral.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_ann</strong> (<em>str</em>) – Path and filename for structure annotions</p></li>
+<li><p><strong>fn_ann_color</strong> (<em>str</em>) – Filename used to identify colors (Default value = ‘’)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 1)</p></li>
+<li><p><strong>remove_digits</strong> (<em>bool</em>) – Remove digits from labels (Default value = False)</p></li>
+<li><p><strong>index</strong> (<em>bool</em>) – Round to nearest integer (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ann</strong> (<em>list</em>) – Annotations</p></li>
+<li><p><strong>color_ann</strong> (<em>dict</em>) – Color scheme</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c4.c4s2_ssm"></span><dl class="py function">
+<dt id="libfmp.c4.c4s2_ssm.compute_sm_dot">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_ssm.</span></code><code class="sig-name descname"><span class="pre">compute_sm_dot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_ssm.html#compute_sm_dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_ssm.compute_sm_dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes similarty matrix from feature sequences using dot (inner) product</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM.html">C4/C4S2_SSM.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – First sequence</p></li>
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Second Sequence</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S</strong> (<em>float</em>) – Dot product</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s2_ssm.compute_sm_from_filename">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_ssm.</span></code><code class="sig-name descname"><span class="pre">compute_sm_from_filename</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_wav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">21</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_rel_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array([1])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array([0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'relative'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">penalty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binarize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_ssm.html#compute_sm_from_filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_ssm.compute_sm_from_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute an SSM</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-Thresholding.html">C4/C4S2_SSM-Thresholding.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_wav</strong> (<em>str</em>) – Path and filename of wav file</p></li>
+<li><p><strong>L</strong> (<em>int</em>) – Length of smoothing filter (Default value = 21)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Downsampling factor (Default value = 5)</p></li>
+<li><p><strong>L_smooth</strong> (<em>int</em>) – Length of filter (Default value = 16)</p></li>
+<li><p><strong>tempo_rel_set</strong> (<em>np.ndarray</em>) – Set of relative tempo values (Default value = np.array([1]))</p></li>
+<li><p><strong>shift_set</strong> (<em>np.ndarray</em>) – Set of shift indices (Default value = np.array([0]))</p></li>
+<li><p><strong>strategy</strong> (<em>str</em>) – Thresholding strategy (see <a class="reference internal" href="#libfmp.c4.c4s2_ssm.compute_sm_ti" title="libfmp.c4.c4s2_ssm.compute_sm_ti"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.c4.c4s2_ssm.compute_sm_ti()</span></code></a>)
+(Default value = ‘relative’)</p></li>
+<li><p><strong>scale</strong> (<em>bool</em>) – If scale=True, then scaling of positive values to range [0,1] (Default value = True)</p></li>
+<li><p><strong>thresh</strong> (<em>float</em>) – Treshold (meaning depends on strategy) (Default value = 0.15)</p></li>
+<li><p><strong>penalty</strong> (<em>float</em>) – Set values below treshold to value specified (Default value = 0.0)</p></li>
+<li><p><strong>binarize</strong> (<em>bool</em>) – Binarizes final matrix (positive: 1; otherwise: 0) (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Audio signal</p></li>
+<li><p><strong>x_duration</strong> (<em>float</em>) – Duration of audio signal (seconds)</p></li>
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Feature sequence</p></li>
+<li><p><strong>Fs_feature</strong> (<em>scalar</em>) – Feature rate</p></li>
+<li><p><strong>S_thresh</strong> (<em>np.ndarray</em>) – SSM</p></li>
+<li><p><strong>I</strong> (<em>np.ndarray</em>) – Index matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s2_ssm.compute_sm_ti">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_ssm.</span></code><code class="sig-name descname"><span class="pre">compute_sm_ti</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_rel_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.asarray([1])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.asarray([0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_ssm.html#compute_sm_ti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_ssm.compute_sm_ti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute enhanced similaity matrix by applying path smoothing and transpositions</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-TranspositionInvariance.html">C4/C4S2_SSM-TranspositionInvariance.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – First feature sequence</p></li>
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Second feature sequence</p></li>
+<li><p><strong>L</strong> (<em>int</em>) – Length of filter (Default value = 1)</p></li>
+<li><p><strong>tempo_rel_set</strong> (<em>np.ndarray</em>) – Set of relative tempo values (Default value = np.asarray([1]))</p></li>
+<li><p><strong>shift_set</strong> (<em>np.ndarray</em>) – Set of shift indices (Default value = np.asarray([0]))</p></li>
+<li><p><strong>direction</strong> (<em>int</em>) – Direction of smoothing (0: forward; 1: backward; 2: both directions) (Default value = 2)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>S_TI</strong> (<em>np.ndarray</em>) – Transposition-invariant SM</p></li>
+<li><p><strong>I_TI</strong> (<em>np.ndarray</em>) – Transposition index matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s2_ssm.compute_tempo_rel_set">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_ssm.</span></code><code class="sig-name descname"><span class="pre">compute_tempo_rel_set</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tempo_rel_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_rel_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_ssm.html#compute_tempo_rel_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_ssm.compute_tempo_rel_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute logarithmically spaced relative tempo values</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-PathEnhancement.html">C4/C4S2_SSM-PathEnhancement.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tempo_rel_min</strong> (<em>float</em>) – Minimum relative tempo</p></li>
+<li><p><strong>tempo_rel_max</strong> (<em>float</em>) – Maximum relative tempo</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – Number of relative tempo values (inlcuding the min and max)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tempo_rel_set</strong> (<em>np.ndarray</em>) – Set of relative tempo values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s2_ssm.filter_diag_mult_sm">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_ssm.</span></code><code class="sig-name descname"><span class="pre">filter_diag_mult_sm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_rel_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.asarray([1])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_ssm.html#filter_diag_mult_sm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_ssm.filter_diag_mult_sm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path smoothing of similarity matrix by filtering in forward or backward direction
+along various directions around main diagonal.
+Note: Directions are simulated by resampling one axis using relative tempo values</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-PathEnhancement.html">C4/C4S2_SSM-PathEnhancement.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> (<em>np.ndarray</em>) – Self-similarity matrix (SSM)</p></li>
+<li><p><strong>L</strong> (<em>int</em>) – Length of filter (Default value = 1)</p></li>
+<li><p><strong>tempo_rel_set</strong> (<em>np.ndarray</em>) – Set of relative tempo values (Default value = np.asarray([1]))</p></li>
+<li><p><strong>direction</strong> (<em>int</em>) – Direction of smoothing (0: forward; 1: backward) (Default value = 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S_L_final</strong> (<em>np.ndarray</em>) – Smoothed SM</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s2_ssm.filter_diag_sm">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_ssm.</span></code><code class="sig-name descname"><span class="pre">filter_diag_sm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_ssm.html#filter_diag_sm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_ssm.filter_diag_sm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path smoothing of similarity matrix by forward filtering along main diagonal</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-PathEnhancement.html">C4/C4S2_SSM-PathEnhancement.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> (<em>np.ndarray</em>) – Similarity matrix (SM)</p></li>
+<li><p><strong>L</strong> (<em>int</em>) – Length of filter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S_L</strong> (<em>np.ndarray</em>) – Smoothed SM</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s2_ssm.plot_feature_ssm">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_ssm.</span></code><code class="sig-name descname"><span class="pre">plot_feature_ssm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(seconds)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clim_X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_ssm.html#plot_feature_ssm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_ssm.plot_feature_ssm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot SSM along with feature representation and annotations (standard setting is time in seconds)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM.html">C4/C4S2_SSM.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Feature representation</p></li>
+<li><p><strong>Fs_X</strong> – Feature rate of <code class="docutils literal notranslate"><span class="pre">X</span></code></p></li>
+<li><p><strong>S</strong> – Similarity matrix (SM)</p></li>
+<li><p><strong>Fs_S</strong> – Feature rate of <code class="docutils literal notranslate"><span class="pre">S</span></code></p></li>
+<li><p><strong>ann</strong> – Annotaions</p></li>
+<li><p><strong>duration</strong> – Duration</p></li>
+<li><p><strong>color_ann</strong> – Color annotations (see <a class="reference internal" href="index_b.html#libfmp.b.b_plot.plot_segments" title="libfmp.b.b_plot.plot_segments"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_segments()</span></code></a>) (Default value = None)</p></li>
+<li><p><strong>title</strong> – Figure title (Default value = ‘’)</p></li>
+<li><p><strong>label</strong> – Label for time axes (Default value = ‘Time (seconds)’)</p></li>
+<li><p><strong>time</strong> – Display time axis ticks or not (Default value = True)</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (5, 6))</p></li>
+<li><p><strong>fontsize</strong> – Font size (Default value = 10)</p></li>
+<li><p><strong>clim_X</strong> – Color limits for matrix X (Default value = None)</p></li>
+<li><p><strong>clim</strong> – Color limits for matrix <code class="docutils literal notranslate"><span class="pre">S</span></code> (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle for figure</p></li>
+<li><p><strong>ax</strong> – Handle for axes</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s2_ssm.shift_cyc_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_ssm.</span></code><code class="sig-name descname"><span class="pre">shift_cyc_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_ssm.html#shift_cyc_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_ssm.shift_cyc_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cyclic shift of features matrix along first dimension</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-TranspositionInvariance.html">C4/C4S2_SSM-TranspositionInvariance.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Feature respresentation</p></li>
+<li><p><strong>shift</strong> (<em>int</em>) – Number of bins to be shifted (Default value = 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X_cyc</strong> (<em>np.ndarray</em>) – Cyclically shifted feature matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s2_ssm.subplot_matrix_colorbar">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_ssm.</span></code><code class="sig-name descname"><span class="pre">subplot_matrix_colorbar</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(seconds)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(seconds)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_ssm.html#subplot_matrix_colorbar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_ssm.subplot_matrix_colorbar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualization function for showing zoomed sections of matrices</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-PathEnhancement.html">C4/C4S2_SSM-PathEnhancement.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – Similarity matrix (SM)</p></li>
+<li><p><strong>fig</strong> – Figure handle</p></li>
+<li><p><strong>ax</strong> – Axes handle</p></li>
+<li><p><strong>title</strong> – Title for figure (Default value = ‘’)</p></li>
+<li><p><strong>Fs</strong> – Feature rate (Default value = 1)</p></li>
+<li><p><strong>xlabel</strong> – Label for x-axis (Default value = ‘Time (seconds)’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y-axis (Default value = ‘Time (seconds)’)</p></li>
+<li><p><strong>clim</strong> – Color limits (Default value = None)</p></li>
+<li><p><strong>xlim</strong> – Limits for x-axis (Default value = None)</p></li>
+<li><p><strong>ylim</strong> – Limits for x-axis (Default value = None)</p></li>
+<li><p><strong>cmap</strong> – Colormap for imshow (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>im</strong> – Imshow handle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s2_ssm.subplot_matrix_ti_colorbar">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_ssm.</span></code><code class="sig-name descname"><span class="pre">subplot_matrix_ti_colorbar</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(seconds)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(seconds)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind_zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_ssm.html#subplot_matrix_ti_colorbar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_ssm.subplot_matrix_ti_colorbar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualization function for showing transposition index matrix</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-TranspositionInvariance.html">C4/C4S2_SSM-TranspositionInvariance.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – Self-similarity matrix (SSM)</p></li>
+<li><p><strong>fig</strong> – Figure handle</p></li>
+<li><p><strong>ax</strong> – Axes handle</p></li>
+<li><p><strong>title</strong> – Title for figure (Default value = ‘’)</p></li>
+<li><p><strong>Fs</strong> – Feature rate (Default value = 1)</p></li>
+<li><p><strong>xlabel</strong> – Label for x-axis (Default value = ‘Time (seconds)’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y-axis (Default value = ‘Time (seconds)’)</p></li>
+<li><p><strong>clim</strong> – Color limits (Default value = None)</p></li>
+<li><p><strong>xlim</strong> – Limits for x-axis (Default value = None)</p></li>
+<li><p><strong>ylim</strong> – Limits for y-axis (Default value = None)</p></li>
+<li><p><strong>cmap</strong> – Color map (Default value = None)</p></li>
+<li><p><strong>alpha</strong> – Alpha value for imsow (Default value = 1)</p></li>
+<li><p><strong>ind_zero</strong> – Use white (True) or black (False) color for index zero (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>im</strong> – Imshow handle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c4.c4s2_synthetic_ssm"></span><dl class="py function">
+<dt id="libfmp.c4.c4s2_synthetic_ssm.generate_ssm_from_annotation">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_synthetic_ssm.</span></code><code class="sig-name descname"><span class="pre">generate_ssm_from_annotation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_block</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_diagonal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_power</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_synthetic_ssm.html#generate_ssm_from_annotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_synthetic_ssm.generate_ssm_from_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generation of a SSM</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-Synthetic.html">C4/C4S2_SSM-Synthetic.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ann</strong> (<em>list</em>) – Description of sections (see explanation above)</p></li>
+<li><p><strong>label_ann</strong> (<em>dict</em>) – Specification of property (path, block relation) (Default value = None)</p></li>
+<li><p><strong>score_path</strong> (<em>float</em>) – SSM values for occurring paths (Default value = 1.0)</p></li>
+<li><p><strong>score_block</strong> (<em>float</em>) – SSM values of blocks covering the same labels (Default value = 0.5)</p></li>
+<li><p><strong>main_diagonal</strong> (<em>bool</em>) – True if a filled main diagonal should be enforced (Default value = True)</p></li>
+<li><p><strong>smooth_sigma</strong> (<em>float</em>) – Standard deviation of a Gaussian smoothing filter.
+filter length is 4*smooth_sigma (Default value = 0.0)</p></li>
+<li><p><strong>noise_power</strong> (<em>float</em>) – Variance of additive white Gaussian noise (Default value = 0.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S</strong> (<em>np.ndarray</em>) – Generated SSM</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c4.c4s2_threshold"></span><dl class="py function">
+<dt id="libfmp.c4.c4s2_threshold.threshold_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_threshold.</span></code><code class="sig-name descname"><span class="pre">threshold_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'absolute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">penalty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binarize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_threshold.html#threshold_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_threshold.threshold_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Treshold matrix in a relative fashion</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-Thresholding.html">C4/C4S2_SSM-Thresholding.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> (<em>np.ndarray</em>) – Input matrix</p></li>
+<li><p><strong>thresh</strong> (<em>float</em>) – Treshold (meaning depends on strategy)</p></li>
+<li><p><strong>strategy</strong> (<em>str</em>) – Thresholding strategy (‘absolute’, ‘relative’, ‘local’) (Default value = ‘absolute’)</p></li>
+<li><p><strong>scale</strong> (<em>bool</em>) – If scale=True, then scaling of positive values to range [0,1] (Default value = False)</p></li>
+<li><p><strong>penalty</strong> (<em>float</em>) – Set values below treshold to value specified (Default value = 0.0)</p></li>
+<li><p><strong>binarize</strong> (<em>bool</em>) – Binarizes final matrix (positive: 1; otherwise: 0) (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S_thresh</strong> (<em>np.ndarray</em>) – Thresholded matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s2_threshold.threshold_matrix_relative">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s2_threshold.</span></code><code class="sig-name descname"><span class="pre">threshold_matrix_relative</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh_rel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">details</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s2_threshold.html#threshold_matrix_relative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s2_threshold.threshold_matrix_relative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Treshold matrix in a relative fashion</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S2_SSM-Thresholding.html">C4/C4S2_SSM-Thresholding.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> (<em>np.ndarray</em>) – Input matrix</p></li>
+<li><p><strong>thresh_rel</strong> (<em>float</em>) – Relative treshold (Default value = 0.2)</p></li>
+<li><p><strong>details</strong> (<em>bool</em>) – Print details on thresholding procedure (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>S_thresh</strong> (<em>np.ndarray</em>) – Thresholded matrix</p></li>
+<li><p><strong>thresh_abs</strong> (<em>float</em>) – Absolute threshold used for thresholding</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c4.c4s3_thumbnail"></span><dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.check_segment">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">check_segment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#check_segment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.check_segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints properties of segments with regard to SSM <code class="docutils literal notranslate"><span class="pre">S</span></code></p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_ScapePlot.html">C4/C4S3_ScapePlot.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seg</strong> (<em>tuple</em>) – Segment <code class="docutils literal notranslate"><span class="pre">(start_index,</span> <span class="pre">end_index)</span></code></p></li>
+<li><p><strong>S</strong> (<em>np.ndarray</em>) – Self-similarity matrix</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>path_family</strong> (<em>list</em>) – Optimal path family</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.colormap_penalty">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">colormap_penalty</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">penalty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">libfmp.b.compressed_gray_cmap(alpha=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#colormap_penalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.colormap_penalty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend colormap with white color between the penalty value and zero</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_AudioThumbnailing.html">C4/C4S3_AudioThumbnailing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>penalty</strong> (<em>float</em>) – Negative number (Default value = -2.0)</p></li>
+<li><p><strong>cmap</strong> (<em>mpl.colors.Colormap</em>) – Original colormap (Default value = libfmp.b.compressed_gray_cmap(alpha=5))</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cmap_penalty</strong> (<em>mpl.colors.Colormap</em>) – Extended colormap</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.compute_accumulated_score_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">compute_accumulated_score_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S_seg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#compute_accumulated_score_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.compute_accumulated_score_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the accumulated score matrix</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_AudioThumbnailing.html">C4/C4S3_AudioThumbnailing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S_seg</strong> (<em>np.ndarray</em>) – Submatrix of an enhanced and normalized SSM <code class="docutils literal notranslate"><span class="pre">S</span></code>.
+Note: <code class="docutils literal notranslate"><span class="pre">S</span></code> must satisfy <code class="docutils literal notranslate"><span class="pre">S(n,m)</span> <span class="pre">&lt;=</span> <span class="pre">1</span> <span class="pre">and</span> <span class="pre">S(n,n)</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated score matrix</p></li>
+<li><p><strong>score</strong> (<em>float</em>) – Score of optimal path family</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.compute_fitness">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">compute_fitness</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_family</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#compute_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.compute_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute fitness measure and other metrics from path family</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_AudioThumbnailing.html">C4/C4S3_AudioThumbnailing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_family</strong> (<em>list</em>) – Path family</p></li>
+<li><p><strong>score</strong> (<em>float</em>) – Score</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Length of feature sequence</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fitness</strong> (<em>float</em>) – Fitness</p></li>
+<li><p><strong>score</strong> (<em>float</em>) – Score</p></li>
+<li><p><strong>score_n</strong> (<em>float</em>) – Normalized score</p></li>
+<li><p><strong>coverage</strong> (<em>float</em>) – Coverage</p></li>
+<li><p><strong>coverage_n</strong> (<em>float</em>) – Normalized coverage</p></li>
+<li><p><strong>path_family_length</strong> (<em>int</em>) – Length of path family (total number of cells)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.compute_fitness_scape_plot">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">compute_fitness_scape_plot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#compute_fitness_scape_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.compute_fitness_scape_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute scape plot for fitness and other measures</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_ScapePlot.html">C4/C4S3_ScapePlot.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> (<em>np.ndarray</em>) – Self-similarity matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>SP_all</strong> (<em>np.ndarray</em>) – Vector containing five different scape plots for five measures
+(fitness, score, normalized score, coverage, normlized coverage)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.compute_induced_segment_family_coverage">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">compute_induced_segment_family_coverage</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_family</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#compute_induced_segment_family_coverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.compute_induced_segment_family_coverage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute induced segment family and coverage from path family</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_AudioThumbnailing.html">C4/C4S3_AudioThumbnailing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path_family</strong> (<em>list</em>) – Path family</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>segment_family</strong> (<em>np.ndarray</em>) – Induced segment family</p></li>
+<li><p><strong>coverage</strong> (<em>float</em>) – Coverage of path family</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.compute_optimal_path_family">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">compute_optimal_path_family</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#compute_optimal_path_family"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.compute_optimal_path_family" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute an optimal path family given an accumulated score matrix</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_AudioThumbnailing.html">C4/C4S3_AudioThumbnailing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated score matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>path_family</strong> (<em>list</em>) – Optimal path family consisting of list of paths
+(each path being a list of index pairs)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.normalization_properties_ssm">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">normalization_properties_ssm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#normalization_properties_ssm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.normalization_properties_ssm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes self-similartiy matrix to fulfill S(n,n)=1.
+Yields a warning if max(S)&lt;=1 is not fulfilled</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_AudioThumbnailing.html">C4/C4S3_AudioThumbnailing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> (<em>np.ndarray</em>) – Self-similarity matrix (SSM)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S_normalized</strong> (<em>np.ndarray</em>) – Normalized self-similarity matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.plot_path_family">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">plot_path_family</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_family</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proj_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proj_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#plot_path_family"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.plot_path_family" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot path family into a given axis</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_AudioThumbnailing.html">C4/C4S3_AudioThumbnailing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – Axis of plot</p></li>
+<li><p><strong>path_family</strong> – Path family</p></li>
+<li><p><strong>Fs</strong> – Feature rate of path_family (Default value = 1)</p></li>
+<li><p><strong>x_offset</strong> – Offset x-axis (Default value = 0)</p></li>
+<li><p><strong>y_offset</strong> – Yffset x-axis (Default value = 0)</p></li>
+<li><p><strong>proj_x</strong> – Display projection on x-axis (Default value = True)</p></li>
+<li><p><strong>w_x</strong> – Width used for projection on x-axis (Default value = 7)</p></li>
+<li><p><strong>proj_y</strong> – Display projection on y-axis (Default value = True)</p></li>
+<li><p><strong>w_y</strong> – Width used for projection on y-axis (Default value = 7)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.plot_seg_in_sp">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">plot_seg_in_sp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#plot_seg_in_sp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.plot_seg_in_sp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot segment and induced segements as points in SP visualization</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_ScapePlot.html">C4/C4S3_ScapePlot.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – Axis for image</p></li>
+<li><p><strong>seg</strong> – Segment <code class="docutils literal notranslate"><span class="pre">(start_index,</span> <span class="pre">end_index)</span></code></p></li>
+<li><p><strong>S</strong> – Self-similarity matrix (Default value = None)</p></li>
+<li><p><strong>Fs</strong> – Sampling rate (Default value = 1)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.plot_sp_ssm">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">plot_sp_ssm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">SP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#plot_sp_ssm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.plot_sp_ssm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visulization of SP and SSM</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_ScapePlot.html">C4/C4S3_ScapePlot.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>SP</strong> – Scape plot</p></li>
+<li><p><strong>seg</strong> – Segment <code class="docutils literal notranslate"><span class="pre">(start_index,</span> <span class="pre">end_index)</span></code></p></li>
+<li><p><strong>S</strong> – Self-similarity matrix</p></li>
+<li><p><strong>ann</strong> – Annotation</p></li>
+<li><p><strong>color_ann</strong> – color scheme used for annotations (Default value = [])</p></li>
+<li><p><strong>title</strong> – Title of figure (Default value = ‘’)</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (5, 4))</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.plot_ssm_ann">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">plot_ssm_ann</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray_r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ann_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ann_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">4.5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#plot_ssm_ann"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.plot_ssm_ann" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot SSM and annotations (horizontal and vertical as overlay)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_AudioThumbnailing.html">C4/C4S3_AudioThumbnailing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – Self-similarity matrix</p></li>
+<li><p><strong>ann</strong> – Annotations</p></li>
+<li><p><strong>Fs</strong> – Feature rate of path_family (Default value = 1)</p></li>
+<li><p><strong>cmap</strong> – Color map for S (Default value = ‘gray_r’)</p></li>
+<li><p><strong>color_ann</strong> – color scheme used for annotations (see <a class="reference internal" href="index_b.html#libfmp.b.b_plot.plot_segments" title="libfmp.b.b_plot.plot_segments"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_segments()</span></code></a>)
+(Default value = [])</p></li>
+<li><p><strong>ann_x</strong> – Plot annotations on x-axis (Default value = True)</p></li>
+<li><p><strong>ann_y</strong> – Plot annotations on y-axis (Default value = True)</p></li>
+<li><p><strong>fontsize</strong> – Font size used for annotation labels (Default value = 12)</p></li>
+<li><p><strong>figsize</strong> – Size of figure (Default value = (5, 4.5))</p></li>
+<li><p><strong>xlabel</strong> – Label for x-axis (Default value = ‘’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y-axis (Default value = ‘’)</p></li>
+<li><p><strong>title</strong> – Figure size (Default value = ‘’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle for figure</p></li>
+<li><p><strong>ax</strong> – Handle for axes</p></li>
+<li><p><strong>im</strong> – Handle for imshow</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.plot_ssm_ann_optimal_path_family">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">plot_ssm_ann_optimal_path_family</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray_r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">4.5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#plot_ssm_ann_optimal_path_family"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.plot_ssm_ann_optimal_path_family" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot SSM, annotations, and computed optimal path family</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_AudioThumbnailing.html">C4/C4S3_AudioThumbnailing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – Self-similarity matrix</p></li>
+<li><p><strong>ann</strong> – Annotations</p></li>
+<li><p><strong>seg</strong> – Segment for computing the optimal path family</p></li>
+<li><p><strong>Fs</strong> – Feature rate of path_family (Default value = 1)</p></li>
+<li><p><strong>cmap</strong> – Color map for S (Default value = ‘gray_r’)</p></li>
+<li><p><strong>color_ann</strong> – color scheme used for annotations (see <a class="reference internal" href="index_b.html#libfmp.b.b_plot.plot_segments" title="libfmp.b.b_plot.plot_segments"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_segments()</span></code></a>)
+(Default value = [])</p></li>
+<li><p><strong>fontsize</strong> – Font size used for annotation labels (Default value = 12)</p></li>
+<li><p><strong>figsize</strong> – Size of figure (Default value = (5, 4.5))</p></li>
+<li><p><strong>xlabel</strong> – Label for x-axis (Default value = ‘’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y-axis (Default value = ‘’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle for figure</p></li>
+<li><p><strong>ax</strong> – Handle for axes</p></li>
+<li><p><strong>im</strong> – Handle for imshow</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.seg_max_sp">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">seg_max_sp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">SP</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#seg_max_sp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.seg_max_sp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return segment with maximal value in SP</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_ScapePlot.html">C4/C4S3_ScapePlot.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>SP</strong> (<em>np.ndarray</em>) – Scape plot</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>seg</strong> (<em>tuple</em>) – Segment <code class="docutils literal notranslate"><span class="pre">(start_index,</span> <span class="pre">end_index)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s3_thumbnail.visualize_scape_plot">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s3_thumbnail.</span></code><code class="sig-name descname"><span class="pre">visualize_scape_plot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">SP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(4,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Center</span> <span class="pre">(seconds)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Length</span> <span class="pre">(seconds)'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s3_thumbnail.html#visualize_scape_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s3_thumbnail.visualize_scape_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualize scape plot</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S3_ScapePlot.html">C4/C4S3_ScapePlot.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>SP</strong> – Scape plot data (encodes as start-duration matrix)</p></li>
+<li><p><strong>Fs</strong> – Sampling rate (Default value = 1)</p></li>
+<li><p><strong>ax</strong> – Used axes (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (4, 3))</p></li>
+<li><p><strong>title</strong> – Title of figure (Default value = ‘’)</p></li>
+<li><p><strong>xlabel</strong> – Label for x-axis (Default value = ‘Center (seconds)’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y-axis (Default value = ‘Length (seconds)’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle for figure</p></li>
+<li><p><strong>ax</strong> – Handle for axes</p></li>
+<li><p><strong>im</strong> – Handle for imshow</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c4.c4s4_novelty_kernel"></span><dl class="py function">
+<dt id="libfmp.c4.c4s4_novelty_kernel.compute_kernel_checkerboard_box">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s4_novelty_kernel.</span></code><code class="sig-name descname"><span class="pre">compute_kernel_checkerboard_box</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s4_novelty_kernel.html#compute_kernel_checkerboard_box"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s4_novelty_kernel.compute_kernel_checkerboard_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute box-like checkerboard kernel [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 4.4.1]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S4_NoveltySegmentation.html">C4/C4S4_NoveltySegmentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>L</strong> (<em>int</em>) – Parameter specifying the kernel size 2*L+1</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>kernel</strong> (<em>np.ndarray</em>) – Kernel matrix of size (2*L+1) x (2*L+1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s4_novelty_kernel.compute_kernel_checkerboard_gaussian">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s4_novelty_kernel.</span></code><code class="sig-name descname"><span class="pre">compute_kernel_checkerboard_gaussian</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s4_novelty_kernel.html#compute_kernel_checkerboard_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s4_novelty_kernel.compute_kernel_checkerboard_gaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute Guassian-like checkerboard kernel [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 4.4.1].
+See also: <a class="reference external" href="https://scipython.com/blog/visualizing-the-bivariate-gaussian-distribution/">https://scipython.com/blog/visualizing-the-bivariate-gaussian-distribution/</a></p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S4_NoveltySegmentation.html">C4/C4S4_NoveltySegmentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L</strong> (<em>int</em>) – Parameter specifying the kernel size M=2*L+1</p></li>
+<li><p><strong>var</strong> (<em>float</em>) – Variance parameter determing the tapering (epsilon) (Default value = 1.0)</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em>) – Normalize kernel (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>kernel</strong> (<em>np.ndarray</em>) – Kernel matrix of size M x M</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s4_novelty_kernel.compute_novelty_ssm">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s4_novelty_kernel.</span></code><code class="sig-name descname"><span class="pre">compute_novelty_ssm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s4_novelty_kernel.html#compute_novelty_ssm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s4_novelty_kernel.compute_novelty_ssm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute novelty function from SSM [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 4.4.1]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S4_NoveltySegmentation.html">C4/C4S4_NoveltySegmentation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> (<em>np.ndarray</em>) – SSM</p></li>
+<li><p><strong>kernel</strong> (<em>np.ndarray</em>) – Checkerboard kernel (if kernel==None, it will be computed) (Default value = None)</p></li>
+<li><p><strong>L</strong> (<em>int</em>) – Parameter specifying the kernel size M=2*L+1 (Default value = 10)</p></li>
+<li><p><strong>var</strong> (<em>float</em>) – Variance parameter determing the tapering (epsilon) (Default value = 0.5)</p></li>
+<li><p><strong>exclude</strong> (<em>bool</em>) – Sets the first L and last L values of novelty function to zero (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>nov</strong> (<em>np.ndarray</em>) – Novelty function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c4.c4s4_structure_feature"></span><dl class="py function">
+<dt id="libfmp.c4.c4s4_structure_feature.compute_time_lag_representation">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s4_structure_feature.</span></code><code class="sig-name descname"><span class="pre">compute_time_lag_representation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">circular</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s4_structure_feature.html#compute_time_lag_representation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s4_structure_feature.compute_time_lag_representation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computation of (circular) time-lag representation</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S4_StructureFeature.html">C4/C4S4_StructureFeature.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> (<em>np.ndarray</em>) – Self-similarity matrix</p></li>
+<li><p><strong>circular</strong> (<em>bool</em>) – Computes circular version (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>L</strong> (<em>np.ndarray</em>) – (Circular) time-lag representation of S</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s4_structure_feature.novelty_structure_feature">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s4_structure_feature.</span></code><code class="sig-name descname"><span class="pre">novelty_structure_feature</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s4_structure_feature.html#novelty_structure_feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s4_structure_feature.novelty_structure_feature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computation of the novelty function from a circular time-lag representation</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S4_StructureFeature.html">C4/C4S4_StructureFeature.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L</strong> (<em>np.ndarray</em>) – Circular time-lag representation</p></li>
+<li><p><strong>padding</strong> (<em>bool</em>) – Padding the result with the value zero (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>nov</strong> (<em>np.ndarray</em>) – Novelty function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s4_structure_feature.plot_ssm_structure_feature_nov">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s4_structure_feature.</span></code><code class="sig-name descname"><span class="pre">plot_ssm_structure_feature_nov</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s4_structure_feature.html#plot_ssm_structure_feature_nov"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s4_structure_feature.plot_ssm_structure_feature_nov" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plotting an SSM, structure features, and a novelty function</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S4_StructureFeature.html">C4/C4S4_StructureFeature.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – SSM</p></li>
+<li><p><strong>L</strong> – Circular time-lag representation</p></li>
+<li><p><strong>nov</strong> – Novelty function</p></li>
+<li><p><strong>Fs</strong> – Feature rate (indicated in title of SSM) (Default value = 1)</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (10, 3))</p></li>
+<li><p><strong>ann</strong> – Annotations (Default value = [])</p></li>
+<li><p><strong>color_ann</strong> – Colors used for annotations (see <a class="reference internal" href="index_b.html#libfmp.b.b_plot.plot_segments" title="libfmp.b.b_plot.plot_segments"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_segments()</span></code></a>) (Default value = [])</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ax1</strong> – First subplot</p></li>
+<li><p><strong>ax2</strong> – Second subplot</p></li>
+<li><p><strong>ax3</strong> – Third subplot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c4.c4s5_evaluation"></span><dl class="py function">
+<dt id="libfmp.c4.c4s5_evaluation.compare_pairwise">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s5_evaluation.</span></code><code class="sig-name descname"><span class="pre">compare_pairwise</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s5_evaluation.html#compare_pairwise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s5_evaluation.compare_pairwise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute set of positive items from label sequence [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 4.5.3]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html">C4/C4S5_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Label sequence</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>I_pos</strong> (<em>np.ndarray</em>) – Set of positive items</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s5_evaluation.convert_ann_to_seq_label">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s5_evaluation.</span></code><code class="sig-name descname"><span class="pre">convert_ann_to_seq_label</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ann</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s5_evaluation.html#convert_ann_to_seq_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s5_evaluation.convert_ann_to_seq_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert structure annotation with integer time positions (given in indices)
+into label sequence</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html">C4/C4S5_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ann</strong> (<em>list</em>) – Annotation (list <code class="docutils literal notranslate"><span class="pre">[[s,</span> <span class="pre">t,</span> <span class="pre">'label'],</span> <span class="pre">...]</span></code>, with <code class="docutils literal notranslate"><span class="pre">s</span></code>, <code class="docutils literal notranslate"><span class="pre">t</span></code> being integers)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X</strong> (<em>list</em>) – Sequencs of labels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s5_evaluation.evaluate_boundary">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s5_evaluation.</span></code><code class="sig-name descname"><span class="pre">evaluate_boundary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">B_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_est</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s5_evaluation.html#evaluate_boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s5_evaluation.evaluate_boundary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute boundary evaluation measures [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 4.5.4]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html">C4/C4S5_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>B_ref</strong> (<em>np.ndarray</em>) – Reference boundary annotations</p></li>
+<li><p><strong>B_est</strong> (<em>np.ndarray</em>) – Estimated boundary annotations</p></li>
+<li><p><strong>tau</strong> (<em>int</em>) – Tolerance parameter.
+Note: Condition <code class="docutils literal notranslate"><span class="pre">|b_{k+1}-b_k|&gt;2tau</span></code> should be fulfilled [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Eq. 4.58]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>P</strong> (<em>float</em>) – Precision</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Recall</p></li>
+<li><p><strong>F</strong> (<em>float</em>) – F-measure</p></li>
+<li><p><strong>num_TP</strong> (<em>int</em>) – Number of true positives</p></li>
+<li><p><strong>num_FN</strong> (<em>int</em>) – Number of false negatives</p></li>
+<li><p><strong>num_FP</strong> (<em>int</em>) – Number of false positives</p></li>
+<li><p><strong>B_tol</strong> (<em>np.ndarray</em>) – Data structure encoding B_ref with tolerance</p></li>
+<li><p><strong>I_eval</strong> (<em>np.ndarray</em>) – Data structure encoding TP, FN, FP</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s5_evaluation.evaluate_pairwise">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s5_evaluation.</span></code><code class="sig-name descname"><span class="pre">evaluate_pairwise</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">I_ref_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I_est_pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s5_evaluation.html#evaluate_pairwise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s5_evaluation.evaluate_pairwise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute pairwise evaluation measures [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 4.5.3]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html">C4/C4S5_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>I_ref_pos</strong> (<em>np.ndarray</em>) – Referenence set of positive items</p></li>
+<li><p><strong>I_est_pos</strong> (<em>np.ndarray</em>) – Set of items being estimated as positive</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>P</strong> (<em>float</em>) – Precision</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Recall</p></li>
+<li><p><strong>F</strong> (<em>float</em>) – F-measure</p></li>
+<li><p><strong>num_TP</strong> (<em>int</em>) – Number of true positives</p></li>
+<li><p><strong>num_FN</strong> (<em>int</em>) – Number of false negatives</p></li>
+<li><p><strong>num_FP</strong> (<em>int</em>) – Number of false positives</p></li>
+<li><p><strong>I_eval</strong> (<em>np.ndarray</em>) – Data structure encoding TP, FN, FP</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s5_evaluation.measure_prf">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s5_evaluation.</span></code><code class="sig-name descname"><span class="pre">measure_prf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_TP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_FN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_FP</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s5_evaluation.html#measure_prf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s5_evaluation.measure_prf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute P, R, and F from size of TP, FN, and FP [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 4.5.1]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html">C4/C4S5_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_TP</strong> (<em>int</em>) – True positives</p></li>
+<li><p><strong>num_FN</strong> (<em>int</em>) – False negative</p></li>
+<li><p><strong>num_FP</strong> (<em>int</em>) – False positives</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>P</strong> (<em>float</em>) – Precision</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Recall</p></li>
+<li><p><strong>F</strong> (<em>float</em>) – F-measure</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s5_evaluation.measure_prf_sets">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s5_evaluation.</span></code><code class="sig-name descname"><span class="pre">measure_prf_sets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">I</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I_ref_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I_est_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">details</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s5_evaluation.html#measure_prf_sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s5_evaluation.measure_prf_sets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute P, R, and F from sets I, I_ref_pos, I_est_pos [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 4.5.1]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html">C4/C4S5_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>I</strong> – Set of items</p></li>
+<li><p><strong>I_ref_pos</strong> – Reference set of positive items</p></li>
+<li><p><strong>I_est_pos</strong> – Set of items being estimated as positive</p></li>
+<li><p><strong>details</strong> – Print details (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>P</strong> (<em>float</em>) – Precision</p></li>
+<li><p><strong>R</strong> (<em>float</em>) – Recall</p></li>
+<li><p><strong>F</strong> (<em>float</em>) – F-measure</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s5_evaluation.plot_boundary_measures">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s5_evaluation.</span></code><code class="sig-name descname"><span class="pre">plot_boundary_measures</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">B_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_est</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">2.5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s5_evaluation.html#plot_boundary_measures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s5_evaluation.plot_boundary_measures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot B_ref and B_est (see <a class="reference internal" href="#libfmp.c4.c4s5_evaluation.evaluate_boundary" title="libfmp.c4.c4s5_evaluation.evaluate_boundary"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.c4.c4s5_evaluation.evaluate_boundary()</span></code></a>)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html">C4/C4S5_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>B_ref</strong> – Reference boundary annotations</p></li>
+<li><p><strong>B_est</strong> – Estimated boundary annotations</p></li>
+<li><p><strong>tau</strong> – Tolerance parameter</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (8, 2.5))</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle for figure</p></li>
+<li><p><strong>ax</strong> – Handle for axes</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s5_evaluation.plot_matrix_label">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s5_evaluation.</span></code><code class="sig-name descname"><span class="pre">plot_matrix_label</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(3,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray_r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s5_evaluation.html#plot_matrix_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s5_evaluation.plot_matrix_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot matrix and label sequence</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html">C4/C4S5_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> – Matrix</p></li>
+<li><p><strong>X</strong> – Label sequence</p></li>
+<li><p><strong>color_label</strong> – List of colors for labels (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (3, 3))</p></li>
+<li><p><strong>cmap</strong> – Colormap for imshow (Default value = ‘gray_r’)</p></li>
+<li><p><strong>fontsize</strong> – Font size (Default value = 8)</p></li>
+<li><p><strong>print_labels</strong> – Display labels inside Rectangles (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle for figure</p></li>
+<li><p><strong>ax</strong> – Handle for axes</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s5_evaluation.plot_matrix_pairwise">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s5_evaluation.</span></code><code class="sig-name descname"><span class="pre">plot_matrix_pairwise</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">I_eval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(3,</span> <span class="pre">2.5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s5_evaluation.html#plot_matrix_pairwise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s5_evaluation.plot_matrix_pairwise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot matrix I_eval encoding TP, FN, FP (see <a class="reference internal" href="#libfmp.c4.c4s5_evaluation.evaluate_pairwise" title="libfmp.c4.c4s5_evaluation.evaluate_pairwise"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.c4.c4s5_evaluation.evaluate_pairwise()</span></code></a>)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html">C4/C4S5_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>I_eval</strong> – Data structure encoding TP, FN, FP</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (3, 2.5))</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – Handle for figure</p></li>
+<li><p><strong>im</strong> – Handle for imshow</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c4.c4s5_evaluation.plot_seq_label">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c4.c4s5_evaluation.</span></code><code class="sig-name descname"><span class="pre">plot_seq_label</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'horizontal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c4/c4s5_evaluation.html#plot_seq_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c4.c4s5_evaluation.plot_seq_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot label sequence in the style of annotations</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C4/C4S5_Evaluation.html">C4/C4S5_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – Axis used for plotting</p></li>
+<li><p><strong>X</strong> – Label sequence</p></li>
+<li><p><strong>Fs</strong> – Sampling rate (Default value = 1)</p></li>
+<li><p><strong>color_label</strong> – List of colors for labels (Default value = [])</p></li>
+<li><p><strong>direction</strong> – Parameter used for <a class="reference internal" href="index_b.html#libfmp.b.b_plot.plot_segments" title="libfmp.b.b_plot.plot_segments"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_segments()</span></code></a> (Default value = ‘horizontal’)</p></li>
+<li><p><strong>fontsize</strong> – Parameter used for <a class="reference internal" href="index_b.html#libfmp.b.b_plot.plot_segments" title="libfmp.b.b_plot.plot_segments"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_segments()</span></code></a> (Default value = 10)</p></li>
+<li><p><strong>time_axis</strong> – Parameter used for <a class="reference internal" href="index_b.html#libfmp.b.b_plot.plot_segments" title="libfmp.b.b_plot.plot_segments"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_segments()</span></code></a> (Default value = False)</p></li>
+<li><p><strong>print_labels</strong> – Parameter used for <a class="reference internal" href="index_b.html#libfmp.b.b_plot.plot_segments" title="libfmp.b.b_plot.plot_segments"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_segments()</span></code></a> (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ann_X</strong> – Structure annotation for label sequence</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="index_c5.html" class="btn btn-neutral float-right" title="Chord Recognition (libfmp.c5)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index_c3.html" class="btn btn-neutral float-left" title="Music Synchronization (libfmp.c3)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

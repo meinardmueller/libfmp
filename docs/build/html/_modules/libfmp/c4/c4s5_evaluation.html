@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c4.c4s5_evaluation &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c4.c4s5_evaluation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c4.c4s5_evaluation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c4.c4s5_evaluation</span>
+<span class="sd">Author: Meinard Müller, Tim Zunner</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+
+<span class="kn">import</span> <span class="nn">libfmp.b</span>
+
+
+<div class="viewcode-block" id="measure_prf"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s5_evaluation.measure_prf">[docs]</a><span class="k">def</span> <span class="nf">measure_prf</span><span class="p">(</span><span class="n">num_TP</span><span class="p">,</span> <span class="n">num_FN</span><span class="p">,</span> <span class="n">num_FP</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute P, R, and F from size of TP, FN, and FP [FMP, Section 4.5.1]</span>
+
+<span class="sd">    Notebook: C4/C4S5_Evaluation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        num_TP (int): True positives</span>
+<span class="sd">        num_FN (int): False negative</span>
+<span class="sd">        num_FP (int): False positives</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        P (float): Precision</span>
+<span class="sd">        R (float): Recall</span>
+<span class="sd">        F (float): F-measure</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">num_TP</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_TP</span> <span class="o">+</span> <span class="n">num_FP</span><span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">num_TP</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_TP</span> <span class="o">+</span> <span class="n">num_FN</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">P</span> <span class="o">+</span> <span class="n">R</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">F</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">P</span> <span class="o">*</span> <span class="n">R</span> <span class="o">/</span> <span class="p">(</span><span class="n">P</span> <span class="o">+</span> <span class="n">R</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">F</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">F</span></div>
+
+
+<div class="viewcode-block" id="measure_prf_sets"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s5_evaluation.measure_prf_sets">[docs]</a><span class="k">def</span> <span class="nf">measure_prf_sets</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">I_ref_pos</span><span class="p">,</span> <span class="n">I_est_pos</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute P, R, and F from sets I, I_ref_pos, I_est_pos [FMP, Section 4.5.1]</span>
+
+<span class="sd">    Notebook: C4/C4S5_Evaluation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        I: Set of items</span>
+<span class="sd">        I_ref_pos: Reference set of positive items</span>
+<span class="sd">        I_est_pos: Set of items being estimated as positive</span>
+<span class="sd">        details: Print details (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        P (float): Precision</span>
+<span class="sd">        R (float): Recall</span>
+<span class="sd">        F (float): F-measure</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">I_ref_neg</span> <span class="o">=</span> <span class="n">I</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">I_ref_pos</span><span class="p">)</span>
+    <span class="n">I_est_neg</span> <span class="o">=</span> <span class="n">I</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">I_est_pos</span><span class="p">)</span>
+    <span class="n">TP</span> <span class="o">=</span> <span class="n">I_est_pos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">I_ref_pos</span><span class="p">)</span>
+    <span class="n">FN</span> <span class="o">=</span> <span class="n">I_est_neg</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">I_ref_pos</span><span class="p">)</span>
+    <span class="n">FP</span> <span class="o">=</span> <span class="n">I_est_pos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">I_ref_neg</span><span class="p">)</span>
+    <span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">F</span> <span class="o">=</span> <span class="n">measure_prf</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">TP</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">FN</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">FP</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">details</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TP = &#39;</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="s1">&#39;;  FN = &#39;</span><span class="p">,</span> <span class="n">FN</span><span class="p">,</span> <span class="s1">&#39;;  FP = &#39;</span><span class="p">,</span> <span class="n">FP</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;P = </span><span class="si">%0.3f</span><span class="s1">;  R = </span><span class="si">%0.3f</span><span class="s1">;  F = </span><span class="si">%0.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">F</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">F</span></div>
+
+
+<div class="viewcode-block" id="convert_ann_to_seq_label"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s5_evaluation.convert_ann_to_seq_label">[docs]</a><span class="k">def</span> <span class="nf">convert_ann_to_seq_label</span><span class="p">(</span><span class="n">ann</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert structure annotation with integer time positions (given in indices)</span>
+<span class="sd">    into label sequence</span>
+
+<span class="sd">    Notebook: C4/C4S5_Evaluation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ann (list): Annotation (list ``[[s, t, &#39;label&#39;], ...]``, with ``s``, ``t`` being integers)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        X (list): Sequencs of labels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">ann</span><span class="p">:</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">seg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">seg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+            <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seg</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">X</span></div>
+
+
+<div class="viewcode-block" id="plot_seq_label"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s5_evaluation.plot_seq_label">[docs]</a><span class="k">def</span> <span class="nf">plot_seq_label</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color_label</span><span class="o">=</span><span class="p">[],</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
+                   <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">print_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot label sequence in the style of annotations</span>
+
+<span class="sd">    Notebook: C4/C4S5_Evaluation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ax: Axis used for plotting</span>
+<span class="sd">        X: Label sequence</span>
+<span class="sd">        Fs: Sampling rate (Default value = 1)</span>
+<span class="sd">        color_label: List of colors for labels (Default value = [])</span>
+<span class="sd">        direction: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = &#39;horizontal&#39;)</span>
+<span class="sd">        fontsize: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = 10)</span>
+<span class="sd">        time_axis: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = False)</span>
+<span class="sd">        print_labels: Parameter used for :func:`libfmp.b.b_plot.plot_segments` (Default value = True)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">         ann_X: Structure annotation for label sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ann_X</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+        <span class="n">ann_X</span><span class="o">.</span><span class="n">append</span><span class="p">([(</span><span class="n">m</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="n">Fs</span><span class="p">,</span> <span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="n">Fs</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="n">m</span><span class="p">]])</span>
+    <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">plot_segments</span><span class="p">(</span><span class="n">ann_X</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="n">time_axis</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span>
+                           <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">color_label</span><span class="p">,</span> <span class="n">print_labels</span><span class="o">=</span><span class="n">print_labels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ann_X</span></div>
+
+
+<div class="viewcode-block" id="compare_pairwise"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s5_evaluation.compare_pairwise">[docs]</a><span class="k">def</span> <span class="nf">compare_pairwise</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute set of positive items from label sequence [FMP, Section 4.5.3]</span>
+
+<span class="sd">    Notebook: C4/C4S5_Evaluation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (list or np.ndarray): Label sequence</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        I_pos (np.ndarray): Set of positive items</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">I_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">X</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="ow">is</span> <span class="n">X</span><span class="p">[</span><span class="n">m</span><span class="p">]:</span>
+                <span class="n">I_pos</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">I_pos</span></div>
+
+
+<div class="viewcode-block" id="evaluate_pairwise"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s5_evaluation.evaluate_pairwise">[docs]</a><span class="k">def</span> <span class="nf">evaluate_pairwise</span><span class="p">(</span><span class="n">I_ref_pos</span><span class="p">,</span> <span class="n">I_est_pos</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute pairwise evaluation measures [FMP, Section 4.5.3]</span>
+
+<span class="sd">    Notebook: C4/C4S5_Evaluation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        I_ref_pos (np.ndarray): Referenence set of positive items</span>
+<span class="sd">        I_est_pos (np.ndarray): Set of items being estimated as positive</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        P (float): Precision</span>
+<span class="sd">        R (float): Recall</span>
+<span class="sd">        F (float): F-measure</span>
+<span class="sd">        num_TP (int): Number of true positives</span>
+<span class="sd">        num_FN (int): Number of false negatives</span>
+<span class="sd">        num_FP (int): Number of false positives</span>
+<span class="sd">        I_eval (np.ndarray): Data structure encoding TP, FN, FP</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">I_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">I_ref_pos</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">TP</span> <span class="o">=</span> <span class="p">(</span><span class="n">I_ref_pos</span> <span class="o">+</span> <span class="n">I_est_pos</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+    <span class="n">FN</span> <span class="o">=</span> <span class="p">(</span><span class="n">I_ref_pos</span> <span class="o">-</span> <span class="n">I_est_pos</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="n">FP</span> <span class="o">=</span> <span class="p">(</span><span class="n">I_ref_pos</span> <span class="o">-</span> <span class="n">I_est_pos</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span>
+    <span class="n">I_eval</span><span class="p">[</span><span class="n">TP</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">I_eval</span><span class="p">[</span><span class="n">FN</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">I_eval</span><span class="p">[</span><span class="n">FP</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">num_TP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">TP</span><span class="p">)</span>
+    <span class="n">num_FN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">FN</span><span class="p">)</span>
+    <span class="n">num_FP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">FP</span><span class="p">)</span>
+    <span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">F</span> <span class="o">=</span> <span class="n">measure_prf</span><span class="p">(</span><span class="n">num_TP</span><span class="p">,</span> <span class="n">num_FN</span><span class="p">,</span> <span class="n">num_FP</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">num_TP</span><span class="p">,</span> <span class="n">num_FN</span><span class="p">,</span> <span class="n">num_FP</span><span class="p">,</span> <span class="n">I_eval</span></div>
+
+
+<div class="viewcode-block" id="plot_matrix_label"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s5_evaluation.plot_matrix_label">[docs]</a><span class="k">def</span> <span class="nf">plot_matrix_label</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">color_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">print_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot matrix and label sequence</span>
+
+<span class="sd">    Notebook: C4/C4S5_Evaluation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        M: Matrix</span>
+<span class="sd">        X: Label sequence</span>
+<span class="sd">        color_label: List of colors for labels (Default value = None)</span>
+<span class="sd">        figsize: Figure size (Default value = (3, 3))</span>
+<span class="sd">        cmap: Colormap for imshow (Default value = &#39;gray_r&#39;)</span>
+<span class="sd">        fontsize: Font size (Default value = 8)</span>
+<span class="sd">        print_labels: Display labels inside Rectangles (Default value = True)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: Handle for figure</span>
+<span class="sd">        ax: Handle for axes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+                                              <span class="s1">&#39;wspace&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]},</span>
+                           <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+
+    <span class="n">colorList</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]])</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">colorList</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>  <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">ax_cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">plot_seq_label</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">,</span> <span class="n">color_label</span><span class="o">=</span><span class="n">color_label</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">print_labels</span><span class="o">=</span><span class="n">print_labels</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">),</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plot_seq_label</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">,</span> <span class="n">color_label</span><span class="o">=</span><span class="n">color_label</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">print_labels</span><span class="o">=</span><span class="n">print_labels</span><span class="p">,</span>
+                   <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="plot_matrix_pairwise"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s5_evaluation.plot_matrix_pairwise">[docs]</a><span class="k">def</span> <span class="nf">plot_matrix_pairwise</span><span class="p">(</span><span class="n">I_eval</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Plot matrix I_eval encoding TP, FN, FP (see :func:`libfmp.c4.c4s5_evaluation.evaluate_pairwise`)</span>
+
+<span class="sd">    Notebook: C4/C4S5_Evaluation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        I_eval: Data structure encoding TP, FN, FP</span>
+<span class="sd">        figsize: Figure size (Default value = (3, 2.5))</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: Handle for figure</span>
+<span class="sd">        im: Handle for imshow</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">colorList</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">colorList</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">I_eval</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>  <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+    <span class="n">ax_cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;TP&#39;</span><span class="p">,</span> <span class="s1">&#39;FN&#39;</span><span class="p">,</span> <span class="s1">&#39;FP&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">im</span></div>
+
+
+<div class="viewcode-block" id="evaluate_boundary"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s5_evaluation.evaluate_boundary">[docs]</a><span class="k">def</span> <span class="nf">evaluate_boundary</span><span class="p">(</span><span class="n">B_ref</span><span class="p">,</span> <span class="n">B_est</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute boundary evaluation measures [FMP, Section 4.5.4]</span>
+
+<span class="sd">    Notebook: C4/C4S5_Evaluation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        B_ref (np.ndarray): Reference boundary annotations</span>
+<span class="sd">        B_est (np.ndarray): Estimated boundary annotations</span>
+<span class="sd">        tau (int): Tolerance parameter.</span>
+<span class="sd">            Note: Condition ``|b_{k+1}-b_k|&gt;2tau`` should be fulfilled [FMP, Eq. 4.58]</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        P (float): Precision</span>
+<span class="sd">        R (float): Recall</span>
+<span class="sd">        F (float): F-measure</span>
+<span class="sd">        num_TP (int): Number of true positives</span>
+<span class="sd">        num_FN (int): Number of false negatives</span>
+<span class="sd">        num_FP (int): Number of false positives</span>
+<span class="sd">        B_tol (np.ndarray): Data structure encoding B_ref with tolerance</span>
+<span class="sd">        I_eval (np.ndarray): Data structure encoding TP, FN, FP</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">B_ref</span><span class="p">)</span>
+    <span class="n">num_TP</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">num_FN</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">num_FP</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">B_tol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">B_ref</span><span class="p">]))</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">B_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">B_ref</span><span class="p">]))</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">min_idx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">tau</span><span class="p">)</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="n">tau</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">B_ref</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">B_tol</span><span class="p">[:,</span> <span class="n">min_idx</span><span class="p">:</span><span class="n">max_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="n">B_tol</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">B_est</span><span class="p">[</span><span class="n">min_idx</span><span class="p">:</span><span class="n">max_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">temp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">num_TP</span> <span class="o">+=</span> <span class="n">temp</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">num_FN</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">B_eval</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">B_est</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">B_ref</span><span class="p">[</span><span class="n">min_idx</span><span class="p">:</span><span class="n">max_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">num_FP</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">B_eval</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">B_eval</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">F</span> <span class="o">=</span> <span class="n">measure_prf</span><span class="p">(</span><span class="n">num_TP</span><span class="p">,</span> <span class="n">num_FN</span><span class="p">,</span> <span class="n">num_FP</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">num_TP</span><span class="p">,</span> <span class="n">num_FN</span><span class="p">,</span> <span class="n">num_FP</span><span class="p">,</span> <span class="n">B_tol</span><span class="p">,</span> <span class="n">B_eval</span></div>
+
+
+<div class="viewcode-block" id="plot_boundary_measures"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s5_evaluation.plot_boundary_measures">[docs]</a><span class="k">def</span> <span class="nf">plot_boundary_measures</span><span class="p">(</span><span class="n">B_ref</span><span class="p">,</span> <span class="n">B_est</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Plot B_ref and B_est (see :func:`libfmp.c4.c4s5_evaluation.evaluate_boundary`)</span>
+
+<span class="sd">    Notebook: C4/C4S5_Evaluation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        B_ref: Reference boundary annotations</span>
+<span class="sd">        B_est: Estimated boundary annotations</span>
+<span class="sd">        tau: Tolerance parameter</span>
+<span class="sd">        figsize: Figure size (Default value = (8, 2.5))</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: Handle for figure</span>
+<span class="sd">        ax: Handle for axes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">num_TP</span><span class="p">,</span> <span class="n">num_FN</span><span class="p">,</span> <span class="n">num_FP</span><span class="p">,</span> <span class="n">B_tol</span><span class="p">,</span> <span class="n">B_eval</span> <span class="o">=</span> <span class="n">evaluate_boundary</span><span class="p">(</span><span class="n">B_ref</span><span class="p">,</span> <span class="n">B_est</span><span class="p">,</span> <span class="n">tau</span><span class="p">)</span>
+
+    <span class="n">colorList</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]])</span>
+    <span class="n">cmap_tol</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">colorList</span><span class="p">)</span>
+    <span class="n">colorList</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+    <span class="n">cmap_measures</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">colorList</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span>
+                                              <span class="s1">&#39;wspace&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span>
+                           <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">B_tol</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_tol</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Reference boundaries (with tolerance)&#39;</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax_cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;Positive&#39;</span><span class="p">,</span> <span class="s1">&#39;Tolerance&#39;</span><span class="p">])</span>
+
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">B_est</span><span class="p">]),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_tol</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Estimated boundaries&#39;</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax_cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;Positive&#39;</span><span class="p">,</span> <span class="s1">&#39;Tolerance&#39;</span><span class="p">])</span>
+
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">B_eval</span><span class="p">,</span> <span class="n">cmap_measures</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Evaluation&#39;</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax_cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;TP&#39;</span><span class="p">,</span> <span class="s1">&#39;FN&#39;</span><span class="p">,</span> <span class="s1">&#39;FP&#39;</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

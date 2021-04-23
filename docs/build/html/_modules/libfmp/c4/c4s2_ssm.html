@@ -1,0 +1,615 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c4.c4s2_ssm &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c4.c4s2_ssm</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c4.c4s2_ssm</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c4.c4s2_ssm</span>
+<span class="sd">Author: Meinard Müller, David Kopyto</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+
+<span class="kn">import</span> <span class="nn">libfmp.b</span>
+<span class="kn">import</span> <span class="nn">libfmp.c3</span>
+<span class="kn">import</span> <span class="nn">libfmp.c4</span>
+
+
+<div class="viewcode-block" id="compute_sm_dot"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_ssm.compute_sm_dot">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_sm_dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes similarty matrix from feature sequences using dot (inner) product</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (np.ndarray): First sequence</span>
+<span class="sd">        Y (np.ndarray): Second Sequence</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        S (float): Dot product</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">Y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">S</span></div>
+
+
+<div class="viewcode-block" id="plot_feature_ssm"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_ssm.plot_feature_ssm">[docs]</a><span class="k">def</span> <span class="nf">plot_feature_ssm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Fs_X</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Fs_S</span><span class="p">,</span> <span class="n">ann</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">color_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">clim_X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot SSM along with feature representation and annotations (standard setting is time in seconds)</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X: Feature representation</span>
+<span class="sd">        Fs_X: Feature rate of ``X``</span>
+<span class="sd">        S: Similarity matrix (SM)</span>
+<span class="sd">        Fs_S: Feature rate of ``S``</span>
+<span class="sd">        ann: Annotaions</span>
+<span class="sd">        duration: Duration</span>
+<span class="sd">        color_ann: Color annotations (see :func:`libfmp.b.b_plot.plot_segments`) (Default value = None)</span>
+<span class="sd">        title: Figure title (Default value = &#39;&#39;)</span>
+<span class="sd">        label: Label for time axes (Default value = &#39;Time (seconds)&#39;)</span>
+<span class="sd">        time: Display time axis ticks or not (Default value = True)</span>
+<span class="sd">        figsize: Figure size (Default value = (5, 6))</span>
+<span class="sd">        fontsize: Font size (Default value = 10)</span>
+<span class="sd">        clim_X: Color limits for matrix X (Default value = None)</span>
+<span class="sd">        clim: Color limits for matrix ``S`` (Default value = None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: Handle for figure</span>
+<span class="sd">        ax: Handle for axes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">compressed_gray_cmap</span><span class="p">(</span><span class="n">alpha</span><span class="o">=-</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+                                              <span class="s1">&#39;wspace&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+                                              <span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]},</span>
+                           <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs_X</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="p">[</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="n">clim</span><span class="o">=</span><span class="n">clim_X</span><span class="p">,</span>
+                         <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs_S</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="p">[</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="n">clim</span><span class="p">,</span>
+                         <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">plot_segments</span><span class="p">(</span><span class="n">ann</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">time_axis</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span>
+                           <span class="n">colors</span><span class="o">=</span><span class="n">color_ann</span><span class="p">,</span>
+                           <span class="n">time_label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">time_max</span><span class="o">=</span><span class="n">duration</span><span class="o">*</span><span class="n">Fs_X</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">),</span> <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">plot_segments</span><span class="p">(</span><span class="n">ann</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">time_axis</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span>
+                           <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">color_ann</span><span class="p">,</span>
+                           <span class="n">time_label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">time_max</span><span class="o">=</span><span class="n">duration</span><span class="o">*</span><span class="n">Fs_X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="filter_diag_sm"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_ssm.filter_diag_sm">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">filter_diag_sm</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Path smoothing of similarity matrix by forward filtering along main diagonal</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM-PathEnhancement.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        S (np.ndarray): Similarity matrix (SM)</span>
+<span class="sd">        L (int): Length of filter</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        S_L (np.ndarray): Smoothed SM</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">S_L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+    <span class="n">S_extend_L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span> <span class="o">+</span> <span class="n">L</span><span class="p">,</span> <span class="n">M</span> <span class="o">+</span> <span class="n">L</span><span class="p">))</span>
+    <span class="n">S_extend_L</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">M</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span>
+    <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+        <span class="n">S_L</span> <span class="o">=</span> <span class="n">S_L</span> <span class="o">+</span> <span class="n">S_extend_L</span><span class="p">[</span><span class="n">pos</span><span class="p">:(</span><span class="n">N</span> <span class="o">+</span> <span class="n">pos</span><span class="p">),</span> <span class="n">pos</span><span class="p">:(</span><span class="n">M</span> <span class="o">+</span> <span class="n">pos</span><span class="p">)]</span>
+    <span class="n">S_L</span> <span class="o">=</span> <span class="n">S_L</span> <span class="o">/</span> <span class="n">L</span>
+    <span class="k">return</span> <span class="n">S_L</span></div>
+
+
+<div class="viewcode-block" id="subplot_matrix_colorbar"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_ssm.subplot_matrix_colorbar">[docs]</a><span class="k">def</span> <span class="nf">subplot_matrix_colorbar</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                            <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span>
+                            <span class="n">clim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Visualization function for showing zoomed sections of matrices</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM-PathEnhancement.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        S: Similarity matrix (SM)</span>
+<span class="sd">        fig: Figure handle</span>
+<span class="sd">        ax: Axes handle</span>
+<span class="sd">        title: Title for figure (Default value = &#39;&#39;)</span>
+<span class="sd">        Fs: Feature rate (Default value = 1)</span>
+<span class="sd">        xlabel: Label for x-axis (Default value = &#39;Time (seconds)&#39;)</span>
+<span class="sd">        ylabel: Label for y-axis (Default value = &#39;Time (seconds)&#39;)</span>
+<span class="sd">        clim: Color limits (Default value = None)</span>
+<span class="sd">        xlim: Limits for x-axis (Default value = None)</span>
+<span class="sd">        ylim: Limits for x-axis (Default value = None)</span>
+<span class="sd">        cmap: Colormap for imshow (Default value = None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        im: Imshow handle</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cmap</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">compressed_gray_cmap</span><span class="p">(</span><span class="n">alpha</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">len_sec</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">len_sec</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">len_sec</span><span class="p">]</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>  <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">clim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">clim</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">im</span></div>
+
+
+<div class="viewcode-block" id="compute_tempo_rel_set"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_ssm.compute_tempo_rel_set">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_tempo_rel_set</span><span class="p">(</span><span class="n">tempo_rel_min</span><span class="p">,</span> <span class="n">tempo_rel_max</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute logarithmically spaced relative tempo values</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM-PathEnhancement.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tempo_rel_min (float): Minimum relative tempo</span>
+<span class="sd">        tempo_rel_max (float): Maximum relative tempo</span>
+<span class="sd">        num (int): Number of relative tempo values (inlcuding the min and max)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tempo_rel_set (np.ndarray): Set of relative tempo values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tempo_rel_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">tempo_rel_min</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">tempo_rel_max</span><span class="p">),</span> <span class="n">num</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">tempo_rel_set</span></div>
+
+
+<div class="viewcode-block" id="filter_diag_mult_sm"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_ssm.filter_diag_mult_sm">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">filter_diag_mult_sm</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span> <span class="n">direction</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Path smoothing of similarity matrix by filtering in forward or backward direction</span>
+<span class="sd">    along various directions around main diagonal.</span>
+<span class="sd">    Note: Directions are simulated by resampling one axis using relative tempo values</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM-PathEnhancement.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        S (np.ndarray): Self-similarity matrix (SSM)</span>
+<span class="sd">        L (int): Length of filter (Default value = 1)</span>
+<span class="sd">        tempo_rel_set (np.ndarray): Set of relative tempo values (Default value = np.asarray([1]))</span>
+<span class="sd">        direction (int): Direction of smoothing (0: forward; 1: backward) (Default value = 0)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        S_L_final (np.ndarray): Smoothed SM</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tempo_rel_set</span><span class="p">)</span>
+    <span class="n">S_L_final</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="n">M_ceil</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">M</span> <span class="o">/</span> <span class="n">tempo_rel_set</span><span class="p">[</span><span class="n">s</span><span class="p">]))</span>
+        <span class="n">resample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">M_ceil</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">M_ceil</span><span class="p">),</span> <span class="n">M</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">resample</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resample</span><span class="p">)</span>
+        <span class="n">resample</span> <span class="o">=</span> <span class="n">resample</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">index_resample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">resample</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">resample</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="n">S_resample</span> <span class="o">=</span> <span class="n">S</span><span class="p">[:,</span> <span class="n">index_resample</span><span class="p">]</span>
+
+        <span class="n">S_L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">M_ceil</span><span class="p">))</span>
+        <span class="n">S_extend_L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span> <span class="o">+</span> <span class="n">L</span><span class="p">,</span> <span class="n">M_ceil</span> <span class="o">+</span> <span class="n">L</span><span class="p">))</span>
+
+        <span class="c1"># Forward direction</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">S_extend_L</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">M_ceil</span><span class="p">]</span> <span class="o">=</span> <span class="n">S_resample</span>
+            <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+                <span class="n">S_L</span> <span class="o">=</span> <span class="n">S_L</span> <span class="o">+</span> <span class="n">S_extend_L</span><span class="p">[</span><span class="n">pos</span><span class="p">:(</span><span class="n">N</span> <span class="o">+</span> <span class="n">pos</span><span class="p">),</span> <span class="n">pos</span><span class="p">:(</span><span class="n">M_ceil</span> <span class="o">+</span> <span class="n">pos</span><span class="p">)]</span>
+
+        <span class="c1"># Backward direction</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">S_extend_L</span><span class="p">[</span><span class="n">L</span><span class="p">:(</span><span class="n">N</span><span class="o">+</span><span class="n">L</span><span class="p">),</span> <span class="n">L</span><span class="p">:(</span><span class="n">M_ceil</span><span class="o">+</span><span class="n">L</span><span class="p">)]</span> <span class="o">=</span> <span class="n">S_resample</span>
+            <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+                <span class="n">S_L</span> <span class="o">=</span> <span class="n">S_L</span> <span class="o">+</span> <span class="n">S_extend_L</span><span class="p">[(</span><span class="n">L</span><span class="o">-</span><span class="n">pos</span><span class="p">):(</span><span class="n">N</span> <span class="o">+</span> <span class="n">L</span> <span class="o">-</span> <span class="n">pos</span><span class="p">),</span> <span class="p">(</span><span class="n">L</span><span class="o">-</span><span class="n">pos</span><span class="p">):(</span><span class="n">M_ceil</span> <span class="o">+</span> <span class="n">L</span> <span class="o">-</span> <span class="n">pos</span><span class="p">)]</span>
+
+        <span class="n">S_L</span> <span class="o">=</span> <span class="n">S_L</span> <span class="o">/</span> <span class="n">L</span>
+        <span class="n">resample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">M</span><span class="p">),</span> <span class="n">M_ceil</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">resample</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resample</span><span class="p">)</span>
+        <span class="n">resample</span> <span class="o">=</span> <span class="n">resample</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">index_resample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">resample</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">resample</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+
+        <span class="n">S_resample_inv</span> <span class="o">=</span> <span class="n">S_L</span><span class="p">[:,</span> <span class="n">index_resample</span><span class="p">]</span>
+        <span class="n">S_L_final</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">S_L_final</span><span class="p">,</span> <span class="n">S_resample_inv</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">S_L_final</span></div>
+
+
+<div class="viewcode-block" id="shift_cyc_matrix"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_ssm.shift_cyc_matrix">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">shift_cyc_matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cyclic shift of features matrix along first dimension</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM-TranspositionInvariance.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (np.ndarray): Feature respresentation</span>
+<span class="sd">        shift (int): Number of bins to be shifted (Default value = 0)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        X_cyc (np.ndarray): Cyclically shifted feature matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Note: X_cyc = np.roll(X, shift=shift, axis=0) does to work for jit</span>
+    <span class="n">K</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+    <span class="n">X_cyc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">K</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+    <span class="n">X_cyc</span><span class="p">[</span><span class="n">shift</span><span class="p">:</span><span class="n">K</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">K</span><span class="o">-</span><span class="n">shift</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">X_cyc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">shift</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">K</span><span class="o">-</span><span class="n">shift</span><span class="p">:</span><span class="n">K</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="k">return</span> <span class="n">X_cyc</span></div>
+
+
+<span class="c1"># @jit(nopython=True)</span>
+<div class="viewcode-block" id="compute_sm_ti"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_ssm.compute_sm_ti">[docs]</a><span class="k">def</span> <span class="nf">compute_sm_ti</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span> <span class="n">shift_set</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="n">direction</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute enhanced similaity matrix by applying path smoothing and transpositions</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM-TranspositionInvariance.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (np.ndarray): First feature sequence</span>
+<span class="sd">        Y (np.ndarray): Second feature sequence</span>
+<span class="sd">        L (int): Length of filter (Default value = 1)</span>
+<span class="sd">        tempo_rel_set (np.ndarray): Set of relative tempo values (Default value = np.asarray([1]))</span>
+<span class="sd">        shift_set (np.ndarray): Set of shift indices (Default value = np.asarray([0]))</span>
+<span class="sd">        direction (int): Direction of smoothing (0: forward; 1: backward; 2: both directions) (Default value = 2)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        S_TI (np.ndarray): Transposition-invariant SM</span>
+<span class="sd">        I_TI (np.ndarray): Transposition index matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">shift</span> <span class="ow">in</span> <span class="n">shift_set</span><span class="p">:</span>
+        <span class="n">Y_cyc</span> <span class="o">=</span> <span class="n">shift_cyc_matrix</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+        <span class="n">S_cyc</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c4</span><span class="o">.</span><span class="n">compute_sm_dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y_cyc</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">S_cyc</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c4</span><span class="o">.</span><span class="n">filter_diag_mult_sm</span><span class="p">(</span><span class="n">S_cyc</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">S_cyc</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c4</span><span class="o">.</span><span class="n">filter_diag_mult_sm</span><span class="p">(</span><span class="n">S_cyc</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">S_forward</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c4</span><span class="o">.</span><span class="n">filter_diag_mult_sm</span><span class="p">(</span><span class="n">S_cyc</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="o">=</span><span class="n">tempo_rel_set</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">S_backward</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c4</span><span class="o">.</span><span class="n">filter_diag_mult_sm</span><span class="p">(</span><span class="n">S_cyc</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="o">=</span><span class="n">tempo_rel_set</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">S_cyc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">S_forward</span><span class="p">,</span> <span class="n">S_backward</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">shift</span> <span class="o">==</span> <span class="n">shift_set</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">S_TI</span> <span class="o">=</span> <span class="n">S_cyc</span>
+            <span class="n">I_TI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">S_cyc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">S_cyc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">*</span> <span class="n">shift</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># jit does not like the following lines</span>
+            <span class="c1"># I_greater = np.greater(S_cyc, S_TI)</span>
+            <span class="c1"># I_greater = (S_cyc &gt; S_TI)</span>
+            <span class="n">I_TI</span><span class="p">[</span><span class="n">S_cyc</span> <span class="o">&gt;</span> <span class="n">S_TI</span><span class="p">]</span> <span class="o">=</span> <span class="n">shift</span>
+            <span class="n">S_TI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">S_cyc</span><span class="p">,</span> <span class="n">S_TI</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">S_TI</span><span class="p">,</span> <span class="n">I_TI</span></div>
+
+
+<div class="viewcode-block" id="subplot_matrix_ti_colorbar"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_ssm.subplot_matrix_ti_colorbar">[docs]</a><span class="k">def</span> <span class="nf">subplot_matrix_ti_colorbar</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span>
+                               <span class="n">clim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ind_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Visualization function for showing transposition index matrix</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM-TranspositionInvariance.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        S: Self-similarity matrix (SSM)</span>
+<span class="sd">        fig: Figure handle</span>
+<span class="sd">        ax: Axes handle</span>
+<span class="sd">        title: Title for figure (Default value = &#39;&#39;)</span>
+<span class="sd">        Fs: Feature rate (Default value = 1)</span>
+<span class="sd">        xlabel: Label for x-axis (Default value = &#39;Time (seconds)&#39;)</span>
+<span class="sd">        ylabel: Label for y-axis (Default value = &#39;Time (seconds)&#39;)</span>
+<span class="sd">        clim: Color limits (Default value = None)</span>
+<span class="sd">        xlim: Limits for x-axis (Default value = None)</span>
+<span class="sd">        ylim: Limits for y-axis (Default value = None)</span>
+<span class="sd">        cmap: Color map (Default value = None)</span>
+<span class="sd">        alpha: Alpha value for imsow (Default value = 1)</span>
+<span class="sd">        ind_zero: Use white (True) or black (False) color for index zero (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        im: Imshow handle</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">color_ind_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">ind_zero</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">color_ind_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">color_ind_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">colorList</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">color_ind_zero</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]])</span>
+        <span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">colorList</span><span class="p">)</span>
+    <span class="n">len_sec</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">len_sec</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">len_sec</span><span class="p">]</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>  <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">clim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">11.5</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax_cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax_cb</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">im</span></div>
+
+
+<div class="viewcode-block" id="compute_sm_from_filename"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_ssm.compute_sm_from_filename">[docs]</a><span class="k">def</span> <span class="nf">compute_sm_from_filename</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">L_smooth</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span>
+                             <span class="n">shift_set</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>
+                             <span class="n">penalty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">binarize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute an SSM</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM-Thresholding.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_wav (str): Path and filename of wav file</span>
+<span class="sd">        L (int): Length of smoothing filter (Default value = 21)</span>
+<span class="sd">        H (int): Downsampling factor (Default value = 5)</span>
+<span class="sd">        L_smooth (int): Length of filter (Default value = 16)</span>
+<span class="sd">        tempo_rel_set (np.ndarray):  Set of relative tempo values (Default value = np.array([1]))</span>
+<span class="sd">        shift_set (np.ndarray): Set of shift indices (Default value = np.array([0]))</span>
+<span class="sd">        strategy (str): Thresholding strategy (see :func:`libfmp.c4.c4s2_ssm.compute_sm_ti`)</span>
+<span class="sd">            (Default value = &#39;relative&#39;)</span>
+<span class="sd">        scale (bool): If scale=True, then scaling of positive values to range [0,1] (Default value = True)</span>
+<span class="sd">        thresh (float): Treshold (meaning depends on strategy) (Default value = 0.15)</span>
+<span class="sd">        penalty (float): Set values below treshold to value specified (Default value = 0.0)</span>
+<span class="sd">        binarize (bool): Binarizes final matrix (positive: 1; otherwise: 0) (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x (np.ndarray): Audio signal</span>
+<span class="sd">        x_duration (float): Duration of audio signal (seconds)</span>
+<span class="sd">        X (np.ndarray): Feature sequence</span>
+<span class="sd">        Fs_feature (scalar): Feature rate</span>
+<span class="sd">        S_thresh (np.ndarray): SSM</span>
+<span class="sd">        I (np.ndarray): Index matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Waveform</span>
+    <span class="n">Fs</span> <span class="o">=</span> <span class="mi">22050</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">Fs</span><span class="p">)</span>
+    <span class="n">x_duration</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">Fs</span>
+
+    <span class="c1"># Chroma Feature Sequence and SSM (10 Hz)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">chroma_stft</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">2205</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">4410</span><span class="p">)</span>
+    <span class="n">Fs_C</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="mi">2205</span>
+
+    <span class="c1"># Chroma Feature Sequence and SSM</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Fs_feature</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">smooth_downsample_feature_sequence</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">Fs_C</span><span class="p">,</span> <span class="n">filt_len</span><span class="o">=</span><span class="n">L</span><span class="p">,</span> <span class="n">down_sampling</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">normalize_feature_sequence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+
+    <span class="c1"># Compute SSM</span>
+    <span class="n">S</span><span class="p">,</span> <span class="n">I</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c4</span><span class="o">.</span><span class="n">compute_sm_ti</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="n">L_smooth</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="o">=</span><span class="n">tempo_rel_set</span><span class="p">,</span> <span class="n">shift_set</span><span class="o">=</span><span class="n">shift_set</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">S_thresh</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c4</span><span class="o">.</span><span class="n">threshold_matrix</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="n">strategy</span><span class="p">,</span>
+                                          <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="n">penalty</span><span class="p">,</span> <span class="n">binarize</span><span class="o">=</span><span class="n">binarize</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">x_duration</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Fs_feature</span><span class="p">,</span> <span class="n">S_thresh</span><span class="p">,</span> <span class="n">I</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c6.c6s1_peak_picking &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c6.c6s1_peak_picking</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c6.c6s1_peak_picking</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c6.c6s1_peak_picking</span>
+<span class="sd">Author: Angel Villar Corrales, Meinard Mueller</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">filters</span>
+
+
+<div class="viewcode-block" id="peak_picking_simple"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_peak_picking.peak_picking_simple">[docs]</a><span class="k">def</span> <span class="nf">peak_picking_simple</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Peak picking strategy looking for positions with increase followed by descrease</span>
+
+<span class="sd">    Notebook: C6/C6S1_PeakPicking.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Input function</span>
+<span class="sd">        threshold (float): Lower threshold for peak to survive</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        peaks (np.ndarray): Array containing peak positions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">:</span>
+                <span class="n">peaks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">peaks</span></div>
+
+
+<div class="viewcode-block" id="peak_picking_boeck"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_peak_picking.peak_picking_boeck">[docs]</a><span class="k">def</span> <span class="nf">peak_picking_boeck</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">include_scores</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                       <span class="n">pre_avg</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">post_avg</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">pre_max</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">post_max</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Detects peaks.</span>
+
+<span class="sd">    | Implements the peak-picking method described in:</span>
+<span class="sd">    | &quot;Evaluating the Online Capabilities of Onset Detection Methods&quot;</span>
+<span class="sd">    | Sebastian Boeck, Florian Krebs and Markus Schedl</span>
+<span class="sd">    | Proceedings of the 13th International Society for Music Information Retrieval Conference (ISMIR), 2012</span>
+
+<span class="sd">    Modified by Jan Schlueter, 2014-04-24</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        activations (np.nadarray): Vector of activations to process</span>
+<span class="sd">        threshold (float): Threshold for peak-picking (Default value = 0.5)</span>
+<span class="sd">        fps (scalar): Frame rate of onset activation function in Hz (Default value = 100)</span>
+<span class="sd">        include_scores (bool): Include activation for each returned peak (Default value = False)</span>
+<span class="sd">        combine (bool): Only report 1 onset for N seconds (Default value = False)</span>
+<span class="sd">        pre_avg (float): Use N past seconds for moving average (Default value = 12)</span>
+<span class="sd">        post_avg (float): Use N future seconds for moving average (Default value = 6)</span>
+<span class="sd">        pre_max (float): Use N past seconds for moving maximum (Default value = 6)</span>
+<span class="sd">        post_max (float): Use N future seconds for moving maximum (Default value = 6)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        peaks (np.ndarray): Peak positions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">scipy.ndimage.filters</span> <span class="k">as</span> <span class="nn">sf</span>
+    <span class="n">activations</span> <span class="o">=</span> <span class="n">activations</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+    <span class="c1"># detections are activations equal to the moving maximum</span>
+    <span class="n">max_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">pre_max</span> <span class="o">+</span> <span class="n">post_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">fps</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">max_length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">max_origin</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">pre_max</span> <span class="o">-</span> <span class="n">post_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">fps</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">mov_max</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">maximum_filter1d</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="n">max_length</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">max_origin</span><span class="p">)</span>
+        <span class="n">detections</span> <span class="o">=</span> <span class="n">activations</span> <span class="o">*</span> <span class="p">(</span><span class="n">activations</span> <span class="o">==</span> <span class="n">mov_max</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">detections</span> <span class="o">=</span> <span class="n">activations</span>
+
+    <span class="c1"># detections must be greater than or equal to the moving average + threshold</span>
+    <span class="n">avg_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">pre_avg</span> <span class="o">+</span> <span class="n">post_avg</span><span class="p">)</span> <span class="o">*</span> <span class="n">fps</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">avg_length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">avg_origin</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">pre_avg</span> <span class="o">-</span> <span class="n">post_avg</span><span class="p">)</span> <span class="o">*</span> <span class="n">fps</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">mov_avg</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">uniform_filter1d</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="n">avg_length</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">avg_origin</span><span class="p">)</span>
+        <span class="n">detections</span> <span class="o">=</span> <span class="n">detections</span> <span class="o">*</span> <span class="p">(</span><span class="n">detections</span> <span class="o">&gt;=</span> <span class="n">mov_avg</span> <span class="o">+</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># if there is no moving average, treat the threshold as a global one</span>
+        <span class="n">detections</span> <span class="o">=</span> <span class="n">detections</span> <span class="o">*</span> <span class="p">(</span><span class="n">detections</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">)</span>
+
+    <span class="c1"># convert detected onsets to a list of timestamps</span>
+    <span class="k">if</span> <span class="n">combine</span><span class="p">:</span>
+        <span class="n">stamps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">last_onset</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">detections</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="c1"># only report an onset if the last N frames none was reported</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">last_onset</span> <span class="o">+</span> <span class="n">combine</span><span class="p">:</span>
+                <span class="n">stamps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="c1"># save last reported onset</span>
+                <span class="n">last_onset</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">stamps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">stamps</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">stamps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">detections</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># include corresponding activations per peak if needed</span>
+    <span class="k">if</span> <span class="n">include_scores</span><span class="p">:</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">activations</span><span class="p">[</span><span class="n">stamps</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">avg_length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">scores</span> <span class="o">-=</span> <span class="n">mov_avg</span><span class="p">[</span><span class="n">stamps</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">stamps</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">fps</span><span class="p">),</span> <span class="n">scores</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">stamps</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">fps</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="peak_picking_roeder"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_peak_picking.peak_picking_roeder">[docs]</a><span class="k">def</span> <span class="nf">peak_picking_roeder</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">abs_thresh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rel_thresh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">descent_thresh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;| Computes the positive peaks of the input vector x</span>
+<span class="sd">    | Python adaption from the Matlab Roeder_Peak_Picking script peaks.m from the internal Sync Toolbox</span>
+<span class="sd">    | reckjn 2017</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.nadarray): Signal to be searched for (positive) peaks</span>
+<span class="sd">        direction (int): +1 for forward peak searching, -1 for backward peak searching.</span>
+<span class="sd">            default is dir == -1. (Default value = None)</span>
+<span class="sd">        abs_thresh (float): Absolute threshold signal, i.e. only peaks</span>
+<span class="sd">            satisfying x(i)&gt;=abs_thresh(i) will be reported.</span>
+<span class="sd">            abs_thresh must have the same number of samples as x.</span>
+<span class="sd">            a sensible choice for this parameter would be a global or local</span>
+<span class="sd">            average or median of the signal x.</span>
+<span class="sd">            If omitted, half the median of x will be used. (Default value = None)</span>
+<span class="sd">        rel_thresh (float): Relative threshold signal. Only peak positions i with an</span>
+<span class="sd">            uninterrupted positive ascent before position i of at least</span>
+<span class="sd">            rel_thresh(i) and a possibly interrupted (see parameter descent_thresh)</span>
+<span class="sd">            descent of at least rel_thresh(i) will be reported.</span>
+<span class="sd">            rel_thresh must have the same number of samples as x.</span>
+<span class="sd">            A sensible choice would be some measure related to the</span>
+<span class="sd">            global or local variance of the signal x.</span>
+<span class="sd">            if omitted, half the standard deviation of W will be used.</span>
+<span class="sd">        descent_thresh (float): Descent threshold. during peak candidate verfication, if a slope change</span>
+<span class="sd">            from negative to positive slope occurs at sample i BEFORE the descent has</span>
+<span class="sd">            exceeded rel_thresh(i), and if descent_thresh(i) has not been exceeded yet,</span>
+<span class="sd">            the current peak candidate will be dropped.</span>
+<span class="sd">            this situation corresponds to a secondary peak</span>
+<span class="sd">            occuring shortly after the current candidate peak (which might lead</span>
+<span class="sd">            to a higher peak value)!</span>
+<span class="sd">            |</span>
+<span class="sd">            | The value descent_thresh(i) must not be larger than rel_thresh(i).</span>
+<span class="sd">            |</span>
+<span class="sd">            | descent_thresh must have the same number of samples as x.</span>
+<span class="sd">            a sensible choice would be some measure related to the</span>
+<span class="sd">            global or local variance of the signal x.</span>
+<span class="sd">            if omitted, 0.5*rel_thresh will be used. (Default value = None)</span>
+<span class="sd">        tmin (int): Index of start sample. peak search will begin at x(tmin). (Default value = None)</span>
+<span class="sd">        tmax (int): Index of end sample. peak search will end at x(tmax). (Default value = None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        peaks (np.nadarray): Array of peak positions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># set default values</span>
+    <span class="k">if</span> <span class="n">direction</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">abs_thresh</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">abs_thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">rel_thresh</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rel_thresh</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">descent_thresh</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">descent_thresh</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">rel_thresh</span>
+    <span class="k">if</span> <span class="n">tmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tmin</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">tmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tmax</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">dyold</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">rise</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># current amount of ascent during a rising portion of the signal x</span>
+    <span class="n">riseold</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># accumulated amount of ascent from the last rising portion of x</span>
+    <span class="n">descent</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># current amount of descent (&lt;0) during a falling portion of the signal x</span>
+    <span class="n">searching_peak</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">candidate</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">my_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">tmin</span><span class="p">,</span> <span class="n">tmax</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">my_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">tmin</span><span class="p">,</span> <span class="n">tmax</span><span class="p">)</span>
+        <span class="n">my_range</span> <span class="o">=</span> <span class="n">my_range</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># run through x</span>
+    <span class="k">for</span> <span class="n">cur_idx</span> <span class="ow">in</span> <span class="n">my_range</span><span class="p">:</span>
+        <span class="c1"># get local gradient</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">cur_idx</span><span class="o">+</span><span class="n">direction</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">dy</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">rise</span> <span class="o">=</span> <span class="n">rise</span> <span class="o">+</span> <span class="n">dy</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">descent</span> <span class="o">=</span> <span class="n">descent</span> <span class="o">+</span> <span class="n">dy</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">dyold</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dy</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>  <span class="c1"># slope change positive-&gt;negative</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">rise</span> <span class="o">&gt;=</span> <span class="n">rel_thresh</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]</span> <span class="ow">and</span> <span class="n">searching_peak</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">):</span>
+                    <span class="n">candidate</span> <span class="o">=</span> <span class="n">cur_idx</span>
+                    <span class="n">searching_peak</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">riseold</span> <span class="o">=</span> <span class="n">rise</span>
+                <span class="n">rise</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># dyold &lt; 0</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dy</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>  <span class="c1"># in descent</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">descent</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">rel_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="ow">and</span> <span class="n">searching_peak</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">abs_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]):</span>
+                        <span class="n">P</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>  <span class="c1"># verified candidate as True peak</span>
+                    <span class="n">searching_peak</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># dy &gt;= 0 slope change negative-&gt;positive</span>
+                <span class="k">if</span> <span class="n">searching_peak</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>  <span class="c1"># currently verifying a peak</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">descent_thresh</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]):</span>
+                        <span class="n">rise</span> <span class="o">=</span> <span class="n">riseold</span> <span class="o">+</span> <span class="n">descent</span>  <span class="c1"># skip intermediary peak</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">descent</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">rel_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]):</span>
+                        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">abs_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]:</span>
+                            <span class="n">P</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>    <span class="c1"># verified candidate as True peak</span>
+                    <span class="n">searching_peak</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">descent</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">dyold</span> <span class="o">=</span> <span class="n">dy</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">peaks</span></div>
+
+
+<div class="viewcode-block" id="peak_picking_MSAF"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_peak_picking.peak_picking_MSAF">[docs]</a><span class="k">def</span> <span class="nf">peak_picking_MSAF</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">median_len</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">offset_rel</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">4.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Peak picking strategy following MSFA using an adaptive threshold (https://github.com/urinieto/msaf)</span>
+
+<span class="sd">    Notebook: C6/C6S1_PeakPicking.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Input function</span>
+<span class="sd">        median_len (int): Length of media filter used for adaptive thresholding (Default value = 16)</span>
+<span class="sd">        offset_rel (float): Additional offset used for adaptive thresholding (Default value = 0.05)</span>
+<span class="sd">        sigma (float): Variance for Gaussian kernel used for smoothing the novelty function (Default value = 4.0)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        peaks (np.ndarray): Peak positions</span>
+<span class="sd">        x (np.ndarray): Local threshold</span>
+<span class="sd">        threshold_local (np.ndarray): Filtered novelty curve</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="n">offset_rel</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="n">threshold_local</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">median_filter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">median_len</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold_local</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">peaks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">threshold_local</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

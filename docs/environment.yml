@@ -1,0 +1,8 @@
+name: libfmp_docs
+dependencies:
+  - python==3.7.*
+  - pip:
+    # - libfmp  # using a freshly downloaded version of libfmp in the ci script
+    # - sphinx==3.5.*  # we need features from version 4 (autodoc_preserve_defaults)
+    - git+git://github.com/sphinx-doc/sphinx.git@v4.0.0b1#egg=sphinx
+    - sphinx_rtd_theme==0.5.*

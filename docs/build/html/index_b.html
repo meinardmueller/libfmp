@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Basics (libfmp.b) &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Music Representations (libfmp.c1)" href="index_c1.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Basics (libfmp.b)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index_b.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="basics-libfmp-b">
+<h1>Basics (libfmp.b)<a class="headerlink" href="#basics-libfmp-b" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://www.audiolabs-erlangen.de/FMP">FMP notebooks</a> provide detailed textbook-like explanations of central techniques and algorithms implemented in the libfmp.
+The part of FMP related to this module is available at the following URL:</p>
+<p><a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/B/B.html">https://www.audiolabs-erlangen.de/resources/MIR/FMP/B/B.html</a></p>
+<span class="target" id="module-libfmp.b"></span><span class="target" id="module-libfmp.b.b_annotation"></span><dl class="py function">
+<dt id="libfmp.b.b_annotation.cut_audio">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_annotation.</span></code><code class="sig-name descname"><span class="pre">cut_audio</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_annotation.html#cut_audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_annotation.cut_audio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cuts an audio file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_in</strong> (<em>str</em>) – Filename and path for input audio file</p></li>
+<li><p><strong>fn_out</strong> (<em>str</em>) – Filename and path for input audio file</p></li>
+<li><p><strong>start_sec</strong> (<em>float</em>) – Start time position (in seconds) of cut</p></li>
+<li><p><strong>end_sec</strong> (<em>float</em>) – End time position (in seconds) of cut</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em>) – If True, then normalize audio (with max norm) (Default value = True)</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – If True, then write audio (Default value = True)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate of audio (Default value = 22050)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>x_cut</strong> (<em>np.ndarray</em>) – Cut audio</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_annotation.cut_csv_file">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_annotation.</span></code><code class="sig-name descname"><span class="pre">cut_csv_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_annotation.html#cut_csv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_annotation.cut_csv_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cuts csv annotation file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_in</strong> (<em>str</em>) – Filename and path for input audio file</p></li>
+<li><p><strong>fn_out</strong> (<em>str</em>) – Filename and path for input audio file</p></li>
+<li><p><strong>start_sec</strong> (<em>float</em>) – Start time position (in seconds) of cut</p></li>
+<li><p><strong>end_sec</strong> (<em>float</em>) – End time position (in seconds) of cut</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – If True, then write audio (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ann_cut</strong> (<em>list</em>) – Cut annotation file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_annotation.read_csv">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_annotation.</span></code><code class="sig-name descname"><span class="pre">read_csv</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_annotation.html#read_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_annotation.read_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads a CSV file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<em>str</em>) – Filename</p></li>
+<li><p><strong>header</strong> (<em>bool</em>) – Boolean (Default value = True)</p></li>
+<li><p><strong>add_label</strong> (<em>bool</em>) – Add column with constant value of <cite>add_label</cite> (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>df</strong> (<em>pd.DataFrame</em>) – Pandas DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_annotation.write_csv">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_annotation.</span></code><code class="sig-name descname"><span class="pre">write_csv</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_annotation.html#write_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_annotation.write_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes a CSV file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – Pandas DataFrame</p></li>
+<li><p><strong>fn</strong> (<em>str</em>) – Filename</p></li>
+<li><p><strong>header</strong> (<em>bool</em>) – Boolean (Default value = True)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.b.b_audio"></span><dl class="py function">
+<dt id="libfmp.b.b_audio.audio_player_list">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_audio.</span></code><code class="sig-name descname"><span class="pre">audio_player_list</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">270</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'center'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_audio.html#audio_player_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_audio.audio_player_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates list of audio players</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/B/B_PythonAudio.html">B/B_PythonAudio.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signals</strong> (<em>list</em>) – List of audio signals</p></li>
+<li><p><strong>rates</strong> (<em>list</em>) – List of sample rates</p></li>
+<li><p><strong>width</strong> (<em>int</em>) – Width of player (either number or list) (Default value = 270)</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – Height of player (either number or list) (Default value = 40)</p></li>
+<li><p><strong>columns</strong> (<em>list</em>) – Column headings (Default value = None)</p></li>
+<li><p><strong>column_align</strong> (<em>str</em>) – Left, center, right (Default value = ‘center’)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_audio.read_audio">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_audio.</span></code><code class="sig-name descname"><span class="pre">read_audio</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mono</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_audio.html#read_audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_audio.read_audio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads an audio file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to audio file</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Resample audio to given sampling rate. Use native sampling rate if None. (Default value = None)</p></li>
+<li><p><strong>mono</strong> (<em>bool</em>) – Convert multi-channel file to mono. (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Waveform signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_audio.write_audio">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_audio.</span></code><code class="sig-name descname"><span class="pre">write_audio</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_audio.html#write_audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_audio.write_audio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes an audio file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to audio file</p></li>
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Waveform signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.b.b_layout"></span><dl class="py class">
+<dt id="libfmp.b.b_layout.FloatingBox">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libfmp.b.b_layout.</span></code><code class="sig-name descname"><span class="pre">FloatingBox</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'middle'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_layout.html#FloatingBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_layout.FloatingBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inspired by <a class="reference external" href="https://stackoverflow.com/a/49566213/2812618">https://stackoverflow.com/a/49566213/2812618</a></p>
+<p>Floating box for matplotlib plots. The added figures are part of a floating box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><p><strong>html</strong> – The HTML string</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="libfmp.b.b_layout.FloatingBox.add_fig">
+<code class="sig-name descname"><span class="pre">add_fig</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_layout.html#FloatingBox.add_fig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_layout.FloatingBox.add_fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a PNG representation of a matplotlib figure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fig</strong> – A matplotlib figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libfmp.b.b_layout.FloatingBox.add_html">
+<code class="sig-name descname"><span class="pre">add_html</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_layout.html#FloatingBox.add_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_layout.FloatingBox.add_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add HTML to floating box</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>html</strong> – HTML string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libfmp.b.b_layout.FloatingBox.show">
+<code class="sig-name descname"><span class="pre">show</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_layout.html#FloatingBox.show"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_layout.FloatingBox.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the accumulated HTML</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-libfmp.b.b_plot"></span><dl class="py class">
+<dt id="libfmp.b.b_plot.MultiplePlotsWithColorbar">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">MultiplePlotsWithColorbar</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_plots</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">72</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cbar_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_ratios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#MultiplePlotsWithColorbar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.MultiplePlotsWithColorbar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-column layout plot, where the first column is for user-given plots and the second column
+is for colorbars if the corresponding row needs a colorbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> – A list of axes for the first column.</p></li>
+<li><p><strong>cbar_axes</strong> – A list of axes for the second column.</p></li>
+<li><p><strong>num_plots</strong> – Number of rows, as given to init method.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="libfmp.b.b_plot.MultiplePlotsWithColorbar.make_colorbars">
+<code class="sig-name descname"><span class="pre">make_colorbars</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#MultiplePlotsWithColorbar.make_colorbars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.MultiplePlotsWithColorbar.make_colorbars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates colorbars if the corresponding row needs a colorbar, or hides the axis in other cases.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.check_line_annotations">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">check_line_annotations</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#check_line_annotations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.check_line_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks line annotation. If label is missing, adds an default label.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annot</strong> – A List of the form of <code class="docutils literal notranslate"><span class="pre">[(time_position,</span> <span class="pre">label),</span> <span class="pre">...]</span></code>, or <code class="docutils literal notranslate"><span class="pre">[(time_position,</span> <span class="pre">),</span> <span class="pre">...]</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">[time_position,</span> <span class="pre">...]</span></code></p></li>
+<li><p><strong>default_label</strong> – The default label used if label is missing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>annot</strong> – A List of tuples in the form of <code class="docutils literal notranslate"><span class="pre">[(time_position,</span> <span class="pre">label),</span> <span class="pre">...]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.check_segment_annotations">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">check_segment_annotations</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#check_segment_annotations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.check_segment_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks segment annotation. If label is missing, adds an default label.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annot</strong> – A List of the form of <code class="docutils literal notranslate"><span class="pre">[(start_position,</span> <span class="pre">end_position,</span> <span class="pre">label),</span> <span class="pre">...]</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">[(start_position,</span> <span class="pre">end_position),</span> <span class="pre">...]</span></code></p></li>
+<li><p><strong>default_label</strong> – The default label used if label is missing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>annot</strong> – A List of tuples in the form of <code class="docutils literal notranslate"><span class="pre">[(start_position,</span> <span class="pre">end_position,</span> <span class="pre">label),</span> <span class="pre">...]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.color_argument_to_dict">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">color_argument_to_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#color_argument_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.color_argument_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a color dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>colors</strong> – Several options: 1. string of <code class="docutils literal notranslate"><span class="pre">FMP_COLORMAPS</span></code>, 2. string of matplotlib colormap,
+3. list or np.ndarray of matplotlib color specifications, 4. dict that assigns labels  to colors</p></li>
+<li><p><strong>labels_set</strong> – List of all labels</p></li>
+<li><p><strong>default</strong> – Default color, used for labels that are in labels_set, but not in colors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>color_dict</strong> – Dictionary that maps labels to colors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.compressed_gray_cmap">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">compressed_gray_cmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#compressed_gray_cmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.compressed_gray_cmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a logarithmically or exponentially compressed grayscale colormap</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<em>float</em>) – The compression factor. If alpha &gt; 0, it performs log compression (enhancing black colors).
+If alpha &lt; 0, it performs exp compression (enhancing white colors).
+Raises an error if alpha = 0. (Default value = 5)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – The number of rgb quantization levels (usually 256 in matplotlib) (Default value = 256)</p></li>
+<li><p><strong>reverse</strong> (<em>bool</em>) – If False then “white to black”, if True then “black to white” (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>color_wb</strong> (<em>mpl.colors.LinearSegmentedColormap</em>) – The colormap</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.plot_annotation_line">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">plot_annotation_line</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FMP_1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'horizontal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nontime_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">swap_time_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_off</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">72</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#plot_annotation_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.plot_annotation_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a line plot for annotation data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annot</strong> – A List of tuples in the form of <code class="docutils literal notranslate"><span class="pre">[(time_position,</span> <span class="pre">label),</span> <span class="pre">...]</span></code></p></li>
+<li><p><strong>ax</strong> – The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</p></li>
+<li><p><strong>label_keys</strong> – A dict, where the keys are the labels used in <cite>annot</cite>. The values are dicts, which are used as
+keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = {})</p></li>
+<li><p><strong>colors</strong> – Several options: 1. string of <code class="docutils literal notranslate"><span class="pre">FMP_COLORMAPS</span></code>, 2. string of matplotlib colormap, 3. list or
+np.ndarray of matplotlib color specifications, 4. dict that assigns labels  to colors
+(Default value = ‘FMP_1’)</p></li>
+<li><p><strong>figsize</strong> – Width, height in inches (Default value = (6, 1)</p></li>
+<li><p><strong>direction</strong> – ‘vertical’ or ‘horizontal’ (Default value = ‘horizontal’)</p></li>
+<li><p><strong>time_min</strong> – Minimal limit for time axis. If None, will be min annotation. (Default value = None)</p></li>
+<li><p><strong>time_max</strong> – Maximal limit for time axis. If None, will be max from annotation. (Default value = None)</p></li>
+<li><p><strong>time_axis</strong> – Display time axis ticks or not (Default value = True)</p></li>
+<li><p><strong>nontime_axis</strong> – Display non-time axis ticks or not (Default value = False)</p></li>
+<li><p><strong>swap_time_ticks</strong> – For horizontal: xticks up; for vertical: yticks left (Default value = False)</p></li>
+<li><p><strong>axis_off</strong> – Calls ax.axis(‘off’) (Default value = False)</p></li>
+<li><p><strong>dpi</strong> – Dots per inch (Default value = 72)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – The created matplotlib figure or None if ax was given.</p></li>
+<li><p><strong>ax</strong> – The used axes.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.plot_annotation_line_overlay">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">plot_annotation_line_overlay</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#plot_annotation_line_overlay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.plot_annotation_line_overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot segment annotations as overlay</p>
+<p>See <a class="reference internal" href="#libfmp.b.b_plot.plot_annotation_line" title="libfmp.b.b_plot.plot_annotation_line"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_annotation_line()</span></code></a> for parameters and return values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.plot_annotation_multiline">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">plot_annotation_multiline</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FMP_1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">1.5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'horizontal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">swap_time_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_off</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">72</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#plot_annotation_multiline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.plot_annotation_multiline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a multi-line plot for annotation data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annot</strong> – A List of tuples in the form of <code class="docutils literal notranslate"><span class="pre">[(time_position,</span> <span class="pre">label),</span> <span class="pre">...]</span></code></p></li>
+<li><p><strong>ax</strong> – The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</p></li>
+<li><p><strong>label_keys</strong> – A dict, where the keys are the labels used in <cite>annot</cite>. The values are dicts, which are used as
+keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = {})</p></li>
+<li><p><strong>colors</strong> – Several options: 1. string of <code class="docutils literal notranslate"><span class="pre">FMP_COLORMAPS</span></code>, 2. string of matplotlib colormap, 3. list or np.ndarray
+of matplotlib color specifications, 4. dict that assigns labels  to colors (Default value = ‘FMP_1’)</p></li>
+<li><p><strong>figsize</strong> – Width, height in inches (Default value = (6, 1.5)</p></li>
+<li><p><strong>direction</strong> – ‘vertical’ or ‘horizontal’ (Default value = ‘horizontal’)</p></li>
+<li><p><strong>sort_labels</strong> – List of labels used for sorting the line plots (Default value = None)</p></li>
+<li><p><strong>time_min</strong> – Minimal limit for time axis. If None, will be min annotation. (Default value = None)</p></li>
+<li><p><strong>time_max</strong> – Maximal limit for time axis. If None, will be max from annotation. (Default value = None)</p></li>
+<li><p><strong>time_axis</strong> – Display time axis ticks or not (Default value = True)</p></li>
+<li><p><strong>swap_time_ticks</strong> – For horizontal: xticks up; for vertical: yticks left (Default value = False)</p></li>
+<li><p><strong>axis_off</strong> – Calls ax.axis(‘off’) (Default value = False)</p></li>
+<li><p><strong>dpi</strong> – Dots per inch (Default value = 72)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – The created matplotlib figure or None if ax was given.</p></li>
+<li><p><strong>ax</strong> – The used axes.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.plot_chromagram">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">plot_chromagram</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chroma_yticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.arange(12)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#plot_chromagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.plot_chromagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls libfmp.b.plot_matrix and sets chroma labels</p>
+<p>See <a class="reference internal" href="#libfmp.b.b_plot.plot_matrix" title="libfmp.b.b_plot.plot_matrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_matrix()</span></code></a> for parameters and return values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.plot_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">plot_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_F</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_coef</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(seconds)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Frequency</span> <span class="pre">(Hz)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">72</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorbar_aspect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cbar_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#plot_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.plot_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a matrix, e.g. a spectrogram or a tempogram</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – The matrix</p></li>
+<li><p><strong>Fs</strong> – Sample rate for axis 1 (Default value = 1)</p></li>
+<li><p><strong>Fs_F</strong> – Sample rate for axis 0 (Default value = 1)</p></li>
+<li><p><strong>T_coef</strong> – Time coeffients. If None, will be computed, based on Fs. (Default value = None)</p></li>
+<li><p><strong>F_coef</strong> – Frequency coeffients. If None, will be computed, based on Fs_F. (Default value = None)</p></li>
+<li><p><strong>xlabel</strong> – Label for x-axis (Default value = ‘Time (seconds)’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y-axis (Default value = ‘Frequency (Hz)’)</p></li>
+<li><p><strong>xlim</strong> – Limits for x-axis (Default value = None)</p></li>
+<li><p><strong>ylim</strong> – Limits for y-axis (Default value = None)</p></li>
+<li><p><strong>clim</strong> – Color limits (Default value = None)</p></li>
+<li><p><strong>title</strong> – Title for plot (Default value = ‘’)</p></li>
+<li><p><strong>dpi</strong> – Dots per inch (Default value = 72)</p></li>
+<li><p><strong>colorbar</strong> – Create a colorbar. (Default value = True)</p></li>
+<li><p><strong>colorbar_aspect</strong> – Aspect used for colorbar, in case only a single axes is used. (Default value = 20.0)</p></li>
+<li><p><strong>cbar_label</strong> – Label for colorbar (Default value = ‘’)</p></li>
+<li><p><strong>ax</strong> – Either (1.) a list of two axes (first used for matrix, second for colorbar), or (2.) a list with a single
+axes (used for matrix), or (3.) None (an axes will be created). (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Width, height in inches (Default value = (6, 3))</p></li>
+<li><p><strong>**kwargs</strong> – Keyword arguments for matplotlib.pyplot.imshow</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – The created matplotlib figure or None if ax was given.</p></li>
+<li><p><strong>ax</strong> – The used axes.</p></li>
+<li><p><strong>im</strong> – The image plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.plot_segments">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">plot_segments</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'horizontal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FMP_1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nontime_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nontime_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nontime_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">swap_time_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_off</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">72</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust_time_axislim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust_nontime_axislim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#plot_segments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.plot_segments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a multi-line plot for annotation data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annot</strong> – A List of tuples in the form of <code class="docutils literal notranslate"><span class="pre">[(start_position,</span> <span class="pre">end_position,</span> <span class="pre">label),</span> <span class="pre">...]</span></code></p></li>
+<li><p><strong>ax</strong> – The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Width, height in inches (Default value = (6, 1)</p></li>
+<li><p><strong>direction</strong> – ‘vertical’ or ‘horizontal’ (Default value = ‘horizontal’)</p></li>
+<li><p><strong>colors</strong> – Several options: 1. string of <code class="docutils literal notranslate"><span class="pre">FMP_COLORMAPS</span></code>, 2. string of matplotlib colormap, 3. list or np.ndarray
+of matplotlib color specifications, 4. dict that assigns labels  to colors (Default value = ‘FMP_1’)</p></li>
+<li><p><strong>time_min</strong> – Minimal limit for time axis. If None, will be min annotation. (Default value = None)</p></li>
+<li><p><strong>time_max</strong> – Maximal limit for time axis. If None, will be max from annotation. (Default value = None)</p></li>
+<li><p><strong>nontime_min</strong> – Minimal limit for non-time axis. (Default value = 0)</p></li>
+<li><p><strong>nontime_max</strong> – Maximal limit for non-time axis. (Default value = 1)</p></li>
+<li><p><strong>time_axis</strong> – Display time axis ticks or not (Default value = True)</p></li>
+<li><p><strong>nontime_axis</strong> – Display non-time axis ticks or not (Default value = False)</p></li>
+<li><p><strong>time_label</strong> – Label for time axes (Default value = None)</p></li>
+<li><p><strong>swap_time_ticks</strong> – For horizontal: xticks up; for vertical: yticks left (Default value = False)</p></li>
+<li><p><strong>edgecolor</strong> – Color for edgelines of segment box (Default value = ‘k’)</p></li>
+<li><p><strong>axis_off</strong> – Calls ax.axis(‘off’) (Default value = False)</p></li>
+<li><p><strong>dpi</strong> – Dots per inch (Default value = 72)</p></li>
+<li><p><strong>adjust_time_axislim</strong> – Adjust time-axis. Usually True for plotting on standalone axes and False for
+overlay plotting (Default value = True)</p></li>
+<li><p><strong>adjust_nontime_axislim</strong> – Adjust non-time-axis. Usually True for plotting on standalone axes and False for
+overlay plotting (Default value = True)</p></li>
+<li><p><strong>alpha</strong> – Alpha value for rectangle (Default value = None)</p></li>
+<li><p><strong>print_labels</strong> – Print labels inside Rectangles (Default value = True)</p></li>
+<li><p><strong>label_ticks</strong> – Print labels as ticks (Default value = False)</p></li>
+<li><p><strong>**kwargs</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – The created matplotlib figure or None if ax was given.</p></li>
+<li><p><strong>ax</strong> – The used axes.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.plot_segments_overlay">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">plot_segments_overlay</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#plot_segments_overlay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.plot_segments_overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot segment annotations as overlay</p>
+<p>See <a class="reference internal" href="#libfmp.b.b_plot.plot_segments" title="libfmp.b.b_plot.plot_segments"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_plot.plot_segments()</span></code></a> for parameters and return values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_plot.plot_signal">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_plot.</span></code><code class="sig-name descname"><span class="pre">plot_signal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_coef</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(seconds)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">72</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_plot.html#plot_signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_plot.plot_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a signal, e.g. a waveform or a novelty function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Input signal</p></li>
+<li><p><strong>Fs</strong> – Sample rate (Default value = 1)</p></li>
+<li><p><strong>T_coef</strong> – Time coeffients. If None, will be computed, based on Fs. (Default value = None)</p></li>
+<li><p><strong>ax</strong> – The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Width, height in inches (Default value = (6, 2))</p></li>
+<li><p><strong>xlabel</strong> – Label for x axis (Default value = ‘Time (seconds)’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y axis (Default value = ‘’)</p></li>
+<li><p><strong>title</strong> – Title for plot (Default value = ‘’)</p></li>
+<li><p><strong>dpi</strong> – Dots per inch (Default value = 72)</p></li>
+<li><p><strong>ylim</strong> – True or False (auto adjust ylim or nnot) or tuple with actual ylim (Default value = True)</p></li>
+<li><p><strong>**kwargs</strong> – Keyword arguments for matplotlib.pyplot.plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – The created matplotlib figure or None if ax was given.</p></li>
+<li><p><strong>ax</strong> – The used axes.</p></li>
+<li><p><strong>line</strong> – The line plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.b.b_sonification"></span><dl class="py function">
+<dt id="libfmp.b.b_sonification.generate_shepard_tone">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_sonification.</span></code><code class="sig-name descname"><span class="pre">generate_shepard_tone</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chromaNum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">440</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_sonification.html#generate_shepard_tone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_sonification.generate_shepard_tone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates shepard tone</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chromaNum</strong> (<em>int</em>) – 1=C,…</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling frequency</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Desired length (in samples)</p></li>
+<li><p><strong>weight</strong> (<em>float</em>) – Scaling factor [0:1] (Default value = 1)</p></li>
+<li><p><strong>Fc</strong> (<em>float</em>) – Frequency for A4 (Default value = 440)</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – Parameter for envelope of Shepard tone (Default value = 15)</p></li>
+<li><p><strong>phase</strong> (<em>float</em>) – Phase of sine (Default value = 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tone</strong> (<em>np.ndarray</em>) – Shepard tone</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_sonification.list_to_chromagram">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_sonification.</span></code><code class="sig-name descname"><span class="pre">list_to_chromagram</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">note_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_sonification.html#list_to_chromagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_sonification.list_to_chromagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a chromagram matrix from a list of note events</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>note_list</strong> (<em>list</em>) – A list of note events (e.g. gathered from a CSV file by
+<a class="reference internal" href="index_c1.html#libfmp.c1.c1s2_symbolic_rep.csv_to_list" title="libfmp.c1.c1s2_symbolic_rep.csv_to_list"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.c1.c1s2_symbolic_rep.csv_to_list()</span></code></a>)</p></li>
+<li><p><strong>num_frames</strong> (<em>int</em>) – Desired number of frames for the matrix</p></li>
+<li><p><strong>frame_rate</strong> (<em>float</em>) – Frame rate for C (in Hz)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>C</strong> (<em>np.ndarray</em>) – Chromagram matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_sonification.list_to_pitch_activations">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_sonification.</span></code><code class="sig-name descname"><span class="pre">list_to_pitch_activations</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">note_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_sonification.html#list_to_pitch_activations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_sonification.list_to_pitch_activations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a pitch activation matrix from a list of note events</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>note_list</strong> (<em>list</em>) – A list of note events (e.g., gathered from a CSV file by
+<a class="reference internal" href="index_c1.html#libfmp.c1.c1s2_symbolic_rep.csv_to_list" title="libfmp.c1.c1s2_symbolic_rep.csv_to_list"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.c1.c1s2_symbolic_rep.csv_to_list()</span></code></a>)</p></li>
+<li><p><strong>num_frames</strong> (<em>int</em>) – Desired number of frames for the matrix</p></li>
+<li><p><strong>frame_rate</strong> (<em>float</em>) – Frame rate for P (in Hz)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>P</strong> (<em>np.ndarray</em>) – Pitch activation matrix (first axis: Indexed by [0:127], encoding MIDI pitches [1:128])</p></li>
+<li><p><strong>F_coef_MIDI</strong> (<em>np.ndarray</em>) – MIDI pitch axis</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_sonification.sonify_chromagram">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_sonification.</span></code><code class="sig-name descname"><span class="pre">sonify_chromagram</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chroma_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fading_msec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_sonification.html#sonify_chromagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_sonification.sonify_chromagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sonify the chroma features from a chromagram</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chroma_data</strong> (<em>np.ndarray</em>) – A chromagram (e.g., gathered from a list of note events by
+<a class="reference internal" href="#libfmp.b.b_sonification.list_to_chromagram" title="libfmp.b.b_sonification.list_to_chromagram"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_sonification.list_to_chromagram()</span></code></a>)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Length of the sonification (in samples)</p></li>
+<li><p><strong>frame_rate</strong> (<em>float</em>) – Frame rate for P (in Hz)</p></li>
+<li><p><strong>Fs</strong> (<em>float</em>) – Sampling frequency (in Hz)</p></li>
+<li><p><strong>fading_msec</strong> (<em>float</em>) – The length of the fade in and fade out for sonified tones (in msec)
+(Default value = 5)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>chroma_son</strong> (<em>np.ndarray</em>) – Sonification of the chromagram</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_sonification.sonify_chromagram_with_signal">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_sonification.</span></code><code class="sig-name descname"><span class="pre">sonify_chromagram_with_signal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chroma_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fading_msec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stereo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_sonification.html#sonify_chromagram_with_signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_sonification.sonify_chromagram_with_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sonify the chroma features from a chromagram together with a corresponding signal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chroma_data</strong> (<em>np.ndarray</em>) – A chromagram (e.g., gathered from a list of note events by
+<a class="reference internal" href="#libfmp.b.b_sonification.list_to_chromagram" title="libfmp.b.b_sonification.list_to_chromagram"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_sonification.list_to_chromagram()</span></code></a>)</p></li>
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Original signal</p></li>
+<li><p><strong>frame_rate</strong> (<em>float</em>) – Frame rate for P (in Hz)</p></li>
+<li><p><strong>Fs</strong> (<em>float</em>) – Sampling frequency (in Hz)</p></li>
+<li><p><strong>fading_msec</strong> (<em>float</em>) – The length of the fade in and fade out for sonified tones (in msec)
+(Default value = 5)</p></li>
+<li><p><strong>stereo</strong> (<em>bool</em>) – Decision between stereo and mono sonification (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>chroma_son</strong> (<em>np.ndarray</em>) – Sonification of the chromagram</p></li>
+<li><p><strong>out</strong> (<em>np.ndarray</em>) – Sonification combined with the original signal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_sonification.sonify_pitch_activations">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_sonification.</span></code><code class="sig-name descname"><span class="pre">sonify_pitch_activations</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">440</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">harmonics_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fading_msec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_sonification.html#sonify_pitch_activations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_sonification.sonify_pitch_activations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sonify the pitches from a pitch activation matrix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>P</strong> (<em>np.ndarray</em>) – A pitch activation matrix (e.g., gathered from a list of note events by
+<a class="reference internal" href="#libfmp.b.b_sonification.list_to_pitch_activations" title="libfmp.b.b_sonification.list_to_pitch_activations"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_sonification.list_to_pitch_activations()</span></code></a>). First axis: Indexed by [0:127],
+encoding MIDI pitches [1:128]</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Length of the sonification (in samples)</p></li>
+<li><p><strong>frame_rate</strong> (<em>float</em>) – Frame rate for P (in Hz)</p></li>
+<li><p><strong>Fs</strong> (<em>float</em>) – Sampling frequency (in Hz)</p></li>
+<li><p><strong>min_pitch</strong> (<em>int</em>) – Lowest MIDI pitch in P (Default value = 1)</p></li>
+<li><p><strong>Fc</strong> (<em>float</em>) – Tuning frequency (in Hz) (Default value = 440)</p></li>
+<li><p><strong>harmonics_weights</strong> (<em>list</em>) – A list of weights for the harmonics of the tones to be sonified
+(Default value = [1])</p></li>
+<li><p><strong>fading_msec</strong> (<em>float</em>) – The length of the fade in and fade out for sonified tones (in msec)
+(Default value = 5)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>pitch_son</strong> (<em>np.ndarray</em>) – Sonification of the pitch activation matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.b.b_sonification.sonify_pitch_activations_with_signal">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_sonification.</span></code><code class="sig-name descname"><span class="pre">sonify_pitch_activations_with_signal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">440</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">harmonics_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fading_msec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stereo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_sonification.html#sonify_pitch_activations_with_signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_sonification.sonify_pitch_activations_with_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sonify the pitches from a pitch activation matrix together with a corresponding signal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>P</strong> (<em>np.ndarray</em>) – A pitch activation matrix (e.g., gathered from a list of note events by
+<a class="reference internal" href="#libfmp.b.b_sonification.list_to_pitch_activations" title="libfmp.b.b_sonification.list_to_pitch_activations"><code class="xref py py-func docutils literal notranslate"><span class="pre">libfmp.b.b_sonification.list_to_pitch_activations()</span></code></a>)</p></li>
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Original signal</p></li>
+<li><p><strong>frame_rate</strong> (<em>float</em>) – Frame rate for P (in Hz)</p></li>
+<li><p><strong>Fs</strong> (<em>float</em>) – Sampling frequency (in Hz)</p></li>
+<li><p><strong>min_pitch</strong> (<em>int</em>) – Lowest MIDI pitch in P (Default value = 1)</p></li>
+<li><p><strong>Fc</strong> (<em>float</em>) – Tuning frequency (in Hz) (Default value = 440)</p></li>
+<li><p><strong>harmonics_weights</strong> (<em>list</em>) – A list of weights for the harmonics of the tones to be sonified
+(Default value = [1])</p></li>
+<li><p><strong>fading_msec</strong> (<em>float</em>) – The length of the fade in and fade out for sonified tones (in msec)
+(Default value = 5)</p></li>
+<li><p><strong>stereo</strong> (<em>bool</em>) – Decision between stereo and mono sonification (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>pitch_son</strong> (<em>np.ndarray</em>) – Sonification of the pitch activation matrix</p></li>
+<li><p><strong>out</strong> (<em>np.ndarray</em>) – Sonification combined with the original signal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.b.b_test_module"></span><dl class="py function">
+<dt id="libfmp.b.b_test_module.add">
+<code class="sig-prename descclassname"><span class="pre">libfmp.b.b_test_module.</span></code><code class="sig-name descname"><span class="pre">add</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/b/b_test_module.html#add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.b.b_test_module.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to add three numbers</p>
+<div class="line-block">
+<div class="line">Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/B/B_libfmp.html">B/B_libfmp.ipynb</a> and</div>
+<div class="line">Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/B/B_PythonBasics.html">B/B_PythonBasics.ipynb</a></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>float</em>) – First number</p></li>
+<li><p><strong>b</strong> (<em>float</em>) – Second number (default: 0)</p></li>
+<li><p><strong>c</strong> (<em>float</em>) – Third number (default: 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>d</strong> (<em>float</em>) – Sum</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="index_c1.html" class="btn btn-neutral float-right" title="Music Representations (libfmp.c1)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

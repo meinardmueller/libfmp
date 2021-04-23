@@ -1,0 +1,469 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.b.b_sonification &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.b.b_sonification</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.b.b_sonification</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.b.b_sonification</span>
+<span class="sd">Author: Meinard Mueller, Tim Zunner</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="list_to_chromagram"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.list_to_chromagram">[docs]</a><span class="k">def</span> <span class="nf">list_to_chromagram</span><span class="p">(</span><span class="n">note_list</span><span class="p">,</span> <span class="n">num_frames</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a chromagram matrix from a list of note events</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        note_list (list): A list of note events (e.g. gathered from a CSV file by</span>
+<span class="sd">            :func:`libfmp.c1.c1s2_symbolic_rep.csv_to_list`)</span>
+<span class="sd">        num_frames (int): Desired number of frames for the matrix</span>
+<span class="sd">        frame_rate (float): Frame rate for C (in Hz)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        C (np.ndarray): Chromagram matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span> <span class="n">num_frames</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">note_list</span><span class="p">:</span>
+        <span class="n">start_frame</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">frame_rate</span><span class="p">))</span>
+        <span class="n">end_frame</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">num_frames</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">frame_rate</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">C</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">%</span> <span class="mi">12</span><span class="p">),</span> <span class="n">start_frame</span><span class="p">:</span><span class="n">end_frame</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">C</span></div>
+
+
+<div class="viewcode-block" id="generate_shepard_tone"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.generate_shepard_tone">[docs]</a><span class="k">def</span> <span class="nf">generate_shepard_tone</span><span class="p">(</span><span class="n">chromaNum</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Fc</span><span class="o">=</span><span class="mi">440</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates shepard tone</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        chromaNum (int): 1=C,...</span>
+<span class="sd">        Fs (scalar): Sampling frequency</span>
+<span class="sd">        N (int): Desired length (in samples)</span>
+<span class="sd">        weight (float): Scaling factor [0:1] (Default value = 1)</span>
+<span class="sd">        Fc (float): Frequency for A4 (Default value = 440)</span>
+<span class="sd">        sigma (float): Parameter for envelope of Shepard tone (Default value = 15)</span>
+<span class="sd">        phase (float): Phase of sine (Default value = 0)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tone (np.ndarray): Shepard tone</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tone</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="c1"># Envelope function for Shepard tones</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="mi">24</span> <span class="o">+</span> <span class="n">chromaNum</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">&gt;</span> <span class="mi">32</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">12</span>
+    <span class="k">while</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">108</span><span class="p">:</span>
+        <span class="n">scale_factor</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">)</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">scale_factor</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">60</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">f_axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+        <span class="n">sine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">((</span><span class="n">p</span> <span class="o">-</span> <span class="mi">69</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span><span class="p">))</span> <span class="o">*</span> <span class="n">Fc</span> <span class="o">*</span> <span class="p">(</span><span class="n">f_axis</span> <span class="o">+</span> <span class="n">phase</span><span class="p">))</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">sine</span>
+        <span class="n">tone</span> <span class="o">=</span> <span class="n">tone</span> <span class="o">+</span> <span class="n">tmp</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">12</span>
+    <span class="k">return</span> <span class="n">tone</span></div>
+
+
+<div class="viewcode-block" id="sonify_chromagram"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.sonify_chromagram">[docs]</a><span class="k">def</span> <span class="nf">sonify_chromagram</span><span class="p">(</span><span class="n">chroma_data</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">fading_msec</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sonify the chroma features from a chromagram</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        chroma_data (np.ndarray): A chromagram (e.g., gathered from a list of note events by</span>
+<span class="sd">            :func:`libfmp.b.b_sonification.list_to_chromagram`)</span>
+<span class="sd">        N (int): Length of the sonification (in samples)</span>
+<span class="sd">        frame_rate (float): Frame rate for P (in Hz)</span>
+<span class="sd">        Fs (float): Sampling frequency (in Hz)</span>
+<span class="sd">        fading_msec (float): The length of the fade in and fade out for sonified tones (in msec)</span>
+<span class="sd">            (Default value = 5)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        chroma_son (np.ndarray): Sonification of the chromagram</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">chroma_son</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span>
+    <span class="n">fade_sample</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fading_msec</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">Fs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">chroma_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">shepard_tone</span> <span class="o">=</span> <span class="n">generate_shepard_tone</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">chroma_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">chroma_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">start</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">j</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">frame_rate</span><span class="p">)))</span>
+                    <span class="n">end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">j</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">frame_rate</span><span class="p">))</span>
+                    <span class="n">fade_start</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="o">+</span><span class="n">fade_sample</span><span class="p">))</span>
+                    <span class="n">fade_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">end</span><span class="o">+</span><span class="n">fade_sample</span><span class="p">)</span>
+
+                    <span class="n">weights</span><span class="p">[</span><span class="n">fade_start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span> <span class="o">+=</span> <span class="n">chroma_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+                    <span class="n">weights</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">fade_start</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">chroma_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">fade_start</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+                    <span class="n">weights</span><span class="p">[</span><span class="n">end</span><span class="p">:</span><span class="n">fade_end</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">chroma_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">fade_end</span><span class="o">-</span><span class="n">end</span><span class="p">)</span>
+
+            <span class="n">chroma_son</span> <span class="o">+=</span> <span class="n">shepard_tone</span> <span class="o">*</span> <span class="n">weights</span>
+
+    <span class="n">chroma_son</span> <span class="o">=</span> <span class="n">chroma_son</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">chroma_son</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">chroma_son</span></div>
+
+
+<div class="viewcode-block" id="sonify_chromagram_with_signal"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.sonify_chromagram_with_signal">[docs]</a><span class="k">def</span> <span class="nf">sonify_chromagram_with_signal</span><span class="p">(</span><span class="n">chroma_data</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">fading_msec</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stereo</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sonify the chroma features from a chromagram together with a corresponding signal</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        chroma_data (np.ndarray): A chromagram (e.g., gathered from a list of note events by</span>
+<span class="sd">            :func:`libfmp.b.b_sonification.list_to_chromagram`)</span>
+<span class="sd">        x (np.ndarray): Original signal</span>
+<span class="sd">        frame_rate (float): Frame rate for P (in Hz)</span>
+<span class="sd">        Fs (float): Sampling frequency (in Hz)</span>
+<span class="sd">        fading_msec (float): The length of the fade in and fade out for sonified tones (in msec)</span>
+<span class="sd">            (Default value = 5)</span>
+<span class="sd">        stereo (bool): Decision between stereo and mono sonification (Default value = True)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        chroma_son (np.ndarray): Sonification of the chromagram</span>
+<span class="sd">        out (np.ndarray): Sonification combined with the original signal</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="n">chroma_son</span> <span class="o">=</span> <span class="n">sonify_chromagram</span><span class="p">(</span><span class="n">chroma_data</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">fading_msec</span><span class="o">=</span><span class="n">fading_msec</span><span class="p">)</span>
+    <span class="n">chroma_scaled</span> <span class="o">=</span> <span class="n">chroma_son</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">chroma_son</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">stereo</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">chroma_scaled</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">chroma_scaled</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">out</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">chroma_son</span><span class="p">,</span> <span class="n">out</span></div>
+
+
+<div class="viewcode-block" id="list_to_pitch_activations"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.list_to_pitch_activations">[docs]</a><span class="k">def</span> <span class="nf">list_to_pitch_activations</span><span class="p">(</span><span class="n">note_list</span><span class="p">,</span> <span class="n">num_frames</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a pitch activation matrix from a list of note events</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        note_list (list): A list of note events (e.g., gathered from a CSV file by</span>
+<span class="sd">            :func:`libfmp.c1.c1s2_symbolic_rep.csv_to_list`)</span>
+<span class="sd">        num_frames (int): Desired number of frames for the matrix</span>
+<span class="sd">        frame_rate (float): Frame rate for P (in Hz)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        P (np.ndarray): Pitch activation matrix (first axis: Indexed by [0:127], encoding MIDI pitches [1:128])</span>
+<span class="sd">        F_coef_MIDI (np.ndarray): MIDI pitch axis</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">128</span><span class="p">,</span> <span class="n">num_frames</span><span class="p">))</span>
+    <span class="n">F_coef_MIDI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">note_list</span><span class="p">:</span>
+        <span class="n">start_frame</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">frame_rate</span><span class="p">))</span>
+        <span class="n">end_frame</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">num_frames</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">frame_rate</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">P</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">start_frame</span><span class="p">:</span><span class="n">end_frame</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">F_coef_MIDI</span></div>
+
+
+<div class="viewcode-block" id="sonify_pitch_activations"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.sonify_pitch_activations">[docs]</a><span class="k">def</span> <span class="nf">sonify_pitch_activations</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">min_pitch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Fc</span><span class="o">=</span><span class="mi">440</span><span class="p">,</span> <span class="n">harmonics_weights</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fading_msec</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sonify the pitches from a pitch activation matrix</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        P (np.ndarray): A pitch activation matrix (e.g., gathered from a list of note events by</span>
+<span class="sd">            :func:`libfmp.b.b_sonification.list_to_pitch_activations`). First axis: Indexed by [0:127],</span>
+<span class="sd">            encoding MIDI pitches [1:128]</span>
+<span class="sd">        N (int): Length of the sonification (in samples)</span>
+<span class="sd">        frame_rate (float): Frame rate for P (in Hz)</span>
+<span class="sd">        Fs (float): Sampling frequency (in Hz)</span>
+<span class="sd">        min_pitch (int): Lowest MIDI pitch in P (Default value = 1)</span>
+<span class="sd">        Fc (float): Tuning frequency (in Hz) (Default value = 440)</span>
+<span class="sd">        harmonics_weights (list): A list of weights for the harmonics of the tones to be sonified</span>
+<span class="sd">            (Default value = [1])</span>
+<span class="sd">        fading_msec (float): The length of the fade in and fade out for sonified tones (in msec)</span>
+<span class="sd">            (Default value = 5)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pitch_son (np.ndarray): Sonification of the pitch activation matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">fade_sample</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fading_msec</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">Fs</span><span class="p">)</span>
+    <span class="n">pitch_son</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span>
+
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="p">:]))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">pitch</span> <span class="o">=</span> <span class="n">min_pitch</span> <span class="o">+</span> <span class="n">p</span>
+            <span class="n">freq</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="p">((</span><span class="n">pitch</span> <span class="o">-</span> <span class="mi">69</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span><span class="p">))</span> <span class="o">*</span> <span class="n">Fc</span>
+            <span class="n">sin_tone</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">harmonics_weights</span><span class="p">)):</span>
+                <span class="n">sin_tone</span> <span class="o">+=</span> <span class="n">harmonics_weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span><span class="p">)</span>
+
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">start</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">frame_rate</span><span class="p">)))</span>
+                    <span class="n">end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">n</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">frame_rate</span><span class="p">))</span>
+                    <span class="n">fade_start</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">start</span><span class="o">+</span><span class="n">fade_sample</span><span class="p">)</span>
+                    <span class="n">fade_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">end</span><span class="o">+</span><span class="n">fade_sample</span><span class="p">)</span>
+
+                    <span class="n">weights</span><span class="p">[</span><span class="n">fade_start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span> <span class="o">+=</span> <span class="n">P</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span>
+                    <span class="n">weights</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">fade_start</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">],</span> <span class="n">fade_start</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+                    <span class="n">weights</span><span class="p">[</span><span class="n">end</span><span class="p">:</span><span class="n">fade_end</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">fade_end</span><span class="o">-</span><span class="n">end</span><span class="p">)</span>
+
+            <span class="n">pitch_son</span> <span class="o">+=</span> <span class="n">weights</span> <span class="o">*</span> <span class="n">sin_tone</span>
+
+    <span class="n">pitch_son</span> <span class="o">=</span> <span class="n">pitch_son</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pitch_son</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pitch_son</span></div>
+
+
+<div class="viewcode-block" id="sonify_pitch_activations_with_signal"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.sonify_pitch_activations_with_signal">[docs]</a><span class="k">def</span> <span class="nf">sonify_pitch_activations_with_signal</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">min_pitch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Fc</span><span class="o">=</span><span class="mi">440</span><span class="p">,</span> <span class="n">harmonics_weights</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                         <span class="n">fading_msec</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stereo</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sonify the pitches from a pitch activation matrix together with a corresponding signal</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        P (np.ndarray): A pitch activation matrix (e.g., gathered from a list of note events by</span>
+<span class="sd">            :func:`libfmp.b.b_sonification.list_to_pitch_activations`)</span>
+<span class="sd">        x (np.ndarray): Original signal</span>
+<span class="sd">        frame_rate (float): Frame rate for P (in Hz)</span>
+<span class="sd">        Fs (float): Sampling frequency (in Hz)</span>
+<span class="sd">        min_pitch (int): Lowest MIDI pitch in P (Default value = 1)</span>
+<span class="sd">        Fc (float): Tuning frequency (in Hz) (Default value = 440)</span>
+<span class="sd">        harmonics_weights (list): A list of weights for the harmonics of the tones to be sonified</span>
+<span class="sd">            (Default value = [1])</span>
+<span class="sd">        fading_msec (float): The length of the fade in and fade out for sonified tones (in msec)</span>
+<span class="sd">            (Default value = 5)</span>
+<span class="sd">        stereo (bool): Decision between stereo and mono sonification (Default value = True)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pitch_son (np.ndarray): Sonification of the pitch activation matrix</span>
+<span class="sd">        out (np.ndarray): Sonification combined with the original signal</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="n">pitch_son</span> <span class="o">=</span> <span class="n">sonify_pitch_activations</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">min_pitch</span><span class="o">=</span><span class="n">min_pitch</span><span class="p">,</span> <span class="n">Fc</span><span class="o">=</span><span class="n">Fc</span><span class="p">,</span>
+                                         <span class="n">harmonics_weights</span><span class="o">=</span><span class="n">harmonics_weights</span><span class="p">,</span> <span class="n">fading_msec</span><span class="o">=</span><span class="n">fading_msec</span><span class="p">)</span>
+    <span class="n">pitch_scaled</span> <span class="o">=</span> <span class="n">pitch_son</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pitch_son</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">stereo</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">pitch_scaled</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">pitch_scaled</span>
+
+    <span class="k">return</span> <span class="n">pitch_son</span><span class="p">,</span> <span class="n">out</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

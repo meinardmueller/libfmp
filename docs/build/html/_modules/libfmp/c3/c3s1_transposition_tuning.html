@@ -1,0 +1,434 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c3.c3s1_transposition_tuning &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c3.c3s1_transposition_tuning</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c3.c3s1_transposition_tuning</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c3.c3s1_transposition_tuning</span>
+<span class="sd">Author: Meinard Müller</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">import</span> <span class="nn">libfmp.b</span>
+
+
+<div class="viewcode-block" id="cyclic_shift"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_transposition_tuning.cyclic_shift">[docs]</a><span class="k">def</span> <span class="nf">cyclic_shift</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cyclically shift a chromagram</span>
+
+<span class="sd">    Notebook: C3/C3S1_TranspositionTuning.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        C (np.ndarray): Chromagram</span>
+<span class="sd">        shift (int): Tranposition shift (Default value = 1)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        C_shift (np.ndarray): Cyclically shifted chromagram</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">C_shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">C_shift</span></div>
+
+
+<div class="viewcode-block" id="compute_freq_distribution"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_transposition_tuning.compute_freq_distribution">[docs]</a><span class="k">def</span> <span class="nf">compute_freq_distribution</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">16384</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filt_len</span><span class="o">=</span><span class="mi">101</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute an overall frequency distribution</span>
+
+<span class="sd">    Notebook: C3/C3S1_TranspositionTuning.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Signal</span>
+<span class="sd">        Fs (scalar): Sampling rate</span>
+<span class="sd">        N (int): Window size (Default value = 16384)</span>
+<span class="sd">        gamma (float): Constant for logarithmic compression (Default value = 100.0)</span>
+<span class="sd">        local (bool): Computes STFT and averages; otherwise computes global DFT (Default value = True)</span>
+<span class="sd">        filt (bool): Applies local frequency averaging and by rectification (Default value = True)</span>
+<span class="sd">        filt_len (int): Filter length for local frequency averaging (length given in cents) (Default value = 101)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        v (np.ndarray): Vector representing an overall frequency distribution</span>
+<span class="sd">        F_coef_cents (np.ndarray): Frequency axis (given in cents)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">local</span><span class="p">:</span>
+        <span class="c1"># Compute an STFT and sum over time</span>
+        <span class="k">if</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;The signal length (</span><span class="si">%d</span><span class="s1">) should be twice as long as the window length (</span><span class="si">%d</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">N</span><span class="p">))</span>
+        <span class="n">Y</span><span class="p">,</span> <span class="n">T_coef</span><span class="p">,</span> <span class="n">F_coef</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c2</span><span class="o">.</span><span class="n">stft_convention_fmp</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">mag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span><span class="p">)</span>
+        <span class="c1"># Error &quot;range() arg 3 must not be zero&quot; occurs when N is too large. Why?</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Compute a single DFT for the entire signal</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">Fs</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[:</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">Y</span><span class="p">)</span>
+        <span class="c1"># Y = libfmp.c3.log_compression(Y, gamma=100)</span>
+        <span class="n">F_coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">N</span>
+
+    <span class="c1"># Convert linearly spaced frequency axis in logarithmic axis (given in cents)</span>
+    <span class="c1"># The minimum frequency F_min corresponds 0 cents.</span>
+    <span class="n">f_pitch</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="mi">440</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">((</span><span class="n">p</span> <span class="o">-</span> <span class="mi">69</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="n">p_min</span> <span class="o">=</span> <span class="mi">24</span>               <span class="c1"># C1, MIDI pitch 24</span>
+    <span class="n">F_min</span> <span class="o">=</span> <span class="n">f_pitch</span><span class="p">(</span><span class="n">p_min</span><span class="p">)</span>   <span class="c1"># 32.70 Hz</span>
+    <span class="n">p_max</span> <span class="o">=</span> <span class="mi">108</span>              <span class="c1"># C8, MIDI pitch 108</span>
+    <span class="n">F_max</span> <span class="o">=</span> <span class="n">f_pitch</span><span class="p">(</span><span class="n">p_max</span><span class="p">)</span>   <span class="c1"># 4186.01 Hz</span>
+    <span class="n">F_coef_log</span><span class="p">,</span> <span class="n">F_coef_cents</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c2</span><span class="o">.</span><span class="n">compute_f_coef_log</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">F_min</span><span class="o">=</span><span class="n">F_min</span><span class="p">,</span> <span class="n">F_max</span><span class="o">=</span><span class="n">F_max</span><span class="p">)</span>
+    <span class="n">Y_int</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">F_coef</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;extrapolate&#39;</span><span class="p">)(</span><span class="n">F_coef_log</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">Y_int</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Y_int</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">filt</span><span class="p">:</span>
+        <span class="c1"># Subtract local average and rectify</span>
+        <span class="n">filt_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">filt_len</span><span class="p">)</span>
+        <span class="n">Y_smooth</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">Y_int</span><span class="p">,</span> <span class="n">filt_kernel</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">filt_len</span>
+        <span class="c1"># Y_smooth = signal.medfilt(Y_int, filt_len)</span>
+        <span class="n">Y_rectified</span> <span class="o">=</span> <span class="n">Y_int</span> <span class="o">-</span> <span class="n">Y_smooth</span>
+        <span class="n">Y_rectified</span><span class="p">[</span><span class="n">Y_rectified</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">Y_rectified</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Y_rectified</span><span class="p">)</span>
+
+    <span class="n">theta_axis</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">ind_max</span><span class="p">,</span> <span class="n">theta_max</span><span class="p">,</span> <span class="n">template_max</span> <span class="o">=</span> <span class="n">tuning_similarity</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">v</span><span class="p">,</span> <span class="n">F_coef_cents</span></div>
+
+
+<div class="viewcode-block" id="template_comb"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_transposition_tuning.template_comb">[docs]</a><span class="k">def</span> <span class="nf">template_comb</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute a comb template on a pitch axis</span>
+
+<span class="sd">    Notebook: C3/C3S1_TranspositionTuning.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        M (int): Length template (given in cents)</span>
+<span class="sd">        theta (int): Shift parameter (given in cents); -50 &lt;= theta &lt; 50 (Default value = 0)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        template (np.ndarray): Comb template shifted by theta</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="n">peak_positions</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">theta</span><span class="p">)</span>
+    <span class="n">peak_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">peak_positions</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">M</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">template</span><span class="p">[</span><span class="n">peak_positions</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">template</span></div>
+
+
+<div class="viewcode-block" id="tuning_similarity"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_transposition_tuning.tuning_similarity">[docs]</a><span class="k">def</span> <span class="nf">tuning_similarity</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute tuning similarity</span>
+
+<span class="sd">    Notebook: C3/C3S1_TranspositionTuning.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        v (np.ndarray): Vector representing an overall frequency distribution</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        theta_axis (np.ndarray): Axis consisting of all tuning parameters -50 &lt;= theta &lt; 50</span>
+<span class="sd">        sim (np.ndarray): Similarity values for all tuning parameters</span>
+<span class="sd">        ind_max (int): Maximizing index</span>
+<span class="sd">        theta_max (int): Maximizing tuning parameter</span>
+<span class="sd">        template_max (np.ndarray): Similiarty-maximizing comb template</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">theta_axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>  <span class="c1"># Axis (given in cents)</span>
+    <span class="n">num_theta</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">theta_axis</span><span class="p">)</span>
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_theta</span><span class="p">)</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_theta</span><span class="p">):</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">theta_axis</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">template_comb</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">)</span>
+        <span class="n">sim</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">sim</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+    <span class="n">ind_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+    <span class="n">theta_max</span> <span class="o">=</span> <span class="n">theta_axis</span><span class="p">[</span><span class="n">ind_max</span><span class="p">]</span>
+    <span class="n">template_max</span> <span class="o">=</span> <span class="n">template_comb</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta_max</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">theta_axis</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">ind_max</span><span class="p">,</span> <span class="n">theta_max</span><span class="p">,</span> <span class="n">template_max</span></div>
+
+
+<div class="viewcode-block" id="plot_tuning_similarity"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_transposition_tuning.plot_tuning_similarity">[docs]</a><span class="k">def</span> <span class="nf">plot_tuning_similarity</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">theta_axis</span><span class="p">,</span> <span class="n">theta_max</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Plots tuning similarity</span>
+
+<span class="sd">    Notebook: C3/C3S1_TranspositionTuning.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sim: Similarity values</span>
+<span class="sd">        theta_axis: Axis consisting of cent values [-50:49]</span>
+<span class="sd">        theta_max: Maximizing tuning parameter</span>
+<span class="sd">        ax: Axis (in case of ax=None, figure is generated) (Default value = None)</span>
+<span class="sd">        title: Title of figure (or subplot) (Default value = None)</span>
+<span class="sd">        figsize: Size of figure (only used when ax=None) (Default value = (4, 3))</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: Handle for figure</span>
+<span class="sd">        ax: Handle for axes</span>
+<span class="sd">        line: handle for line plot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Estimated tuning: </span><span class="si">%d</span><span class="s1"> cents&#39;</span> <span class="o">%</span> <span class="n">theta_max</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">theta_axis</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">theta_axis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">theta_axis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">theta_max</span><span class="p">,</span> <span class="n">theta_max</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tuning parameter (cents)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Similarity&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">line</span></div>
+
+
+<div class="viewcode-block" id="plot_freq_vector_template"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_transposition_tuning.plot_freq_vector_template">[docs]</a><span class="k">def</span> <span class="nf">plot_freq_vector_template</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">F_coef_cents</span><span class="p">,</span> <span class="n">template_max</span><span class="p">,</span> <span class="n">theta_max</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Plots frequency distribution and similarity-maximizing template</span>
+
+<span class="sd">    Notebook: C3/C3S1_TranspositionTuning.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        v: Vector representing an overall frequency distribution</span>
+<span class="sd">        F_coef_cents: Frequency axis</span>
+<span class="sd">        template_max: Similarity-maximizing template</span>
+<span class="sd">        theta_max: Maximizing tuning parameter</span>
+<span class="sd">        ax: Axis (in case of ax=None, figure is generated) (Default value = None)</span>
+<span class="sd">        title: Title of figure (or subplot) (Default value = None)</span>
+<span class="sd">        figsize: Size of figure (only used when ax=None) (Default value = (8, 3))</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: Handle for figure</span>
+<span class="sd">        ax: Handle for axes</span>
+<span class="sd">        line: handle for line plot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Frequency distribution with maximizing comb template ($\theta$ = </span><span class="si">%d</span><span class="s1"> cents)&#39;</span> <span class="o">%</span> <span class="n">theta_max</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F_coef_cents</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">F_coef_cents</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">F_coef_cents</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+    <span class="n">x_ticks_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">2400</span><span class="p">,</span> <span class="mi">3600</span><span class="p">,</span> <span class="mi">4800</span><span class="p">,</span> <span class="mi">6000</span><span class="p">,</span> <span class="mi">7200</span><span class="p">,</span> <span class="mi">8000</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F_coef_cents</span><span class="p">,</span> <span class="n">template_max</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">,</span> <span class="s1">&#39;r:&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x_ticks_freq</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency (cents)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">line</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

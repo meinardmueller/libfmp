@@ -1,0 +1,542 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c8.c8s3_nmf &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c8.c8s3_nmf</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c8.c8s3_nmf</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c8.c8s3_nmf</span>
+<span class="sd">Author: Meinard Müller, Tim Zunner</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+
+
+<div class="viewcode-block" id="nmf"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.nmf">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">nmf</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;NMF algorithm with Euclidean distance</span>
+
+<span class="sd">    Notebook: C8/C8S3_NMFbasic.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        V (np.ndarray): Nonnegative matrix of size K x N</span>
+<span class="sd">        R (int): Rank parameter</span>
+<span class="sd">        thresh (float): Threshold used as stop criterion (Default value = 0.001)</span>
+<span class="sd">        L (int): Maximal number of iteration (Default value = 1000)</span>
+<span class="sd">        W (np.ndarray): Nonnegative matrix of size K x R used for initialization (Default value = None)</span>
+<span class="sd">        H (np.ndarray): Nonnegative matrix of size R x N used for initialization (Default value = None)</span>
+<span class="sd">        norm (bool): Applies max-normalization of columns of final W (Default value = False)</span>
+<span class="sd">        report (bool): Reports errors during runtime (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        W (np.ndarray): Nonnegative matrix of size K x R</span>
+<span class="sd">        H (np.ndarray): Nonnegative matrix of size R x N</span>
+<span class="sd">        V_approx (np.ndarray): Nonnegative matrix W*H of size K x N</span>
+<span class="sd">        V_approx_err (float): Error between V and V_approx</span>
+<span class="sd">        H_W_error (np.ndarray): History of errors of subsequent H and W matrices</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">W</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">H</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">H_W_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="n">L</span><span class="p">))</span>
+    <span class="n">ell</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">below_thresh</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">eps_machine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">below_thresh</span> <span class="ow">and</span> <span class="n">ell</span> <span class="o">&lt;=</span> <span class="n">L</span><span class="p">:</span>
+        <span class="n">H_ell</span> <span class="o">=</span> <span class="n">H</span>
+        <span class="n">W_ell</span> <span class="o">=</span> <span class="n">W</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">H</span> <span class="o">*</span> <span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">H</span><span class="p">)</span> <span class="o">+</span> <span class="n">eps_machine</span><span class="p">))</span>
+        <span class="n">W</span> <span class="o">=</span> <span class="n">W</span> <span class="o">*</span> <span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span> <span class="o">+</span> <span class="n">eps_machine</span><span class="p">))</span>
+
+        <span class="c1"># H+1 = H *p ((W^T * V) / p (W^T * W * H))</span>
+        <span class="c1"># H = np.multiply(H, np.divide(np.matmul(np.transpose(W), V),</span>
+        <span class="c1">#                              np.matmul(np.matmul(np.transpose(W), W), H)))</span>
+        <span class="c1"># W+1 = W *p ((V * H^T) / p (W * H * H^T))</span>
+        <span class="c1"># W = np.multiply(W, np.divide(np.matmul(V, np.transpose(H)),</span>
+        <span class="c1">#                              np.matmul(np.matmul(W, H), np.transpose(H))))</span>
+
+        <span class="n">H_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H</span><span class="o">-</span><span class="n">H_ell</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">W_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">W</span> <span class="o">-</span> <span class="n">W_ell</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">H_W_error</span><span class="p">[:,</span> <span class="n">ell</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">H_error</span><span class="p">,</span> <span class="n">W_error</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">report</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Iteration: &#39;</span><span class="p">,</span> <span class="n">ell</span><span class="p">,</span> <span class="s1">&#39;, H_error: &#39;</span><span class="p">,</span> <span class="n">H_error</span><span class="p">,</span> <span class="s1">&#39;, W_error: &#39;</span><span class="p">,</span> <span class="n">W_error</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">H_error</span> <span class="o">&lt;</span> <span class="n">thresh</span> <span class="ow">and</span> <span class="n">W_error</span> <span class="o">&lt;</span> <span class="n">thresh</span><span class="p">:</span>
+            <span class="n">below_thresh</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">H_W_error</span> <span class="o">=</span> <span class="n">H_W_error</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">ell</span><span class="p">]</span>
+        <span class="n">ell</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+            <span class="n">v_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">W</span><span class="p">[:,</span> <span class="n">r</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">v_max</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">W</span><span class="p">[:,</span> <span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">W</span><span class="p">[:,</span> <span class="n">r</span><span class="p">]</span> <span class="o">/</span> <span class="n">v_max</span>
+                <span class="n">H</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">v_max</span>
+    <span class="n">V_approx</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    <span class="n">V_approx_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">V</span><span class="o">-</span><span class="n">V_approx</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">V_approx</span><span class="p">,</span> <span class="n">V_approx_err</span><span class="p">,</span> <span class="n">H_W_error</span></div>
+
+
+<div class="viewcode-block" id="plot_nmf_factors"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.plot_nmf_factors">[docs]</a><span class="k">def</span> <span class="nf">plot_nmf_factors</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N_fft</span><span class="p">,</span> <span class="n">H_fft</span><span class="p">,</span> <span class="n">freq_max</span><span class="p">,</span> <span class="n">label_pitch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">title_W</span><span class="o">=</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="n">title_H</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">title_V</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Plots the factore of an NMF-based spectral decomposition</span>
+
+<span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        W: Template matrix</span>
+<span class="sd">        H: Activation matrix</span>
+<span class="sd">        V: Reconstructed input matrix</span>
+<span class="sd">        Fs: Sampling frequency</span>
+<span class="sd">        N_fft: FFT length</span>
+<span class="sd">        H_fft: Hopsize</span>
+<span class="sd">        freq_max: Maximum frequency to be plotted</span>
+<span class="sd">        label_pitch: Labels for the different pitches (Default value = None)</span>
+<span class="sd">        title_W: Title for imshow of matrix W (Default value = &#39;W&#39;)</span>
+<span class="sd">        title_H: Title for imshow of matrix H (Default value = &#39;H&#39;)</span>
+<span class="sd">        title_V: Title for imshow of matrix V (Default value = &#39;V&#39;)</span>
+<span class="sd">        figsize: Size of the figure (Default value = (13, 3))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># cmap = libfmp.b.compressed_gray_cmap(alpha=5)</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;gray_r&#39;</span>
+    <span class="n">dur_sec</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">H_fft</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="k">if</span> <span class="n">label_pitch</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label_pitch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">131</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">freq_max</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label_pitch</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Pitch&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title_W</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">132</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur_sec</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">R</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label_pitch</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Pitch&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title_H</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur_sec</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">freq_max</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title_V</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="pitch_from_annotation"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.pitch_from_annotation">[docs]</a><span class="k">def</span> <span class="nf">pitch_from_annotation</span><span class="p">(</span><span class="n">annotation</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract set of occurring pitches from annotation</span>
+
+<span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        annotation (list): Annotation data</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pitch_set (np.ndarray): Set of occurring pitches</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pitch_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">annotation</span><span class="p">])</span>
+    <span class="n">pitch_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">pitch_all</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pitch_set</span></div>
+
+
+<div class="viewcode-block" id="template_pitch"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.template_pitch">[docs]</a><span class="k">def</span> <span class="nf">template_pitch</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Defines spectral template for a given pitch</span>
+
+<span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        K (int): Number of frequency points</span>
+<span class="sd">        pitch (float): Fundamental pitch</span>
+<span class="sd">        freq_res (float): Frequency resolution</span>
+<span class="sd">        tol_pitch (float): Relative frequency tolerance for the harmonics (Default value = 0.05)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        template (np.ndarray): Nonnegative template vector of size K</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">max_freq</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">freq_res</span>
+    <span class="n">pitch_freq</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="p">((</span><span class="n">pitch</span> <span class="o">-</span> <span class="mi">69</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span> <span class="o">*</span> <span class="mi">440</span>
+    <span class="n">max_order</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">max_freq</span> <span class="o">/</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tol_pitch</span><span class="p">)</span> <span class="o">*</span> <span class="n">pitch_freq</span><span class="p">)))</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">min_idx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tol_pitch</span><span class="p">)</span> <span class="o">*</span> <span class="n">m</span> <span class="o">*</span> <span class="n">pitch_freq</span> <span class="o">/</span> <span class="n">freq_res</span><span class="p">))</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tol_pitch</span><span class="p">)</span> <span class="o">*</span> <span class="n">m</span> <span class="o">*</span> <span class="n">pitch_freq</span> <span class="o">/</span> <span class="n">freq_res</span><span class="p">))</span>
+        <span class="n">template</span><span class="p">[</span><span class="n">min_idx</span><span class="p">:</span><span class="n">max_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">m</span>
+    <span class="k">return</span> <span class="n">template</span></div>
+
+
+<div class="viewcode-block" id="init_nmf_template_pitch"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_template_pitch">[docs]</a><span class="k">def</span> <span class="nf">init_nmf_template_pitch</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch_set</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initializes template matrix for a given set of pitches</span>
+
+<span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        K (int): Number of frequency points</span>
+<span class="sd">        pitch_set (np.ndarray): Set of fundamental pitches</span>
+<span class="sd">        freq_res (float): Frequency resolution</span>
+<span class="sd">        tol_pitch (float): Relative frequency tolerance for the harmonics (Default value = 0.05)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        W (np.ndarray): Nonnegative matrix of size K x R with R = len(pitch_set)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pitch_set</span><span class="p">)</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">K</span><span class="p">,</span> <span class="n">R</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+        <span class="n">W</span><span class="p">[:,</span> <span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_pitch</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch_set</span><span class="p">[</span><span class="n">r</span><span class="p">],</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="n">tol_pitch</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">W</span></div>
+
+
+<div class="viewcode-block" id="init_nmf_activation_score"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_activation_score">[docs]</a><span class="k">def</span> <span class="nf">init_nmf_activation_score</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">annotation</span><span class="p">,</span> <span class="n">frame_res</span><span class="p">,</span> <span class="n">tol_note</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">pitch_set</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initializes activation matrix for given score annotations</span>
+
+<span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        N (int): Number of frames</span>
+<span class="sd">        annotation (list): Annotation data</span>
+<span class="sd">        frame_res (time): Time resolution</span>
+<span class="sd">        tol_note (list or np.ndarray): Tolerance (seconds) for beginning and end of a note (Default value = [0.2, 0.5])</span>
+<span class="sd">        pitch_set (np.ndarray): Set of occurring pitches (Default value = None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        H (np.ndarray): Nonnegative matrix of size R x N</span>
+<span class="sd">        pitch_set (np.ndarray): Set of occurring pitches</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">note_start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">annotation</span><span class="p">])</span>
+    <span class="n">note_dur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">annotation</span><span class="p">])</span>
+    <span class="n">pitch_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">annotation</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">pitch_set</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">pitch_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">pitch_all</span><span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pitch_set</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">R</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">note_start</span><span class="p">)):</span>
+        <span class="n">start_idx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">note_start</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">tol_note</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">frame_res</span><span class="p">))</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">note_start</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">note_dur</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">tol_note</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">frame_res</span><span class="p">))</span>
+        <span class="n">pitch_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">pitch_set</span> <span class="o">==</span> <span class="n">pitch_all</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">H</span><span class="p">[</span><span class="n">pitch_idx</span><span class="p">,</span> <span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">H</span><span class="p">,</span> <span class="n">pitch_set</span></div>
+
+
+<div class="viewcode-block" id="init_nmf_template_pitch_onset"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_template_pitch_onset">[docs]</a><span class="k">def</span> <span class="nf">init_nmf_template_pitch_onset</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch_set</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initializes template matrix with onsets for a given set of pitches</span>
+
+<span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        K (int): Number of frequency points</span>
+<span class="sd">        pitch_set (np.ndarray): Set of fundamental pitches</span>
+<span class="sd">        freq_res (float): Frequency resolution</span>
+<span class="sd">        tol_pitch (float): Relative frequency tolerance for the harmonics (Default value = 0.05)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        W (np.ndarray): Nonnegative matrix of size K x (2R) with R = len(pitch_set)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pitch_set</span><span class="p">)</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">K</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">R</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+        <span class="n">W</span><span class="p">[:,</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.1</span>
+        <span class="n">W</span><span class="p">[:,</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_pitch</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch_set</span><span class="p">[</span><span class="n">r</span><span class="p">],</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="n">tol_pitch</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">W</span></div>
+
+
+<div class="viewcode-block" id="init_nmf_activation_score_onset"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_activation_score_onset">[docs]</a><span class="k">def</span> <span class="nf">init_nmf_activation_score_onset</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">annotation</span><span class="p">,</span> <span class="n">frame_res</span><span class="p">,</span> <span class="n">tol_note</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">tol_onset</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+                                    <span class="n">pitch_set</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initializes activation matrix with onsets for given score annotations</span>
+
+<span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        N (int): Number of frames</span>
+<span class="sd">        annotation (list): Annotation data</span>
+<span class="sd">        frame_res (float): Time resolution</span>
+<span class="sd">        tol_note (list or np.ndarray): Tolerance (seconds) for beginning and end of a note (Default value = [0.2, 0.5])</span>
+<span class="sd">        tol_onset (list or np.ndarray): Tolerance (seconds) for beginning and end of an onset</span>
+<span class="sd">            (Default value = [0.3, 0.1])</span>
+<span class="sd">        pitch_set (np.ndarray): Set of occurring pitches (Default value = None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        H (np.ndarray): Nonnegative matrix of size (2R) x N</span>
+<span class="sd">        pitch_set (np.ndarray): Set of occurring pitches</span>
+<span class="sd">        label_pitch (np.ndarray): Pitch labels for the templates</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">note_start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">annotation</span><span class="p">])</span>
+    <span class="n">note_dur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">annotation</span><span class="p">])</span>
+    <span class="n">pitch_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">annotation</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">pitch_set</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">pitch_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">pitch_all</span><span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pitch_set</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">R</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">note_start</span><span class="p">)):</span>
+        <span class="n">start_idx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">note_start</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">tol_note</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">frame_res</span><span class="p">))</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">note_start</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">note_dur</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">tol_note</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">frame_res</span><span class="p">))</span>
+        <span class="n">start_onset_idx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">note_start</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">tol_onset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">frame_res</span><span class="p">))</span>
+        <span class="n">end_onset_idx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">note_start</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">tol_onset</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">frame_res</span><span class="p">))</span>
+        <span class="n">pitch_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">pitch_set</span> <span class="o">==</span> <span class="n">pitch_all</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">H</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">pitch_idx</span><span class="p">,</span> <span class="n">start_onset_idx</span><span class="p">:</span><span class="n">end_onset_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">H</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">pitch_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">label_pitch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">pitch_set</span><span class="p">),</span>  <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pitch_set</span><span class="p">)):</span>
+        <span class="n">label_pitch</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">pitch_set</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">label_pitch</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">pitch_set</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">H</span><span class="p">,</span> <span class="n">pitch_set</span><span class="p">,</span> <span class="n">label_pitch</span></div>
+
+
+<div class="viewcode-block" id="split_annotation_lh_rh"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.split_annotation_lh_rh">[docs]</a><span class="k">def</span> <span class="nf">split_annotation_lh_rh</span><span class="p">(</span><span class="n">ann</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Splitting of the annotation data in left and right hand</span>
+
+<span class="sd">    Notebook: C8/C8S3_NMFAudioDecomp.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ann (list): Annotation data</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ann_lh (list): Annotation data for left hand</span>
+<span class="sd">        ann_rh (list): Annotation data for right hand</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ann_lh</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ann_rh</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ann</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;lh&#39;</span><span class="p">:</span>
+            <span class="n">ann_lh</span> <span class="o">=</span> <span class="n">ann_lh</span> <span class="o">+</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;rh&#39;</span><span class="p">:</span>
+            <span class="n">ann_rh</span> <span class="o">=</span> <span class="n">ann_rh</span> <span class="o">+</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">ann_lh</span><span class="p">,</span> <span class="n">ann_rh</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

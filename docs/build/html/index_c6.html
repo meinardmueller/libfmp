@@ -1,0 +1,965 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Tempo and Beat Tracking (libfmp.c6) &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Content-Based Audio Retrieval (libfmp.c7)" href="index_c7.html" />
+    <link rel="prev" title="Chord Recognition (libfmp.c5)" href="index_c5.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Tempo and Beat Tracking (libfmp.c6)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index_c6.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tempo-and-beat-tracking-libfmp-c6">
+<h1>Tempo and Beat Tracking (libfmp.c6)<a class="headerlink" href="#tempo-and-beat-tracking-libfmp-c6" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://www.audiolabs-erlangen.de/FMP">FMP notebooks</a> provide detailed textbook-like explanations of central techniques and algorithms implemented in the libfmp.
+The part of FMP related to this module is available at the following URL:</p>
+<p><a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6.html">https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6.html</a></p>
+<span class="target" id="module-libfmp.c6"></span><span class="target" id="module-libfmp.c6.c6s1_onset_detection"></span><dl class="py function">
+<dt id="libfmp.c6.c6s1_onset_detection.average_nov_dic">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_onset_detection.</span></code><code class="sig-name descname"><span class="pre">average_nov_dic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nov_dic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_max_sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_onset_detection.html#average_nov_dic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_onset_detection.average_nov_dic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Average respamples set of novelty functions</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_NoveltyComparison.html">C6/C6S1_NoveltyComparison.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nov_dic</strong> (<em>dict</em>) – Dictionary of novelty functions</p></li>
+<li><p><strong>time_max_sec</strong> (<em>float</em>) – Duration of output signals (given in seconds)</p></li>
+<li><p><strong>Fs_out</strong> (<em>scalar</em>) – Sampling rate of output signal (Default value = 100)</p></li>
+<li><p><strong>norm</strong> (<em>bool</em>) – Apply max norm (if norm==True) (Default value = True)</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – Standard deviation for smoothing Gaussian kernel (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>nov_matrix</strong> (<em>np.ndarray</em>) – Matrix containing resampled output signal (last one is average)</p></li>
+<li><p><strong>Fs_out</strong> (<em>scalar</em>) – Sampling rate of output signals</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_onset_detection.compute_local_average">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_onset_detection.</span></code><code class="sig-name descname"><span class="pre">compute_local_average</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_onset_detection.html#compute_local_average"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_onset_detection.compute_local_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute local average of signal</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_NoveltySpectral.html">C6/C6S1_NoveltySpectral.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal</p></li>
+<li><p><strong>M</strong> (<em>int</em>) – Determines size (2M+1) in samples of centric window  used for local average</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>local_average</strong> (<em>np.ndarray</em>) – Local average signal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_onset_detection.compute_novelty_complex">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_onset_detection.</span></code><code class="sig-name descname"><span class="pre">compute_novelty_complex</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_onset_detection.html#compute_novelty_complex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_onset_detection.compute_novelty_complex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute complex-domain novelty function</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_NoveltyComplex.html">C6/C6S1_NoveltyComplex.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 1)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size (Default value = 1024)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size (Default value = 64)</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – Parameter for logarithmic compression (Default value = 10.0)</p></li>
+<li><p><strong>M</strong> (<em>int</em>) – Determines size (2M+1) in samples of centric window used for local average (Default value = 40)</p></li>
+<li><p><strong>norm</strong> (<em>bool</em>) – Apply max norm (if norm==True) (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>novelty_complex</strong> (<em>np.ndarray</em>) – Energy-based novelty function</p></li>
+<li><p><strong>Fs_feature</strong> (<em>scalar</em>) – Feature rate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_onset_detection.compute_novelty_energy">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_onset_detection.</span></code><code class="sig-name descname"><span class="pre">compute_novelty_energy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_onset_detection.html#compute_novelty_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_onset_detection.compute_novelty_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute energy-based novelty function</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_NoveltyEnergy.html">C6/C6S1_NoveltyEnergy.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 1)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size (Default value = 2048)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hope size (Default value = 128)</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – Parameter for logarithmic compression (Default value = 10.0)</p></li>
+<li><p><strong>norm</strong> (<em>bool</em>) – Apply max norm (if norm==True) (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>novelty_energy</strong> (<em>np.ndarray</em>) – Energy-based novelty function</p></li>
+<li><p><strong>Fs_feature</strong> (<em>scalar</em>) – Feature rate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_onset_detection.compute_novelty_phase">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_onset_detection.</span></code><code class="sig-name descname"><span class="pre">compute_novelty_phase</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_onset_detection.html#compute_novelty_phase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_onset_detection.compute_novelty_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute phase-based novelty function</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_NoveltyPhase.html">C6/C6S1_NoveltyPhase.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 1)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size (Default value = 1024)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size (Default value = 64)</p></li>
+<li><p><strong>M</strong> (<em>int</em>) – Determines size (2M+1) in samples of centric window  used for local average (Default value = 40)</p></li>
+<li><p><strong>norm</strong> (<em>bool</em>) – Apply max norm (if norm==True) (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>novelty_phase</strong> (<em>np.ndarray</em>) – Energy-based novelty function</p></li>
+<li><p><strong>Fs_feature</strong> (<em>scalar</em>) – Feature rate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_onset_detection.compute_novelty_spectrum">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_onset_detection.</span></code><code class="sig-name descname"><span class="pre">compute_novelty_spectrum</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_onset_detection.html#compute_novelty_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_onset_detection.compute_novelty_spectrum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute spectral-based novelty function</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_NoveltySpectral.html">C6/C6S1_NoveltySpectral.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 1)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size (Default value = 1024)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hope size (Default value = 256)</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – Parameter for logarithmic compression (Default value = 100.0)</p></li>
+<li><p><strong>M</strong> (<em>int</em>) – Size (frames) of local average (Default value = 10)</p></li>
+<li><p><strong>norm</strong> (<em>bool</em>) – Apply max norm (if norm==True) (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>novelty_spectrum</strong> (<em>np.ndarray</em>) – Energy-based novelty function</p></li>
+<li><p><strong>Fs_feature</strong> (<em>scalar</em>) – Feature rate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_onset_detection.principal_argument">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_onset_detection.</span></code><code class="sig-name descname"><span class="pre">principal_argument</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_onset_detection.html#principal_argument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_onset_detection.principal_argument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Principal argument function</p>
+<div class="line-block">
+<div class="line">Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_NoveltyPhase.html">C6/C6S1_NoveltyPhase.ipynb</a>, see also</div>
+<div class="line">Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C8/C8S2_InstantFreqEstimation.html">C8/C8S2_InstantFreqEstimation.ipynb</a></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>v</strong> (<em>float</em><em> or </em><em>np.ndarray</em>) – Value (or vector of values)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>w</strong> (<em>float or np.ndarray</em>) – Principle value of v</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_onset_detection.read_annotation_pos">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_onset_detection.</span></code><code class="sig-name descname"><span class="pre">read_annotation_pos</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_onset_detection.html#read_annotation_pos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_onset_detection.read_annotation_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and convert file containing either list of pairs (number,label) or list of (number)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_OnsetDetection.html">C6/C6S1_OnsetDetection.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_ann</strong> (<em>str</em>) – Name of file</p></li>
+<li><p><strong>label</strong> (<em>str</em>) – Name of label (Default value = ‘’)</p></li>
+<li><p><strong>header</strong> (<em>bool</em>) – Assumes header (True) or not (False) (Default value = True)</p></li>
+<li><p><strong>print_table</strong> (<em>bool</em>) – Prints table if True (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ann</strong> (<em>list</em>) – List of annotations</p></li>
+<li><p><strong>label_keys</strong> (<em>dict</em>) – Dictionaries specifying color and line style used for labels</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_onset_detection.resample_signal">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_onset_detection.</span></code><code class="sig-name descname"><span class="pre">resample_signal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_max_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_onset_detection.html#resample_signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_onset_detection.resample_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resample and smooth signal</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_NoveltyComparison.html">C6/C6S1_NoveltyComparison.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_in</strong> (<em>np.ndarray</em>) – Input signal</p></li>
+<li><p><strong>Fs_in</strong> (<em>scalar</em>) – Sampling rate of input signal</p></li>
+<li><p><strong>Fs_out</strong> (<em>scalar</em>) – Sampling rate of output signal (Default value = 100)</p></li>
+<li><p><strong>norm</strong> (<em>bool</em>) – Apply max norm (if norm==True) (Default value = True)</p></li>
+<li><p><strong>time_max_sec</strong> (<em>float</em>) – Duration of output signal (given in seconds) (Default value = None)</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – Standard deviation for smoothing Gaussian kernel (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x_out</strong> (<em>np.ndarray</em>) – Output signal</p></li>
+<li><p><strong>Fs_out</strong> (<em>scalar</em>) – Feature rate of output signal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c6.c6s1_peak_picking"></span><dl class="py function">
+<dt id="libfmp.c6.c6s1_peak_picking.peak_picking_MSAF">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_peak_picking.</span></code><code class="sig-name descname"><span class="pre">peak_picking_MSAF</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">median_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_rel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_peak_picking.html#peak_picking_MSAF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_peak_picking.peak_picking_MSAF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Peak picking strategy following MSFA using an adaptive threshold (<a class="reference external" href="https://github.com/urinieto/msaf">https://github.com/urinieto/msaf</a>)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_PeakPicking.html">C6/C6S1_PeakPicking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Input function</p></li>
+<li><p><strong>median_len</strong> (<em>int</em>) – Length of media filter used for adaptive thresholding (Default value = 16)</p></li>
+<li><p><strong>offset_rel</strong> (<em>float</em>) – Additional offset used for adaptive thresholding (Default value = 0.05)</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – Variance for Gaussian kernel used for smoothing the novelty function (Default value = 4.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>peaks</strong> (<em>np.ndarray</em>) – Peak positions</p></li>
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Local threshold</p></li>
+<li><p><strong>threshold_local</strong> (<em>np.ndarray</em>) – Filtered novelty curve</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_peak_picking.peak_picking_boeck">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_peak_picking.</span></code><code class="sig-name descname"><span class="pre">peak_picking_boeck</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">activations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_scores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_avg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_avg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_peak_picking.html#peak_picking_boeck"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_peak_picking.peak_picking_boeck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects peaks.</p>
+<div class="line-block">
+<div class="line">Implements the peak-picking method described in:</div>
+<div class="line">“Evaluating the Online Capabilities of Onset Detection Methods”</div>
+<div class="line">Sebastian Boeck, Florian Krebs and Markus Schedl</div>
+<div class="line">Proceedings of the 13th International Society for Music Information Retrieval Conference (ISMIR), 2012</div>
+</div>
+<p>Modified by Jan Schlueter, 2014-04-24</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>activations</strong> (<em>np.nadarray</em>) – Vector of activations to process</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – Threshold for peak-picking (Default value = 0.5)</p></li>
+<li><p><strong>fps</strong> (<em>scalar</em>) – Frame rate of onset activation function in Hz (Default value = 100)</p></li>
+<li><p><strong>include_scores</strong> (<em>bool</em>) – Include activation for each returned peak (Default value = False)</p></li>
+<li><p><strong>combine</strong> (<em>bool</em>) – Only report 1 onset for N seconds (Default value = False)</p></li>
+<li><p><strong>pre_avg</strong> (<em>float</em>) – Use N past seconds for moving average (Default value = 12)</p></li>
+<li><p><strong>post_avg</strong> (<em>float</em>) – Use N future seconds for moving average (Default value = 6)</p></li>
+<li><p><strong>pre_max</strong> (<em>float</em>) – Use N past seconds for moving maximum (Default value = 6)</p></li>
+<li><p><strong>post_max</strong> (<em>float</em>) – Use N future seconds for moving maximum (Default value = 6)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>peaks</strong> (<em>np.ndarray</em>) – Peak positions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_peak_picking.peak_picking_roeder">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_peak_picking.</span></code><code class="sig-name descname"><span class="pre">peak_picking_roeder</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel_thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descent_thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_peak_picking.html#peak_picking_roeder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_peak_picking.peak_picking_roeder" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Computes the positive peaks of the input vector x</div>
+<div class="line">Python adaption from the Matlab Roeder_Peak_Picking script peaks.m from the internal Sync Toolbox</div>
+<div class="line">reckjn 2017</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.nadarray</em>) – Signal to be searched for (positive) peaks</p></li>
+<li><p><strong>direction</strong> (<em>int</em>) – +1 for forward peak searching, -1 for backward peak searching.
+default is dir == -1. (Default value = None)</p></li>
+<li><p><strong>abs_thresh</strong> (<em>float</em>) – Absolute threshold signal, i.e. only peaks
+satisfying x(i)&gt;=abs_thresh(i) will be reported.
+abs_thresh must have the same number of samples as x.
+a sensible choice for this parameter would be a global or local
+average or median of the signal x.
+If omitted, half the median of x will be used. (Default value = None)</p></li>
+<li><p><strong>rel_thresh</strong> (<em>float</em>) – Relative threshold signal. Only peak positions i with an
+uninterrupted positive ascent before position i of at least
+rel_thresh(i) and a possibly interrupted (see parameter descent_thresh)
+descent of at least rel_thresh(i) will be reported.
+rel_thresh must have the same number of samples as x.
+A sensible choice would be some measure related to the
+global or local variance of the signal x.
+if omitted, half the standard deviation of W will be used.</p></li>
+<li><p><strong>descent_thresh</strong> (<em>float</em>) – Descent threshold. during peak candidate verfication, if a slope change
+from negative to positive slope occurs at sample i BEFORE the descent has
+exceeded rel_thresh(i), and if descent_thresh(i) has not been exceeded yet,
+the current peak candidate will be dropped.
+this situation corresponds to a secondary peak
+occuring shortly after the current candidate peak (which might lead
+to a higher peak value)!
+|
+| The value descent_thresh(i) must not be larger than rel_thresh(i).
+|
+| descent_thresh must have the same number of samples as x.
+a sensible choice would be some measure related to the
+global or local variance of the signal x.
+if omitted, 0.5*rel_thresh will be used. (Default value = None)</p></li>
+<li><p><strong>tmin</strong> (<em>int</em>) – Index of start sample. peak search will begin at x(tmin). (Default value = None)</p></li>
+<li><p><strong>tmax</strong> (<em>int</em>) – Index of end sample. peak search will end at x(tmax). (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>peaks</strong> (<em>np.nadarray</em>) – Array of peak positions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s1_peak_picking.peak_picking_simple">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s1_peak_picking.</span></code><code class="sig-name descname"><span class="pre">peak_picking_simple</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s1_peak_picking.html#peak_picking_simple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s1_peak_picking.peak_picking_simple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Peak picking strategy looking for positions with increase followed by descrease</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S1_PeakPicking.html">C6/C6S1_PeakPicking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Input function</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – Lower threshold for peak to survive</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>peaks</strong> (<em>np.ndarray</em>) – Array containing peak positions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c6.c6s2_tempo_analysis"></span><dl class="py function">
+<dt id="libfmp.c6.c6s2_tempo_analysis.compute_autocorrelation_local">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s2_tempo_analysis.</span></code><code class="sig-name descname"><span class="pre">compute_autocorrelation_local</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm_sum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s2_tempo_analysis.html#compute_autocorrelation_local"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s2_tempo_analysis.compute_autocorrelation_local" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute local autocorrelation [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 6.2.3]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S2_TempogramAutocorrelation.html">C6/C6S2_TempogramAutocorrelation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Input signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window length</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size</p></li>
+<li><p><strong>norm_sum</strong> (<em>bool</em>) – Normalizes by the number of summands in local autocorrelation (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>A</strong> (<em>np.ndarray</em>) – Time-lag representation</p></li>
+<li><p><strong>T_coef</strong> (<em>np.ndarray</em>) – Time axis (seconds)</p></li>
+<li><p><strong>F_coef_lag</strong> (<em>np.ndarray</em>) – Lag axis</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s2_tempo_analysis.compute_cyclic_tempogram">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s2_tempo_analysis.</span></code><code class="sig-name descname"><span class="pre">compute_cyclic_tempogram</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tempogram</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef_BPM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">octave_bin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">octave_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s2_tempo_analysis.html#compute_cyclic_tempogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s2_tempo_analysis.compute_cyclic_tempogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute cyclic tempogram</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S2_TempogramCyclic.html">C6/C6S2_TempogramCyclic.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tempogram</strong> (<em>np.ndarray</em>) – Input tempogram</p></li>
+<li><p><strong>F_coef_BPM</strong> (<em>np.ndarray</em>) – Tempo axis (BPM)</p></li>
+<li><p><strong>tempo_ref</strong> (<em>float</em>) – Reference tempo (BPM) (Default value = 30)</p></li>
+<li><p><strong>octave_bin</strong> (<em>int</em>) – Number of bins per tempo octave (Default value = 40)</p></li>
+<li><p><strong>octave_num</strong> (<em>int</em>) – Number of tempo octaves to be considered (Default value = 4)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>tempogram_cyclic</strong> (<em>np.ndarray</em>) – Cyclic tempogram tempogram_cyclic</p></li>
+<li><p><strong>F_coef_scale</strong> (<em>np.ndarray</em>) – Tempo axis with regard to scaling parameter</p></li>
+<li><p><strong>tempogram_log</strong> (<em>np.ndarray</em>) – Tempogram with logarithmic tempo axis</p></li>
+<li><p><strong>F_coef_BPM_log</strong> (<em>np.ndarray</em>) – Logarithmic tempo axis (BPM)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s2_tempo_analysis.compute_plot_tempogram_plp">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s2_tempo_analysis.</span></code><code class="sig-name descname"><span class="pre">compute_plot_tempogram_plp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_wav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.arange(30,</span> <span class="pre">601)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_maxtempo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s2_tempo_analysis.html#compute_plot_tempogram_plp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s2_tempo_analysis.compute_plot_tempogram_plp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute and plot Fourier-based tempogram and PLP function</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S3_PredominantLocalPulse.html">C6/C6S3_PredominantLocalPulse.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_wav</strong> – Filename of audio file</p></li>
+<li><p><strong>Fs</strong> – Sample rate (Default value = 22050)</p></li>
+<li><p><strong>N</strong> – Window size (Default value = 500)</p></li>
+<li><p><strong>H</strong> – Hop size (Default value = 10)</p></li>
+<li><p><strong>Theta</strong> – Set of tempi (given in BPM) (Default value = np.arange(30, 601))</p></li>
+<li><p><strong>title</strong> – Title of figure (Default value = ‘’)</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (8, 4))</p></li>
+<li><p><strong>plot_maxtempo</strong> – Visualize tempo with greatest coefficients in tempogram (Default value = False)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s2_tempo_analysis.compute_plp">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s2_tempo_analysis.</span></code><code class="sig-name descname"><span class="pre">compute_plp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Theta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s2_tempo_analysis.html#compute_plp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s2_tempo_analysis.compute_plp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute windowed sinusoid with optimal phase</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S3_PredominantLocalPulse.html">C6/C6S3_PredominantLocalPulse.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Fourier-based (complex-valued) tempogram</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>L</strong> (<em>int</em>) – Length of novelty curve</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window length</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size</p></li>
+<li><p><strong>Theta</strong> (<em>np.ndarray</em>) – Set of tempi (given in BPM)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>nov_PLP</strong> (<em>np.ndarray</em>) – PLP function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s2_tempo_analysis.compute_sinusoid_optimal">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s2_tempo_analysis.</span></code><code class="sig-name descname"><span class="pre">compute_sinusoid_optimal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s2_tempo_analysis.html#compute_sinusoid_optimal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s2_tempo_analysis.compute_sinusoid_optimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute windowed sinusoid with optimal phase</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S2_TempogramFourier.html">C6/C6S2_TempogramFourier.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c</strong> (<em>complex</em>) – Coefficient of tempogram (c=X(k,n))</p></li>
+<li><p><strong>tempo</strong> (<em>float</em>) – Tempo parameter corresponding to c (tempo=F_coef_BPM[k])</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – Frame parameter of c</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window length</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>kernel</strong> (<em>np.ndarray</em>) – Windowed sinusoid</p></li>
+<li><p><strong>t_kernel</strong> (<em>np.ndarray</em>) – Time axis (samples) of kernel</p></li>
+<li><p><strong>t_kernel_sec</strong> (<em>np.ndarray</em>) – Time axis (seconds) of kernel</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s2_tempo_analysis.compute_tempogram_autocorr">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s2_tempo_analysis.</span></code><code class="sig-name descname"><span class="pre">compute_tempogram_autocorr</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm_sum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.arange(30,</span> <span class="pre">601)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s2_tempo_analysis.html#compute_tempogram_autocorr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s2_tempo_analysis.compute_tempogram_autocorr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute autocorrelation-based tempogram</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S2_TempogramAutocorrelation.html">C6/C6S2_TempogramAutocorrelation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Input signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window length</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size</p></li>
+<li><p><strong>norm_sum</strong> (<em>bool</em>) – Normalizes by the number of summands in local autocorrelation (Default value = False)</p></li>
+<li><p><strong>Theta</strong> (<em>np.ndarray</em>) – Set of tempi (given in BPM) (Default value = np.arange(30, 601))</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>tempogram</strong> (<em>np.ndarray</em>) – Tempogram tempogram</p></li>
+<li><p><strong>T_coef</strong> (<em>np.ndarray</em>) – Time axis T_coef (seconds)</p></li>
+<li><p><strong>F_coef_BPM</strong> (<em>np.ndarray</em>) – Tempo axis F_coef_BPM (BPM)</p></li>
+<li><p><strong>A_cut</strong> (<em>np.ndarray</em>) – Time-lag representation A_cut (cut according to Theta)</p></li>
+<li><p><strong>F_coef_lag_cut</strong> (<em>np.ndarray</em>) – Lag axis F_coef_lag_cut</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s2_tempo_analysis.compute_tempogram_fourier">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s2_tempo_analysis.</span></code><code class="sig-name descname"><span class="pre">compute_tempogram_fourier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.arange(30,</span> <span class="pre">601,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s2_tempo_analysis.html#compute_tempogram_fourier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s2_tempo_analysis.compute_tempogram_fourier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute Fourier-based tempogram [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 6.2.2]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S2_TempogramFourier.html">C6/C6S2_TempogramFourier.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Input signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window length</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size</p></li>
+<li><p><strong>Theta</strong> (<em>np.ndarray</em>) – Set of tempi (given in BPM) (Default value = np.arange(30, 601, 1))</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Tempogram</p></li>
+<li><p><strong>T_coef</strong> (<em>np.ndarray</em>) – Time axis (seconds)</p></li>
+<li><p><strong>F_coef_BPM</strong> (<em>np.ndarray</em>) – Tempo axis (BPM)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s2_tempo_analysis.plot_signal_kernel">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s2_tempo_analysis.</span></code><code class="sig-name descname"><span class="pre">plot_signal_kernel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s2_tempo_analysis.html#plot_signal_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s2_tempo_analysis.plot_signal_kernel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualize signal and local kernel</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S2_TempogramFourier.html">C6/C6S2_TempogramFourier.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Signal</p></li>
+<li><p><strong>t_x</strong> – Time axis of x (given in seconds)</p></li>
+<li><p><strong>kernel</strong> – Local kernel</p></li>
+<li><p><strong>t_kernel</strong> – Time axis of kernel (given in seconds)</p></li>
+<li><p><strong>xlim</strong> – Limits for x-axis (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (8, 2))</p></li>
+<li><p><strong>title</strong> – Title of figure (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig</strong> – Matplotlib figure handle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s2_tempo_analysis.plot_signal_local_lag">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s2_tempo_analysis.</span></code><code class="sig-name descname"><span class="pre">plot_signal_local_lag</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_local_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">1.5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s2_tempo_analysis.html#plot_signal_local_lag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s2_tempo_analysis.plot_signal_local_lag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualize signal and local lag [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Figure 6.14]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S2_TempogramAutocorrelation.html">C6/C6S2_TempogramAutocorrelation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Signal</p></li>
+<li><p><strong>t_x</strong> – Time axis of x (given in seconds)</p></li>
+<li><p><strong>local_lag</strong> – Local lag</p></li>
+<li><p><strong>t_local_lag</strong> – Time axis of kernel (given in seconds)</p></li>
+<li><p><strong>lag</strong> – Lag (given in seconds)</p></li>
+<li><p><strong>xlim</strong> – Limits for x-axis (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Figure size (Default value = (8, 1.5))</p></li>
+<li><p><strong>title</strong> – Title of figure (Default value = ‘’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig</strong> – Matplotlib figure handle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s2_tempo_analysis.set_yticks_tempogram_cyclic">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s2_tempo_analysis.</span></code><code class="sig-name descname"><span class="pre">set_yticks_tempogram_cyclic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">octave_bin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef_scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_tick</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s2_tempo_analysis.html#set_yticks_tempogram_cyclic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s2_tempo_analysis.set_yticks_tempogram_cyclic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set yticks with regard to scaling parmater</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S2_TempogramCyclic.html">C6/C6S2_TempogramCyclic.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>mpl.axes.Axes</em>) – Figure axis</p></li>
+<li><p><strong>octave_bin</strong> (<em>int</em>) – Number of bins per tempo octave</p></li>
+<li><p><strong>F_coef_scale</strong> (<em>np.ndarra</em>) – Tempo axis with regard to scaling parameter</p></li>
+<li><p><strong>num_tick</strong> (<em>int</em>) – Number of yticks (Default value = 5)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c6.c6s3_adaptive_windowing"></span><dl class="py function">
+<dt id="libfmp.c6.c6s3_adaptive_windowing.adaptive_windowing">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s3_adaptive_windowing.</span></code><code class="sig-name descname"><span class="pre">adaptive_windowing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neigborhood</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s3_adaptive_windowing.html#adaptive_windowing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s3_adaptive_windowing.adaptive_windowing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply adaptive windowing [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 6.3.3]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S3_AdaptiveWindowing.html">C6/C6S3_AdaptiveWindowing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Feature sequence</p></li>
+<li><p><strong>B</strong> (<em>np.ndarray</em>) – Beat sequence (spefied in frames)</p></li>
+<li><p><strong>neigborhood</strong> (<em>float</em>) – Parameter specifying relative range considered for windowing (Default value = 1)</p></li>
+<li><p><strong>add_start</strong> (<em>bool</em>) – Add first index of X to beat sequence (if not existent) (Default value = False)</p></li>
+<li><p><strong>add_end</strong> (<em>bool</em>) – Add last index of X to beat sequence (if not existent) (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>X_adapt</strong> (<em>np.ndarray</em>) – Feature sequence adapted to beat sequence</p></li>
+<li><p><strong>B_s</strong> (<em>np.ndarray</em>) – Sequence specifying start (in frames) of window sections</p></li>
+<li><p><strong>B_t</strong> (<em>np.ndarray</em>) – Sequence specifying end (in frames) of window sections</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s3_adaptive_windowing.compute_plot_adaptive_windowing">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s3_adaptive_windowing.</span></code><code class="sig-name descname"><span class="pre">compute_plot_adaptive_windowing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neigborhood</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s3_adaptive_windowing.html#compute_plot_adaptive_windowing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s3_adaptive_windowing.compute_plot_adaptive_windowing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute and plot process for adaptive windowing [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 6.3.3]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S3_AdaptiveWindowing.html">C6/C6S3_AdaptiveWindowing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sample Rate</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size</p></li>
+<li><p><strong>X</strong> (<em>int</em>) – Feature sequence</p></li>
+<li><p><strong>B</strong> (<em>np.ndarray</em>) – Beat sequence (spefied in frames)</p></li>
+<li><p><strong>neigborhood</strong> (<em>float</em>) – Parameter specifying relative range considered for windowing (Default value = 1)</p></li>
+<li><p><strong>add_start</strong> (<em>bool</em>) – Add first index of X to beat sequence (if not existent) (Default value = False)</p></li>
+<li><p><strong>add_end</strong> (<em>bool</em>) – Add last index of X to beat sequence (if not existent) (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X_adapt</strong> (<em>np.ndarray</em>) – Feature sequence adapted to beat sequence</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s3_adaptive_windowing.plot_beat_grid">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s3_adaptive_windowing.</span></code><code class="sig-name descname"><span class="pre">plot_beat_grid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">B_sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">':'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s3_adaptive_windowing.html#plot_beat_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s3_adaptive_windowing.plot_beat_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot beat grid (given in seconds) into axis</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S3_AdaptiveWindowing.html">C6/C6S3_AdaptiveWindowing.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>B_sec</strong> – Beat grid</p></li>
+<li><p><strong>ax</strong> – Axes for plotting</p></li>
+<li><p><strong>color</strong> – Color of lines (Default value = ‘r’)</p></li>
+<li><p><strong>linestyle</strong> – Style of lines (Default value = ‘:’)</p></li>
+<li><p><strong>linewidth</strong> – Width of lines (Default value = 1)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c6.c6s3_beat_tracking"></span><dl class="py function">
+<dt id="libfmp.c6.c6s3_beat_tracking.beat_period_to_tempo">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s3_beat_tracking.</span></code><code class="sig-name descname"><span class="pre">beat_period_to_tempo</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s3_beat_tracking.html#beat_period_to_tempo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s3_beat_tracking.beat_period_to_tempo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert beat period (samples) to tempo (BPM) [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 6.3.2]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S3_BeatTracking.html">C6/C6S3_BeatTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>beat</strong> (<em>int</em>) – Beat period (samples)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sample rate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tempo</strong> (<em>float</em>) – Tempo (BPM)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s3_beat_tracking.compute_beat_sequence">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s3_beat_tracking.</span></code><code class="sig-name descname"><span class="pre">compute_beat_sequence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">novelty</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beat_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">penalty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s3_beat_tracking.html#compute_beat_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s3_beat_tracking.compute_beat_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Compute beat sequence using dynamic programming [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 6.3.2]</div>
+<div class="line">Note: Concatenation of ‘0’ because of Python indexing conventions</div>
+</div>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S3_BeatTracking.html">C6/C6S3_BeatTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>novelty</strong> (<em>np.ndarray</em>) – Novelty function</p></li>
+<li><p><strong>beat_ref</strong> (<em>int</em>) – Reference beat period</p></li>
+<li><p><strong>penalty</strong> (<em>np.ndarray</em>) – Penalty function (Default value = None)</p></li>
+<li><p><strong>factor</strong> (<em>float</em>) – Weight parameter for adjusting the penalty (Default value = 1.0)</p></li>
+<li><p><strong>return_all</strong> (<em>bool</em>) – Return details (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>B</strong> (<em>np.ndarray</em>) – Optimal beat sequence</p></li>
+<li><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated score</p></li>
+<li><p><strong>P</strong> (<em>np.ndarray</em>) – Maximization information</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s3_beat_tracking.compute_penalty">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s3_beat_tracking.</span></code><code class="sig-name descname"><span class="pre">compute_penalty</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beat_ref</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s3_beat_tracking.html#compute_penalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s3_beat_tracking.compute_penalty" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Compute penalty funtion used for beat tracking [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 6.3.2]</div>
+<div class="line">Note: Concatenation of ‘0’ because of Python indexing conventions</div>
+</div>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S3_BeatTracking.html">C6/C6S3_BeatTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>int</em>) – Length of vector representing penalty function</p></li>
+<li><p><strong>beat_ref</strong> (<em>int</em>) – Reference beat period (given in samples)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>penalty</strong> (<em>np.ndarray</em>) – Penalty function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c6.c6s3_beat_tracking.compute_plot_sonify_beat">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c6.c6s3_beat_tracking.</span></code><code class="sig-name descname"><span class="pre">compute_plot_sonify_beat</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_nov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beat_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">2)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c6/c6s3_beat_tracking.html#compute_plot_sonify_beat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c6.c6s3_beat_tracking.compute_plot_sonify_beat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute, plot, and sonfy beat sequence from novelty function [<a class="reference external" href="https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP">FMP</a>, Section 6.3.2]</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C6/C6S3_BeatTracking.html">C6/C6S3_BeatTracking.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Novelty function</p></li>
+<li><p><strong>Fs</strong> – Sample rate</p></li>
+<li><p><strong>nov</strong> – Novelty function</p></li>
+<li><p><strong>Fs_nov</strong> – Rate of novelty function</p></li>
+<li><p><strong>beat_ref</strong> – Reference beat period</p></li>
+<li><p><strong>factor</strong> – Weight parameter for adjusting the penalty</p></li>
+<li><p><strong>title</strong> – Title of figure (Default value = None)</p></li>
+<li><p><strong>figsize</strong> – Size of figure (Default value = (6, 2))</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="index_c7.html" class="btn btn-neutral float-right" title="Content-Based Audio Retrieval (libfmp.c7)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index_c5.html" class="btn btn-neutral float-left" title="Chord Recognition (libfmp.c5)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

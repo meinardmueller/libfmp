@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.b.b_plot &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.b.b_plot</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.b.b_plot</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.b.plot</span>
+<span class="sd">Author: Frank Zalkow, Meinard Mueller</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LinearSegmentedColormap</span>
+<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatch</span>
+
+
+<span class="n">FMP_COLORMAPS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;FMP_1&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>  <span class="p">[</span><span class="mf">0.99</span><span class="p">,</span> <span class="mf">0.51</span><span class="p">,</span> <span class="mf">0.71</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.53</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.46</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.56</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]])</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="plot_signal"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_signal">[docs]</a><span class="k">def</span> <span class="nf">plot_signal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">T_coef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
+                <span class="n">ylim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot a signal, e.g. a waveform or a novelty function</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x: Input signal</span>
+<span class="sd">        Fs: Sample rate (Default value = 1)</span>
+<span class="sd">        T_coef: Time coeffients. If None, will be computed, based on Fs. (Default value = None)</span>
+<span class="sd">        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</span>
+<span class="sd">        figsize: Width, height in inches (Default value = (6, 2))</span>
+<span class="sd">        xlabel: Label for x axis (Default value = &#39;Time (seconds)&#39;)</span>
+<span class="sd">        ylabel: Label for y axis (Default value = &#39;&#39;)</span>
+<span class="sd">        title: Title for plot (Default value = &#39;&#39;)</span>
+<span class="sd">        dpi: Dots per inch (Default value = 72)</span>
+<span class="sd">        ylim: True or False (auto adjust ylim or nnot) or tuple with actual ylim (Default value = True)</span>
+<span class="sd">        **kwargs: Keyword arguments for matplotlib.pyplot.plot</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: The created matplotlib figure or None if ax was given.</span>
+<span class="sd">        ax: The used axes.</span>
+<span class="sd">        line: The line plot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">T_coef</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">T_coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">Fs</span>
+
+    <span class="k">if</span> <span class="s1">&#39;color&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span>
+
+    <span class="n">line</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_coef</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">T_coef</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">T_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">ylim_x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+        <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">ylim_x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">ylim_x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">x_max</span> <span class="o">==</span> <span class="n">x_min</span><span class="p">:</span>
+            <span class="n">x_max</span> <span class="o">=</span> <span class="n">x_max</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">x_min</span><span class="p">,</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="n">x_min</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">x_max</span><span class="p">,</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="n">x_max</span><span class="p">)])</span>
+    <span class="k">elif</span> <span class="n">ylim</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">line</span></div>
+
+
+<div class="viewcode-block" id="plot_matrix"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_matrix">[docs]</a><span class="k">def</span> <span class="nf">plot_matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Fs_F</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">T_coef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">F_coef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span>
+                <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
+                <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar_aspect</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span> <span class="n">cbar_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot a matrix, e.g. a spectrogram or a tempogram</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X: The matrix</span>
+<span class="sd">        Fs: Sample rate for axis 1 (Default value = 1)</span>
+<span class="sd">        Fs_F: Sample rate for axis 0 (Default value = 1)</span>
+<span class="sd">        T_coef: Time coeffients. If None, will be computed, based on Fs. (Default value = None)</span>
+<span class="sd">        F_coef: Frequency coeffients. If None, will be computed, based on Fs_F. (Default value = None)</span>
+<span class="sd">        xlabel: Label for x-axis (Default value = &#39;Time (seconds)&#39;)</span>
+<span class="sd">        ylabel: Label for y-axis (Default value = &#39;Frequency (Hz)&#39;)</span>
+<span class="sd">        xlim: Limits for x-axis (Default value = None)</span>
+<span class="sd">        ylim: Limits for y-axis (Default value = None)</span>
+<span class="sd">        clim: Color limits (Default value = None)</span>
+<span class="sd">        title: Title for plot (Default value = &#39;&#39;)</span>
+<span class="sd">        dpi: Dots per inch (Default value = 72)</span>
+<span class="sd">        colorbar: Create a colorbar. (Default value = True)</span>
+<span class="sd">        colorbar_aspect: Aspect used for colorbar, in case only a single axes is used. (Default value = 20.0)</span>
+<span class="sd">        cbar_label: Label for colorbar (Default value = &#39;&#39;)</span>
+<span class="sd">        ax: Either (1.) a list of two axes (first used for matrix, second for colorbar), or (2.) a list with a single</span>
+<span class="sd">            axes (used for matrix), or (3.) None (an axes will be created). (Default value = None)</span>
+<span class="sd">        figsize: Width, height in inches (Default value = (6, 3))</span>
+<span class="sd">        **kwargs: Keyword arguments for matplotlib.pyplot.imshow</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: The created matplotlib figure or None if ax was given.</span>
+<span class="sd">        ax: The used axes.</span>
+<span class="sd">        im: The image plot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">T_coef</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">T_coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="k">if</span> <span class="n">F_coef</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">F_coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">Fs_F</span>
+
+    <span class="k">if</span> <span class="s1">&#39;extent&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">x_ext1</span> <span class="o">=</span> <span class="p">(</span><span class="n">T_coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">T_coef</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">x_ext2</span> <span class="o">=</span> <span class="p">(</span><span class="n">T_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">T_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">y_ext1</span> <span class="o">=</span> <span class="p">(</span><span class="n">F_coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">F_coef</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">y_ext2</span> <span class="o">=</span> <span class="p">(</span><span class="n">F_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">F_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;extent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">T_coef</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_ext1</span><span class="p">,</span> <span class="n">T_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x_ext2</span><span class="p">,</span> <span class="n">F_coef</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_ext1</span><span class="p">,</span> <span class="n">F_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">y_ext2</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s1">&#39;cmap&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;cmap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gray_r&#39;</span>
+    <span class="k">if</span> <span class="s1">&#39;aspect&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;aspect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span>
+    <span class="k">if</span> <span class="s1">&#39;origin&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;lower&#39;</span>
+
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">colorbar</span><span class="p">:</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">cbar_label</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">colorbar</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">colorbar</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="n">colorbar_aspect</span><span class="p">)</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">cbar_label</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">clim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">clim</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">im</span></div>
+
+
+<div class="viewcode-block" id="plot_chromagram"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_chromagram">[docs]</a><span class="k">def</span> <span class="nf">plot_chromagram</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">chroma_yticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calls libfmp.b.plot_matrix and sets chroma labels</span>
+
+<span class="sd">    See :func:`libfmp.b.b_plot.plot_matrix` for parameters and return values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s1">&#39;ylabel&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ylabel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Chroma&#39;</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">im</span> <span class="o">=</span> <span class="n">plot_matrix</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">chroma_names</span> <span class="o">=</span> <span class="s1">&#39;C C# D D# E F F# G G# A A# B&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">chroma_yticks</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="n">chroma_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">chroma_yticks</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">im</span></div>
+
+
+<div class="viewcode-block" id="compressed_gray_cmap"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.compressed_gray_cmap">[docs]</a><span class="k">def</span> <span class="nf">compressed_gray_cmap</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates a logarithmically or exponentially compressed grayscale colormap</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        alpha (float): The compression factor. If alpha &gt; 0, it performs log compression (enhancing black colors).</span>
+<span class="sd">            If alpha &lt; 0, it performs exp compression (enhancing white colors).</span>
+<span class="sd">            Raises an error if alpha = 0. (Default value = 5)</span>
+<span class="sd">        N (int): The number of rgb quantization levels (usually 256 in matplotlib) (Default value = 256)</span>
+<span class="sd">        reverse (bool): If False then &quot;white to black&quot;, if True then &quot;black to white&quot; (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        color_wb (mpl.colors.LinearSegmentedColormap): The colormap</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">alpha</span> <span class="o">!=</span> <span class="mi">0</span>
+
+    <span class="n">gray_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+    <span class="n">gray_values</span> <span class="o">/=</span> <span class="n">gray_values</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">alpha</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">gray_values</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">gray_values</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">gray_values</span> <span class="o">=</span> <span class="n">gray_values</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">reverse</span><span class="p">:</span>
+        <span class="n">gray_values</span> <span class="o">=</span> <span class="n">gray_values</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">gray_values_rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">gray_values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">color_wb</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;color_wb&#39;</span><span class="p">,</span> <span class="n">gray_values_rgb</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">color_wb</span></div>
+
+
+<div class="viewcode-block" id="MultiplePlotsWithColorbar"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.MultiplePlotsWithColorbar">[docs]</a><span class="k">class</span> <span class="nc">MultiplePlotsWithColorbar</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Two-column layout plot, where the first column is for user-given plots and the second column</span>
+<span class="sd">    is for colorbars if the corresponding row needs a colorbar.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        axes: A list of axes for the first column.</span>
+<span class="sd">        cbar_axes: A list of axes for the second column.</span>
+<span class="sd">        num_plots: Number of rows, as given to init method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_plots</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span> <span class="n">cbar_ratio</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates an instance of the MultiplePlotsWithColorbar class</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            num_plots: Number of plots (also number of rows)</span>
+<span class="sd">            figsize: Figure size in dpi</span>
+<span class="sd">            dpi: Dots per inch</span>
+<span class="sd">            cbar_ratio: Width ratio of color bar</span>
+<span class="sd">            height_ratios: Height ratio for rows</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">height_ratios</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">height_ratios</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">num_plots</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+        <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="n">num_plots</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">cbar_ratio</span><span class="p">],</span> <span class="n">height_ratios</span><span class="o">=</span><span class="n">height_ratios</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_plots</span> <span class="o">=</span> <span class="n">num_plots</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cbar_axes</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_plots</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cbar_axes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+
+<div class="viewcode-block" id="MultiplePlotsWithColorbar.make_colorbars"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.MultiplePlotsWithColorbar.make_colorbars">[docs]</a>    <span class="k">def</span> <span class="nf">make_colorbars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates colorbars if the corresponding row needs a colorbar, or hides the axis in other cases.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_plots</span><span class="p">):</span>
+            <span class="n">ax_img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_images</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ax_img</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cbar_axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ax_img</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cbar_axes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="color_argument_to_dict"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.color_argument_to_dict">[docs]</a><span class="k">def</span> <span class="nf">color_argument_to_dict</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">labels_set</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates a color dictionary</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap,</span>
+<span class="sd">            3. list or np.ndarray of matplotlib color specifications, 4. dict that assigns labels  to colors</span>
+<span class="sd">        labels_set: List of all labels</span>
+<span class="sd">        default: Default color, used for labels that are in labels_set, but not in colors</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        color_dict: Dictionary that maps labels to colors</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># FMP colormap</span>
+        <span class="k">if</span> <span class="n">colors</span> <span class="ow">in</span> <span class="n">FMP_COLORMAPS</span><span class="p">:</span>
+            <span class="n">color_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">l</span><span class="p">:</span> <span class="n">c</span> <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels_set</span><span class="p">,</span> <span class="n">FMP_COLORMAPS</span><span class="p">[</span><span class="n">colors</span><span class="p">])}</span>
+        <span class="c1"># matplotlib colormap</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+            <span class="n">num_labels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_set</span><span class="p">)</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">cm</span><span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_labels</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_labels</span><span class="p">)]</span>
+            <span class="n">color_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">l</span><span class="p">:</span> <span class="n">c</span> <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels_set</span><span class="p">,</span> <span class="n">colors</span><span class="p">)}</span>
+
+    <span class="c1"># list/np.ndarray of colors</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="n">color_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">l</span><span class="p">:</span> <span class="n">c</span> <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels_set</span><span class="p">,</span> <span class="n">colors</span><span class="p">)}</span>
+
+    <span class="c1"># is already a dict, nothing to do</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">color_dict</span> <span class="o">=</span> <span class="n">colors</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`colors` must be str, list, np.ndarray, or dict&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">labels_set</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">color_dict</span><span class="p">:</span>
+            <span class="n">color_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">default</span>
+
+    <span class="k">return</span> <span class="n">color_dict</span></div>
+
+
+<div class="viewcode-block" id="check_line_annotations"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.check_line_annotations">[docs]</a><span class="k">def</span> <span class="nf">check_line_annotations</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">default_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Checks line annotation. If label is missing, adds an default label.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        annot: A List of the form of ``[(time_position, label), ...]``, or ``[(time_position, ), ...]``,</span>
+<span class="sd">            or ``[time_position, ...]``</span>
+<span class="sd">        default_label: The default label used if label is missing</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        annot: A List of tuples in the form of ``[(time_position, label), ...]``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">annot</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="n">len_annot</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">annot</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">len_annot</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">len_annot</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">annot</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">default_label</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">annot</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">complex</span><span class="p">))</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">annot</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">annot</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span><span class="p">,</span> <span class="n">default_label</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">annot</span></div>
+
+
+<div class="viewcode-block" id="check_segment_annotations"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.check_segment_annotations">[docs]</a><span class="k">def</span> <span class="nf">check_segment_annotations</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">default_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Checks segment annotation. If label is missing, adds an default label.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        annot: A List of the form of ``[(start_position, end_position, label), ...]``, or</span>
+<span class="sd">            ``[(start_position, end_position), ...]``</span>
+<span class="sd">        default_label: The default label used if label is missing</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        annot: A List of tuples in the form of ``[(start_position, end_position, label), ...]``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">annot</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span>
+    <span class="n">len_annot</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">annot</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">len_annot</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">len_annot</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">annot</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">default_label</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">annot</span></div>
+
+
+<div class="viewcode-block" id="plot_annotation_line"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_annotation_line">[docs]</a><span class="k">def</span> <span class="nf">plot_annotation_line</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_keys</span><span class="o">=</span><span class="p">{},</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
+                         <span class="n">time_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nontime_axis</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">swap_time_ticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                         <span class="n">axis_off</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates a line plot for annotation data</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        annot: A List of tuples in the form of ``[(time_position, label), ...]``</span>
+<span class="sd">        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</span>
+<span class="sd">        label_keys: A dict, where the keys are the labels used in `annot`. The values are dicts, which are used as</span>
+<span class="sd">            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = {})</span>
+<span class="sd">        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or</span>
+<span class="sd">            np.ndarray of matplotlib color specifications, 4. dict that assigns labels  to colors</span>
+<span class="sd">            (Default value = &#39;FMP_1&#39;)</span>
+<span class="sd">        figsize: Width, height in inches (Default value = (6, 1)</span>
+<span class="sd">        direction: &#39;vertical&#39; or &#39;horizontal&#39; (Default value = &#39;horizontal&#39;)</span>
+<span class="sd">        time_min: Minimal limit for time axis. If None, will be min annotation. (Default value = None)</span>
+<span class="sd">        time_max: Maximal limit for time axis. If None, will be max from annotation. (Default value = None)</span>
+<span class="sd">        time_axis: Display time axis ticks or not (Default value = True)</span>
+<span class="sd">        nontime_axis: Display non-time axis ticks or not (Default value = False)</span>
+<span class="sd">        swap_time_ticks: For horizontal: xticks up; for vertical: yticks left (Default value = False)</span>
+<span class="sd">        axis_off: Calls ax.axis(&#39;off&#39;) (Default value = False)</span>
+<span class="sd">        dpi: Dots per inch (Default value = 72)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: The created matplotlib figure or None if ax was given.</span>
+<span class="sd">        ax: The used axes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">]</span>
+    <span class="n">annot</span> <span class="o">=</span> <span class="n">check_line_annotations</span><span class="p">(</span><span class="n">annot</span><span class="p">)</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+
+    <span class="n">labels_set</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">label</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">]))</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">color_argument_to_dict</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">labels_set</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">colors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">label_keys</span><span class="p">:</span>
+            <span class="n">label_keys</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="s1">&#39;color&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">label_keys</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+            <span class="n">label_keys</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="o">**</span><span class="n">label_keys</span><span class="p">[</span><span class="n">label</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="o">**</span><span class="n">label_keys</span><span class="p">[</span><span class="n">label</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">time_min</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">time_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">pos</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">time_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">time_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">pos</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">time_min</span><span class="p">,</span> <span class="n">time_max</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">time_axis</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nontime_axis</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="n">swap_time_ticks</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">time_min</span><span class="p">,</span> <span class="n">time_max</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">time_axis</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nontime_axis</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="n">swap_time_ticks</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">axis_off</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="plot_annotation_line_overlay"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_annotation_line_overlay">[docs]</a><span class="k">def</span> <span class="nf">plot_annotation_line_overlay</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot segment annotations as overlay</span>
+
+<span class="sd">    See :func:`libfmp.b.b_plot.plot_annotation_line` for parameters and return values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="s1">&#39;nontime_axis&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;nontime_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">plot_annotation_line</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plot_annotation_multiline"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_annotation_multiline">[docs]</a><span class="k">def</span> <span class="nf">plot_annotation_multiline</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_keys</span><span class="o">=</span><span class="p">{},</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
+                              <span class="n">sort_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">swap_time_ticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                              <span class="n">axis_off</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates a multi-line plot for annotation data</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        annot: A List of tuples in the form of ``[(time_position, label), ...]``</span>
+<span class="sd">        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</span>
+<span class="sd">        label_keys: A dict, where the keys are the labels used in `annot`. The values are dicts, which are used as</span>
+<span class="sd">            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = {})</span>
+<span class="sd">        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or np.ndarray</span>
+<span class="sd">            of matplotlib color specifications, 4. dict that assigns labels  to colors (Default value = &#39;FMP_1&#39;)</span>
+<span class="sd">        figsize: Width, height in inches (Default value = (6, 1.5)</span>
+<span class="sd">        direction: &#39;vertical&#39; or &#39;horizontal&#39; (Default value = &#39;horizontal&#39;)</span>
+<span class="sd">        sort_labels: List of labels used for sorting the line plots (Default value = None)</span>
+<span class="sd">        time_min: Minimal limit for time axis. If None, will be min annotation. (Default value = None)</span>
+<span class="sd">        time_max: Maximal limit for time axis. If None, will be max from annotation. (Default value = None)</span>
+<span class="sd">        time_axis: Display time axis ticks or not (Default value = True)</span>
+<span class="sd">        swap_time_ticks: For horizontal: xticks up; for vertical: yticks left (Default value = False)</span>
+<span class="sd">        axis_off: Calls ax.axis(&#39;off&#39;) (Default value = False)</span>
+<span class="sd">        dpi: Dots per inch (Default value = 72)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: The created matplotlib figure or None if ax was given.</span>
+<span class="sd">        ax: The used axes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">]</span>
+    <span class="n">annot</span> <span class="o">=</span> <span class="n">check_line_annotations</span><span class="p">(</span><span class="n">annot</span><span class="p">)</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+
+    <span class="n">labels_set</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">label</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">]))</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">color_argument_to_dict</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">labels_set</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">colors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">label_keys</span><span class="p">:</span>
+            <span class="n">label_keys</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="s1">&#39;color&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">label_keys</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+            <span class="n">label_keys</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">if</span> <span class="n">sort_labels</span><span class="p">:</span>
+        <span class="n">sort_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">sort_labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sort_labels</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sort_func</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">all_labels</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">label</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">sort_func</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cur_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_labels</span><span class="p">):</span>
+        <span class="n">cur_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">pos</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span> <span class="k">if</span> <span class="n">cur_label</span> <span class="o">==</span> <span class="n">label</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">cur_pos</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">label_keys</span><span class="p">[</span><span class="n">cur_label</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">cur_pos</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">label_keys</span><span class="p">[</span><span class="n">cur_label</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">time_min</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">time_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">pos</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">time_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">time_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">pos</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_labels</span><span class="p">)])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">time_min</span><span class="p">,</span> <span class="n">time_max</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">seperator</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_labels</span><span class="p">)):</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">seperator</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_labels</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">all_labels</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">time_axis</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="n">swap_time_ticks</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span><span class="p">()</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_labels</span><span class="p">)])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">time_min</span><span class="p">,</span> <span class="n">time_max</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">seperator</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_labels</span><span class="p">)):</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">seperator</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_labels</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">all_labels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">time_axis</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="n">swap_time_ticks</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">axis_off</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="plot_segments"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_segments">[docs]</a><span class="k">def</span> <span class="nf">plot_segments</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">time_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">time_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nontime_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nontime_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nontime_axis</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">time_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">swap_time_ticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">axis_off</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span> <span class="n">adjust_time_axislim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                  <span class="n">adjust_nontime_axislim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">print_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label_ticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates a multi-line plot for annotation data</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        annot: A List of tuples in the form of ``[(start_position, end_position, label), ...]``</span>
+<span class="sd">        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</span>
+<span class="sd">        figsize: Width, height in inches (Default value = (6, 1)</span>
+<span class="sd">        direction: &#39;vertical&#39; or &#39;horizontal&#39; (Default value = &#39;horizontal&#39;)</span>
+<span class="sd">        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or np.ndarray</span>
+<span class="sd">            of matplotlib color specifications, 4. dict that assigns labels  to colors (Default value = &#39;FMP_1&#39;)</span>
+<span class="sd">        time_min: Minimal limit for time axis. If None, will be min annotation. (Default value = None)</span>
+<span class="sd">        time_max: Maximal limit for time axis. If None, will be max from annotation. (Default value = None)</span>
+<span class="sd">        nontime_min: Minimal limit for non-time axis. (Default value = 0)</span>
+<span class="sd">        nontime_max: Maximal limit for non-time axis. (Default value = 1)</span>
+<span class="sd">        time_axis: Display time axis ticks or not (Default value = True)</span>
+<span class="sd">        nontime_axis: Display non-time axis ticks or not (Default value = False)</span>
+<span class="sd">        time_label: Label for time axes (Default value = None)</span>
+<span class="sd">        swap_time_ticks: For horizontal: xticks up; for vertical: yticks left (Default value = False)</span>
+<span class="sd">        edgecolor: Color for edgelines of segment box (Default value = &#39;k&#39;)</span>
+<span class="sd">        axis_off: Calls ax.axis(&#39;off&#39;) (Default value = False)</span>
+<span class="sd">        dpi: Dots per inch (Default value = 72)</span>
+<span class="sd">        adjust_time_axislim: Adjust time-axis. Usually True for plotting on standalone axes and False for</span>
+<span class="sd">            overlay plotting (Default value = True)</span>
+<span class="sd">        adjust_nontime_axislim: Adjust non-time-axis. Usually True for plotting on standalone axes and False for</span>
+<span class="sd">            overlay plotting (Default value = True)</span>
+<span class="sd">        alpha: Alpha value for rectangle (Default value = None)</span>
+<span class="sd">        print_labels: Print labels inside Rectangles (Default value = True)</span>
+<span class="sd">        label_ticks: Print labels as ticks (Default value = False)</span>
+<span class="sd">        **kwargs:</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: The created matplotlib figure or None if ax was given.</span>
+<span class="sd">        ax: The used axes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">]</span>
+    <span class="n">annot</span> <span class="o">=</span> <span class="n">check_segment_annotations</span><span class="p">(</span><span class="n">annot</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s1">&#39;color&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
+    <span class="k">if</span> <span class="s1">&#39;weight&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bold&#39;</span>
+        <span class="c1"># kwargs[&#39;weight&#39;] = &#39;normal&#39;</span>
+    <span class="k">if</span> <span class="s1">&#39;fontsize&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+    <span class="k">if</span> <span class="s1">&#39;ha&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ha&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;center&#39;</span>
+    <span class="k">if</span> <span class="s1">&#39;va&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;va&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;center&#39;</span>
+
+    <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="s1">&#39;FMP_1&#39;</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+
+    <span class="n">labels_set</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">label</span> <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">]))</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">color_argument_to_dict</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">labels_set</span><span class="p">)</span>
+
+    <span class="n">nontime_width</span> <span class="o">=</span> <span class="n">nontime_max</span> <span class="o">-</span> <span class="n">nontime_min</span>
+    <span class="n">nontime_middle</span> <span class="o">=</span> <span class="n">nontime_min</span> <span class="o">+</span> <span class="n">nontime_width</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">all_time_middles</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">:</span>
+        <span class="n">time_width</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+        <span class="n">time_middle</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">time_width</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">all_time_middles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_middle</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">:</span>
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">mpatch</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">nontime_min</span><span class="p">),</span> <span class="n">time_width</span><span class="p">,</span> <span class="n">nontime_width</span><span class="p">,</span>
+                                    <span class="n">facecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">edgecolor</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">print_labels</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">time_middle</span><span class="p">,</span> <span class="n">nontime_middle</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">mpatch</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">nontime_min</span><span class="p">,</span> <span class="n">start</span><span class="p">),</span> <span class="n">nontime_width</span><span class="p">,</span> <span class="n">time_width</span><span class="p">,</span>
+                                    <span class="n">facecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">edgecolor</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">print_labels</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">nontime_middle</span><span class="p">,</span> <span class="n">time_middle</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">time_min</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">time_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">start</span> <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">time_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">time_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">end</span> <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">adjust_time_axislim</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">time_min</span><span class="p">,</span> <span class="n">time_max</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">adjust_nontime_axislim</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">nontime_min</span><span class="p">,</span> <span class="n">nontime_max</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nontime_axis</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">time_axis</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="n">swap_time_ticks</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">time_label</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">time_label</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">label_ticks</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">all_time_middles</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="n">label</span> <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">])</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">adjust_time_axislim</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">time_min</span><span class="p">,</span> <span class="n">time_max</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">adjust_nontime_axislim</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">nontime_min</span><span class="p">,</span> <span class="n">nontime_max</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nontime_axis</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">time_axis</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="n">swap_time_ticks</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">time_label</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">time_label</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">label_ticks</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">all_time_middles</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="n">label</span> <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">axis_off</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="plot_segments_overlay"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_segments_overlay">[docs]</a><span class="k">def</span> <span class="nf">plot_segments_overlay</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot segment annotations as overlay</span>
+
+<span class="sd">    See :func:`libfmp.b.b_plot.plot_segments` for parameters and return values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="s1">&#39;ax&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ax&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="s1">&#39;adjust_time_axislim&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;adjust_time_axislim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="s1">&#39;adjust_nontime_axislim&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;adjust_nontime_axislim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="s1">&#39;alpha&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.3</span>
+    <span class="k">if</span> <span class="s1">&#39;edgecolor&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;edgecolor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="s1">&#39;nontime_axis&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;nontime_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">if</span> <span class="s1">&#39;direction&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;direction&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vertical&#39;</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;nontime_min&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;nontime_max&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;nontime_min&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;nontime_max&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_segments</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

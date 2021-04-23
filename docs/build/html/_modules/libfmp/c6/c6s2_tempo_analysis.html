@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c6.c6s2_tempo_analysis &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c6.c6s2_tempo_analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c6.c6s2_tempo_analysis</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c6.c6s2_tempo_analysis</span>
+<span class="sd">Author: Meinard Müller, Angel Villar-Corrales</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+<span class="kn">import</span> <span class="nn">IPython.display</span> <span class="k">as</span> <span class="nn">ipd</span>
+
+<span class="kn">import</span> <span class="nn">libfmp.b</span>
+<span class="kn">import</span> <span class="nn">libfmp.c6</span>
+
+
+<div class="viewcode-block" id="compute_tempogram_fourier"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s2_tempo_analysis.compute_tempogram_fourier">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_tempogram_fourier</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">Theta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">601</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Compute Fourier-based tempogram [FMP, Section 6.2.2]</span>
+
+<span class="sd">    Notebook: C6/C6S2_TempogramFourier.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Input signal</span>
+<span class="sd">        Fs (scalar): Sampling rate</span>
+<span class="sd">        N (int): Window length</span>
+<span class="sd">        H (int): Hop size</span>
+<span class="sd">        Theta (np.ndarray): Set of tempi (given in BPM) (Default value = np.arange(30, 601, 1))</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        X (np.ndarray): Tempogram</span>
+<span class="sd">        T_coef (np.ndarray): Time axis (seconds)</span>
+<span class="sd">        F_coef_BPM (np.ndarray): Tempo axis (BPM)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hanning</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">N_left</span> <span class="o">=</span> <span class="n">N</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">L_left</span> <span class="o">=</span> <span class="n">N_left</span>
+    <span class="n">L_right</span> <span class="o">=</span> <span class="n">N_left</span>
+    <span class="n">L_pad</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="n">L_left</span> <span class="o">+</span> <span class="n">L_right</span>
+    <span class="c1"># x_pad = np.pad(x, (L_left, L_right), &#39;constant&#39;)  # doesn&#39;t work with jit</span>
+    <span class="n">x_pad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">L_left</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">L_right</span><span class="p">)))</span>
+    <span class="n">t_pad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L_pad</span><span class="p">)</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">L_pad</span> <span class="o">-</span> <span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">H</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Theta</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">K</span><span class="p">,</span> <span class="n">M</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="p">(</span><span class="n">Theta</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+        <span class="n">exponential</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">omega</span> <span class="o">*</span> <span class="n">t_pad</span><span class="p">)</span>
+        <span class="n">x_exp</span> <span class="o">=</span> <span class="n">x_pad</span> <span class="o">*</span> <span class="n">exponential</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+            <span class="n">t_0</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">H</span>
+            <span class="n">t_1</span> <span class="o">=</span> <span class="n">t_0</span> <span class="o">+</span> <span class="n">N</span>
+            <span class="n">X</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">win</span> <span class="o">*</span> <span class="n">x_exp</span><span class="p">[</span><span class="n">t_0</span><span class="p">:</span><span class="n">t_1</span><span class="p">])</span>
+        <span class="n">T_coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="o">*</span> <span class="n">H</span> <span class="o">/</span> <span class="n">Fs</span>
+        <span class="n">F_coef_BPM</span> <span class="o">=</span> <span class="n">Theta</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">T_coef</span><span class="p">,</span> <span class="n">F_coef_BPM</span></div>
+
+
+<div class="viewcode-block" id="compute_sinusoid_optimal"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s2_tempo_analysis.compute_sinusoid_optimal">[docs]</a><span class="k">def</span> <span class="nf">compute_sinusoid_optimal</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">tempo</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute windowed sinusoid with optimal phase</span>
+
+<span class="sd">    Notebook: C6/C6S2_TempogramFourier.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        c (complex): Coefficient of tempogram (c=X(k,n))</span>
+<span class="sd">        tempo (float): Tempo parameter corresponding to c (tempo=F_coef_BPM[k])</span>
+<span class="sd">        n (int): Frame parameter of c</span>
+<span class="sd">        Fs (scalar): Sampling rate</span>
+<span class="sd">        N (int): Window length</span>
+<span class="sd">        H (int): Hop size</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        kernel (np.ndarray): Windowed sinusoid</span>
+<span class="sd">        t_kernel (np.ndarray): Time axis (samples) of kernel</span>
+<span class="sd">        t_kernel_sec (np.ndarray): Time axis (seconds) of kernel</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hanning</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">N_left</span> <span class="o">=</span> <span class="n">N</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">omega</span> <span class="o">=</span> <span class="p">(</span><span class="n">tempo</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">t_0</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">H</span>
+    <span class="n">t_1</span> <span class="o">=</span> <span class="n">t_0</span> <span class="o">+</span> <span class="n">N</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">t_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_0</span><span class="p">,</span> <span class="n">t_1</span><span class="p">)</span>
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">win</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">t_kernel</span><span class="o">*</span><span class="n">omega</span> <span class="o">-</span> <span class="n">phase</span><span class="p">))</span>
+    <span class="n">t_kernel_sec</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_kernel</span> <span class="o">-</span> <span class="n">N_left</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="k">return</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">t_kernel</span><span class="p">,</span> <span class="n">t_kernel_sec</span></div>
+
+
+<div class="viewcode-block" id="plot_signal_kernel"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s2_tempo_analysis.plot_signal_kernel">[docs]</a><span class="k">def</span> <span class="nf">plot_signal_kernel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_x</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">t_kernel</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Visualize signal and local kernel</span>
+
+<span class="sd">    Notebook: C6/C6S2_TempogramFourier.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x: Signal</span>
+<span class="sd">        t_x: Time axis of x (given in seconds)</span>
+<span class="sd">        kernel: Local kernel</span>
+<span class="sd">        t_kernel: Time axis of kernel (given in seconds)</span>
+<span class="sd">        xlim: Limits for x-axis (Default value = None)</span>
+<span class="sd">        figsize: Figure size (Default value = (8, 2))</span>
+<span class="sd">        title: Title of figure (Default value = None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: Matplotlib figure handle</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">xlim</span> <span class="o">=</span> <span class="p">[</span><span class="n">t_x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_kernel</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+<span class="c1"># @jit(nopython=True)  # not possible because of np.correlate with mode=&#39;full&#39;</span>
+<div class="viewcode-block" id="compute_autocorrelation_local"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s2_tempo_analysis.compute_autocorrelation_local">[docs]</a><span class="k">def</span> <span class="nf">compute_autocorrelation_local</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">norm_sum</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute local autocorrelation [FMP, Section 6.2.3]</span>
+
+<span class="sd">    Notebook: C6/C6S2_TempogramAutocorrelation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Input signal</span>
+<span class="sd">        Fs (scalar): Sampling rate</span>
+<span class="sd">        N (int): Window length</span>
+<span class="sd">        H (int): Hop size</span>
+<span class="sd">        norm_sum (bool): Normalizes by the number of summands in local autocorrelation (Default value = True)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A (np.ndarray): Time-lag representation</span>
+<span class="sd">        T_coef (np.ndarray): Time axis (seconds)</span>
+<span class="sd">        F_coef_lag (np.ndarray): Lag axis</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># L = len(x)</span>
+    <span class="n">L_left</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">L_right</span> <span class="o">=</span> <span class="n">L_left</span>
+    <span class="n">x_pad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">L_left</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">L_right</span><span class="p">)))</span>
+    <span class="n">L_pad</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_pad</span><span class="p">)</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">L_pad</span> <span class="o">-</span> <span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">H</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">norm_sum</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">lag_summand_num</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">t_0</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">H</span>
+        <span class="n">t_1</span> <span class="o">=</span> <span class="n">t_0</span> <span class="o">+</span> <span class="n">N</span>
+        <span class="n">x_local</span> <span class="o">=</span> <span class="n">win</span> <span class="o">*</span> <span class="n">x_pad</span><span class="p">[</span><span class="n">t_0</span><span class="p">:</span><span class="n">t_1</span><span class="p">]</span>
+        <span class="n">r_xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">x_local</span><span class="p">,</span> <span class="n">x_local</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+        <span class="n">r_xx</span> <span class="o">=</span> <span class="n">r_xx</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">if</span> <span class="n">norm_sum</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">r_xx</span> <span class="o">=</span> <span class="n">r_xx</span> <span class="o">/</span> <span class="n">lag_summand_num</span>
+        <span class="n">A</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">r_xx</span>
+    <span class="n">Fs_A</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">H</span>
+    <span class="n">T_coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">Fs_A</span>
+    <span class="n">F_coef_lag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="k">return</span> <span class="n">A</span><span class="p">,</span> <span class="n">T_coef</span><span class="p">,</span> <span class="n">F_coef_lag</span></div>
+
+
+<div class="viewcode-block" id="plot_signal_local_lag"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s2_tempo_analysis.plot_signal_local_lag">[docs]</a><span class="k">def</span> <span class="nf">plot_signal_local_lag</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_x</span><span class="p">,</span> <span class="n">local_lag</span><span class="p">,</span> <span class="n">t_local_lag</span><span class="p">,</span> <span class="n">lag</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Visualize signal and local lag [FMP, Figure 6.14]</span>
+
+<span class="sd">    Notebook: C6/C6S2_TempogramAutocorrelation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x: Signal</span>
+<span class="sd">        t_x: Time axis of x (given in seconds)</span>
+<span class="sd">        local_lag: Local lag</span>
+<span class="sd">        t_local_lag: Time axis of kernel (given in seconds)</span>
+<span class="sd">        lag: Lag (given in seconds)</span>
+<span class="sd">        xlim: Limits for x-axis (Default value = None)</span>
+<span class="sd">        figsize: Figure size (Default value = (8, 1.5))</span>
+<span class="sd">        title: Title of figure (Default value = &#39;&#39;)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: Matplotlib figure handle</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">xlim</span> <span class="o">=</span> <span class="p">[</span><span class="n">t_x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_local_lag</span><span class="p">,</span> <span class="n">local_lag</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_local_lag</span><span class="o">+</span><span class="n">lag</span><span class="p">,</span> <span class="n">local_lag</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+<span class="c1"># @jit(nopython=True)</span>
+<div class="viewcode-block" id="compute_tempogram_autocorr"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s2_tempo_analysis.compute_tempogram_autocorr">[docs]</a><span class="k">def</span> <span class="nf">compute_tempogram_autocorr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">norm_sum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Theta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">601</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Compute autocorrelation-based tempogram</span>
+
+<span class="sd">    Notebook: C6/C6S2_TempogramAutocorrelation.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (np.ndarray): Input signal</span>
+<span class="sd">        Fs (scalar): Sampling rate</span>
+<span class="sd">        N (int): Window length</span>
+<span class="sd">        H (int): Hop size</span>
+<span class="sd">        norm_sum (bool): Normalizes by the number of summands in local autocorrelation (Default value = False)</span>
+<span class="sd">        Theta (np.ndarray): Set of tempi (given in BPM) (Default value = np.arange(30, 601))</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tempogram (np.ndarray): Tempogram tempogram</span>
+<span class="sd">        T_coef (np.ndarray): Time axis T_coef (seconds)</span>
+<span class="sd">        F_coef_BPM (np.ndarray): Tempo axis F_coef_BPM (BPM)</span>
+<span class="sd">        A_cut (np.ndarray): Time-lag representation A_cut (cut according to Theta)</span>
+<span class="sd">        F_coef_lag_cut (np.ndarray): Lag axis F_coef_lag_cut</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tempo_min</span> <span class="o">=</span> <span class="n">Theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">tempo_max</span> <span class="o">=</span> <span class="n">Theta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">lag_min</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">Fs</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span> <span class="n">tempo_max</span><span class="p">))</span>
+    <span class="n">lag_max</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">Fs</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span> <span class="n">tempo_min</span><span class="p">))</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">T_coef</span><span class="p">,</span> <span class="n">F_coef_lag</span> <span class="o">=</span> <span class="n">compute_autocorrelation_local</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">norm_sum</span><span class="o">=</span><span class="n">norm_sum</span><span class="p">)</span>
+    <span class="n">A_cut</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">lag_min</span><span class="p">:</span><span class="n">lag_max</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">F_coef_lag_cut</span> <span class="o">=</span> <span class="n">F_coef_lag</span><span class="p">[</span><span class="n">lag_min</span><span class="p">:</span><span class="n">lag_max</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">F_coef_BPM_cut</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">/</span> <span class="n">F_coef_lag_cut</span>
+    <span class="n">F_coef_BPM</span> <span class="o">=</span> <span class="n">Theta</span>
+    <span class="n">tempogram</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">F_coef_BPM_cut</span><span class="p">,</span> <span class="n">A_cut</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span>
+                         <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;extrapolate&#39;</span><span class="p">)(</span><span class="n">F_coef_BPM</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tempogram</span><span class="p">,</span> <span class="n">T_coef</span><span class="p">,</span> <span class="n">F_coef_BPM</span><span class="p">,</span> <span class="n">A_cut</span><span class="p">,</span> <span class="n">F_coef_lag_cut</span></div>
+
+
+<div class="viewcode-block" id="compute_cyclic_tempogram"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s2_tempo_analysis.compute_cyclic_tempogram">[docs]</a><span class="k">def</span> <span class="nf">compute_cyclic_tempogram</span><span class="p">(</span><span class="n">tempogram</span><span class="p">,</span> <span class="n">F_coef_BPM</span><span class="p">,</span> <span class="n">tempo_ref</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                             <span class="n">octave_bin</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">octave_num</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute cyclic tempogram</span>
+
+<span class="sd">    Notebook: C6/C6S2_TempogramCyclic.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tempogram (np.ndarray): Input tempogram</span>
+<span class="sd">        F_coef_BPM (np.ndarray): Tempo axis (BPM)</span>
+<span class="sd">        tempo_ref (float): Reference tempo (BPM) (Default value = 30)</span>
+<span class="sd">        octave_bin (int): Number of bins per tempo octave (Default value = 40)</span>
+<span class="sd">        octave_num (int): Number of tempo octaves to be considered (Default value = 4)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tempogram_cyclic (np.ndarray): Cyclic tempogram tempogram_cyclic</span>
+<span class="sd">        F_coef_scale (np.ndarray): Tempo axis with regard to scaling parameter</span>
+<span class="sd">        tempogram_log (np.ndarray): Tempogram with logarithmic tempo axis</span>
+<span class="sd">        F_coef_BPM_log (np.ndarray): Logarithmic tempo axis (BPM)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">F_coef_BPM_log</span> <span class="o">=</span> <span class="n">tempo_ref</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">octave_num</span><span class="o">*</span><span class="n">octave_bin</span><span class="p">)</span><span class="o">/</span><span class="n">octave_bin</span><span class="p">)</span>
+    <span class="n">F_coef_scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">octave_bin</span><span class="p">)</span><span class="o">/</span><span class="n">octave_bin</span><span class="p">)</span>
+    <span class="n">tempogram_log</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">F_coef_BPM</span><span class="p">,</span> <span class="n">tempogram</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;extrapolate&#39;</span><span class="p">)(</span><span class="n">F_coef_BPM_log</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">F_coef_BPM_log</span><span class="p">)</span>
+    <span class="n">tempogram_cyclic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">octave_bin</span><span class="p">,</span> <span class="n">tempogram</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">octave_bin</span><span class="p">):</span>
+        <span class="n">tempogram_cyclic</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tempogram_log</span><span class="p">[</span><span class="n">m</span><span class="p">:</span><span class="n">K</span><span class="p">:</span><span class="n">octave_bin</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tempogram_cyclic</span><span class="p">,</span> <span class="n">F_coef_scale</span><span class="p">,</span> <span class="n">tempogram_log</span><span class="p">,</span> <span class="n">F_coef_BPM_log</span></div>
+
+
+<div class="viewcode-block" id="set_yticks_tempogram_cyclic"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s2_tempo_analysis.set_yticks_tempogram_cyclic">[docs]</a><span class="k">def</span> <span class="nf">set_yticks_tempogram_cyclic</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">octave_bin</span><span class="p">,</span> <span class="n">F_coef_scale</span><span class="p">,</span> <span class="n">num_tick</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set yticks with regard to scaling parmater</span>
+
+<span class="sd">    Notebook: C6/C6S2_TempogramCyclic.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ax (mpl.axes.Axes): Figure axis</span>
+<span class="sd">        octave_bin (int): Number of bins per tempo octave</span>
+<span class="sd">        F_coef_scale (np.ndarra): Tempo axis with regard to scaling parameter</span>
+<span class="sd">        num_tick (int): Number of yticks (Default value = 5)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">yticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">octave_bin</span><span class="p">,</span> <span class="n">octave_bin</span> <span class="o">//</span> <span class="n">num_tick</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yticks</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">F_coef_scale</span><span class="p">[</span><span class="n">yticks</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">unicode_</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="compute_plp"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s2_tempo_analysis.compute_plp">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_plp</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">Theta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute windowed sinusoid with optimal phase</span>
+
+<span class="sd">    Notebook: C6/C6S3_PredominantLocalPulse.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (np.ndarray): Fourier-based (complex-valued) tempogram</span>
+<span class="sd">        Fs (scalar): Sampling rate</span>
+<span class="sd">        L (int): Length of novelty curve</span>
+<span class="sd">        N (int): Window length</span>
+<span class="sd">        H (int): Hop size</span>
+<span class="sd">        Theta (np.ndarray): Set of tempi (given in BPM)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        nov_PLP (np.ndarray): PLP function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hanning</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">N_left</span> <span class="o">=</span> <span class="n">N</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">L_left</span> <span class="o">=</span> <span class="n">N_left</span>
+    <span class="n">L_right</span> <span class="o">=</span> <span class="n">N_left</span>
+    <span class="n">L_pad</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="n">L_left</span> <span class="o">+</span> <span class="n">L_right</span>
+    <span class="n">nov_PLP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">L_pad</span><span class="p">)</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">tempogram</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">tempogram</span><span class="p">[:,</span> <span class="n">n</span><span class="p">])</span>
+        <span class="n">tempo</span> <span class="o">=</span> <span class="n">Theta</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="p">(</span><span class="n">tempo</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span>
+        <span class="n">phase</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="n">t_0</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">H</span>
+        <span class="n">t_1</span> <span class="o">=</span> <span class="n">t_0</span> <span class="o">+</span> <span class="n">N</span>
+        <span class="n">t_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_0</span><span class="p">,</span> <span class="n">t_1</span><span class="p">)</span>
+        <span class="n">kernel</span> <span class="o">=</span> <span class="n">win</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">t_kernel</span> <span class="o">*</span> <span class="n">omega</span> <span class="o">-</span> <span class="n">phase</span><span class="p">))</span>
+        <span class="n">nov_PLP</span><span class="p">[</span><span class="n">t_kernel</span><span class="p">]</span> <span class="o">=</span> <span class="n">nov_PLP</span><span class="p">[</span><span class="n">t_kernel</span><span class="p">]</span> <span class="o">+</span> <span class="n">kernel</span>
+    <span class="n">nov_PLP</span> <span class="o">=</span> <span class="n">nov_PLP</span><span class="p">[</span><span class="n">L_left</span><span class="p">:</span><span class="n">L_pad</span><span class="o">-</span><span class="n">L_right</span><span class="p">]</span>
+    <span class="n">nov_PLP</span><span class="p">[</span><span class="n">nov_PLP</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">nov_PLP</span></div>
+
+
+<div class="viewcode-block" id="compute_plot_tempogram_plp"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s2_tempo_analysis.compute_plot_tempogram_plp">[docs]</a><span class="k">def</span> <span class="nf">compute_plot_tempogram_plp</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">Theta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">601</span><span class="p">),</span>
+                               <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">plot_maxtempo</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute and plot Fourier-based tempogram and PLP function</span>
+
+<span class="sd">    Notebook: C6/C6S3_PredominantLocalPulse.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_wav: Filename of audio file</span>
+<span class="sd">        Fs: Sample rate (Default value = 22050)</span>
+<span class="sd">        N: Window size (Default value = 500)</span>
+<span class="sd">        H: Hop size (Default value = 10)</span>
+<span class="sd">        Theta: Set of tempi (given in BPM) (Default value = np.arange(30, 601))</span>
+<span class="sd">        title: Title of figure (Default value = &#39;&#39;)</span>
+<span class="sd">        figsize: Figure size (Default value = (8, 4))</span>
+<span class="sd">        plot_maxtempo: Visualize tempo with greatest coefficients in tempogram (Default value = False)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">Fs</span><span class="p">)</span>
+
+    <span class="n">nov</span><span class="p">,</span> <span class="n">Fs_nov</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c6</span><span class="o">.</span><span class="n">compute_novelty_spectrum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">nov</span><span class="p">,</span> <span class="n">Fs_nov</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c6</span><span class="o">.</span><span class="n">resample_signal</span><span class="p">(</span><span class="n">nov</span><span class="p">,</span> <span class="n">Fs_in</span><span class="o">=</span><span class="n">Fs_nov</span><span class="p">,</span> <span class="n">Fs_out</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="n">L</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nov</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">T_coef</span><span class="p">,</span> <span class="n">F_coef_BPM</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c6</span><span class="o">.</span><span class="n">compute_tempogram_fourier</span><span class="p">(</span><span class="n">nov</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs_nov</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">Theta</span><span class="o">=</span><span class="n">Theta</span><span class="p">)</span>
+    <span class="n">nov_PLP</span> <span class="o">=</span> <span class="n">compute_plp</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Fs_nov</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">Theta</span><span class="p">)</span>
+    <span class="n">tempogram</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+                                              <span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span>
+                           <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">tempogram</span><span class="p">,</span> <span class="n">T_coef</span><span class="o">=</span><span class="n">T_coef</span><span class="p">,</span> <span class="n">F_coef</span><span class="o">=</span><span class="n">F_coef_BPM</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+                         <span class="n">ax</span><span class="o">=</span><span class="p">[</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Tempo (BPM)&#39;</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plot_maxtempo</span><span class="p">:</span>
+        <span class="n">coef_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">tempogram</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_coef</span><span class="p">,</span> <span class="n">F_coef_BPM</span><span class="p">[</span><span class="n">coef_k</span><span class="p">],</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
+
+    <span class="n">t_nov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nov</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">Fs_nov</span>
+    <span class="n">peaks</span><span class="p">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="n">nov_PLP</span><span class="p">,</span> <span class="n">prominence</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">peaks_sec</span> <span class="o">=</span> <span class="n">t_nov</span><span class="p">[</span><span class="n">peaks</span><span class="p">]</span>
+    <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">plot_signal</span><span class="p">(</span><span class="n">nov_PLP</span><span class="p">,</span> <span class="n">Fs_nov</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">peaks_sec</span><span class="p">,</span> <span class="n">nov_PLP</span><span class="p">[</span><span class="n">peaks</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">x_peaks</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">clicks</span><span class="p">(</span><span class="n">peaks_sec</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">click_freq</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">ipd</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">ipd</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">x_peaks</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">Fs</span><span class="p">))</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

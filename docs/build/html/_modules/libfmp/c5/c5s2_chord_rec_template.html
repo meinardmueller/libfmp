@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c5.c5s2_chord_rec_template &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c5.c5s2_chord_rec_template</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c5.c5s2_chord_rec_template</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c5.c5s2_chord_rec_template</span>
+<span class="sd">Author: Meinard Müller, Christof Weiss</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+<span class="kn">import</span> <span class="nn">librosa</span>
+
+<span class="kn">import</span> <span class="nn">libfmp.c3</span>
+<span class="kn">import</span> <span class="nn">libfmp.c4</span>
+
+
+<div class="viewcode-block" id="compute_chromagram_from_filename"><a class="viewcode-back" href="../../../index_c5.html#libfmp.c5.c5s2_chord_rec_template.compute_chromagram_from_filename">[docs]</a><span class="k">def</span> <span class="nf">compute_chromagram_from_filename</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;STFT&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute chromagram for WAV file specified by filename</span>
+
+<span class="sd">    Notebook: C5/C5S2_ChordRec_Templates.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_wav (str): Filenname of WAV</span>
+<span class="sd">        Fs (scalar): Sampling rate (Default value = 22050)</span>
+<span class="sd">        N (int): Window size (Default value = 4096)</span>
+<span class="sd">        H (int): Hop size (Default value = 2048)</span>
+<span class="sd">        gamma (float): Constant for logarithmic compression (Default value = None)</span>
+<span class="sd">        version (str): Technique used for front-end decomposition (&#39;STFT&#39;, &#39;IIS&#39;, &#39;CQT&#39;) (Default value = &#39;STFT&#39;)</span>
+<span class="sd">        norm (str): If not &#39;None&#39;, chroma vectors are normalized by norm as specified (&#39;1&#39;, &#39;2&#39;, &#39;max&#39;)</span>
+<span class="sd">            (Default value = &#39;2&#39;)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        X (np.ndarray): Chromagram</span>
+<span class="sd">        Fs_X (scalar): Feature reate of chromagram</span>
+<span class="sd">        x (np.ndarray): Audio signal</span>
+<span class="sd">        Fs (scalar): Sampling rate of audio signal</span>
+<span class="sd">        x_dur (float): Duration (seconds) of audio signal</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+    <span class="n">x_dur</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;STFT&#39;</span><span class="p">:</span>
+        <span class="c1"># Compute chroma features with STFT</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">pad_mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gamma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">chroma_stft</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;CQT&#39;</span><span class="p">:</span>
+        <span class="c1"># Compute chroma features with CQT decomposition</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">chroma_cqt</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;IIR&#39;</span><span class="p">:</span>
+        <span class="c1"># Compute chroma features with filter bank (using IIR elliptic filter)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">iirt</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gamma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">X</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">chroma_cqt</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">n_octaves</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+                                       <span class="n">fmin</span><span class="o">=</span><span class="n">librosa</span><span class="o">.</span><span class="n">midi_to_hz</span><span class="p">(</span><span class="mi">24</span><span class="p">),</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">norm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">normalize_feature_sequence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+    <span class="n">Fs_X</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">H</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">Fs_X</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">x_dur</span></div>
+
+
+<div class="viewcode-block" id="plot_chromagram_annotation"><a class="viewcode-back" href="../../../index_c5.html#libfmp.c5.c5s2_chord_rec_template.plot_chromagram_annotation">[docs]</a><span class="k">def</span> <span class="nf">plot_chromagram_annotation</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Fs_X</span><span class="p">,</span> <span class="n">ann</span><span class="p">,</span> <span class="n">color_ann</span><span class="p">,</span> <span class="n">x_dur</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot chromagram and annotation</span>
+
+<span class="sd">    Notebook: C5/C5S2_ChordRec_Templates.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ax: Axes handle</span>
+<span class="sd">        X: Feature representation</span>
+<span class="sd">        Fs_X: Feature rate</span>
+<span class="sd">        ann: Annotations</span>
+<span class="sd">        color_ann: Color for annotations</span>
+<span class="sd">        x_dur: Duration of feature representation</span>
+<span class="sd">        cmap: Color map for imshow (Default value = &#39;gray_r&#39;)</span>
+<span class="sd">        title: Title for figure (Default value = &#39;&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">plot_chromagram</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs_X</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                             <span class="n">chroma_yticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="n">clim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+                             <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Chroma&#39;</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">libfmp</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">plot_segments_overlay</span><span class="p">(</span><span class="n">ann</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">time_max</span><span class="o">=</span><span class="n">x_dur</span><span class="p">,</span>
+                                   <span class="n">print_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">color_ann</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_chord_labels"><a class="viewcode-back" href="../../../index_c5.html#libfmp.c5.c5s2_chord_rec_template.get_chord_labels">[docs]</a><span class="k">def</span> <span class="nf">get_chord_labels</span><span class="p">(</span><span class="n">ext_minor</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">nonchord</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate chord labels for major and minor triads (and possibly nonchord label)</span>
+
+<span class="sd">    Notebook: C5/C5S2_ChordRec_Templates.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ext_minor (str): Extension for minor chords (Default value = &#39;m&#39;)</span>
+<span class="sd">        nonchord (bool): If &quot;True&quot; then add nonchord label (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        chord_labels (list): List of chord labels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">chroma_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C#&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D#&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;F#&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;G#&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A#&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
+    <span class="n">chord_labels_maj</span> <span class="o">=</span> <span class="n">chroma_labels</span>
+    <span class="n">chord_labels_min</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="o">+</span> <span class="n">ext_minor</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">chroma_labels</span><span class="p">]</span>
+    <span class="n">chord_labels</span> <span class="o">=</span> <span class="n">chord_labels_maj</span> <span class="o">+</span> <span class="n">chord_labels_min</span>
+    <span class="k">if</span> <span class="n">nonchord</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">chord_labels</span> <span class="o">=</span> <span class="n">chord_labels</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">chord_labels</span></div>
+
+
+<div class="viewcode-block" id="generate_chord_templates"><a class="viewcode-back" href="../../../index_c5.html#libfmp.c5.c5s2_chord_rec_template.generate_chord_templates">[docs]</a><span class="k">def</span> <span class="nf">generate_chord_templates</span><span class="p">(</span><span class="n">nonchord</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate chord templates of major and minor triads (and possibly nonchord)</span>
+
+<span class="sd">    Notebook: C5/C5S2_ChordRec_Templates.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nonchord (bool): If &quot;True&quot; then add nonchord template (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        chord_templates (np.ndarray): Matrix containing chord_templates as columns</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">template_cmaj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">template_cmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">num_chord</span> <span class="o">=</span> <span class="mi">24</span>
+    <span class="k">if</span> <span class="n">nonchord</span><span class="p">:</span>
+        <span class="n">num_chord</span> <span class="o">=</span> <span class="mi">25</span>
+    <span class="n">chord_templates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span> <span class="n">num_chord</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">shift</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+        <span class="n">chord_templates</span><span class="p">[:,</span> <span class="n">shift</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">template_cmaj</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+        <span class="n">chord_templates</span><span class="p">[:,</span> <span class="n">shift</span><span class="o">+</span><span class="mi">12</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">template_cmin</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">chord_templates</span></div>
+
+
+<div class="viewcode-block" id="chord_recognition_template"><a class="viewcode-back" href="../../../index_c5.html#libfmp.c5.c5s2_chord_rec_template.chord_recognition_template">[docs]</a><span class="k">def</span> <span class="nf">chord_recognition_template</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">norm_sim</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">nonchord</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Conducts template-based chord recognition</span>
+<span class="sd">    with major and minor triads (and possibly nonchord)</span>
+
+<span class="sd">    Notebook: C5/C5S2_ChordRec_Templates.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (np.ndarray): Chromagram</span>
+<span class="sd">        norm_sim (str): Specifies norm used for normalizing chord similarity matrix (Default value = &#39;1&#39;)</span>
+<span class="sd">        nonchord (bool): If &quot;True&quot; then add nonchord template (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        chord_sim (np.ndarray): Chord similarity matrix</span>
+<span class="sd">        chord_max (np.ndarray): Binarized chord similarity matrix only containing maximizing chord</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">chord_templates</span> <span class="o">=</span> <span class="n">generate_chord_templates</span><span class="p">(</span><span class="n">nonchord</span><span class="o">=</span><span class="n">nonchord</span><span class="p">)</span>
+    <span class="n">X_norm</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">normalize_feature_sequence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+    <span class="n">chord_templates_norm</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">normalize_feature_sequence</span><span class="p">(</span><span class="n">chord_templates</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+    <span class="n">chord_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">chord_templates_norm</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_norm</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">norm_sim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">chord_sim</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">normalize_feature_sequence</span><span class="p">(</span><span class="n">chord_sim</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm_sim</span><span class="p">)</span>
+    <span class="c1"># chord_max = (chord_sim == chord_sim.max(axis=0)).astype(int)</span>
+    <span class="n">chord_max_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">chord_sim</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">chord_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">chord_sim</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">chord_sim</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">chord_max</span><span class="p">[</span><span class="n">chord_max_index</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">chord_sim</span><span class="p">,</span> <span class="n">chord_max</span></div>
+
+
+<div class="viewcode-block" id="convert_chord_label"><a class="viewcode-back" href="../../../index_c5.html#libfmp.c5.c5s2_chord_rec_template.convert_chord_label">[docs]</a><span class="k">def</span> <span class="nf">convert_chord_label</span><span class="p">(</span><span class="n">ann</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Replace for segment-based annotation in each chord label the string &#39;:min&#39; by &#39;m&#39;</span>
+<span class="sd">    and convert flat chords into sharp chords using enharmonic equivalence</span>
+
+<span class="sd">    Notebook: C5/C5S2_ChordRec_Eval.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ann (list): Segment-based annotation with chord labels</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ann_conv (list): Converted segment-based annotation with chord labels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ann_conv</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">ann</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ann</span><span class="p">)):</span>
+        <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:min&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">)</span>
+        <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Db&#39;</span><span class="p">,</span> <span class="s1">&#39;C#&#39;</span><span class="p">)</span>
+        <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Eb&#39;</span><span class="p">,</span> <span class="s1">&#39;D#&#39;</span><span class="p">)</span>
+        <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Gb&#39;</span><span class="p">,</span> <span class="s1">&#39;F#&#39;</span><span class="p">)</span>
+        <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Ab&#39;</span><span class="p">,</span> <span class="s1">&#39;G#&#39;</span><span class="p">)</span>
+        <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ann_conv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Bb&#39;</span><span class="p">,</span> <span class="s1">&#39;A#&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ann_conv</span></div>
+
+
+<div class="viewcode-block" id="convert_sequence_ann"><a class="viewcode-back" href="../../../index_c5.html#libfmp.c5.c5s2_chord_rec_template.convert_sequence_ann">[docs]</a><span class="k">def</span> <span class="nf">convert_sequence_ann</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert label sequence into segment-based annotation</span>
+
+<span class="sd">    Notebook: C5/C5S2_ChordRec_Eval.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        seq (list): Label sequence</span>
+<span class="sd">        Fs (scalar): Feature rate (Default value = 1)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ann (list): Segment-based annotation for label sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ann</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)):</span>
+        <span class="n">ann</span><span class="o">.</span><span class="n">append</span><span class="p">([(</span><span class="n">m</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span><span class="p">,</span> <span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">seq</span><span class="p">[</span><span class="n">m</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">ann</span></div>
+
+
+<div class="viewcode-block" id="convert_chord_ann_matrix"><a class="viewcode-back" href="../../../index_c5.html#libfmp.c5.c5s2_chord_rec_template.convert_chord_ann_matrix">[docs]</a><span class="k">def</span> <span class="nf">convert_chord_ann_matrix</span><span class="p">(</span><span class="n">fn_ann</span><span class="p">,</span> <span class="n">chord_labels</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert segment-based chord annotation into various formats</span>
+
+<span class="sd">    Notebook: C5/C5S2_ChordRec_Eval.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_ann (str): Filename of segment-based chord annotation</span>
+<span class="sd">        chord_labels (list): List of chord labels</span>
+<span class="sd">        Fs (scalar): Feature rate (Default value = 1)</span>
+<span class="sd">        N (int): Number of frames to be generated (by cutting or extending).</span>
+<span class="sd">            Only enforced for ann_matrix, ann_frame, ann_seg_frame (Default value = None)</span>
+<span class="sd">        last (bool): If &#39;True&#39; uses for extension last chord label, otherwise uses nonchord label &#39;N&#39;</span>
+<span class="sd">            (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ann_matrix (np.ndarray): Encoding of label sequence in form of a binary time-chord representation</span>
+<span class="sd">        ann_frame (list): Label sequence (specified on the frame level)</span>
+<span class="sd">        ann_seg_frame (list): Encoding of label sequence as segment-based annotation (given in indices)</span>
+<span class="sd">        ann_seg_ind (list): Segment-based annotation with segments (given in indices)</span>
+<span class="sd">        ann_seg_sec (list): Segment-based annotation with segments (given in seconds)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ann_seg_sec</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c4</span><span class="o">.</span><span class="n">read_structure_annotation</span><span class="p">(</span><span class="n">fn_ann</span><span class="p">)</span>
+    <span class="n">ann_seg_sec</span> <span class="o">=</span> <span class="n">convert_chord_label</span><span class="p">(</span><span class="n">ann_seg_sec</span><span class="p">)</span>
+    <span class="n">ann_seg_ind</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c4</span><span class="o">.</span><span class="n">read_structure_annotation</span><span class="p">(</span><span class="n">fn_ann</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ann_seg_ind</span> <span class="o">=</span> <span class="n">convert_chord_label</span><span class="p">(</span><span class="n">ann_seg_ind</span><span class="p">)</span>
+
+    <span class="n">ann_frame</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c4</span><span class="o">.</span><span class="n">convert_ann_to_seq_label</span><span class="p">(</span><span class="n">ann_seg_ind</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ann_frame</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">ann_frame</span><span class="p">):</span>
+        <span class="n">ann_frame</span> <span class="o">=</span> <span class="n">ann_frame</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">ann_frame</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">last</span><span class="p">:</span>
+            <span class="n">pad_symbol</span> <span class="o">=</span> <span class="n">ann_frame</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pad_symbol</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span>
+        <span class="n">ann_frame</span> <span class="o">=</span> <span class="n">ann_frame</span> <span class="o">+</span> <span class="p">[</span><span class="n">pad_symbol</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">ann_frame</span><span class="p">))</span>
+    <span class="n">ann_seg_frame</span> <span class="o">=</span> <span class="n">convert_sequence_ann</span><span class="p">(</span><span class="n">ann_frame</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">num_chords</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord_labels</span><span class="p">)</span>
+    <span class="n">ann_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_chords</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">ann_frame</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="c1"># Generates a one-entry only for labels that are contained in &quot;chord_labels&quot;</span>
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">chord_labels</span><span class="p">:</span>
+            <span class="n">label_index</span> <span class="o">=</span> <span class="n">chord_labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+            <span class="n">ann_matrix</span><span class="p">[</span><span class="n">label_index</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">ann_matrix</span><span class="p">,</span> <span class="n">ann_frame</span><span class="p">,</span> <span class="n">ann_seg_frame</span><span class="p">,</span> <span class="n">ann_seg_ind</span><span class="p">,</span> <span class="n">ann_seg_sec</span></div>
+
+
+<div class="viewcode-block" id="compute_eval_measures"><a class="viewcode-back" href="../../../index_c5.html#libfmp.c5.c5s2_chord_rec_template.compute_eval_measures">[docs]</a><span class="k">def</span> <span class="nf">compute_eval_measures</span><span class="p">(</span><span class="n">I_ref</span><span class="p">,</span> <span class="n">I_est</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute evaluation measures including precision, recall, and F-measure</span>
+
+<span class="sd">    Notebook: C5/C5S2_ChordRec_Eval.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        I_ref (np.ndarray): Reference set of items</span>
+<span class="sd">        I_est (np.ndarray): Set of estimated items</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        P (float): Precision</span>
+<span class="sd">        R (float): Recall</span>
+<span class="sd">        F (float): F-measure</span>
+<span class="sd">        num_TP (int): Number of true positives</span>
+<span class="sd">        num_FN (int): Number of false negatives</span>
+<span class="sd">        num_FP (int): Number of false positives</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">I_ref</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">I_est</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;Dimension of input matrices must agree&quot;</span>
+    <span class="n">TP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">I_ref</span><span class="p">,</span> <span class="n">I_est</span><span class="p">))</span>
+    <span class="n">FP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">I_est</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-</span> <span class="n">TP</span>
+    <span class="n">FN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">I_ref</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-</span> <span class="n">TP</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">TP</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">TP</span> <span class="o">/</span> <span class="p">(</span><span class="n">TP</span> <span class="o">+</span> <span class="n">FP</span><span class="p">)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">TP</span> <span class="o">/</span> <span class="p">(</span><span class="n">TP</span> <span class="o">+</span> <span class="n">FN</span><span class="p">)</span>
+        <span class="n">F</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">P</span> <span class="o">*</span> <span class="n">R</span> <span class="o">/</span> <span class="p">(</span><span class="n">P</span> <span class="o">+</span> <span class="n">R</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="n">FP</span><span class="p">,</span> <span class="n">FN</span></div>
+
+
+<div class="viewcode-block" id="plot_matrix_chord_eval"><a class="viewcode-back" href="../../../index_c5.html#libfmp.c5.c5s2_chord_rec_template.plot_matrix_chord_eval">[docs]</a><span class="k">def</span> <span class="nf">plot_matrix_chord_eval</span><span class="p">(</span><span class="n">I_ref</span><span class="p">,</span> <span class="n">I_est</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Chord&#39;</span><span class="p">,</span>
+                           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">chord_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Plots TP-, FP-, and FN-items in a color-coded form in time–chord grid</span>
+
+<span class="sd">    Notebook: C5/C5S2_ChordRec_Eval.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        I_ref: Reference set of items</span>
+<span class="sd">        I_est: Set of estimated items</span>
+<span class="sd">        Fs: Feature rate (Default value = 1)</span>
+<span class="sd">        xlabel: Label for x-axis (Default value = &#39;Time (seconds)&#39;)</span>
+<span class="sd">        ylabel: Label for y-axis (Default value = &#39;Chord&#39;)</span>
+<span class="sd">        title: Title of figure (Default value = &#39;&#39;)</span>
+<span class="sd">        chord_labels: List of chord labels used for vertical axis (Default value = None)</span>
+<span class="sd">        ax: Array of axes (Default value = None)</span>
+<span class="sd">        grid: If &quot;True&quot; the plot grid (Default value = True)</span>
+<span class="sd">        figsize: Size of figure (if axes are not specified) (Default value = (9, 3.5))</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        fig: The created matplotlib figure or None if ax was given.</span>
+<span class="sd">        ax: The used axes</span>
+<span class="sd">        im: The image plot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="p">]</span>
+    <span class="n">I_TP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">I_ref</span><span class="p">,</span> <span class="n">I_est</span><span class="p">))</span>
+    <span class="n">I_FP</span> <span class="o">=</span> <span class="n">I_est</span> <span class="o">-</span> <span class="n">I_TP</span>
+    <span class="n">I_FN</span> <span class="o">=</span> <span class="n">I_ref</span> <span class="o">-</span> <span class="n">I_TP</span>
+    <span class="n">I_vis</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">I_TP</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">I_FN</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">I_FP</span>
+
+    <span class="n">eval_cmap</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+    <span class="n">eval_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span><span class="o">-</span><span class="mf">0.5</span>
+    <span class="n">eval_norm</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">BoundaryNorm</span><span class="p">(</span><span class="n">eval_bounds</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">eval_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+    <span class="n">T_coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">I_vis</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">F_coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">I_vis</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">x_ext1</span> <span class="o">=</span> <span class="p">(</span><span class="n">T_coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">T_coef</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">x_ext2</span> <span class="o">=</span> <span class="p">(</span><span class="n">T_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">T_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">y_ext1</span> <span class="o">=</span> <span class="p">(</span><span class="n">F_coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">F_coef</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">y_ext2</span> <span class="o">=</span> <span class="p">(</span><span class="n">F_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">F_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">T_coef</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_ext1</span><span class="p">,</span> <span class="n">T_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x_ext2</span><span class="p">,</span> <span class="n">F_coef</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_ext1</span><span class="p">,</span> <span class="n">F_coef</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">y_ext2</span><span class="p">]</span>
+
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">I_vis</span><span class="p">,</span>  <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">eval_cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">eval_norm</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">eval_cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">eval_norm</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="n">eval_bounds</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="n">eval_ticks</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">eval_cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">eval_norm</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="n">eval_bounds</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="n">eval_ticks</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s1">&#39;TN&#39;</span><span class="p">,</span> <span class="s1">&#39;FP&#39;</span><span class="p">,</span> <span class="s1">&#39;FN&#39;</span><span class="p">,</span> <span class="s1">&#39;TP&#39;</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">chord_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chord_labels</span><span class="p">)))</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">chord_labels</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">grid</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">im</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

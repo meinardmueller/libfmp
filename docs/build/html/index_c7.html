@@ -1,0 +1,852 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Content-Based Audio Retrieval (libfmp.c7) &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Musically Informed Audio Decomposition (libfmp.c8)" href="index_c8.html" />
+    <link rel="prev" title="Tempo and Beat Tracking (libfmp.c6)" href="index_c6.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Content-Based Audio Retrieval (libfmp.c7)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index_c7.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="content-based-audio-retrieval-libfmp-c7">
+<h1>Content-Based Audio Retrieval (libfmp.c7)<a class="headerlink" href="#content-based-audio-retrieval-libfmp-c7" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://www.audiolabs-erlangen.de/FMP">FMP notebooks</a> provide detailed textbook-like explanations of central techniques and algorithms implemented in the libfmp.
+The part of FMP related to this module is available at the following URL:</p>
+<p><a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7.html">https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7.html</a></p>
+<span class="target" id="module-libfmp.c7"></span><span class="target" id="module-libfmp.c7.c7s1_audio_id"></span><dl class="py function">
+<dt id="libfmp.c7.c7s1_audio_id.compute_constellation_map">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s1_audio_id.</span></code><code class="sig-name descname"><span class="pre">compute_constellation_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s1_audio_id.html#compute_constellation_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s1_audio_id.compute_constellation_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute constellation map (implementation using image processing)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S1_AudioIdentification.html">C7/C7S1_AudioIdentification.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Spectrogram (magnitude)</p></li>
+<li><p><strong>dist_freq</strong> (<em>int</em>) – Neighborhood parameter for frequency direction (kappa) (Default value = 7)</p></li>
+<li><p><strong>dist_time</strong> (<em>int</em>) – Neighborhood parameter for time direction (tau) (Default value = 7)</p></li>
+<li><p><strong>thresh</strong> (<em>float</em>) – Threshold parameter for minimal peak magnitude (Default value = 0.01)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Cmap</strong> (<em>np.ndarray</em>) – Boolean mask for peak structure (same size as Y)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s1_audio_id.compute_constellation_map_naive">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s1_audio_id.</span></code><code class="sig-name descname"><span class="pre">compute_constellation_map_naive</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s1_audio_id.html#compute_constellation_map_naive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s1_audio_id.compute_constellation_map_naive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute constellation map (naive implementation)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S1_AudioIdentification.html">C7/C7S1_AudioIdentification.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Spectrogram (magnitude)</p></li>
+<li><p><strong>dist_freq</strong> (<em>int</em>) – Neighborhood parameter for frequency direction (kappa) (Default value = 7)</p></li>
+<li><p><strong>dist_time</strong> (<em>int</em>) – Neighborhood parameter for time direction (tau) (Default value = 7)</p></li>
+<li><p><strong>thresh</strong> (<em>float</em>) – Threshold parameter for minimal peak magnitude (Default value = 0.01)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Cmap</strong> (<em>np.ndarray</em>) – Boolean mask for peak structure (same size as Y)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s1_audio_id.compute_matching_function">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s1_audio_id.</span></code><code class="sig-name descname"><span class="pre">compute_matching_function</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_Q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s1_audio_id.html#compute_matching_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s1_audio_id.compute_matching_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes matching function for constellation maps</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S1_AudioIdentification.html">C7/C7S1_AudioIdentification.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>C_D</strong> (<em>np.ndarray</em>) – Binary matrix used as dababase document</p></li>
+<li><p><strong>C_Q</strong> (<em>np.ndarray</em>) – Binary matrix used as query document</p></li>
+<li><p><strong>tol_freq</strong> (<em>int</em>) – Tolerance in frequency direction (vertical) (Default value = 1)</p></li>
+<li><p><strong>tol_time</strong> (<em>int</em>) – Tolerance in time direction (horizontal) (Default value = 1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Delta</strong> (<em>np.ndarray</em>) – Matching function</p></li>
+<li><p><strong>shift_max</strong> (<em>int</em>) – Optimal shift position maximizing Delta</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s1_audio_id.match_binary_matrices_tol">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s1_audio_id.</span></code><code class="sig-name descname"><span class="pre">match_binary_matrices_tol</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_est</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s1_audio_id.html#match_binary_matrices_tol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s1_audio_id.match_binary_matrices_tol" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Compare binary matrices with tolerance</div>
+<div class="line">Note: The tolerance parameters should be smaller than the minimum distance of
+peaks (1-entries in C_ref ad C_est) to obtain meaningful TP, FN, FP values</div>
+</div>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S1_AudioIdentification.html">C7/C7S1_AudioIdentification.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>C_ref</strong> (<em>np.ndarray</em>) – Binary matrix used as reference</p></li>
+<li><p><strong>C_est</strong> (<em>np.ndarray</em>) – Binary matrix used as estimation</p></li>
+<li><p><strong>tol_freq</strong> (<em>int</em>) – Tolerance in frequency direction (vertical) (Default value = 0)</p></li>
+<li><p><strong>tol_time</strong> (<em>int</em>) – Tolerance in time direction (horizontal) (Default value = 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TP</strong> (<em>int</em>) – True positives</p></li>
+<li><p><strong>FN</strong> (<em>int</em>) – False negatives</p></li>
+<li><p><strong>FP</strong> (<em>int</em>) – False positives</p></li>
+<li><p><strong>C_AND</strong> (<em>np.ndarray</em>) – Boolean mask of AND of C_ref and C_est (with tolerance)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s1_audio_id.plot_constellation_map">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s1_audio_id.</span></code><code class="sig-name descname"><span class="pre">plot_constellation_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(sample)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Frequency</span> <span class="pre">(bins)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'o'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">72</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s1_audio_id.html#plot_constellation_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s1_audio_id.plot_constellation_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot constellation map</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S1_AudioIdentification.html">C7/C7S1_AudioIdentification.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Cmap</strong> – Constellation map given as boolean mask for peak structure</p></li>
+<li><p><strong>Y</strong> – Spectrogram representation (Default value = None)</p></li>
+<li><p><strong>xlim</strong> – Limits for x-axis (Default value = None)</p></li>
+<li><p><strong>ylim</strong> – Limits for y-axis (Default value = None)</p></li>
+<li><p><strong>title</strong> – Title for plot (Default value = ‘’)</p></li>
+<li><p><strong>xlabel</strong> – Label for x-axis (Default value = ‘Time (sample)’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y-axis (Default value = ‘Frequency (bins)’)</p></li>
+<li><p><strong>s</strong> – Size of dots in scatter plot (Default value = 5)</p></li>
+<li><p><strong>color</strong> – Color used for scatter plot (Default value = ‘r’)</p></li>
+<li><p><strong>marker</strong> – Marker for peaks (Default value = ‘o’)</p></li>
+<li><p><strong>figsize</strong> – Width, height in inches (Default value = (7, 3))</p></li>
+<li><p><strong>dpi</strong> – Dots per inch (Default value = 72)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – The created matplotlib figure</p></li>
+<li><p><strong>ax</strong> – The used axes.</p></li>
+<li><p><strong>im</strong> – The image plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c7.c7s2_audio_matching"></span><dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.compute_accumulated_cost_matrix_subsequence_dtw">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">compute_accumulated_cost_matrix_subsequence_dtw</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#compute_accumulated_cost_matrix_subsequence_dtw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.compute_accumulated_cost_matrix_subsequence_dtw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the cost matrix, compute the accumulated cost matrix for
+subsequence dynamic time warping with step sizes {(1, 0), (0, 1), (1, 1)}</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_SubsequenceDTW.html">C7/C7S2_SubsequenceDTW.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>C</strong> (<em>np.ndarray</em>) – Cost matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated cost matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.compute_accumulated_cost_matrix_subsequence_dtw_21">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">compute_accumulated_cost_matrix_subsequence_dtw_21</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#compute_accumulated_cost_matrix_subsequence_dtw_21"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.compute_accumulated_cost_matrix_subsequence_dtw_21" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the cost matrix, compute the accumulated cost matrix for
+subsequence dynamic time warping with step sizes {(1, 1), (2, 1), (1, 2)}</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_SubsequenceDTW.html">C7/C7S2_SubsequenceDTW.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>C</strong> (<em>np.ndarray</em>) – Cost matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated cost matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.compute_cens_from_chromagram">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">compute_cens_from_chromagram</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">41</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#compute_cens_from_chromagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.compute_cens_from_chromagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute CENS features from chromagram</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_CENS.html">C7/C7S2_CENS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>C</strong> (<em>np.ndarray</em>) – Input chromagram</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Feature rate of chromagram (Default value = 1)</p></li>
+<li><p><strong>ell</strong> (<em>int</em>) – Smoothing length (Default value = 41)</p></li>
+<li><p><strong>d</strong> (<em>int</em>) – Downsampling factor (Default value = 10)</p></li>
+<li><p><strong>quant</strong> (<em>bool</em>) – Apply quantization (Default value = True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>C_CENS</strong> (<em>np.ndarray</em>) – CENS features</p></li>
+<li><p><strong>Fs_CENS</strong> (<em>scalar</em>) – Feature rate of CENS features</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.compute_cens_from_file">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">compute_cens_from_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_wav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4410</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2205</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">21</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#compute_cens_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.compute_cens_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute CENS features from file</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_AudioMatching.html">C7/C7S2_AudioMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_wav</strong> (<em>str</em>) – Filename of wav file</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Feature rate of wav file (Default value = 22050)</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size for STFT (Default value = 4410)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hope size for STFT (Default value = 2205)</p></li>
+<li><p><strong>ell</strong> (<em>int</em>) – Smoothing length (Default value = 21)</p></li>
+<li><p><strong>d</strong> (<em>int</em>) – Downsampling factor (Default value = 5)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>X_CENS</strong> (<em>np.ndarray</em>) – CENS features</p></li>
+<li><p><strong>L</strong> (<em>int</em>) – Length of CENS feature sequence</p></li>
+<li><p><strong>Fs_CENS</strong> (<em>scalar</em>) – Feature rate of CENS features</p></li>
+<li><p><strong>x_duration</strong> (<em>float</em>) – Duration (seconds) of wav file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.compute_matching_function_dtw">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">compute_matching_function_dtw</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stepsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#compute_matching_function_dtw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.compute_matching_function_dtw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute CENS features from file</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_AudioMatching.html">C7/C7S2_AudioMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Query feature sequence (given as K x N matrix)</p></li>
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Database feature sequence (given as K x M matrix)</p></li>
+<li><p><strong>stepsize</strong> (<em>int</em>) – Parameter for step size condition (1 or 2) (Default value = 2)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Delta</strong> (<em>np.ndarray</em>) – DTW-based matching function</p></li>
+<li><p><strong>C</strong> (<em>np.ndarray</em>) – Cost matrix</p></li>
+<li><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated cost matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.compute_matching_function_dtw_ti">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">compute_matching_function_dtw_ti</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.arange(12)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stepsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#compute_matching_function_dtw_ti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.compute_matching_function_dtw_ti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute transposition-invariant matching function</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_AudioMatching.html">C7/C7S2_AudioMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Query feature sequence (given as K x N matrix)</p></li>
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Database feature sequence (given as K x M matrix)</p></li>
+<li><p><strong>cyc</strong> (<em>np.nda</em><em>(</em><em>rray</em>) – Set of cyclic shift indices to be considered (Default value = np.arange(12))</p></li>
+<li><p><strong>stepsize</strong> (<em>int</em>) – Parameter for step size condition (1 or 2) (Default value = 2)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Delta_TI</strong> (<em>np.ndarray</em>) – Transposition-invariant matching function</p></li>
+<li><p><strong>Delta_ind</strong> (<em>np.ndarray</em>) – Cost-minimizing indices</p></li>
+<li><p><strong>Delta_cyc</strong> (<em>np.ndarray</em>) – Array containing all matching functions</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.compute_optimal_warping_path_subsequence_dtw">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">compute_optimal_warping_path_subsequence_dtw</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#compute_optimal_warping_path_subsequence_dtw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.compute_optimal_warping_path_subsequence_dtw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an accumulated cost matrix, compute the warping path for
+subsequence dynamic time warping with step sizes {(1, 0), (0, 1), (1, 1)}</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_SubsequenceDTW.html">C7/C7S2_SubsequenceDTW.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated cost matrix</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – Index to start back tracking; if set to -1, optimal m is used (Default value = -1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>P</strong> (<em>np.ndarray</em>) – Optimal warping path (array of index pairs)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.compute_optimal_warping_path_subsequence_dtw_21">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">compute_optimal_warping_path_subsequence_dtw_21</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#compute_optimal_warping_path_subsequence_dtw_21"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.compute_optimal_warping_path_subsequence_dtw_21" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an accumulated cost matrix, compute the warping path for
+subsequence dynamic time warping with step sizes {(1, 1), (2, 1), (1, 2)}</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_SubsequenceDTW.html">C7/C7S2_SubsequenceDTW.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated cost matrix</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – Index to start back tracking; if set to -1, optimal m is used (Default value = -1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>P</strong> (<em>np.ndarray</em>) – Optimal warping path (array of index pairs)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.cost_matrix_dot">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">cost_matrix_dot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#cost_matrix_dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.cost_matrix_dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes cost matrix via dot product</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_DiagonalMatching.html">C7/C7S2_DiagonalMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – First sequence (K x N matrix)</p></li>
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Second sequence (K x M matrix)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>C</strong> (<em>np.ndarray</em>) – Cost matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.matches_diag">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">matches_diag</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#matches_diag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.matches_diag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derives matches from positions in the case of diagonal matching</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_DiagonalMatching.html">C7/C7S2_DiagonalMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> (<em>np.ndarray</em><em> or </em><em>list</em>) – Starting positions of matches</p></li>
+<li><p><strong>Delta_N</strong> (<em>int</em><em> or </em><em>np.ndarray</em><em> or </em><em>list</em>) – Length of match (a single number or a list of same length as Delta)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>matches</strong> (<em>np.ndarray</em>) – Array containing matches (start, end)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.matches_dtw">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">matches_dtw</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stepsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#matches_dtw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.matches_dtw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derives matches from positions for DTW-based strategy</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_AudioMatching.html">C7/C7S2_AudioMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> (<em>np.ndarray</em>) – End positions of matches</p></li>
+<li><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated cost matrix</p></li>
+<li><p><strong>stepsize</strong> (<em>int</em>) – Parameter for step size condition (1 or 2) (Default value = 2)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>matches</strong> (<em>np.ndarray</em>) – Array containing matches (start, end)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.matching_function_diag">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">matching_function_diag</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyclic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#matching_function_diag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.matching_function_diag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes diagonal matching function</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_DiagonalMatching.html">C7/C7S2_DiagonalMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>C</strong> (<em>np.ndarray</em>) – Cost matrix</p></li>
+<li><p><strong>cyclic</strong> (<em>bool</em>) – If “True” then matching is done cyclically (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Delta</strong> (<em>np.ndarray</em>) – Matching function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.matching_function_diag_multiple">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">matching_function_diag_multiple</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_rel_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyclic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#matching_function_diag_multiple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.matching_function_diag_multiple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes diagonal matching function using multiple query strategy</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_DiagonalMatching.html">C7/C7S2_DiagonalMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – First sequence (K x N matrix)</p></li>
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – Second sequence (K x M matrix)</p></li>
+<li><p><strong>tempo_rel_set</strong> (<em>np.ndarray</em>) – Set of relative tempo values (scaling) (Default value = [1])</p></li>
+<li><p><strong>cyclic</strong> (<em>bool</em>) – If “True” then matching is done cyclically (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Delta_min</strong> (<em>np.ndarray</em>) – Matching function (obtained by from minimizing over several matching functions)</p></li>
+<li><p><strong>Delta_N</strong> (<em>np.ndarray</em>) – Query length of best match for each time position</p></li>
+<li><p><strong>Delta_scale</strong> (<em>np.ndarray</em>) – Set of matching functions (for each of the scaled versions of the query)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.mininma_from_matching_function">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">mininma_from_matching_function</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#mininma_from_matching_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.mininma_from_matching_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derives local minima positions of matching function in an iterative fashion</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_DiagonalMatching.html">C7/C7S2_DiagonalMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Delta</strong> (<em>np.ndarray</em>) – Matching function</p></li>
+<li><p><strong>rho</strong> (<em>int</em>) – Parameter to exclude neighborhood of a matching position for subsequent matches (Default value = 2)</p></li>
+<li><p><strong>tau</strong> (<em>float</em>) – Threshold for maximum Delta value allowed for matches (Default value = 0.2)</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – Maximum number of matches (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>pos</strong> (<em>np.ndarray</em>) – Array of local minima</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.plot_matches">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">plot_matches</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matches</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'o'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#plot_matches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.plot_matches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots matches into existing axis</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_DiagonalMatching.html">C7/C7S2_DiagonalMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – Axis</p></li>
+<li><p><strong>matches</strong> – Array of matches (start, end)</p></li>
+<li><p><strong>Delta</strong> – Matching function</p></li>
+<li><p><strong>Fs</strong> – Feature rate (Default value = 1)</p></li>
+<li><p><strong>alpha</strong> – Transparency pramaeter for match visualization (Default value = 0.2)</p></li>
+<li><p><strong>color</strong> – Color used to indicated matches (Default value = ‘r’)</p></li>
+<li><p><strong>s_marker</strong> – Marker used to indicate start of matches (Default value = ‘o’)</p></li>
+<li><p><strong>t_marker</strong> – Marker used to indicate end of matches (Default value = ‘’)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.quantize_matrix">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">quantize_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_fct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#quantize_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.quantize_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quantize matrix values in a logarithmic manner (as done for CENS features)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_CENS.html">C7/C7S2_CENS.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>C</strong> (<em>np.ndarray</em>) – Input matrix</p></li>
+<li><p><strong>quant_fct</strong> (<em>list</em>) – List specifying the quantization function (Default value = None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>C_quant</strong> (<em>np.ndarray</em>) – Output matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s2_audio_matching.scale_tempo_sequence">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s2_audio_matching.</span></code><code class="sig-name descname"><span class="pre">scale_tempo_sequence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s2_audio_matching.html#scale_tempo_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s2_audio_matching.scale_tempo_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scales a sequence (given as feature matrix) along time (second dimension)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S2_DiagonalMatching.html">C7/C7S2_DiagonalMatching.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Feature sequences (given as K x N matrix)</p></li>
+<li><p><strong>factor</strong> (<em>float</em>) – Scaling factor (resulting in length “round(factor * N)””) (Default value = 1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>X_new</strong> (<em>np.ndarray</em>) – Scaled feature sequence</p></li>
+<li><p><strong>N_new</strong> (<em>int</em>) – Length of scaled feature sequence</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c7.c7s3_version_id"></span><dl class="py function">
+<dt id="libfmp.c7.c7s3_version_id.compute_accumulated_score_matrix_common_subsequence">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s3_version_id.</span></code><code class="sig-name descname"><span class="pre">compute_accumulated_score_matrix_common_subsequence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s3_version_id.html#compute_accumulated_score_matrix_common_subsequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s3_version_id.compute_accumulated_score_matrix_common_subsequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the score matrix, compute the accumulated score matrix
+for common subsequence matching with step sizes {(1, 0), (0, 1), (1, 1)}</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S3_CommonSubsequence.html">C7/C7S3_CommonSubsequence.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> (<em>np.ndarray</em>) – Score matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated score matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s3_version_id.compute_optimal_path_common_subsequence">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s3_version_id.</span></code><code class="sig-name descname"><span class="pre">compute_optimal_path_common_subsequence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s3_version_id.html#compute_optimal_path_common_subsequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s3_version_id.compute_optimal_path_common_subsequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an accumulated score matrix, compute the score-maximizing path
+for common subsequence matching with step sizes {(1, 0), (0, 1), (1, 1)}</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S3_CommonSubsequence.html">C7/C7S3_CommonSubsequence.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated score matrix</p></li>
+<li><p><strong>cellmax</strong> (<em>bool</em>) – If “True”, score-maximizing cell will be computed (Default value = True)</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – Index (first axis) of cell for backtracking start; only used when cellmax=False (Default value = 0)</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – Index (second axis) of cell for backtracking start; only used when cellmax=False (Default value = 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>P</strong> (<em>np.ndarray</em>) – Score-maximizing path (array of index pairs)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s3_version_id.compute_partial_matching">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s3_version_id.</span></code><code class="sig-name descname"><span class="pre">compute_partial_matching</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s3_version_id.html#compute_partial_matching"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s3_version_id.compute_partial_matching" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the score matrix, compute the accumulated score matrix
+for partial matching</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S3_CommonSubsequence.html">C7/C7S3_CommonSubsequence.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> (<em>np.ndarray</em>) – Score matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>D</strong> (<em>np.ndarray</em>) – Accumulated score matrix</p></li>
+<li><p><strong>P</strong> (<em>np.ndarray</em>) – Partial match (array of index pairs)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s3_version_id.compute_prf_metrics">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s3_version_id.</span></code><code class="sig-name descname"><span class="pre">compute_prf_metrics</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">I</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I_Q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s3_version_id.html#compute_prf_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s3_version_id.compute_prf_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute precision, recall, F-measures and other
+evaluation metrics for document-level retrieval</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S3_Evaluation.html">C7/C7S3_Evaluation.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>I</strong> (<em>np.ndarray</em>) – Array of items</p></li>
+<li><p><strong>score</strong> (<em>np.ndarray</em>) – Array containing the score values of the times</p></li>
+<li><p><strong>I_Q</strong> (<em>np.ndarray</em>) – Array of relevant (positive) items</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>P_Q</strong> (<em>float</em>) – Precision</p></li>
+<li><p><strong>R_Q</strong> (<em>float</em>) – Recall</p></li>
+<li><p><strong>F_Q</strong> (<em>float</em>) – F-measures sorted by rank</p></li>
+<li><p><strong>BEP</strong> (<em>float</em>) – Break-even point</p></li>
+<li><p><strong>F_max</strong> (<em>float</em>) – Maximal F-measure</p></li>
+<li><p><strong>P_average</strong> (<em>float</em>) – Mean average</p></li>
+<li><p><strong>X_Q</strong> (<em>np.ndarray</em>) – Relevance function</p></li>
+<li><p><strong>rank</strong> (<em>np.ndarray</em>) – Array of rank values</p></li>
+<li><p><strong>I_sorted</strong> (<em>np.ndarray</em>) – Array of items sorted by rank</p></li>
+<li><p><strong>rank_sorted</strong> (<em>np.ndarray</em>) – Array of rank values sorted by rank</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s3_version_id.compute_sm_from_wav">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s3_version_id.</span></code><code class="sig-name descname"><span class="pre">compute_sm_from_wav</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4410</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2205</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">21</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L_smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_rel_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array([0.66,</span> <span class="pre">0.81,</span> <span class="pre">1,</span> <span class="pre">1.22,</span> <span class="pre">1.5])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array([0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'relative'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">penalty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binarize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s3_version_id.html#compute_sm_from_wav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s3_version_id.compute_sm_from_wav" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a similarity matrix (SM)</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S3_VersionIdentification.html">C7/C7S3_VersionIdentification.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x1</strong> (<em>np.ndarray</em>) – First signal</p></li>
+<li><p><strong>x2</strong> (<em>np.ndarray</em>) – Second signal</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate of WAV files</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Window size for computing STFT-based chroma features (Default value = 4410)</p></li>
+<li><p><strong>H</strong> (<em>int</em>) – Hop size for computing STFT-based chroma features (Default value = 2205)</p></li>
+<li><p><strong>ell</strong> (<em>int</em>) – Smoothing length for computing CENS features (Default value = 21)</p></li>
+<li><p><strong>d</strong> (<em>int</em>) – Downsampling factor for computing CENS features (Default value = 5)</p></li>
+<li><p><strong>L_smooth</strong> (<em>int</em>) – Length of filter for enhancing SM (Default value = 12)</p></li>
+<li><p><strong>tempo_rel_set</strong> (<em>np.ndarray</em>) – Set of relative tempo values for enhancing SM
+(Default value = np.array([0.66, 0.81, 1, 1.22, 1.5]))</p></li>
+<li><p><strong>shift_set</strong> (<em>np.ndarray</em>) – Set of shift indices for enhancing SM (Default value = np.array([0]))</p></li>
+<li><p><strong>strategy</strong> (<em>str</em>) – Thresholding strategy for thresholding SM (‘absolute’, ‘relative’, ‘local’)
+(Default value = ‘relative’)</p></li>
+<li><p><strong>scale</strong> (<em>bool</em>) – If scale=True, then scaling of positive values to range [0,1] for thresholding SM
+(Default value = True)</p></li>
+<li><p><strong>thresh</strong> (<em>float</em>) – Treshold (meaning depends on strategy) (Default value = 0.15)</p></li>
+<li><p><strong>penalty</strong> (<em>float</em>) – Set values below treshold to value specified (Default value = -2.0)</p></li>
+<li><p><strong>binarize</strong> (<em>bool</em>) – Binarizes final matrix (positive: 1; otherwise: 0) (Default value = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – CENS feature sequence for first signal</p></li>
+<li><p><strong>Y</strong> (<em>np.ndarray</em>) – CENS feature sequence for second signal</p></li>
+<li><p><strong>Fs_feature</strong> (<em>scalar</em>) – Feature rate</p></li>
+<li><p><strong>S_thresh</strong> (<em>np.ndarray</em>) – Similarity matrix</p></li>
+<li><p><strong>I</strong> (<em>np.ndarray</em>) – Index matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c7.c7s3_version_id.get_induced_segments">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c7.c7s3_version_id.</span></code><code class="sig-name descname"><span class="pre">get_induced_segments</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c7/c7s3_version_id.html#get_induced_segments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c7.c7s3_version_id.get_induced_segments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a path, compute the induces segments</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C7/C7S3_CommonSubsequence.html">C7/C7S3_CommonSubsequence.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>P</strong> (<em>np.ndarray</em>) – Path (list of index pairs)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>seg_X</strong> (<em>np.ndarray</em>) – Induced segment of first sequence</p></li>
+<li><p><strong>seg_Y</strong> (<em>np.ndarray</em>) – Induced segment of second sequence</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="index_c8.html" class="btn btn-neutral float-right" title="Musically Informed Audio Decomposition (libfmp.c8)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index_c6.html" class="btn btn-neutral float-left" title="Tempo and Beat Tracking (libfmp.c6)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

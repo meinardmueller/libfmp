@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Music Representations (libfmp.c1) &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Fourier Analysis of Signals (libfmp.c2)" href="index_c2.html" />
+    <link rel="prev" title="Basics (libfmp.b)" href="index_b.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Music Representations (libfmp.c1)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index_c1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="music-representations-libfmp-c1">
+<h1>Music Representations (libfmp.c1)<a class="headerlink" href="#music-representations-libfmp-c1" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://www.audiolabs-erlangen.de/FMP">FMP notebooks</a> provide detailed textbook-like explanations of central techniques and algorithms implemented in the libfmp.
+The part of FMP related to this module is available at the following URL:</p>
+<p><a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1.html">https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1.html</a></p>
+<span class="target" id="module-libfmp.c1"></span><span class="target" id="module-libfmp.c1.c1s1_sheet_music"></span><dl class="py function">
+<dt id="libfmp.c1.c1s1_sheet_music.generate_chirp_exp_octave">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s1_sheet_music.</span></code><code class="sig-name descname"><span class="pre">generate_chirp_exp_octave</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">440</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">44100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s1_sheet_music.html#generate_chirp_exp_octave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s1_sheet_music.generate_chirp_exp_octave" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate one octave of a chirp with exponential frequency increase</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S1_ChromaShepard.html">C1/C1S1_ChromaShepard.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>freq_start</strong> (<em>float</em>) – Start frequency of chirp (Default value = 440)</p></li>
+<li><p><strong>dur</strong> (<em>float</em>) – Duration (in seconds) (Default value = 8)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 44100)</p></li>
+<li><p><strong>amp</strong> (<em>float</em>) – Amplitude of generated signal (Default value = 1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Chirp signal</p></li>
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s1_sheet_music.generate_shepard_glissando">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s1_sheet_music.</span></code><code class="sig-name descname"><span class="pre">generate_shepard_glissando</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_octaves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur_octave</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">44100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s1_sheet_music.html#generate_shepard_glissando"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s1_sheet_music.generate_shepard_glissando" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate several ocatves of a Shepared glissando</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S1_ChromaShepard.html">C1/C1S1_ChromaShepard.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_octaves</strong> (<em>int</em>) – Number of octaves (Default value = 3)</p></li>
+<li><p><strong>dur_octave</strong> (<em>int</em>) – Duration (in seconds) per octave (Default value = 8)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 44100)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Shepared glissando</p></li>
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s1_sheet_music.generate_shepard_tone">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s1_sheet_music.</span></code><code class="sig-name descname"><span class="pre">generate_shepard_tone</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">440</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">44100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s1_sheet_music.html#generate_shepard_tone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s1_sheet_music.generate_shepard_tone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate Shepard tone</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S1_ChromaShepard.html">C1/C1S1_ChromaShepard.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>freq</strong> (<em>float</em>) – Frequency of Shepard tone (Default value = 440)</p></li>
+<li><p><strong>dur</strong> (<em>float</em>) – Duration (in seconds) (Default value = 0.5)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 44100)</p></li>
+<li><p><strong>amp</strong> (<em>float</em>) – Amplitude of generated signal (Default value = 1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Shepard tone</p></li>
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s1_sheet_music.generate_sinusoid_pitches">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s1_sheet_music.</span></code><code class="sig-name descname"><span class="pre">generate_sinusoid_pitches</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[69]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s1_sheet_music.html#generate_sinusoid_pitches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s1_sheet_music.generate_sinusoid_pitches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generation of sinusoids for a given list of MIDI pitches</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S1_MusicalNotesPitches.html">C1/C1S1_MusicalNotesPitches.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pitches</strong> (<em>list</em>) – List of MIDI pitches (Default value = [69])</p></li>
+<li><p><strong>dur</strong> (<em>float</em>) – Duration (in seconds) of each sinusoid (Default value = 0.5)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 4000)</p></li>
+<li><p><strong>amp</strong> (<em>float</em>) – Amplitude of generated signal (Default value = 1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal</p></li>
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c1.c1s2_symbolic_rep"></span><dl class="py function">
+<dt id="libfmp.c1.c1s2_symbolic_rep.csv_to_list">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s2_symbolic_rep.</span></code><code class="sig-name descname"><span class="pre">csv_to_list</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s2_symbolic_rep.html#csv_to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s2_symbolic_rep.csv_to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a csv score file to a list of note events</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S2_CSV.html">C1/C1S2_CSV.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>csv</strong> (<em>str</em><em> or </em><em>pd.DataFrame</em>) – Either a path to a csv file or a data frame</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>score</strong> (<em>list</em>) – A list of note events where each note is specified as
+<code class="docutils literal notranslate"><span class="pre">[start,</span> <span class="pre">duration,</span> <span class="pre">pitch,</span> <span class="pre">velocity,</span> <span class="pre">label]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s2_symbolic_rep.list_to_csv">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s2_symbolic_rep.</span></code><code class="sig-name descname"><span class="pre">list_to_csv</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn_out</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s2_symbolic_rep.html#list_to_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s2_symbolic_rep.list_to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a list of note events to a csv file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>score</strong> (<em>list</em>) – List of note events</p></li>
+<li><p><strong>fn_out</strong> (<em>str</em>) – The path of the csv file to be created</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s2_symbolic_rep.midi_to_list">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s2_symbolic_rep.</span></code><code class="sig-name descname"><span class="pre">midi_to_list</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">midi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s2_symbolic_rep.html#midi_to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s2_symbolic_rep.midi_to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a midi file to a list of note events</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S2_MIDI.html">C1/C1S2_MIDI.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>midi</strong> (<em>str</em><em> or </em><em>pretty_midi.pretty_midi.PrettyMIDI</em>) – Either a path to a midi file or PrettyMIDI object</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>score</strong> (<em>list</em>) – A list of note events where each note is specified as
+<code class="docutils literal notranslate"><span class="pre">[start,</span> <span class="pre">duration,</span> <span class="pre">pitch,</span> <span class="pre">velocity,</span> <span class="pre">label]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s2_symbolic_rep.visualize_piano_roll">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s2_symbolic_rep.</span></code><code class="sig-name descname"><span class="pre">visualize_piano_roll</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">(seconds)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Pitch'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FMP_1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">72</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s2_symbolic_rep.html#visualize_piano_roll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s2_symbolic_rep.visualize_piano_roll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a pianoroll visualization</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S2_CSV.html">C1/C1S2_CSV.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>score</strong> – List of note events</p></li>
+<li><p><strong>xlabel</strong> – Label for x axis (Default value = ‘Time (seconds)’)</p></li>
+<li><p><strong>ylabel</strong> – Label for y axis (Default value = ‘Pitch’)</p></li>
+<li><p><strong>colors</strong> – Several options: 1. string of FMP_COLORMAPS, 2. string of matplotlib colormap,
+3. list or np.ndarray of matplotlib color specifications,
+4. dict that assigns labels  to colors (Default value = ‘FMP_1’)</p></li>
+<li><p><strong>velocity_alpha</strong> – Use the velocity value for the alpha value of the corresponding rectangle
+(Default value = False)</p></li>
+<li><p><strong>figsize</strong> – Width, height in inches (Default value = (12)</p></li>
+<li><p><strong>ax</strong> – The Axes instance to plot on (Default value = None)</p></li>
+<li><p><strong>dpi</strong> – Dots per inch (Default value = 72)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fig</strong> – The created matplotlib figure or None if ax was given.</p></li>
+<li><p><strong>ax</strong> – The used axes</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s2_symbolic_rep.xml_to_list">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s2_symbolic_rep.</span></code><code class="sig-name descname"><span class="pre">xml_to_list</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s2_symbolic_rep.html#xml_to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s2_symbolic_rep.xml_to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a music xml file to a list of note events</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S2_MusicXML.html">C1/C1S2_MusicXML.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>xml</strong> (<em>str</em><em> or </em><em>music21.stream.Score</em>) – Either a path to a music xml file or a music21.stream.Score</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>score</strong> (<em>list</em>) – A list of note events where each note is specified as
+<code class="docutils literal notranslate"><span class="pre">[start,</span> <span class="pre">duration,</span> <span class="pre">pitch,</span> <span class="pre">velocity,</span> <span class="pre">label]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-libfmp.c1.c1s3_audio_rep"></span><dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.compute_adsr">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">compute_adsr</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">len_A</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">len_D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">len_S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">len_R</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_A</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#compute_adsr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.compute_adsr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computation of idealized ADSR model</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Timbre.html">C1/C1S3_Timbre.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>len_A</strong> (<em>int</em>) – Length (samples) of A phase (Default value = 10)</p></li>
+<li><p><strong>len_D</strong> (<em>int</em>) – Length (samples) of D phase (Default value = 10)</p></li>
+<li><p><strong>len_S</strong> (<em>int</em>) – Length (samples) of S phase (Default value = 60)</p></li>
+<li><p><strong>len_R</strong> (<em>int</em>) – Length (samples) of R phase (Default value = 10)</p></li>
+<li><p><strong>height_A</strong> (<em>float</em>) – Height of A phase (Default value = 1.0)</p></li>
+<li><p><strong>height_S</strong> (<em>float</em>) – Height of S phase (Default value = 0.5)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>curve_ADSR</strong> (<em>np.ndarray</em>) – ADSR model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.compute_envelope">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">compute_envelope</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_len_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#compute_envelope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.compute_envelope" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computation of a signal’s envelopes</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Timbre.html">C1/C1S3_Timbre.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal (waveform) to be analyzed</p></li>
+<li><p><strong>win_len_sec</strong> (<em>float</em>) – Length (seconds) of the window (Default value = 0.01)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 4000)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>env</strong> (<em>np.ndarray</em>) – Magnitude envelope</p></li>
+<li><p><strong>env_upper</strong> (<em>np.ndarray</em>) – Upper envelope</p></li>
+<li><p><strong>env_lower</strong> (<em>np.ndarray</em>) – Lower envelope</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.compute_equal_loudness_contour">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">compute_equal_loudness_contour</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#compute_equal_loudness_contour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.compute_equal_loudness_contour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computation of the equal loudness contour</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Dynamics.html">C1/C1S3_Dynamics.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>freq_min</strong> (<em>float</em>) – Lowest frequency to be evaluated (Default value = 30)</p></li>
+<li><p><strong>freq_max</strong> (<em>float</em>) – Highest frequency to be evaluated (Default value = 15000)</p></li>
+<li><p><strong>num_points</strong> (<em>int</em>) – Number of evaluation points (Default value = 100)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>equal_loudness_contour</strong> (<em>np.ndarray</em>) – Equal loudness contour (in dB)</p></li>
+<li><p><strong>freq_range</strong> (<em>np.ndarray</em>) – Evaluated frequency points</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.compute_plot_envelope">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">compute_plot_envelope</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_len_sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#compute_plot_envelope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.compute_plot_envelope" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computation and subsequent plotting of a signal’s envelope</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Timbre.html">C1/C1S3_Timbre.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal (waveform) to be analyzed</p></li>
+<li><p><strong>win_len_sec</strong> (<em>float</em>) – Length (seconds) of the window</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Size of the figure (Default value = (6, 3))</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – Title of the figure (Default value = ‘’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig</strong> (<em>mpl.figure.Figure</em>) – Generated figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.compute_power_db">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">compute_power_db</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_len_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span> <span class="pre">**</span> <span class="pre">-</span> <span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#compute_power_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.compute_power_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computation of the signal power in dB</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Dynamics.html">C1/C1S3_Dynamics.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal (waveform) to be analyzed</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
+<li><p><strong>win_len_sec</strong> (<em>float</em>) – Length (seconds) of the window (Default value = 0.1)</p></li>
+<li><p><strong>power_ref</strong> (<em>float</em>) – Reference power level (0 dB) (Default value = 10**(-12))</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>power_db</strong> (<em>np.ndarray</em>) – Signal power in dB</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.difference_cents">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">difference_cents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#difference_cents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.difference_cents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Difference between two frequency values specified in cents</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_FrequencyPitch.html">C1/C1S3_FrequencyPitch.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>freq_1</strong> (<em>float</em>) – First frequency</p></li>
+<li><p><strong>freq_2</strong> (<em>float</em>) – Second frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>delta</strong> (<em>float</em>) – Difference in cents</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.f_pitch">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">f_pitch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#f_pitch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.f_pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute center frequency for (single or array of) MIDI note numbers</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_FrequencyPitch.html">C1/C1S3_FrequencyPitch.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>float</em><em> or </em><em>np.ndarray</em>) – MIDI note numbers</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>freq_center</strong> (<em>float or np.ndarray</em>) – Center frequency</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.generate_chirp_exp">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">generate_chirp_exp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dur</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#generate_chirp_exp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.generate_chirp_exp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generation chirp with exponential frequency increase</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Dynamics.html">C1/C1S3_Dynamics.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dur</strong> (<em>float</em>) – Length (seconds) of the signal</p></li>
+<li><p><strong>freq_start</strong> (<em>float</em>) – Start frequency of the chirp</p></li>
+<li><p><strong>freq_end</strong> (<em>float</em>) – End frequency of the chirp</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 22050)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Generated chirp signal</p></li>
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
+<li><p><strong>freq</strong> (<em>np.ndarray</em>) – Instant frequency (in Hz)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.generate_chirp_exp_equal_loudness">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">generate_chirp_exp_equal_loudness</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dur</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#generate_chirp_exp_equal_loudness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.generate_chirp_exp_equal_loudness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generation chirp with exponential frequency increase and equal loudness</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Dynamics.html">C1/C1S3_Dynamics.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dur</strong> (<em>float</em>) – Length (seconds) of the signal</p></li>
+<li><p><strong>freq_start</strong> (<em>float</em>) – Starting frequency of the chirp</p></li>
+<li><p><strong>freq_end</strong> (<em>float</em>) – End frequency of the chirp</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 22050)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Generated chirp signal</p></li>
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
+<li><p><strong>freq</strong> (<em>np.ndarray</em>) – Instant frequency (in Hz)</p></li>
+<li><p><strong>intensity</strong> (<em>np.ndarray</em>) – Instant intensity of the signal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.generate_sinusoid">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">generate_sinusoid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#generate_sinusoid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.generate_sinusoid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generation of sinusoid</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_FrequencyPitch.html">C1/C1S3_FrequencyPitch.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dur</strong> (<em>float</em>) – Duration (in seconds) (Default value = 5)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 1000)</p></li>
+<li><p><strong>amp</strong> (<em>float</em>) – Amplitude of sinusoid (Default value = 1)</p></li>
+<li><p><strong>freq</strong> (<em>float</em>) – Frequency of sinusoid (Default value = 1)</p></li>
+<li><p><strong>phase</strong> (<em>float</em>) – Phase of sinusoid (Default value = 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal</p></li>
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.generate_sinusoid_tremolo">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">generate_sinusoid_tremolo</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">440</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trem_amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trem_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#generate_sinusoid_tremolo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.generate_sinusoid_tremolo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generation of a sinusoid signal with tremolo</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Timbre.html">C1/C1S3_Timbre.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dur</strong> (<em>float</em>) – Duration (in seconds) (Default value = 5)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 1000)</p></li>
+<li><p><strong>amp</strong> (<em>float</em>) – Amplitude of sinusoid (Default value = 0.5)</p></li>
+<li><p><strong>freq</strong> (<em>float</em>) – Frequency (Hz) of sinusoid (Default value = 440)</p></li>
+<li><p><strong>trem_amp</strong> (<em>float</em>) – Amplitude of the amplitude oscillation (Default value = 0.1)</p></li>
+<li><p><strong>trem_rate</strong> (<em>float</em>) – Rate (Hz) of the amplitude oscillation (Default value = 5)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Generated signal</p></li>
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.generate_sinusoid_vibrato">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">generate_sinusoid_vibrato</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">440</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vib_amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vib_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#generate_sinusoid_vibrato"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.generate_sinusoid_vibrato" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generation of a sinusoid signal with vibrato</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Timbre.html">C1/C1S3_Timbre.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dur</strong> (<em>float</em>) – Duration (in seconds) (Default value = 5)</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 1000)</p></li>
+<li><p><strong>amp</strong> (<em>float</em>) – Amplitude of sinusoid (Default value = 0.5)</p></li>
+<li><p><strong>freq</strong> (<em>float</em>) – Frequency (Hz) of sinusoid (Default value = 440)</p></li>
+<li><p><strong>vib_amp</strong> (<em>float</em>) – Amplitude (Hz) of the frequency oscillation (Default value = 1)</p></li>
+<li><p><strong>vib_rate</strong> (<em>float</em>) – Rate (Hz) of the frequency oscillation (Default value = 5)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Generated signal</p></li>
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.generate_tone">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">generate_tone</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_harmonic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.ones([16,</span> <span class="pre">1])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#generate_tone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.generate_tone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generation of a tone with harmonics</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Timbre.html">C1/C1S3_Timbre.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<em>float</em>) – MIDI pitch of the tone (Default value = 60)</p></li>
+<li><p><strong>weight_harmonic</strong> (<em>np.ndarray</em>) – Weights for the different harmonics (Default value = np.ones([16, 1])</p></li>
+<li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling frequency (Default value = 11025)</p></li>
+<li><p><strong>dur</strong> (<em>float</em>) – Duration (seconds) of the signal (Default value = 2)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Generated signal</p></li>
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="libfmp.c1.c1s3_audio_rep.plot_spectrogram">
+<code class="sig-prename descclassname"><span class="pre">libfmp.c1.c1s3_audio_rep.</span></code><code class="sig-name descname"><span class="pre">plot_spectrogram</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4096</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(4,</span> <span class="pre">2)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c1/c1s3_audio_rep.html#plot_spectrogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c1.c1s3_audio_rep.plot_spectrogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computation and subsequent plotting of the spectrogram of a signal</p>
+<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C1/C1S3_Timbre.html">C1/C1S3_Timbre.ipynb</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Signal (waveform) to be analyzed</p></li>
+<li><p><strong>Fs</strong> – Sampling rate (Default value = 11025)</p></li>
+<li><p><strong>N</strong> – FFT length (Default value = 4096)</p></li>
+<li><p><strong>H</strong> – Hopsize (Default value = 2048)</p></li>
+<li><p><strong>figsize</strong> – Size of the figure (Default value = (4, 2))</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="index_c2.html" class="btn btn-neutral float-right" title="Fourier Analysis of Signals (libfmp.c2)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index_b.html" class="btn btn-neutral float-left" title="Basics (libfmp.b)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libfmp.c4.c4s2_threshold &mdash; libfmp 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c2.html">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c3.html">Music Synchronization (libfmp.c3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c5.html">Chord Recognition (libfmp.c5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c6.html">Tempo and Beat Tracking (libfmp.c6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libfmp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>libfmp.c4.c4s2_threshold</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for libfmp.c4.c4s2_threshold</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: libfmp.c4.c4s2_threshold</span>
+<span class="sd">Author: Meinard Müller</span>
+<span class="sd">License: The MIT license, https://opensource.org/licenses/MIT</span>
+
+<span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="threshold_matrix_relative"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_threshold.threshold_matrix_relative">[docs]</a><span class="k">def</span> <span class="nf">threshold_matrix_relative</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">thresh_rel</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Treshold matrix in a relative fashion</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM-Thresholding.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        S (np.ndarray): Input matrix</span>
+<span class="sd">        thresh_rel (float): Relative treshold (Default value = 0.2)</span>
+<span class="sd">        details (bool): Print details on thresholding procedure (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        S_thresh (np.ndarray): Thresholded matrix</span>
+<span class="sd">        thresh_abs (float): Absolute threshold used for thresholding</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">S_thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="n">num_cells_below_thresh</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">S_thresh</span><span class="o">.</span><span class="n">size</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">thresh_rel</span><span class="p">)))</span>
+    <span class="n">values_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">S_thresh</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">))</span>
+    <span class="n">thresh_abs</span> <span class="o">=</span> <span class="n">values_sorted</span><span class="p">[</span><span class="n">num_cells_below_thresh</span><span class="p">]</span>
+    <span class="n">S_thresh</span><span class="p">[</span><span class="n">S_thresh</span> <span class="o">&lt;</span> <span class="n">thresh_abs</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">details</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;thresh_rel=</span><span class="si">%0.2f</span><span class="s1">, thresh_abs=</span><span class="si">%d</span><span class="s1">, total_num_cells=</span><span class="si">%d</span><span class="s1">, num_cells_below_thresh=</span><span class="si">%d</span><span class="s1">, &#39;</span> <span class="o">%</span>
+              <span class="p">(</span><span class="n">thresh_rel</span><span class="p">,</span> <span class="n">thresh_abs</span><span class="p">,</span> <span class="n">S_thresh</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">num_cells_below_thresh</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">S_thresh</span><span class="p">,</span> <span class="n">thresh_abs</span></div>
+
+
+<div class="viewcode-block" id="threshold_matrix"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s2_threshold.threshold_matrix">[docs]</a><span class="k">def</span> <span class="nf">threshold_matrix</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;absolute&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">binarize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Treshold matrix in a relative fashion</span>
+
+<span class="sd">    Notebook: C4/C4S2_SSM-Thresholding.ipynb</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        S (np.ndarray): Input matrix</span>
+<span class="sd">        thresh (float): Treshold (meaning depends on strategy)</span>
+<span class="sd">        strategy (str): Thresholding strategy (&#39;absolute&#39;, &#39;relative&#39;, &#39;local&#39;) (Default value = &#39;absolute&#39;)</span>
+<span class="sd">        scale (bool): If scale=True, then scaling of positive values to range [0,1] (Default value = False)</span>
+<span class="sd">        penalty (float): Set values below treshold to value specified (Default value = 0.0)</span>
+<span class="sd">        binarize (bool): Binarizes final matrix (positive: 1; otherwise: 0) (Default value = False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        S_thresh (np.ndarray): Thresholded matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;All entries of the input matrix must be nonnegative&#39;</span><span class="p">)</span>
+
+    <span class="n">S_thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">num_cells</span> <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="n">M</span>
+
+    <span class="k">if</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;absolute&#39;</span><span class="p">:</span>
+        <span class="n">thresh_abs</span> <span class="o">=</span> <span class="n">thresh</span>
+        <span class="n">S_thresh</span><span class="p">[</span><span class="n">S_thresh</span> <span class="o">&lt;</span> <span class="n">thresh</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;relative&#39;</span><span class="p">:</span>
+        <span class="n">thresh_rel</span> <span class="o">=</span> <span class="n">thresh</span>
+        <span class="n">num_cells_below_thresh</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">S_thresh</span><span class="o">.</span><span class="n">size</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">thresh_rel</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">num_cells_below_thresh</span> <span class="o">&lt;</span> <span class="n">num_cells</span><span class="p">:</span>
+            <span class="n">values_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">S_thresh</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">))</span>
+            <span class="n">thresh_abs</span> <span class="o">=</span> <span class="n">values_sorted</span><span class="p">[</span><span class="n">num_cells_below_thresh</span><span class="p">]</span>
+            <span class="n">S_thresh</span><span class="p">[</span><span class="n">S_thresh</span> <span class="o">&lt;</span> <span class="n">thresh_abs</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">S_thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span><span class="p">:</span>
+        <span class="n">thresh_rel_row</span> <span class="o">=</span> <span class="n">thresh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">thresh_rel_col</span> <span class="o">=</span> <span class="n">thresh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">S_binary_row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">])</span>
+        <span class="n">num_cells_row_below_thresh</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">M</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">thresh_rel_row</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">values_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">num_cells_row_below_thresh</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">:</span>
+                <span class="n">thresh_abs</span> <span class="o">=</span> <span class="n">values_sorted</span><span class="p">[</span><span class="n">num_cells_row_below_thresh</span><span class="p">]</span>
+                <span class="n">S_binary_row</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">row</span> <span class="o">&gt;=</span> <span class="n">thresh_abs</span><span class="p">)</span>
+        <span class="n">S_binary_col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">])</span>
+        <span class="n">num_cells_col_below_thresh</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">thresh_rel_col</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">S</span><span class="p">[:,</span> <span class="n">m</span><span class="p">]</span>
+            <span class="n">values_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">num_cells_col_below_thresh</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
+                <span class="n">thresh_abs</span> <span class="o">=</span> <span class="n">values_sorted</span><span class="p">[</span><span class="n">num_cells_col_below_thresh</span><span class="p">]</span>
+                <span class="n">S_binary_col</span><span class="p">[:,</span> <span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">col</span> <span class="o">&gt;=</span> <span class="n">thresh_abs</span><span class="p">)</span>
+        <span class="n">S_thresh</span> <span class="o">=</span> <span class="n">S</span> <span class="o">*</span> <span class="n">S_binary_row</span> <span class="o">*</span> <span class="n">S_binary_col</span>
+
+    <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
+        <span class="n">cell_val_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">S_thresh</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">cell_val_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">S_thresh</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cell_val_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">min_value</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">min_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">S_thresh</span><span class="p">[</span><span class="n">cell_val_pos</span><span class="p">])</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">S_thresh</span><span class="p">)</span>
+        <span class="c1"># print(&#39;min_value = &#39;, min_value, &#39;, max_value = &#39;, max_value)</span>
+        <span class="k">if</span> <span class="n">max_value</span> <span class="o">&gt;</span> <span class="n">min_value</span><span class="p">:</span>
+            <span class="n">S_thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">((</span><span class="n">S_thresh</span> <span class="o">-</span> <span class="n">min_value</span><span class="p">),</span> <span class="p">(</span><span class="n">max_value</span> <span class="o">-</span> <span class="n">min_value</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cell_val_zero</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">S_thresh</span><span class="p">[</span><span class="n">cell_val_zero</span><span class="p">]</span> <span class="o">=</span> <span class="n">penalty</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Condition max_value &gt; min_value is voliated: output zero matrix&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">binarize</span><span class="p">:</span>
+        <span class="n">S_thresh</span><span class="p">[</span><span class="n">S_thresh</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">S_thresh</span><span class="p">[</span><span class="n">S_thresh</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">S_thresh</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
