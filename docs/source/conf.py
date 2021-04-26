@@ -42,9 +42,18 @@ author = 'Meinard Müller and Frank Zalkow'
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 
-import pkg_resources  # noqa
+# this gives version of pip-installed version, not of local version
+# import pkg_resources  # noqa
+# libfmp_version = pkg_resources.require('libfmp')[0].version
 
-libfmp_version = pkg_resources.require('libfmp')[0].version
+# reading version from local setup file
+setup_fn = next(fn for fn in ['setup.py', 'libfmp_setup.py'] if os.path.exists(os.path.join(FMP_DIR, fn)))
+with open(os.path.join(FMP_DIR, setup_fn), 'r') as stream:
+    setup_content = stream.read()
+version_match = re.search("version='(.*?)'", setup_content)
+assert version_match is not None
+libfmp_version = version_match.group(1)
+
 version = libfmp_version
 release = libfmp_version
 
