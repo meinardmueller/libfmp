@@ -8,6 +8,10 @@ The FMP notebooks also contain a dedicated notebook for libfmp:
 
 https://www.audiolabs-erlangen.de/resources/MIR/FMP/B/B_libfmp.html
 
+There is also an API documentation for libfmp:
+
+https://meinardmueller.github.io/libfmp
+
 ## Installing
 
 You can install libfmp using the Python package manager pip:
