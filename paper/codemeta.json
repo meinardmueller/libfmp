@@ -1,0 +1,17 @@
+{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "author": [
+    "Meinard Müller", "Frank Zalkow"
+  ],
+  "identifier": "",
+  "codeRepository": "https://github.com/meinardmueller/libfmp",
+  "datePublished": "2021-04-27",
+  "dateModified": "2021-04-27",
+  "dateCreated": "2021-04-27",
+  "description": "libfmp is a Python package for Fundamentals of Music Processing (FMP).",
+  "keywords": "Python, Music information retrieval",
+  "license": "MIT",
+  "title": "libfmp",
+  "version": "1.1.2"
+}
