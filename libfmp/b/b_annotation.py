@@ -73,7 +73,7 @@ def cut_csv_file(fn_in, fn_out, start_sec, end_sec, write=True):
         fn_out (str): Filename and path for input audio file
         start_sec (float): Start time position (in seconds) of cut
         end_sec (float): End time position (in seconds) of cut
-        write (bool): If True, then write audio (Default value = True)
+        write (bool): If True, then write csv file (Default value = True)
 
     Returns:
         ann_cut (list): Cut annotation file
@@ -83,9 +83,11 @@ def cut_csv_file(fn_in, fn_out, start_sec, end_sec, write=True):
     for i, (start, end, pitch, label) in df.iterrows():
         if (start > start_sec) and (start < end_sec):
             ann_cut.append([start-start_sec, min(end, end_sec)-start, int(pitch), 100, str(int(label))])
-    columns = ['Start', 'Duration', 'Pitch', 'Velocity', 'Instrument']
-    df_out = pd.DataFrame(ann_cut, columns=columns)
-    df_out['Start'] = df_out['Start'].map('{:,.3f}'.format)
-    df_out['Duration'] = df_out['Duration'].map('{:,.3f}'.format)
-    df_out.to_csv(fn_out, sep=';', index=False)
+
+    if write:
+        columns = ['Start', 'Duration', 'Pitch', 'Velocity', 'Instrument']
+        df_out = pd.DataFrame(ann_cut, columns=columns)
+        df_out['Start'] = df_out['Start'].map('{:,.3f}'.format)
+        df_out['Duration'] = df_out['Duration'].map('{:,.3f}'.format)
+        df_out.to_csv(fn_out, sep=';', index=False)
     return ann_cut

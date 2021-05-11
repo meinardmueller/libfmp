@@ -297,5 +297,5 @@ def average_nov_dic(nov_dic, time_max_sec, Fs_out=100, norm=True, sigma=None):
         max_value = np.max(nov_average)
         if max_value > 0:
             nov_average = nov_average / max_value
-    nov_matrix[k+1, :] = nov_average
+    nov_matrix[nov_num, :] = nov_average
     return nov_matrix, Fs_out

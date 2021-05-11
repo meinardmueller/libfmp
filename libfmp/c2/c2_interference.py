@@ -23,7 +23,7 @@ def plot_interference(x1, x2, t, figsize=(8, 2), xlim=None, ylim=None, title='')
         ylim: y limits (Default value = None)
         title: figure title (Default value = '')
     """
-    plt.figure(figsize=(8, 2))
+    plt.figure(figsize=figsize)
     plt.plot(t, x1, color='gray', linewidth=1.0, linestyle='-', label='x1')
     plt.plot(t, x2, color='cyan', linewidth=1.0, linestyle='-', label='x2')
     plt.plot(t, x1+x2, color='red', linewidth=2.0, linestyle='-', label='x1+x2')

@@ -176,5 +176,5 @@ def compute_matching_function(C_D, C_Q, tol_freq=1, tol_time=1):
         TP, FN, FP, C_AND = match_binary_matrices_tol(C_D_crop, C_Q,
                                                       tol_freq=tol_freq, tol_time=tol_time)
         Delta[m] = TP
-        shift_max = np.argmax(Delta)
+    shift_max = np.argmax(Delta)
     return Delta, shift_max

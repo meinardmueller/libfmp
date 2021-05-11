@@ -169,6 +169,8 @@ def visualize_piano_roll(score, xlabel='Time (seconds)', ylabel='Pitch', colors=
     time_max = max(note[0] + note[1] for note in score)
 
     for start, duration, pitch, velocity, label in score:
+        if velocity_alpha is False:
+            velocity = None
         rect = patches.Rectangle((start, pitch - 0.5), duration, 1, linewidth=1,
                                  edgecolor='k', facecolor=colors[label], alpha=velocity)
         ax.add_patch(rect)

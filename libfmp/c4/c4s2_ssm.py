@@ -75,7 +75,8 @@ def plot_feature_ssm(X, Fs_X, S, Fs_S, ann, duration, color_ann=None,
     libfmp.b.plot_segments(ann, ax=ax[2, 1], time_axis=time, fontsize=fontsize,
                            colors=color_ann,
                            time_label=label, time_max=duration*Fs_X)
-    ax[2, 2].axis('off'), ax[2, 0].axis('off')
+    ax[2, 2].axis('off')
+    ax[2, 0].axis('off')
     libfmp.b.plot_segments(ann, ax=ax[1, 0], time_axis=time, fontsize=fontsize,
                            direction='vertical', colors=color_ann,
                            time_label=label, time_max=duration*Fs_X)

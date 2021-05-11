@@ -47,7 +47,7 @@ def generate_shepard_tone(chromaNum, Fs, N, weight=1, Fc=440, sigma=15, phase=0)
     tone = np.zeros(N)
     # Envelope function for Shepard tones
     p = 24 + chromaNum
-    if(p > 32):
+    if p > 32:
         p = p - 12
     while p < 108:
         scale_factor = 1 / (np.sqrt(2 * np.pi) * sigma)
@@ -186,8 +186,9 @@ def sonify_pitch_activations(P, N, frame_rate, Fs, min_pitch=1, Fc=440, harmonic
             pitch = min_pitch + p
             freq = (2 ** ((pitch - 69) / 12)) * Fc
             sin_tone = np.zeros((N,))
-            for i in range(len(harmonics_weights)):
-                sin_tone += harmonics_weights[i] * np.sin(2 * np.pi * (i+1) * freq * np.arange(N) / Fs)
+
+            for i, cur_harmonic_weight in enumerate(harmonics_weights):
+                sin_tone += cur_harmonic_weight * np.sin(2 * np.pi * (i+1) * freq * np.arange(N) / Fs)
 
             weights = np.zeros((N,))
             for n in range(P.shape[1]):

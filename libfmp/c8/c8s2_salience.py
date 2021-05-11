@@ -12,6 +12,7 @@ from scipy import ndimage
 from numba import jit
 
 import libfmp.b
+import libfmp.c8
 
 
 @jit(nopython=True)

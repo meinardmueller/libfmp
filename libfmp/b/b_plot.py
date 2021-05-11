@@ -332,7 +332,7 @@ def check_segment_annotations(annot, default_label=''):
     return annot
 
 
-def plot_annotation_line(annot, ax=None, label_keys={}, colors='FMP_1', figsize=(6, 1), direction='horizontal',
+def plot_annotation_line(annot, ax=None, label_keys=None, colors='FMP_1', figsize=(6, 1), direction='horizontal',
                          time_min=None, time_max=None, time_axis=True, nontime_axis=False, swap_time_ticks=False,
                          axis_off=False, dpi=72):
     """Creates a line plot for annotation data
@@ -341,7 +341,7 @@ def plot_annotation_line(annot, ax=None, label_keys={}, colors='FMP_1', figsize=
         annot: A List of tuples in the form of ``[(time_position, label), ...]``
         ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)
         label_keys: A dict, where the keys are the labels used in `annot`. The values are dicts, which are used as
-            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = {})
+            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = None)
         colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or
             np.ndarray of matplotlib color specifications, 4. dict that assigns labels  to colors
             (Default value = 'FMP_1')
@@ -369,6 +369,9 @@ def plot_annotation_line(annot, ax=None, label_keys={}, colors='FMP_1', figsize=
 
     labels_set = sorted(set([label for pos, label in annot]))
     colors = color_argument_to_dict(colors, labels_set)
+
+    if label_keys is None:
+        label_keys = {}
 
     for key, value in colors.items():
         if key not in label_keys:
@@ -423,7 +426,7 @@ def plot_annotation_line_overlay(*args, **kwargs):
     return plot_annotation_line(*args, **kwargs)
 
 
-def plot_annotation_multiline(annot, ax=None, label_keys={}, colors='FMP_1', figsize=(6, 1.5), direction='horizontal',
+def plot_annotation_multiline(annot, ax=None, label_keys=None, colors='FMP_1', figsize=(6, 1.5), direction='horizontal',
                               sort_labels=None, time_min=None, time_max=None, time_axis=True, swap_time_ticks=False,
                               axis_off=False, dpi=72):
     """Creates a multi-line plot for annotation data
@@ -432,7 +435,7 @@ def plot_annotation_multiline(annot, ax=None, label_keys={}, colors='FMP_1', fig
         annot: A List of tuples in the form of ``[(time_position, label), ...]``
         ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)
         label_keys: A dict, where the keys are the labels used in `annot`. The values are dicts, which are used as
-            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = {})
+            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = None)
         colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or np.ndarray
             of matplotlib color specifications, 4. dict that assigns labels  to colors (Default value = 'FMP_1')
         figsize: Width, height in inches (Default value = (6, 1.5)
@@ -459,6 +462,9 @@ def plot_annotation_multiline(annot, ax=None, label_keys={}, colors='FMP_1', fig
 
     labels_set = sorted(set([label for pos, label in annot]))
     colors = color_argument_to_dict(colors, labels_set)
+
+    if label_keys is None:
+        label_keys = {}
 
     for key, value in colors.items():
         if key not in label_keys:

@@ -104,8 +104,8 @@ def plot_seq_label(ax, X, Fs=1, color_label=[], direction='horizontal',
          ann_X: Structure annotation for label sequence
     """
     ann_X = []
-    for m in range(len(X)):
-        ann_X.append([(m-0.5)/Fs, (m+0.5)/Fs, X[m]])
+    for m, cur_x in enumerate(X):
+        ann_X.append([(m-0.5)/Fs, (m+0.5)/Fs, cur_x])
     libfmp.b.plot_segments(ann_X, ax=ax, time_axis=time_axis, fontsize=fontsize,
                            direction=direction, colors=color_label, print_labels=print_labels)
     return ann_X
@@ -195,7 +195,8 @@ def plot_matrix_label(M, X, color_label=None, figsize=(3, 3), cmap='gray_r', fon
     ax[0, 1].set_xticks([])
     ax[0, 1].set_yticks([])
     plot_seq_label(ax[1, 1], X, color_label=color_label, fontsize=fontsize, print_labels=print_labels)
-    ax[1, 2].axis('off'), ax[1, 0].axis('off')
+    ax[1, 2].axis('off')
+    ax[1, 0].axis('off')
     plot_seq_label(ax[0, 0], X, color_label=color_label, fontsize=fontsize, print_labels=print_labels,
                    direction='vertical')
     return fig, ax

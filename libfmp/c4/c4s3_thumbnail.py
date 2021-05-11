@@ -7,9 +7,9 @@ This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)
 """
 import math
 import numpy as np
-from matplotlib import pyplot as plt
-import matplotlib
 from numba import jit
+import matplotlib
+from matplotlib import pyplot as plt
 from matplotlib.colors import ListedColormap
 
 import libfmp.b
@@ -256,7 +256,7 @@ def compute_optimal_path_family(D):
             cell = (0, m-1)
         # case for the elevator column: we can keep going down the column or jumping to the end of the next row
         elif m == 0:
-            if(D[n-1, M-1] > D[n-1, 0]):
+            if D[n-1, M-1] > D[n-1, 0]:
                 cell = (n-1, M-1)
                 path_point = (n-1, M-2)
                 if(len(path) > 0):
@@ -273,10 +273,10 @@ def compute_optimal_path_family(D):
 
             # obtaining the best of the possible predecesors
             max_val = -inf
-            for i in range(len(predecessors)):
-                if(max_val < D[predecessors[i][0], predecessors[i][1]]):
-                    max_val = D[predecessors[i][0], predecessors[i][1]]
-                    cell = predecessors[i]
+            for i, cur_predecessor in enumerate(predecessors):
+                if(max_val < D[cur_predecessor[0], cur_predecessor[1]]):
+                    max_val = D[cur_predecessor[0], cur_predecessor[1]]
+                    cell = cur_predecessor
 
             # saving the point in the current path
             path_point = (cell[0], cell[1]-1)
@@ -331,7 +331,7 @@ def compute_fitness(path_family, score, N):
 
 
 def plot_ssm_ann_optimal_path_family(S, ann, seg, Fs=1, cmap='gray_r', color_ann=[], fontsize=12,
-                                     figsize=(5, 4.5), xlabel='', ylabel=''):
+                                     figsize=(5, 4.5), ylabel=''):
     """Plot SSM, annotations, and computed optimal path family
 
     Notebook: C4/C4S3_AudioThumbnailing.ipynb
@@ -346,7 +346,6 @@ def plot_ssm_ann_optimal_path_family(S, ann, seg, Fs=1, cmap='gray_r', color_ann
             (Default value = [])
         fontsize: Font size used for annotation labels (Default value = 12)
         figsize: Size of figure (Default value = (5, 4.5))
-        xlabel: Label for x-axis (Default value = '')
         ylabel: Label for y-axis (Default value = '')
 
     Returns:
@@ -362,10 +361,10 @@ def plot_ssm_ann_optimal_path_family(S, ann, seg, Fs=1, cmap='gray_r', color_ann
         path_family, score, N)
     title = r'$\bar{\sigma}(\alpha)=%0.2f$, $\bar{\gamma}(\alpha)=%0.2f$, $\varphi(\alpha)=%0.2f$' % \
             (score_n, coverage_n, fitness)
-    fig, ax, im = plot_ssm_ann(S, ann, color_ann=color_ann, Fs=1, cmap=cmap,
+    fig, ax, im = plot_ssm_ann(S, ann, color_ann=color_ann, Fs=Fs, cmap=cmap,
                                figsize=figsize, fontsize=fontsize,
                                xlabel=r'$\alpha=[%d:%d]$' % (seg[0], seg[-1]), ylabel=ylabel, title=title)
-    plot_path_family(ax[0, 0], path_family, Fs=1, x_offset=seg[0])
+    plot_path_family(ax[0, 0], path_family, Fs=Fs, x_offset=seg[0])
     return fig, ax, im
 
 
@@ -390,7 +389,7 @@ def visualize_scape_plot(SP, Fs=1, ax=None, figsize=(4, 3), title='',
         im: Handle for imshow
     """
     fig = None
-    if(ax is None):
+    if ax is None:
         fig = plt.figure(figsize=figsize)
         ax = plt.gca()
     N = SP.shape[0]

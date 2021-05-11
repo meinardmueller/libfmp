@@ -77,7 +77,7 @@ def compute_beat_sequence(novelty, beat_ref, penalty=None, factor=1.0, return_al
     B = np.zeros(N, dtype=int)
     k = 0
     B[k] = np.argmax(D)
-    while(P[B[k]] != 0):
+    while P[B[k]] != 0:
         k = k+1
         B[k] = P[B[k-1]]
     B = B[0:k+1]

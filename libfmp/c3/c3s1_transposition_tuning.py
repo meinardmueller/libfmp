@@ -10,6 +10,7 @@ from matplotlib import pyplot as plt
 from scipy.interpolate import interp1d
 from scipy import signal
 import libfmp.b
+import libfmp.c2
 
 
 def cyclic_shift(C, shift=1):
@@ -82,7 +83,6 @@ def compute_freq_distribution(x, Fs, N=16384, gamma=100.0, local=True, filt=True
         Y_rectified[Y_rectified < 0] = 0
         v = Y_rectified / np.max(Y_rectified)
 
-    theta_axis, sim, ind_max, theta_max, template_max = tuning_similarity(v)
     return v, F_coef_cents
 
 

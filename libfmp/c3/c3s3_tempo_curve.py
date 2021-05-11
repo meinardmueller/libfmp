@@ -162,8 +162,8 @@ def plot_tempo_curve(f_tempo, t_beat, ax=None, figsize=(8, 2), color='k', logsca
         ylim = [np.min(f_tempo) * 0.9, np.max(f_tempo) * 1.1]
     ax.set_xlim(xlim)
     ax.set_ylim(ylim)
-    ax.set_xlabel('Time (beats)')
-    ax.set_ylabel('Tempo (BPM)')
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
     ax.grid(True, which='both')
     if logscale:
         ax.set_yscale('log')

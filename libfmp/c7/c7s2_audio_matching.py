@@ -12,6 +12,7 @@ import scipy
 import librosa
 
 import libfmp.c3
+import libfmp.c7
 
 
 def quantize_matrix(C, quant_fct=None):

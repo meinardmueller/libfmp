@@ -12,7 +12,7 @@ from matplotlib import pyplot as plt
 from IPython.display import HTML, display
 
 
-class FloatingBox(object):
+class FloatingBox:
     """Inspired by https://stackoverflow.com/a/49566213/2812618
 
     Floating box for matplotlib plots. The added figures are part of a floating box.

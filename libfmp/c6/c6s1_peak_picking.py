@@ -59,14 +59,13 @@ def peak_picking_boeck(activations, threshold=0.5, fps=100, include_scores=False
         peaks (np.ndarray): Peak positions
     """
 
-    import scipy.ndimage.filters as sf
     activations = activations.ravel()
 
     # detections are activations equal to the moving maximum
     max_length = int((pre_max + post_max) * fps) + 1
     if max_length > 1:
         max_origin = int((pre_max - post_max) * fps / 2)
-        mov_max = sf.maximum_filter1d(activations, max_length, mode='constant', origin=max_origin)
+        mov_max = filters.maximum_filter1d(activations, max_length, mode='constant', origin=max_origin)
         detections = activations * (activations == mov_max)
     else:
         detections = activations
@@ -75,7 +74,7 @@ def peak_picking_boeck(activations, threshold=0.5, fps=100, include_scores=False
     avg_length = int((pre_avg + post_avg) * fps) + 1
     if avg_length > 1:
         avg_origin = int((pre_avg - post_avg) * fps / 2)
-        mov_avg = sf.uniform_filter1d(activations, avg_length, mode='constant', origin=avg_origin)
+        mov_avg = filters.uniform_filter1d(activations, avg_length, mode='constant', origin=avg_origin)
         detections = detections * (detections >= mov_avg + threshold)
     else:
         # if there is no moving average, treat the threshold as a global one
@@ -183,29 +182,29 @@ def peak_picking_roeder(x, direction=None, abs_thresh=None, rel_thresh=None, des
         # get local gradient
         dy = x[cur_idx+direction] - x[cur_idx]
 
-        if (dy >= 0):
+        if dy >= 0:
             rise = rise + dy
         else:
             descent = descent + dy
 
-        if (dyold >= 0):
-            if (dy < 0):  # slope change positive->negative
-                if (rise >= rel_thresh[cur_idx] and searching_peak is True):
+        if dyold >= 0:
+            if dy < 0:  # slope change positive->negative
+                if rise >= rel_thresh[cur_idx] and searching_peak is True:
                     candidate = cur_idx
                     searching_peak = False
                 riseold = rise
                 rise = 0
         else:  # dyold < 0
-            if (dy < 0):  # in descent
-                if (descent <= -rel_thresh[candidate] and searching_peak is False):
-                    if (x[candidate] >= abs_thresh[candidate]):
+            if dy < 0:  # in descent
+                if descent <= -rel_thresh[candidate] and searching_peak is False:
+                    if x[candidate] >= abs_thresh[candidate]:
                         P.append(candidate)  # verified candidate as True peak
                     searching_peak = True
             else:  # dy >= 0 slope change negative->positive
                 if searching_peak is False:  # currently verifying a peak
-                    if (x[candidate] - x[cur_idx] <= descent_thresh[cur_idx]):
+                    if x[candidate] - x[cur_idx] <= descent_thresh[cur_idx]:
                         rise = riseold + descent  # skip intermediary peak
-                    if (descent <= -rel_thresh[candidate]):
+                    if descent <= -rel_thresh[candidate]:
                         if x[candidate] >= abs_thresh[candidate]:
                             P.append(candidate)    # verified candidate as True peak
                     searching_peak = True

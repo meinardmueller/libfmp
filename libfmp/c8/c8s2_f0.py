@@ -15,6 +15,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 import libfmp.b
+import libfmp.c8
 
 
 def hz_to_cents(F, F_ref=55.0):
@@ -145,7 +146,8 @@ def visualize_salience_traj_constraints(Z, T_coef, F_coef_cents, F_ref=55.0, col
     ax.set_yticklabels(y_ticklabels_left)
     ax.set_ylabel('Frequency (Cents)')
 
-    plt.colorbar(sal, ax=ax, pad=0.1)
+    if colorbar:
+        plt.colorbar(sal, ax=ax, pad=0.1)
 
     ax_f = ax.twinx()  # instantiate a second axes that shares the same y-axis
     ax_f.set_yticks(y_ticklabels_left - F_coef_cents[0])

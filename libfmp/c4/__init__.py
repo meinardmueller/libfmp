@@ -19,7 +19,7 @@ from .c4s2_threshold import threshold_matrix_relative,  \
 
 from .c4s3_thumbnail import colormap_penalty, \
     normalization_properties_ssm, \
-    plot_ssm_ann, plot_path_family, \
+    plot_path_family, \
     plot_ssm_ann, \
     compute_induced_segment_family_coverage, \
     compute_accumulated_score_matrix, \

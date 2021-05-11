@@ -40,7 +40,7 @@ def threshold_matrix(S, thresh, strategy='absolute', scale=False, penalty=0.0, b
 
     Args:
         S (np.ndarray): Input matrix
-        thresh (float): Treshold (meaning depends on strategy)
+        thresh (float or list): Treshold (meaning depends on strategy)
         strategy (str): Thresholding strategy ('absolute', 'relative', 'local') (Default value = 'absolute')
         scale (bool): If scale=True, then scaling of positive values to range [0,1] (Default value = False)
         penalty (float): Set values below treshold to value specified (Default value = 0.0)
