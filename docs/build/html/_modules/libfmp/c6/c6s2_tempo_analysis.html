@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c6.c6s2_tempo_analysis &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.c6.c6s2_tempo_analysis &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -511,7 +511,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">Fs</span><span class="p">)</span>
 
-    <span class="n">nov</span><span class="p">,</span> <span class="n">Fs_nov</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c6</span><span class="o">.</span><span class="n">compute_novelty_spectrum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">nov</span><span class="p">,</span> <span class="n">Fs_nov</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c6</span><span class="o">.</span><span class="n">compute_novelty_spectrum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">nov</span><span class="p">,</span> <span class="n">Fs_nov</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c6</span><span class="o">.</span><span class="n">resample_signal</span><span class="p">(</span><span class="n">nov</span><span class="p">,</span> <span class="n">Fs_in</span><span class="o">=</span><span class="n">Fs_nov</span><span class="p">,</span> <span class="n">Fs_out</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
     <span class="n">L</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nov</span><span class="p">)</span>

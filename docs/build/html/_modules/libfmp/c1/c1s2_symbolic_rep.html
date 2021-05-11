@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c1.c1s2_symbolic_rep &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.c1.c1s2_symbolic_rep &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -348,6 +348,8 @@
     <span class="n">time_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">note</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">note</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">score</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">score</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">velocity_alpha</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">velocity</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">pitch</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">duration</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                                  <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="n">velocity</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>

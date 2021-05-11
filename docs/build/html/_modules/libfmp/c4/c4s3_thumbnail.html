@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c4.c4s3_thumbnail &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.c4.c4s3_thumbnail &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -186,9 +186,9 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
 
 <span class="kn">import</span> <span class="nn">libfmp.b</span>
@@ -435,7 +435,7 @@
             <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="c1"># case for the elevator column: we can keep going down the column or jumping to the end of the next row</span>
         <span class="k">elif</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span>
                 <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
                 <span class="n">path_point</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
                 <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
@@ -452,10 +452,10 @@
 
             <span class="c1"># obtaining the best of the possible predecesors</span>
             <span class="n">max_val</span> <span class="o">=</span> <span class="o">-</span><span class="n">inf</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">predecessors</span><span class="p">)):</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">max_val</span> <span class="o">&lt;</span> <span class="n">D</span><span class="p">[</span><span class="n">predecessors</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">predecessors</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]]):</span>
-                    <span class="n">max_val</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">predecessors</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">predecessors</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
-                    <span class="n">cell</span> <span class="o">=</span> <span class="n">predecessors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cur_predecessor</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">predecessors</span><span class="p">):</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">max_val</span> <span class="o">&lt;</span> <span class="n">D</span><span class="p">[</span><span class="n">cur_predecessor</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cur_predecessor</span><span class="p">[</span><span class="mi">1</span><span class="p">]]):</span>
+                    <span class="n">max_val</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">cur_predecessor</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cur_predecessor</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+                    <span class="n">cell</span> <span class="o">=</span> <span class="n">cur_predecessor</span>
 
             <span class="c1"># saving the point in the current path</span>
             <span class="n">path_point</span> <span class="o">=</span> <span class="p">(</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -510,7 +510,7 @@
 
 
 <div class="viewcode-block" id="plot_ssm_ann_optimal_path_family"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s3_thumbnail.plot_ssm_ann_optimal_path_family">[docs]</a><span class="k">def</span> <span class="nf">plot_ssm_ann_optimal_path_family</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">ann</span><span class="p">,</span> <span class="n">seg</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">,</span> <span class="n">color_ann</span><span class="o">=</span><span class="p">[],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-                                     <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+                                     <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Plot SSM, annotations, and computed optimal path family</span>
 
 <span class="sd">    Notebook: C4/C4S3_AudioThumbnailing.ipynb</span>
@@ -525,7 +525,6 @@
 <span class="sd">            (Default value = [])</span>
 <span class="sd">        fontsize: Font size used for annotation labels (Default value = 12)</span>
 <span class="sd">        figsize: Size of figure (Default value = (5, 4.5))</span>
-<span class="sd">        xlabel: Label for x-axis (Default value = &#39;&#39;)</span>
 <span class="sd">        ylabel: Label for y-axis (Default value = &#39;&#39;)</span>
 
 <span class="sd">    Returns:</span>
@@ -541,10 +540,10 @@
         <span class="n">path_family</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
     <span class="n">title</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$\bar{\sigma}(\alpha)=</span><span class="si">%0.2f</span><span class="s1">$, $\bar{\gamma}(\alpha)=</span><span class="si">%0.2f</span><span class="s1">$, $\varphi(\alpha)=</span><span class="si">%0.2f</span><span class="s1">$&#39;</span> <span class="o">%</span> \
             <span class="p">(</span><span class="n">score_n</span><span class="p">,</span> <span class="n">coverage_n</span><span class="p">,</span> <span class="n">fitness</span><span class="p">)</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">im</span> <span class="o">=</span> <span class="n">plot_ssm_ann</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">ann</span><span class="p">,</span> <span class="n">color_ann</span><span class="o">=</span><span class="n">color_ann</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">im</span> <span class="o">=</span> <span class="n">plot_ssm_ann</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">ann</span><span class="p">,</span> <span class="n">color_ann</span><span class="o">=</span><span class="n">color_ann</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
                                <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span>
                                <span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha=[</span><span class="si">%d</span><span class="s1">:</span><span class="si">%d</span><span class="s1">]$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">seg</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">seg</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">ylabel</span><span class="o">=</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
-    <span class="n">plot_path_family</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">path_family</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x_offset</span><span class="o">=</span><span class="n">seg</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">plot_path_family</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">path_family</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">,</span> <span class="n">x_offset</span><span class="o">=</span><span class="n">seg</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">im</span></div>
 
 
@@ -569,7 +568,7 @@
 <span class="sd">        im: Handle for imshow</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
     <span class="n">N</span> <span class="o">=</span> <span class="n">SP</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>

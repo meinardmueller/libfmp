@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c3.c3s1_transposition_tuning &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.c3.c3s1_transposition_tuning &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -189,6 +189,7 @@
 <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
 <span class="kn">import</span> <span class="nn">libfmp.b</span>
+<span class="kn">import</span> <span class="nn">libfmp.c2</span>
 
 
 <div class="viewcode-block" id="cyclic_shift"><a class="viewcode-back" href="../../../index_c3.html#libfmp.c3.c3s1_transposition_tuning.cyclic_shift">[docs]</a><span class="k">def</span> <span class="nf">cyclic_shift</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -261,7 +262,6 @@
         <span class="n">Y_rectified</span><span class="p">[</span><span class="n">Y_rectified</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">Y_rectified</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Y_rectified</span><span class="p">)</span>
 
-    <span class="n">theta_axis</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">ind_max</span><span class="p">,</span> <span class="n">theta_max</span><span class="p">,</span> <span class="n">template_max</span> <span class="o">=</span> <span class="n">tuning_similarity</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">v</span><span class="p">,</span> <span class="n">F_coef_cents</span></div>
 
 

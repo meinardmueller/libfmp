@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c6.c6s1_onset_detection &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.c6.c6s1_onset_detection &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -476,7 +476,7 @@
         <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">nov_average</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">max_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">nov_average</span> <span class="o">=</span> <span class="n">nov_average</span> <span class="o">/</span> <span class="n">max_value</span>
-    <span class="n">nov_matrix</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">nov_average</span>
+    <span class="n">nov_matrix</span><span class="p">[</span><span class="n">nov_num</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">nov_average</span>
     <span class="k">return</span> <span class="n">nov_matrix</span><span class="p">,</span> <span class="n">Fs_out</span></div>
 </pre></div>
 

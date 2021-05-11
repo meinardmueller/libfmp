@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c6.c6s1_peak_picking &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.c6.c6s1_peak_picking &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -238,14 +238,13 @@
 <span class="sd">        peaks (np.ndarray): Peak positions</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="kn">import</span> <span class="nn">scipy.ndimage.filters</span> <span class="k">as</span> <span class="nn">sf</span>
     <span class="n">activations</span> <span class="o">=</span> <span class="n">activations</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 
     <span class="c1"># detections are activations equal to the moving maximum</span>
     <span class="n">max_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">pre_max</span> <span class="o">+</span> <span class="n">post_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">fps</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">max_length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">max_origin</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">pre_max</span> <span class="o">-</span> <span class="n">post_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">fps</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">mov_max</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">maximum_filter1d</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="n">max_length</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">max_origin</span><span class="p">)</span>
+        <span class="n">mov_max</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">maximum_filter1d</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="n">max_length</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">max_origin</span><span class="p">)</span>
         <span class="n">detections</span> <span class="o">=</span> <span class="n">activations</span> <span class="o">*</span> <span class="p">(</span><span class="n">activations</span> <span class="o">==</span> <span class="n">mov_max</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">detections</span> <span class="o">=</span> <span class="n">activations</span>
@@ -254,7 +253,7 @@
     <span class="n">avg_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">pre_avg</span> <span class="o">+</span> <span class="n">post_avg</span><span class="p">)</span> <span class="o">*</span> <span class="n">fps</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">avg_length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">avg_origin</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">pre_avg</span> <span class="o">-</span> <span class="n">post_avg</span><span class="p">)</span> <span class="o">*</span> <span class="n">fps</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">mov_avg</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">uniform_filter1d</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="n">avg_length</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">avg_origin</span><span class="p">)</span>
+        <span class="n">mov_avg</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">uniform_filter1d</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="n">avg_length</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">avg_origin</span><span class="p">)</span>
         <span class="n">detections</span> <span class="o">=</span> <span class="n">detections</span> <span class="o">*</span> <span class="p">(</span><span class="n">detections</span> <span class="o">&gt;=</span> <span class="n">mov_avg</span> <span class="o">+</span> <span class="n">threshold</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># if there is no moving average, treat the threshold as a global one</span>
@@ -362,29 +361,29 @@
         <span class="c1"># get local gradient</span>
         <span class="n">dy</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">cur_idx</span><span class="o">+</span><span class="n">direction</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">dy</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">dy</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">rise</span> <span class="o">=</span> <span class="n">rise</span> <span class="o">+</span> <span class="n">dy</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">descent</span> <span class="o">=</span> <span class="n">descent</span> <span class="o">+</span> <span class="n">dy</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">dyold</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">dy</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>  <span class="c1"># slope change positive-&gt;negative</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">rise</span> <span class="o">&gt;=</span> <span class="n">rel_thresh</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]</span> <span class="ow">and</span> <span class="n">searching_peak</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">dyold</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dy</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># slope change positive-&gt;negative</span>
+                <span class="k">if</span> <span class="n">rise</span> <span class="o">&gt;=</span> <span class="n">rel_thresh</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]</span> <span class="ow">and</span> <span class="n">searching_peak</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
                     <span class="n">candidate</span> <span class="o">=</span> <span class="n">cur_idx</span>
                     <span class="n">searching_peak</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="n">riseold</span> <span class="o">=</span> <span class="n">rise</span>
                 <span class="n">rise</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">else</span><span class="p">:</span>  <span class="c1"># dyold &lt; 0</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">dy</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>  <span class="c1"># in descent</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">descent</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">rel_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="ow">and</span> <span class="n">searching_peak</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">abs_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">dy</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># in descent</span>
+                <span class="k">if</span> <span class="n">descent</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">rel_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="ow">and</span> <span class="n">searching_peak</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">abs_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]:</span>
                         <span class="n">P</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>  <span class="c1"># verified candidate as True peak</span>
                     <span class="n">searching_peak</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>  <span class="c1"># dy &gt;= 0 slope change negative-&gt;positive</span>
                 <span class="k">if</span> <span class="n">searching_peak</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>  <span class="c1"># currently verifying a peak</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">descent_thresh</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]):</span>
+                    <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">descent_thresh</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">]:</span>
                         <span class="n">rise</span> <span class="o">=</span> <span class="n">riseold</span> <span class="o">+</span> <span class="n">descent</span>  <span class="c1"># skip intermediary peak</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">descent</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">rel_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]):</span>
+                    <span class="k">if</span> <span class="n">descent</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">rel_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]:</span>
                         <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">abs_thresh</span><span class="p">[</span><span class="n">candidate</span><span class="p">]:</span>
                             <span class="n">P</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>    <span class="c1"># verified candidate as True peak</span>
                     <span class="n">searching_peak</span> <span class="o">=</span> <span class="kc">True</span>

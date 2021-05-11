@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c8.c8s2_f0 &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.c8.c8s2_f0 &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -194,6 +194,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">import</span> <span class="nn">libfmp.b</span>
+<span class="kn">import</span> <span class="nn">libfmp.c8</span>
 
 
 <div class="viewcode-block" id="hz_to_cents"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s2_f0.hz_to_cents">[docs]</a><span class="k">def</span> <span class="nf">hz_to_cents</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">F_ref</span><span class="o">=</span><span class="mf">55.0</span><span class="p">):</span>
@@ -324,7 +325,8 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">y_ticklabels_left</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Cents)&#39;</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sal</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">colorbar</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sal</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
     <span class="n">ax_f</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>  <span class="c1"># instantiate a second axes that shares the same y-axis</span>
     <span class="n">ax_f</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">y_ticklabels_left</span> <span class="o">-</span> <span class="n">F_coef_cents</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>

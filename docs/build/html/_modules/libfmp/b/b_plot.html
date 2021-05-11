@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.b.b_plot &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.b.b_plot &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -511,7 +511,7 @@
     <span class="k">return</span> <span class="n">annot</span></div>
 
 
-<div class="viewcode-block" id="plot_annotation_line"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_annotation_line">[docs]</a><span class="k">def</span> <span class="nf">plot_annotation_line</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_keys</span><span class="o">=</span><span class="p">{},</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_annotation_line"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_annotation_line">[docs]</a><span class="k">def</span> <span class="nf">plot_annotation_line</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
                          <span class="n">time_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nontime_axis</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">swap_time_ticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                          <span class="n">axis_off</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates a line plot for annotation data</span>
@@ -520,7 +520,7 @@
 <span class="sd">        annot: A List of tuples in the form of ``[(time_position, label), ...]``</span>
 <span class="sd">        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</span>
 <span class="sd">        label_keys: A dict, where the keys are the labels used in `annot`. The values are dicts, which are used as</span>
-<span class="sd">            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = {})</span>
+<span class="sd">            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = None)</span>
 <span class="sd">        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or</span>
 <span class="sd">            np.ndarray of matplotlib color specifications, 4. dict that assigns labels  to colors</span>
 <span class="sd">            (Default value = &#39;FMP_1&#39;)</span>
@@ -548,6 +548,9 @@
 
     <span class="n">labels_set</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">label</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">]))</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="n">color_argument_to_dict</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">labels_set</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">label_keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label_keys</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">colors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">label_keys</span><span class="p">:</span>
@@ -602,7 +605,7 @@
     <span class="k">return</span> <span class="n">plot_annotation_line</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="plot_annotation_multiline"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_annotation_multiline">[docs]</a><span class="k">def</span> <span class="nf">plot_annotation_multiline</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_keys</span><span class="o">=</span><span class="p">{},</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_annotation_multiline"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_annotation_multiline">[docs]</a><span class="k">def</span> <span class="nf">plot_annotation_multiline</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
                               <span class="n">sort_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">swap_time_ticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                               <span class="n">axis_off</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates a multi-line plot for annotation data</span>
@@ -611,7 +614,7 @@
 <span class="sd">        annot: A List of tuples in the form of ``[(time_position, label), ...]``</span>
 <span class="sd">        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</span>
 <span class="sd">        label_keys: A dict, where the keys are the labels used in `annot`. The values are dicts, which are used as</span>
-<span class="sd">            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = {})</span>
+<span class="sd">            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = None)</span>
 <span class="sd">        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or np.ndarray</span>
 <span class="sd">            of matplotlib color specifications, 4. dict that assigns labels  to colors (Default value = &#39;FMP_1&#39;)</span>
 <span class="sd">        figsize: Width, height in inches (Default value = (6, 1.5)</span>
@@ -638,6 +641,9 @@
 
     <span class="n">labels_set</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">label</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">annot</span><span class="p">]))</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="n">color_argument_to_dict</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">labels_set</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">label_keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label_keys</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">colors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">label_keys</span><span class="p">:</span>

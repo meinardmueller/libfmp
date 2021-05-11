@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c6.c6s3_beat_tracking &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.c6.c6s3_beat_tracking &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -256,7 +256,7 @@
     <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">P</span><span class="p">[</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span>
         <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
     <span class="n">B</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
