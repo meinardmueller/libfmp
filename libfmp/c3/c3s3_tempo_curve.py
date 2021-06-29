@@ -189,7 +189,7 @@ def compute_tempo_curve(score, x, Fs=22050, Fs_beat=10, N=4410, H=2205, shift=0,
         Fs (scalar): Samping rate of audio signal (Default value = 22050)
         Fs_beat (scalar): Sampling rate for beat axis (Default value = 10)
         N (int): Window size for computing audio chromagram (Default value = 4410)
-        H (int): Hope size for computing audio chromagram (Default value = 2205)
+        H (int): Hop size for computing audio chromagram (Default value = 2205)
         shift (int): Cyclic chroma shift applied to audio chromagram (Default value = 0)
         sigma (np.ndarray): Step size set used for DTW
             (Default value = np.array([[1, 0], [0, 1], [2, 1], [1, 2], [1, 1]]))

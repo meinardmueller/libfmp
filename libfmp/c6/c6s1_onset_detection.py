@@ -52,7 +52,7 @@ def compute_novelty_energy(x, Fs=1, N=2048, H=128, gamma=10.0, norm=True):
         x (np.ndarray): Signal
         Fs (scalar): Sampling rate (Default value = 1)
         N (int): Window size (Default value = 2048)
-        H (int): Hope size (Default value = 128)
+        H (int): Hop size (Default value = 128)
         gamma (float): Parameter for logarithmic compression (Default value = 10.0)
         norm (bool): Apply max norm (if norm==True) (Default value = True)
 
@@ -109,7 +109,7 @@ def compute_novelty_spectrum(x, Fs=1, N=1024, H=256, gamma=100.0, M=10, norm=Tru
         x (np.ndarray): Signal
         Fs (scalar): Sampling rate (Default value = 1)
         N (int): Window size (Default value = 1024)
-        H (int): Hope size (Default value = 256)
+        H (int): Hop size (Default value = 256)
         gamma (float): Parameter for logarithmic compression (Default value = 100.0)
         M (int): Size (frames) of local average (Default value = 10)
         norm (bool): Apply max norm (if norm==True) (Default value = True)

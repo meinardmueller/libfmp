@@ -364,7 +364,7 @@ def compute_cens_from_file(fn_wav, Fs=22050, N=4410, H=2205, ell=21, d=5):
         fn_wav (str): Filename of wav file
         Fs (scalar): Feature rate of wav file (Default value = 22050)
         N (int): Window size for STFT (Default value = 4410)
-        H (int): Hope size for STFT (Default value = 2205)
+        H (int): Hop size for STFT (Default value = 2205)
         ell (int): Smoothing length (Default value = 21)
         d (int): Downsampling factor (Default value = 5)
 
