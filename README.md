@@ -2,7 +2,7 @@
 
 This repository contains the Python package libfmp. This package goes hand in hand with the FMP Notebooks, a collection of educational material for teaching and learning Fundamentals of Music Processing (FMP) with a particular focus on the audio domain. For detailed explanations and example appliciations of the libfmp-functions we refer to the FMP Notebooks:
 
-http://audiolabs-erlangen.de/FMP
+https://audiolabs-erlangen.de/FMP
 
 The FMP notebooks also contain a dedicated notebook for libfmp:
 
@@ -23,6 +23,25 @@ pip install libfmp
 ## Contributing
 
 The libfmp-package has been developed in the context of the FMP notebooks. Being an integral part, all libfmp-functions need to manually synchronized with text passages, explanations, and the code in the FMP notebooks. Of course, we are happy for suggestions and contributions. However, to facilitate the synchronization, we would be grateful for either directly contacting us via email (meinard.mueller@audiolabs-erlangen.de) or for creating [an issue](https://github.com/meinardmueller/libfmp/issues) in our Github repository. Please do not submit a pull request without prior consultation with us.
+
+## Tests
+
+The functions of libmfp are also covered in the [FMP notebooks](https://audiolabs-erlangen.de/FMP). There, you find several test cases for the functions, showing typical input-output behaviors. Beyond these tests, the FMP notebooks offer extensive explanations of these functions. Thus, we consider FMP as a replacement for conventional unit tests.
+
+Furthermore, we provide a small script that tests one function of each subpackage from libfmp. Rather than covering the full functionality of libfmp, it only verifies the correct import structure within the libfmp package.
+
+There are two options for executing the test script. The first is just to run the script, which results in no output if there are no errors.
+
+```
+python test_examples.py
+```
+
+The second option is to use [pytest](https://pytest.org), which results in a more instructive output. pytest is available when installing libfmp with the extra requirements for testing.
+
+```
+pip install 'libfmp[tests]'
+pytest test_examples.py
+```
 
 ## Citing
 
