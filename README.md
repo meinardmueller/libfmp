@@ -12,9 +12,13 @@ There is also an API documentation for libfmp:
 
 https://meinardmueller.github.io/libfmp
 
+## Statement of Need
+
+The libfmp package bundles core concepts from the music information retrieval (MIR) field in the form of well-documented and easy-to-use Python functions. It is designed to aid students with the transition from being learners (e.g., studying the FMP notebooks) to becoming researchers by providing proper software support for building and experimenting with complex MIR pipelines. Going beyond and complementing existing Python packages (such as librosa), the libfmp package contains (previously unpublished) reference implementations of MIR algorithms from the literature and new Python implementations of previously published MATLAB toolboxes. The functionality of libfmp addresses diverse MIR tasks such as tuning estimation, music structure analysis, audio thumbnailing, chord recognition, tempo estimation, beat and local pulse tracking, fragment-level music retrieval, and audio decomposition.
+
 ## Installing
 
-You can install libfmp using the Python package manager pip:
+With Python >= 3.6, you can install libfmp using the Python package manager pip:
 
 ```
 pip install libfmp
@@ -22,7 +26,9 @@ pip install libfmp
 
 ## Contributing
 
-The libfmp-package has been developed in the context of the FMP notebooks. Being an integral part, all libfmp-functions need to manually synchronized with text passages, explanations, and the code in the FMP notebooks. Of course, we are happy for suggestions and contributions. However, to facilitate the synchronization, we would be grateful for either directly contacting us via email (meinard.mueller@audiolabs-erlangen.de) or for creating [an issue](https://github.com/meinardmueller/libfmp/issues) in our Github repository. Please do not submit a pull request without prior consultation with us.
+The libfmp-package has been developed in the context of the FMP notebooks. Being an integral part, all libfmp-functions need to manually synchronized with text passages, explanations, and the code in the FMP notebooks. Of course, we are happy for suggestions and contributions. However, to facilitate the synchronization, we would be grateful for either directly contacting us via email (meinard.mueller@audiolabs-erlangen.de) or for creating [an issue](https://github.com/meinardmueller/libfmp/issues) in our GitHub repository. Please do not submit a pull request without prior consultation with us.
+
+If you want to report an issue with libfmp or seek support, please use the same communication channels (email or GitHub issue).
 
 ## Tests
 
