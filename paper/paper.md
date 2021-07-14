@@ -35,7 +35,7 @@ Our libfmp package is inspired and closely follows conventions as introduced by 
 While the two packages overlap concerning basic feature extraction and MIR algorithms, libfmp contains several reference implementations of advanced music processing pipelines not yet covered by librosa (or other open-source software). Whereas the librosa package is intended to facilitate the high-level composition of basic methods into complex pipelines, a major emphasis of libfmp is on the educational side, promoting the understanding of MIR concepts by closely following the textbook on Fundamentals of Music Processing (FMP) [@Mueller15_FMP_SPRINGER].
 In this way, we hope that libfmp constitutes a valuable complement to existing open-source toolboxes such as librosa while fostering education and research in MIR.
 
-# Statement of Need
+# Introduction
 
 Thanks to the rich and challenging domain of music, the MIR field has many things to offer to signal processing and other research disciplines [@MuellerPMV19_Editorial_IEEE-SPM]. In particular, many MIR tasks can motivate application scenarios to introduce, explain, and study techniques for audio processing, time-series analysis, and information retrieval. Furthermore, the increasing availability of suitably designed software packages and freely accessible web-based frameworks have made education in MIR, signal processing, and general computer science more interactive.
 Since its beginnings, the MIR community has contributed several excellent toolboxes that provide modular source code for processing and analyzing music signals. Prominent examples are
@@ -49,6 +49,8 @@ Motivated by educational considerations, the FMP notebooks, which are a comprehe
 However, when students transition from being learners to becoming researchers, they may outgrow the FMP notebooks and begin developing their own DSP methods and programs [@MuellerMK_MusicEducation_IEEE-SPM]. The libfmp package is designed to aid students with this transition by providing proper software support for building and experimenting with complex MIR pipelines.
 Whereas the FMP notebooks offer an introduction to fundamental concepts in MIR step by step, the libfmp package bundles the presented core concepts in the form of well-documented and easy-to-use Python functions.
 While integrating and building on the librosa package, libfmp offers alternative implementations of basic concepts in signal processing (comparing and discussing differences in the FMP notebooks). As a main contribution, libfmp provides various reference implementations of previously published MIR methods, not yet covered by librosa and other publicly available Python software.
+
+# Statement of Need
 
 Going beyond and complementing existing Python packages, the libfmp package contains (previously unpublished) reference implementations of MIR algorithms from the literature as well as new Python implementations of previously published MATLAB toolboxes.
 For example, libfmp includes the core functionality of the MATLAB Tempogram Toolbox [@GroscheM11_PLP_TASLP; @GroscheM11_TempogramToolbox_ISMIR-lateBreaking][^1] for computing various mid-level tempogram representations [@GroscheMK10_TempogramCyclic_ICASSP] and for extracting beat and local pulse information [@GroscheM11_PLP_TASLP].
