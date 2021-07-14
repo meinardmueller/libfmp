@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.b.b_audio &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.b.b_audio &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -192,7 +192,7 @@
 
 
 <div class="viewcode-block" id="read_audio"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_audio.read_audio">[docs]</a><span class="k">def</span> <span class="nf">read_audio</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Reads an audio file</span>
+    <span class="sd">&quot;&quot;&quot;Read an audio file into a np.ndarray.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        path (str): Path to audio file</span>
@@ -207,7 +207,7 @@
 
 
 <div class="viewcode-block" id="write_audio"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_audio.write_audio">[docs]</a><span class="k">def</span> <span class="nf">write_audio</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Writes an audio file</span>
+    <span class="sd">&quot;&quot;&quot;Write a signal (as np.ndarray) to an audio file.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        path (str): Path to audio file</span>
@@ -218,7 +218,7 @@
 
 
 <div class="viewcode-block" id="audio_player_list"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_audio.audio_player_list">[docs]</a><span class="k">def</span> <span class="nf">audio_player_list</span><span class="p">(</span><span class="n">signals</span><span class="p">,</span> <span class="n">rates</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">270</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates list of audio players</span>
+    <span class="sd">&quot;&quot;&quot;Generate a list of HTML audio players tags for a given list of audio signals.</span>
 
 <span class="sd">    Notebook: B/B_PythonAudio.ipynb</span>
 

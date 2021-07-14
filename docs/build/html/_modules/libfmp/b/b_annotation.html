@@ -193,7 +193,9 @@
 
 
 <div class="viewcode-block" id="read_csv"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_annotation.read_csv">[docs]</a><span class="k">def</span> <span class="nf">read_csv</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">add_label</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Reads a CSV file</span>
+    <span class="sd">&quot;&quot;&quot;Read a CSV file in table format and creates a pd.DataFrame from it, with observations in the</span>
+<span class="sd">    rows and variables in the columns.</span>
+
 
 <span class="sd">    Args:</span>
 <span class="sd">        fn (str): Filename</span>
@@ -211,7 +213,7 @@
 
 
 <div class="viewcode-block" id="write_csv"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_annotation.write_csv">[docs]</a><span class="k">def</span> <span class="nf">write_csv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Writes a CSV file</span>
+    <span class="sd">&quot;&quot;&quot;Write a pd.DataFrame to a CSV file, with observations in the rows and variables in the columns.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        df (pd.DataFrame): Pandas DataFrame</span>
@@ -222,7 +224,7 @@
 
 
 <div class="viewcode-block" id="cut_audio"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_annotation.cut_audio">[docs]</a><span class="k">def</span> <span class="nf">cut_audio</span><span class="p">(</span><span class="n">fn_in</span><span class="p">,</span> <span class="n">fn_out</span><span class="p">,</span> <span class="n">start_sec</span><span class="p">,</span> <span class="n">end_sec</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Cuts an audio file</span>
+    <span class="sd">&quot;&quot;&quot;Cut an audio file using specificed start and end time positions and writes the result to a new audio file.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        fn_in (str): Filename and path for input audio file</span>
@@ -245,7 +247,8 @@
 
 
 <div class="viewcode-block" id="cut_csv_file"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_annotation.cut_csv_file">[docs]</a><span class="k">def</span> <span class="nf">cut_csv_file</span><span class="p">(</span><span class="n">fn_in</span><span class="p">,</span> <span class="n">fn_out</span><span class="p">,</span> <span class="n">start_sec</span><span class="p">,</span> <span class="n">end_sec</span><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Cuts csv annotation file</span>
+    <span class="sd">&quot;&quot;&quot;Cut a annotation CSV file (where each row corresponds to the four variables ``start``, ``end``, ``pitch``,</span>
+<span class="sd">    and ``label``) using specificed start and end time positions and writes the result to a new CSV file.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        fn_in (str): Filename and path for input audio file</span>

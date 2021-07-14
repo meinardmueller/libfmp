@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c4.c4s1_annotation &mdash; libfmp 1.1.1 documentation</title>
+  <title>libfmp.c4.c4s1_annotation &mdash; libfmp 1.1.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.1.2
               </div>
             
           
@@ -190,7 +190,13 @@
 
 
 <div class="viewcode-block" id="get_color_for_annotation_file"><a class="viewcode-back" href="../../../index_c4.html#libfmp.c4.c4s1_annotation.get_color_for_annotation_file">[docs]</a><span class="k">def</span> <span class="nf">get_color_for_annotation_file</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Gets color dict for annotation file</span>
+    <span class="sd">&quot;&quot;&quot;Gets color dict for annotation file. This function is specialized for some specfic files used in the FMP</span>
+<span class="sd">    notebooks, i.e.:</span>
+
+<span class="sd">    * FMP_C4_Audio_Brahms_HungarianDances-05_Ormandy</span>
+<span class="sd">    * FMP_C6_Audio_Brahms_HungarianDances-05_Ormandy</span>
+<span class="sd">    * FMP_C4_F13_ZagerEvans_InTheYear2525</span>
+<span class="sd">    * FMP_C6_Audio_ZagerEvans_InTheYear2525</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        filename (str): Annotation file</span>

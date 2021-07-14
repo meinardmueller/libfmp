@@ -200,7 +200,7 @@
 
 <div class="viewcode-block" id="plot_signal"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_signal">[docs]</a><span class="k">def</span> <span class="nf">plot_signal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">T_coef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
                 <span class="n">ylim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot a signal, e.g. a waveform or a novelty function</span>
+    <span class="sd">&quot;&quot;&quot;Line plot visualization of a signal, e.g. a waveform or a novelty function.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        x: Input signal</span>
@@ -253,7 +253,7 @@
 <div class="viewcode-block" id="plot_matrix"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_matrix">[docs]</a><span class="k">def</span> <span class="nf">plot_matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Fs_F</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">T_coef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">F_coef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span>
                 <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
                 <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar_aspect</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span> <span class="n">cbar_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot a matrix, e.g. a spectrogram or a tempogram</span>
+    <span class="sd">&quot;&quot;&quot;2D raster visualization of a matrix, e.g. a spectrogram or a tempogram.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        X: The matrix</span>
@@ -332,7 +332,7 @@
 
 
 <div class="viewcode-block" id="plot_chromagram"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_chromagram">[docs]</a><span class="k">def</span> <span class="nf">plot_chromagram</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">chroma_yticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Calls libfmp.b.plot_matrix and sets chroma labels</span>
+    <span class="sd">&quot;&quot;&quot;Call libfmp.b.plot_matrix and sets chroma labels.</span>
 
 <span class="sd">    See :func:`libfmp.b.b_plot.plot_matrix` for parameters and return values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -348,7 +348,7 @@
 
 
 <div class="viewcode-block" id="compressed_gray_cmap"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.compressed_gray_cmap">[docs]</a><span class="k">def</span> <span class="nf">compressed_gray_cmap</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates a logarithmically or exponentially compressed grayscale colormap</span>
+    <span class="sd">&quot;&quot;&quot;Create a logarithmically or exponentially compressed grayscale colormap.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        alpha (float): The compression factor. If alpha &gt; 0, it performs log compression (enhancing black colors).</span>
@@ -389,7 +389,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_plots</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span> <span class="n">cbar_ratio</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Creates an instance of the MultiplePlotsWithColorbar class</span>
+        <span class="sd">&quot;&quot;&quot;Create an instance of the MultiplePlotsWithColorbar class</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            num_plots: Number of plots (also number of rows)</span>
@@ -413,7 +413,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">cbar_axes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
 
 <div class="viewcode-block" id="MultiplePlotsWithColorbar.make_colorbars"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.MultiplePlotsWithColorbar.make_colorbars">[docs]</a>    <span class="k">def</span> <span class="nf">make_colorbars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Creates colorbars if the corresponding row needs a colorbar, or hides the axis in other cases.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Create colorbars if the corresponding row needs a colorbar, or hides the axis in other cases.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_plots</span><span class="p">):</span>
             <span class="n">ax_img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_images</span><span class="p">()</span>
 
@@ -426,7 +426,7 @@
 
 
 <div class="viewcode-block" id="color_argument_to_dict"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.color_argument_to_dict">[docs]</a><span class="k">def</span> <span class="nf">color_argument_to_dict</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">labels_set</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates a color dictionary</span>
+    <span class="sd">&quot;&quot;&quot;Create a dictionary that maps labels to colors.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap,</span>
@@ -468,7 +468,7 @@
 
 
 <div class="viewcode-block" id="check_line_annotations"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.check_line_annotations">[docs]</a><span class="k">def</span> <span class="nf">check_line_annotations</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">default_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Checks line annotation. If label is missing, adds an default label.</span>
+    <span class="sd">&quot;&quot;&quot;Check a list of annotations with time positions and labels. If label is missing, adds an default label.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        annot: A List of the form of ``[(time_position, label), ...]``, or ``[(time_position, ), ...]``,</span>
@@ -492,7 +492,7 @@
 
 
 <div class="viewcode-block" id="check_segment_annotations"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.check_segment_annotations">[docs]</a><span class="k">def</span> <span class="nf">check_segment_annotations</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">default_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Checks segment annotation. If label is missing, adds an default label.</span>
+    <span class="sd">&quot;&quot;&quot;Check a list of segment annotations. If label is missing, adds an default label.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        annot: A List of the form of ``[(start_position, end_position, label), ...]``, or</span>
@@ -514,7 +514,7 @@
 <div class="viewcode-block" id="plot_annotation_line"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_annotation_line">[docs]</a><span class="k">def</span> <span class="nf">plot_annotation_line</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
                          <span class="n">time_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nontime_axis</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">swap_time_ticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                          <span class="n">axis_off</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates a line plot for annotation data</span>
+    <span class="sd">&quot;&quot;&quot;Create a line plot visualization for a list of annotations with time positions and labels.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        annot: A List of tuples in the form of ``[(time_position, label), ...]``</span>
@@ -596,7 +596,7 @@
 
 
 <div class="viewcode-block" id="plot_annotation_line_overlay"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_annotation_line_overlay">[docs]</a><span class="k">def</span> <span class="nf">plot_annotation_line_overlay</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot segment annotations as overlay</span>
+    <span class="sd">&quot;&quot;&quot;Plot segment annotations as overlay.</span>
 
 <span class="sd">    See :func:`libfmp.b.b_plot.plot_annotation_line` for parameters and return values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -608,12 +608,14 @@
 <div class="viewcode-block" id="plot_annotation_multiline"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_annotation_multiline">[docs]</a><span class="k">def</span> <span class="nf">plot_annotation_multiline</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
                               <span class="n">sort_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">swap_time_ticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                               <span class="n">axis_off</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates a multi-line plot for annotation data</span>
+    <span class="sd">&quot;&quot;&quot;Create a multi-line plot visualization for a list of annotations with time positions and labels.</span>
+<span class="sd">    The multi-line plot visualization comprises a separate line plot visualization for each label category stacked</span>
+<span class="sd">    horizontally or vertically (depending on the ``direction`` keyword).</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        annot: A List of tuples in the form of ``[(time_position, label), ...]``</span>
 <span class="sd">        ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)</span>
-<span class="sd">        label_keys: A dict, where the keys are the labels used in `annot`. The values are dicts, which are used as</span>
+<span class="sd">        label_keys: A dict, where the keys are the labels used in ``annot``. The values are dicts, which are used as</span>
 <span class="sd">            keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = None)</span>
 <span class="sd">        colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or np.ndarray</span>
 <span class="sd">            of matplotlib color specifications, 4. dict that assigns labels  to colors (Default value = &#39;FMP_1&#39;)</span>
@@ -708,7 +710,8 @@
                   <span class="n">time_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nontime_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nontime_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nontime_axis</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">time_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">swap_time_ticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">axis_off</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span> <span class="n">adjust_time_axislim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                   <span class="n">adjust_nontime_axislim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">print_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label_ticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates a multi-line plot for annotation data</span>
+    <span class="sd">&quot;&quot;&quot;Create a segment plot visualization for a list of annotations with start time positions, end time</span>
+<span class="sd">    positions, and labels. The segment plot visualization shows a colored box for each segment.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        annot: A List of tuples in the form of ``[(start_position, end_position, label), ...]``</span>
@@ -837,7 +840,7 @@
 
 
 <div class="viewcode-block" id="plot_segments_overlay"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_plot.plot_segments_overlay">[docs]</a><span class="k">def</span> <span class="nf">plot_segments_overlay</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot segment annotations as overlay</span>
+    <span class="sd">&quot;&quot;&quot;Plot segment annotations as overlay.</span>
 
 <span class="sd">    See :func:`libfmp.b.b_plot.plot_segments` for parameters and return values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

@@ -189,7 +189,7 @@
 
 
 <div class="viewcode-block" id="list_to_chromagram"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.list_to_chromagram">[docs]</a><span class="k">def</span> <span class="nf">list_to_chromagram</span><span class="p">(</span><span class="n">note_list</span><span class="p">,</span> <span class="n">num_frames</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a chromagram matrix from a list of note events</span>
+    <span class="sd">&quot;&quot;&quot;Create a chromagram matrix as np.ndarray from a list of note events.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        note_list (list): A list of note events (e.g. gathered from a CSV file by</span>
@@ -209,7 +209,7 @@
 
 
 <div class="viewcode-block" id="generate_shepard_tone"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.generate_shepard_tone">[docs]</a><span class="k">def</span> <span class="nf">generate_shepard_tone</span><span class="p">(</span><span class="n">chromaNum</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Fc</span><span class="o">=</span><span class="mi">440</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates shepard tone</span>
+    <span class="sd">&quot;&quot;&quot;Generate a shepard tone signal as np.ndarray.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        chromaNum (int): 1=C,...</span>
@@ -240,7 +240,7 @@
 
 
 <div class="viewcode-block" id="sonify_chromagram"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.sonify_chromagram">[docs]</a><span class="k">def</span> <span class="nf">sonify_chromagram</span><span class="p">(</span><span class="n">chroma_data</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">fading_msec</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Sonify the chroma features from a chromagram</span>
+    <span class="sd">&quot;&quot;&quot;Generate a sonification of the chroma features from a chromagram matrix using shepard tones.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        chroma_data (np.ndarray): A chromagram (e.g., gathered from a list of note events by</span>
@@ -281,7 +281,8 @@
 
 
 <div class="viewcode-block" id="sonify_chromagram_with_signal"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.sonify_chromagram_with_signal">[docs]</a><span class="k">def</span> <span class="nf">sonify_chromagram_with_signal</span><span class="p">(</span><span class="n">chroma_data</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">fading_msec</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stereo</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Sonify the chroma features from a chromagram together with a corresponding signal</span>
+    <span class="sd">&quot;&quot;&quot;Sonifiy the chroma features from a chromagram matrix (using :func:`libfmp.b.b_sonification.sonify_chromagram`)</span>
+<span class="sd">    together with a corresponding signal.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        chroma_data (np.ndarray): A chromagram (e.g., gathered from a list of note events by</span>
@@ -313,7 +314,7 @@
 
 
 <div class="viewcode-block" id="list_to_pitch_activations"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.list_to_pitch_activations">[docs]</a><span class="k">def</span> <span class="nf">list_to_pitch_activations</span><span class="p">(</span><span class="n">note_list</span><span class="p">,</span> <span class="n">num_frames</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a pitch activation matrix from a list of note events</span>
+    <span class="sd">&quot;&quot;&quot;Create a pitch activation matrix from a list of note events.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        note_list (list): A list of note events (e.g., gathered from a CSV file by</span>
@@ -337,7 +338,7 @@
 
 
 <div class="viewcode-block" id="sonify_pitch_activations"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.sonify_pitch_activations">[docs]</a><span class="k">def</span> <span class="nf">sonify_pitch_activations</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">min_pitch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Fc</span><span class="o">=</span><span class="mi">440</span><span class="p">,</span> <span class="n">harmonics_weights</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fading_msec</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Sonify the pitches from a pitch activation matrix</span>
+    <span class="sd">&quot;&quot;&quot;Sonify the pitches from a pitch activation matrix using sinusoidals.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        P (np.ndarray): A pitch activation matrix (e.g., gathered from a list of note events by</span>
@@ -389,7 +390,8 @@
 
 <div class="viewcode-block" id="sonify_pitch_activations_with_signal"><a class="viewcode-back" href="../../../index_b.html#libfmp.b.b_sonification.sonify_pitch_activations_with_signal">[docs]</a><span class="k">def</span> <span class="nf">sonify_pitch_activations_with_signal</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">min_pitch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Fc</span><span class="o">=</span><span class="mi">440</span><span class="p">,</span> <span class="n">harmonics_weights</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                                          <span class="n">fading_msec</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stereo</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Sonify the pitches from a pitch activation matrix together with a corresponding signal</span>
+    <span class="sd">&quot;&quot;&quot;Sonify the pitches from a pitch activation matrix (using</span>
+<span class="sd">    :func:`libfmp.b.b_sonification.sonify_pitch_activations`) together with a corresponding signal.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        P (np.ndarray): A pitch activation matrix (e.g., gathered from a list of note events by</span>
