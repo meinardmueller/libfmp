@@ -21,7 +21,7 @@ FMP_COLORMAPS = {
 
 def plot_signal(x, Fs=1, T_coef=None, ax=None, figsize=(6, 2), xlabel='Time (seconds)', ylabel='', title='', dpi=72,
                 ylim=True, **kwargs):
-    """Plot a signal, e.g. a waveform or a novelty function
+    """Line plot visualization of a signal, e.g. a waveform or a novelty function.
 
     Args:
         x: Input signal
@@ -74,7 +74,7 @@ def plot_signal(x, Fs=1, T_coef=None, ax=None, figsize=(6, 2), xlabel='Time (sec
 def plot_matrix(X, Fs=1, Fs_F=1, T_coef=None, F_coef=None, xlabel='Time (seconds)', ylabel='Frequency (Hz)',
                 xlim=None, ylim=None, clim=None, title='', dpi=72,
                 colorbar=True, colorbar_aspect=20.0, cbar_label='', ax=None, figsize=(6, 3), **kwargs):
-    """Plot a matrix, e.g. a spectrogram or a tempogram
+    """2D raster visualization of a matrix, e.g. a spectrogram or a tempogram.
 
     Args:
         X: The matrix
@@ -153,7 +153,7 @@ def plot_matrix(X, Fs=1, Fs_F=1, T_coef=None, F_coef=None, xlabel='Time (seconds
 
 
 def plot_chromagram(*args, chroma_yticks=np.arange(12), **kwargs):
-    """Calls libfmp.b.plot_matrix and sets chroma labels
+    """Call libfmp.b.plot_matrix and sets chroma labels.
 
     See :func:`libfmp.b.b_plot.plot_matrix` for parameters and return values.
     """
@@ -169,7 +169,7 @@ def plot_chromagram(*args, chroma_yticks=np.arange(12), **kwargs):
 
 
 def compressed_gray_cmap(alpha=5, N=256, reverse=False):
-    """Creates a logarithmically or exponentially compressed grayscale colormap
+    """Create a logarithmically or exponentially compressed grayscale colormap.
 
     Args:
         alpha (float): The compression factor. If alpha > 0, it performs log compression (enhancing black colors).
@@ -210,7 +210,7 @@ class MultiplePlotsWithColorbar():
     """
 
     def __init__(self, num_plots, figsize=(8, 4), dpi=72, cbar_ratio=0.1, height_ratios=None):
-        """Creates an instance of the MultiplePlotsWithColorbar class
+        """Create an instance of the MultiplePlotsWithColorbar class
 
         Args:
             num_plots: Number of plots (also number of rows)
@@ -234,7 +234,7 @@ class MultiplePlotsWithColorbar():
             self.cbar_axes.append(plt.subplot(gs[i, 1]))
 
     def make_colorbars(self):
-        """Creates colorbars if the corresponding row needs a colorbar, or hides the axis in other cases."""
+        """Create colorbars if the corresponding row needs a colorbar, or hides the axis in other cases."""
         for i in range(self.num_plots):
             ax_img = self.axes[i].get_images()
 
@@ -247,7 +247,7 @@ class MultiplePlotsWithColorbar():
 
 
 def color_argument_to_dict(colors, labels_set, default='gray'):
-    """Creates a color dictionary
+    """Create a dictionary that maps labels to colors.
 
     Args:
         colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap,
@@ -289,7 +289,7 @@ def color_argument_to_dict(colors, labels_set, default='gray'):
 
 
 def check_line_annotations(annot, default_label=''):
-    """Checks line annotation. If label is missing, adds an default label.
+    """Check a list of annotations with time positions and labels. If label is missing, adds an default label.
 
     Args:
         annot: A List of the form of ``[(time_position, label), ...]``, or ``[(time_position, ), ...]``,
@@ -313,7 +313,7 @@ def check_line_annotations(annot, default_label=''):
 
 
 def check_segment_annotations(annot, default_label=''):
-    """Checks segment annotation. If label is missing, adds an default label.
+    """Check a list of segment annotations. If label is missing, adds an default label.
 
     Args:
         annot: A List of the form of ``[(start_position, end_position, label), ...]``, or
@@ -335,7 +335,7 @@ def check_segment_annotations(annot, default_label=''):
 def plot_annotation_line(annot, ax=None, label_keys=None, colors='FMP_1', figsize=(6, 1), direction='horizontal',
                          time_min=None, time_max=None, time_axis=True, nontime_axis=False, swap_time_ticks=False,
                          axis_off=False, dpi=72):
-    """Creates a line plot for annotation data
+    """Create a line plot visualization for a list of annotations with time positions and labels.
 
     Args:
         annot: A List of tuples in the form of ``[(time_position, label), ...]``
@@ -417,7 +417,7 @@ def plot_annotation_line(annot, ax=None, label_keys=None, colors='FMP_1', figsiz
 
 
 def plot_annotation_line_overlay(*args, **kwargs):
-    """Plot segment annotations as overlay
+    """Plot segment annotations as overlay.
 
     See :func:`libfmp.b.b_plot.plot_annotation_line` for parameters and return values.
     """
@@ -429,12 +429,14 @@ def plot_annotation_line_overlay(*args, **kwargs):
 def plot_annotation_multiline(annot, ax=None, label_keys=None, colors='FMP_1', figsize=(6, 1.5), direction='horizontal',
                               sort_labels=None, time_min=None, time_max=None, time_axis=True, swap_time_ticks=False,
                               axis_off=False, dpi=72):
-    """Creates a multi-line plot for annotation data
+    """Create a multi-line plot visualization for a list of annotations with time positions and labels.
+    The multi-line plot visualization comprises a separate line plot visualization for each label category stacked
+    horizontally or vertically (depending on the ``direction`` keyword).
 
     Args:
         annot: A List of tuples in the form of ``[(time_position, label), ...]``
         ax: The Axes instance to plot on. If None, will create a figure and axes. (Default value = None)
-        label_keys: A dict, where the keys are the labels used in `annot`. The values are dicts, which are used as
+        label_keys: A dict, where the keys are the labels used in ``annot``. The values are dicts, which are used as
             keyword arguments for matplotlib.pyplot.axvline or matplotlib.pyplot.axhline. (Default value = None)
         colors: Several options: 1. string of ``FMP_COLORMAPS``, 2. string of matplotlib colormap, 3. list or np.ndarray
             of matplotlib color specifications, 4. dict that assigns labels  to colors (Default value = 'FMP_1')
@@ -529,7 +531,8 @@ def plot_segments(annot, ax=None, figsize=(6, 1), direction='horizontal', colors
                   time_max=None, nontime_min=0, nontime_max=1, time_axis=True, nontime_axis=False, time_label=None,
                   swap_time_ticks=False, edgecolor='k', axis_off=False, dpi=72, adjust_time_axislim=True,
                   adjust_nontime_axislim=True, alpha=None, print_labels=True, label_ticks=False, **kwargs):
-    """Creates a multi-line plot for annotation data
+    """Create a segment plot visualization for a list of annotations with start time positions, end time
+    positions, and labels. The segment plot visualization shows a colored box for each segment.
 
     Args:
         annot: A List of tuples in the form of ``[(start_position, end_position, label), ...]``
@@ -658,7 +661,7 @@ def plot_segments(annot, ax=None, figsize=(6, 1), direction='horizontal', colors
 
 
 def plot_segments_overlay(*args, **kwargs):
-    """Plot segment annotations as overlay
+    """Plot segment annotations as overlay.
 
     See :func:`libfmp.b.b_plot.plot_segments` for parameters and return values.
     """

@@ -11,7 +11,13 @@ import libfmp.b
 
 
 def get_color_for_annotation_file(filename):
-    """Gets color dict for annotation file
+    """Gets color dict for annotation file. This function is specialized for some specfic files used in the FMP
+    notebooks, i.e.:
+
+    * FMP_C4_Audio_Brahms_HungarianDances-05_Ormandy
+    * FMP_C6_Audio_Brahms_HungarianDances-05_Ormandy
+    * FMP_C4_F13_ZagerEvans_InTheYear2525
+    * FMP_C6_Audio_ZagerEvans_InTheYear2525
 
     Args:
         filename (str): Annotation file

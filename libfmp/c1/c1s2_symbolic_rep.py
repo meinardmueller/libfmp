@@ -120,7 +120,8 @@ def xml_to_list(xml):
 
 
 def list_to_csv(score, fn_out):
-    """Convert a list of note events to a csv file
+    """Write a list of note events (comprising a start time, duration, pitch, velocity, and label for each note event)
+    to a CSV file
 
     Args:
         score (list): List of note events

@@ -13,7 +13,7 @@ import pandas as pd
 
 
 def read_audio(path, Fs=None, mono=False):
-    """Reads an audio file
+    """Read an audio file into a np.ndarray.
 
     Args:
         path (str): Path to audio file
@@ -28,7 +28,7 @@ def read_audio(path, Fs=None, mono=False):
 
 
 def write_audio(path, x, Fs):
-    """Writes an audio file
+    """Write a signal (as np.ndarray) to an audio file.
 
     Args:
         path (str): Path to audio file
@@ -39,7 +39,7 @@ def write_audio(path, x, Fs):
 
 
 def audio_player_list(signals, rates, width=270, height=40, columns=None, column_align='center'):
-    """Generates list of audio players
+    """Generate a list of HTML audio players tags for a given list of audio signals.
 
     Notebook: B/B_PythonAudio.ipynb
 

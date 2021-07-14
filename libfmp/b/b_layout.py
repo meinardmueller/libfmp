@@ -13,9 +13,9 @@ from IPython.display import HTML, display
 
 
 class FloatingBox:
-    """Inspired by https://stackoverflow.com/a/49566213/2812618
+    """Floating box for matplotlib plots. The added figures are part of a floating box.
 
-    Floating box for matplotlib plots. The added figures are part of a floating box.
+    Inspired by https://stackoverflow.com/a/49566213/2812618
 
     Attributes:
         html: The HTML string
@@ -39,7 +39,7 @@ class FloatingBox:
         """
 
     def add_fig(self, fig):
-        """Saves a PNG representation of a matplotlib figure
+        """Saves a PNG representation of a matplotlib figure.
 
         Args:
             fig: A matplotlib figure
@@ -57,7 +57,7 @@ class FloatingBox:
         plt.close(fig)
 
     def add_html(self, html):
-        """Add HTML to floating box
+        """Add HTML to floating box.
 
         Args:
             html: HTML string

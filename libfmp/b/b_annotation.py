@@ -14,7 +14,9 @@ import libfmp.b
 
 
 def read_csv(fn, header=True, add_label=False):
-    """Reads a CSV file
+    """Read a CSV file in table format and creates a pd.DataFrame from it, with observations in the
+    rows and variables in the columns.
+
 
     Args:
         fn (str): Filename
@@ -32,7 +34,7 @@ def read_csv(fn, header=True, add_label=False):
 
 
 def write_csv(df, fn, header=True):
-    """Writes a CSV file
+    """Write a pd.DataFrame to a CSV file, with observations in the rows and variables in the columns.
 
     Args:
         df (pd.DataFrame): Pandas DataFrame
@@ -43,7 +45,7 @@ def write_csv(df, fn, header=True):
 
 
 def cut_audio(fn_in, fn_out, start_sec, end_sec, normalize=True, write=True, Fs=22050):
-    """Cuts an audio file
+    """Cut an audio file using specificed start and end time positions and writes the result to a new audio file.
 
     Args:
         fn_in (str): Filename and path for input audio file
@@ -66,7 +68,8 @@ def cut_audio(fn_in, fn_out, start_sec, end_sec, normalize=True, write=True, Fs=
 
 
 def cut_csv_file(fn_in, fn_out, start_sec, end_sec, write=True):
-    """Cuts csv annotation file
+    """Cut a annotation CSV file (where each row corresponds to the four variables ``start``, ``end``, ``pitch``,
+    and ``label``) using specificed start and end time positions and writes the result to a new CSV file.
 
     Args:
         fn_in (str): Filename and path for input audio file

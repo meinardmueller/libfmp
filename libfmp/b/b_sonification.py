@@ -10,7 +10,7 @@ import numpy as np
 
 
 def list_to_chromagram(note_list, num_frames, frame_rate):
-    """Create a chromagram matrix from a list of note events
+    """Create a chromagram matrix as np.ndarray from a list of note events.
 
     Args:
         note_list (list): A list of note events (e.g. gathered from a CSV file by
@@ -30,7 +30,7 @@ def list_to_chromagram(note_list, num_frames, frame_rate):
 
 
 def generate_shepard_tone(chromaNum, Fs, N, weight=1, Fc=440, sigma=15, phase=0):
-    """Generates shepard tone
+    """Generate a shepard tone signal as np.ndarray.
 
     Args:
         chromaNum (int): 1=C,...
@@ -61,7 +61,7 @@ def generate_shepard_tone(chromaNum, Fs, N, weight=1, Fc=440, sigma=15, phase=0)
 
 
 def sonify_chromagram(chroma_data, N, frame_rate, Fs, fading_msec=5):
-    """Sonify the chroma features from a chromagram
+    """Generate a sonification of the chroma features from a chromagram matrix using shepard tones.
 
     Args:
         chroma_data (np.ndarray): A chromagram (e.g., gathered from a list of note events by
@@ -102,7 +102,8 @@ def sonify_chromagram(chroma_data, N, frame_rate, Fs, fading_msec=5):
 
 
 def sonify_chromagram_with_signal(chroma_data, x, frame_rate, Fs, fading_msec=5, stereo=True):
-    """Sonify the chroma features from a chromagram together with a corresponding signal
+    """Sonifiy the chroma features from a chromagram matrix (using :func:`libfmp.b.b_sonification.sonify_chromagram`)
+    together with a corresponding signal.
 
     Args:
         chroma_data (np.ndarray): A chromagram (e.g., gathered from a list of note events by
@@ -134,7 +135,7 @@ def sonify_chromagram_with_signal(chroma_data, x, frame_rate, Fs, fading_msec=5,
 
 
 def list_to_pitch_activations(note_list, num_frames, frame_rate):
-    """Create a pitch activation matrix from a list of note events
+    """Create a pitch activation matrix from a list of note events.
 
     Args:
         note_list (list): A list of note events (e.g., gathered from a CSV file by
@@ -158,7 +159,7 @@ def list_to_pitch_activations(note_list, num_frames, frame_rate):
 
 
 def sonify_pitch_activations(P, N, frame_rate, Fs, min_pitch=1, Fc=440, harmonics_weights=[1], fading_msec=5):
-    """Sonify the pitches from a pitch activation matrix
+    """Sonify the pitches from a pitch activation matrix using sinusoidals.
 
     Args:
         P (np.ndarray): A pitch activation matrix (e.g., gathered from a list of note events by
@@ -210,7 +211,8 @@ def sonify_pitch_activations(P, N, frame_rate, Fs, min_pitch=1, Fc=440, harmonic
 
 def sonify_pitch_activations_with_signal(P, x, frame_rate, Fs, min_pitch=1, Fc=440, harmonics_weights=[1],
                                          fading_msec=5, stereo=True):
-    """Sonify the pitches from a pitch activation matrix together with a corresponding signal
+    """Sonify the pitches from a pitch activation matrix (using
+    :func:`libfmp.b.b_sonification.sonify_pitch_activations`) together with a corresponding signal.
 
     Args:
         P (np.ndarray): A pitch activation matrix (e.g., gathered from a list of note events by
