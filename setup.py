@@ -6,7 +6,7 @@ with open('README.md', 'r') as fdesc:
 
 setup(
     name='libfmp',
-    version='1.1.2',
+    version='1.2.0',
     description='Python module for fundamentals of music processing',
     author='Meinard Müller and Frank Zalkow',
     author_email='meinard.mueller@audiolabs-erlangen.de',
