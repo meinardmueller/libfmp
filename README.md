@@ -12,7 +12,7 @@ There is also an API documentation for libfmp:
 
 https://meinardmueller.github.io/libfmp
 
-If you use the libfmp, please consider the following references.
+If you use the package libfmp, please consider the following references.
 
 ## References
 

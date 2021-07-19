@@ -11,9 +11,13 @@ The source code for the package libfmp is hosted at GitHub:
 
 https://github.com/meinardmueller/libfmp
 
-If you use libfmp in a scholarly work, please consider citing the FMP article. [#]_
+If you use the package libfmp, please consider the following references.
 
-.. [#] Meinard Müller and Frank Zalkow. FMP Notebooks: Educational Material for Teaching and Learning Fundamentals of Music Processing. Proceedings of the International Conference on Music Information Retrieval (ISMIR), pp. 573-580, Delft, The Netherlands, 2019.
+.. [#] Meinard Müller and Frank Zalkow. `FMP Notebooks: Educational Material for Teaching and Learning Fundamentals of Music Processing. <https://archives.ismir.net/ismir2019/paper/000069.pdf>`_ Proceedings of the International Conference on Music Information Retrieval (ISMIR), pp. 573–580, Delft, The Netherlands, 2019.
+
+.. [#] Meinard Müller. `Fundamentals of Music Processing – Using Python and Jupyter Notebooks. <http://www.music-processing.de/>`_ Springer Verlag, 2nd edition, 2021.
+
+.. [#] Meinard Müller. `An Educational Guide Through the FMP Notebooks for Teaching and Learning Fundamentals of Music Processing. <https://www.mdpi.com/2624-6120/2/2/18>`_ Signals, 2(2): 245–285, 2021.
 
 .. toctree::
     :hidden:
