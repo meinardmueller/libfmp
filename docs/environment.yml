@@ -1,7 +1,19 @@
 name: libfmp_docs
+
 dependencies:
   - python==3.7.*
+  - pip
   - pip:
+    - ipython==7.8.*
+    - librosa==0.8.*
+    - matplotlib==3.1.*
+    - music21==5.7.*
+    - numba==0.51.*
+    - pandas==1.0.*
+    - pretty_midi==0.2.*
+    - pysoundfile==0.9.*
+    - scipy==1.3.*
+    - numpy==1.17.*
     # - libfmp  # using a freshly downloaded version of libfmp in the ci script
     # - sphinx==3.5.*  # we need features from version 4 (autodoc_preserve_defaults)
     - git+git://github.com/sphinx-doc/sphinx.git@v4.0.0b1#egg=sphinx
