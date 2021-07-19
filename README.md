@@ -12,6 +12,16 @@ There is also an API documentation for libfmp:
 
 https://meinardmueller.github.io/libfmp
 
+If you use the libfmp, please consider the following references.
+
+## References
+
+Meinard Müller and Frank Zalkow. [FMP Notebooks: Educational Material for Teaching and Learning Fundamentals of Music Processing.](https://archives.ismir.net/ismir2019/paper/000069.pdf) Proceedings of the International Conference on Music Information Retrieval (ISMIR), pp. 573&ndash;580, Delft, The Netherlands, 2019.
+
+Meinard Müller. [Fundamentals of Music Processing &ndash; Using Python and Jupyter Notebooks.](http://www.music-processing.de/) 2nd edition, Springer Verlag, 2021.
+
+Meinard Müller. [An Educational Guide Through the FMP Notebooks for Teaching and Learning Fundamentals of Music Processing.](https://www.mdpi.com/2624-6120/2/2/18) Signals, 2(2): 245&ndash;285, 2021.
+
 ## Statement of Need
 
 The libfmp package bundles core concepts from the music information retrieval (MIR) field in the form of well-documented and easy-to-use Python functions. It is designed to aid students with the transition from being learners (e.g., studying the FMP notebooks) to becoming researchers by providing proper software support for building and experimenting with complex MIR pipelines. Going beyond and complementing existing Python packages (such as librosa), the libfmp package contains (previously unpublished) reference implementations of MIR algorithms from the literature and new Python implementations of previously published MATLAB toolboxes. The functionality of libfmp addresses diverse MIR tasks such as tuning estimation, music structure analysis, audio thumbnailing, chord recognition, tempo estimation, beat and local pulse tracking, fragment-level music retrieval, and audio decomposition.
@@ -48,12 +58,6 @@ The second option is to use [pytest](https://pytest.org), which results in a mor
 pip install 'libfmp[tests]'
 pytest test_examples.py
 ```
-
-## Citing
-
-If you use libfmp in a scholarly work, please consider citing the following article:
-
-Meinard Müller and Frank Zalkow. FMP Notebooks: Educational Material for Teaching and Learning Fundamentals of Music Processing. Proceedings of the International Conference on Music Information Retrieval (ISMIR), 573-580, Delft, The Netherlands, 2019.
 
 ## Acknowledgements
 
