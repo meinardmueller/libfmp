@@ -18,7 +18,7 @@ If you use the libfmp, please consider the following references.
 
 Meinard Müller and Frank Zalkow. [FMP Notebooks: Educational Material for Teaching and Learning Fundamentals of Music Processing.](https://archives.ismir.net/ismir2019/paper/000069.pdf) Proceedings of the International Conference on Music Information Retrieval (ISMIR), pp. 573&ndash;580, Delft, The Netherlands, 2019.
 
-Meinard Müller. [Fundamentals of Music Processing &ndash; Using Python and Jupyter Notebooks.](http://www.music-processing.de/) 2nd edition, Springer Verlag, 2021.
+Meinard Müller. [Fundamentals of Music Processing &ndash; Using Python and Jupyter Notebooks.](http://www.music-processing.de/) Springer Verlag, 2nd edition, 2021.
 
 Meinard Müller. [An Educational Guide Through the FMP Notebooks for Teaching and Learning Fundamentals of Music Processing.](https://www.mdpi.com/2624-6120/2/2/18) Signals, 2(2): 245&ndash;285, 2021.
 
