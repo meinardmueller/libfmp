@@ -16,6 +16,8 @@ If you use the package libfmp, please consider the following references.
 
 ## References
 
+Meinard Müller and Frank Zalkow. [libfmp: A Python Package for Fundamentals of Music Processing.](https://joss.theoj.org/papers/10.21105/joss.03326) Journal of Open Source Software (JOSS), 6(63), 2021.
+
 Meinard Müller and Frank Zalkow. [FMP Notebooks: Educational Material for Teaching and Learning Fundamentals of Music Processing.](https://archives.ismir.net/ismir2019/paper/000069.pdf) Proceedings of the International Conference on Music Information Retrieval (ISMIR), pp. 573&ndash;580, Delft, The Netherlands, 2019.
 
 Meinard Müller. [Fundamentals of Music Processing &ndash; Using Python and Jupyter Notebooks.](http://www.music-processing.de/) Springer Verlag, 2nd edition, 2021.
