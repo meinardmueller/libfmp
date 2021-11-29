@@ -109,7 +109,7 @@ def filter_diag_sm(S, L):
 
 def subplot_matrix_colorbar(S, fig, ax, title='', Fs=1,
                             xlabel='Time (seconds)', ylabel='Time (seconds)',
-                            clim=None, xlim=None, ylim=None, cmap=None):
+                            clim=None, xlim=None, ylim=None, cmap=None, interpolation='nearest'):
     """Visualization function for showing zoomed sections of matrices
 
     Notebook: C4/C4S2_SSM-PathEnhancement.ipynb
@@ -126,6 +126,7 @@ def subplot_matrix_colorbar(S, fig, ax, title='', Fs=1,
         xlim: Limits for x-axis (Default value = None)
         ylim: Limits for x-axis (Default value = None)
         cmap: Colormap for imshow (Default value = None)
+        interpolation: Interpolation value for imshow (Default value = 'nearest')
 
     Returns:
         im: Imshow handle
@@ -134,7 +135,7 @@ def subplot_matrix_colorbar(S, fig, ax, title='', Fs=1,
         cmap = libfmp.b.compressed_gray_cmap(alpha=-100)
     len_sec = S.shape[0] / Fs
     extent = [0, len_sec, 0, len_sec]
-    im = ax.imshow(S, aspect='auto', extent=extent, cmap=cmap,  origin='lower')
+    im = ax.imshow(S, aspect='auto', extent=extent, cmap=cmap,  origin='lower', interpolation=interpolation)
     fig.sca(ax)
     fig.colorbar(im)
     ax.set_title(title)
@@ -290,7 +291,8 @@ def compute_sm_ti(X, Y, L=1, tempo_rel_set=np.asarray([1]), shift_set=np.asarray
 
 
 def subplot_matrix_ti_colorbar(S, fig, ax, title='', Fs=1, xlabel='Time (seconds)', ylabel='Time (seconds)',
-                               clim=None, xlim=None, ylim=None, cmap=None, alpha=1, ind_zero=False):
+                               clim=None, xlim=None, ylim=None, cmap=None, alpha=1, interpolation='nearest',
+                               ind_zero=False):
     """Visualization function for showing transposition index matrix
 
     Notebook: C4/C4S2_SSM-TranspositionInvariance.ipynb
@@ -307,7 +309,8 @@ def subplot_matrix_ti_colorbar(S, fig, ax, title='', Fs=1, xlabel='Time (seconds
         xlim: Limits for x-axis (Default value = None)
         ylim: Limits for y-axis (Default value = None)
         cmap: Color map (Default value = None)
-        alpha: Alpha value for imsow (Default value = 1)
+        alpha: Alpha value for imshow (Default value = 1)
+        interpolation: Interpolation value for imshow (Default value = 'nearest')
         ind_zero: Use white (True) or black (False) color for index zero (Default value = False)
 
     Returns:
@@ -325,7 +328,8 @@ def subplot_matrix_ti_colorbar(S, fig, ax, title='', Fs=1, xlabel='Time (seconds
         cmap = ListedColormap(colorList)
     len_sec = S.shape[0] / Fs
     extent = [0, len_sec, 0, len_sec]
-    im = ax.imshow(S, aspect='auto', extent=extent, cmap=cmap,  origin='lower', alpha=alpha)
+    im = ax.imshow(S, aspect='auto', extent=extent, cmap=cmap,  origin='lower', alpha=alpha,
+                   interpolation=interpolation)
     if clim is None:
         im.set_clim(vmin=-0.5, vmax=11.5)
     fig.sca(ax)

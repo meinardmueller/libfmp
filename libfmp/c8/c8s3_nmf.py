@@ -110,7 +110,7 @@ def plot_nmf_factors(W, H, V, Fs, N_fft, H_fft, freq_max, label_pitch=None,
 
     plt.figure(figsize=figsize)
     plt.subplot(131)
-    plt.imshow(W, cmap=cmap, origin='lower', aspect='auto', extent=[0, R, 0, Fs/2])
+    plt.imshow(W, cmap=cmap, origin='lower', aspect='auto', extent=[0, R, 0, Fs/2], interpolation='nearest')
     plt.ylim([0, freq_max])
     plt.colorbar()
     plt.xticks(np.arange(R) + 0.5, label_pitch)
@@ -119,7 +119,7 @@ def plot_nmf_factors(W, H, V, Fs, N_fft, H_fft, freq_max, label_pitch=None,
     plt.title(title_W)
 
     plt.subplot(132)
-    plt.imshow(H, cmap=cmap, origin='lower', aspect='auto', extent=[0, dur_sec, 0, R])
+    plt.imshow(H, cmap=cmap, origin='lower', aspect='auto', extent=[0, dur_sec, 0, R], interpolation='nearest')
     plt.colorbar()
     plt.yticks(np.arange(R) + 0.5, label_pitch)
     plt.xlabel('Time (seconds)')
@@ -127,7 +127,7 @@ def plot_nmf_factors(W, H, V, Fs, N_fft, H_fft, freq_max, label_pitch=None,
     plt.title(title_H)
 
     plt.subplot(133)
-    plt.imshow(V, cmap=cmap, origin='lower', aspect='auto', extent=[0, dur_sec, 0, Fs/2])
+    plt.imshow(V, cmap=cmap, origin='lower', aspect='auto', extent=[0, dur_sec, 0, Fs/2], interpolation='nearest')
     plt.ylim([0, freq_max])
     plt.colorbar()
     plt.xlabel('Time (seconds)')

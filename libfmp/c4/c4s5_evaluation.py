@@ -187,7 +187,7 @@ def plot_matrix_label(M, X, color_label=None, figsize=(3, 3), cmap='gray_r', fon
 
     colorList = np.array([[1, 1, 1, 1],  [0, 0, 0, 0.7]])
     cmap = ListedColormap(colorList)
-    im = ax[0, 1].imshow(M, aspect='auto', cmap=cmap,  origin='lower')
+    im = ax[0, 1].imshow(M, aspect='auto', cmap=cmap,  origin='lower', interpolation='nearest')
     im.set_clim(vmin=-0.5, vmax=1.5)
     ax_cb = plt.colorbar(im, cax=ax[0, 2])
     ax_cb.set_ticks(np.arange(0, 2, 1))
@@ -218,7 +218,7 @@ def plot_matrix_pairwise(I_eval, figsize=(3, 2.5)):
     fig = plt.figure(figsize=figsize)
     colorList = np.array([[1, 1, 1, 1], [0, 0.7, 0, 1], [1, 0, 0, 1], [1, 0.5, 0.5, 1]])
     cmap = ListedColormap(colorList)
-    im = plt.imshow(I_eval, aspect='auto', cmap=cmap,  origin='lower')
+    im = plt.imshow(I_eval, aspect='auto', cmap=cmap,  origin='lower', interpolation='nearest')
     im.set_clim(vmin=-0.5, vmax=3.5)
     plt.xticks([])
     plt.yticks([])
@@ -303,7 +303,7 @@ def plot_boundary_measures(B_ref, B_est, tau, figsize=(8, 2.5)):
                                               'wspace': 0.2, 'height_ratios': [1, 1, 1]},
                            figsize=figsize)
 
-    im = ax[0, 0].imshow(B_tol, cmap=cmap_tol)
+    im = ax[0, 0].imshow(B_tol, cmap=cmap_tol, interpolation='nearest')
     ax[0, 0].set_title('Reference boundaries (with tolerance)')
     im.set_clim(vmin=-0.5, vmax=2.5)
     ax[0, 0].set_xticks([])
@@ -312,7 +312,7 @@ def plot_boundary_measures(B_ref, B_est, tau, figsize=(8, 2.5)):
     ax_cb.set_ticks(np.arange(0, 3, 1))
     ax_cb.set_ticklabels(['', 'Positive', 'Tolerance'])
 
-    im = ax[1, 0].imshow(np.array([B_est]), cmap=cmap_tol)
+    im = ax[1, 0].imshow(np.array([B_est]), cmap=cmap_tol, interpolation='nearest')
     ax[1, 0].set_title('Estimated boundaries')
     im.set_clim(vmin=-0.5, vmax=2.5)
     ax[1, 0].set_xticks([])
@@ -321,7 +321,7 @@ def plot_boundary_measures(B_ref, B_est, tau, figsize=(8, 2.5)):
     ax_cb.set_ticks(np.arange(0, 3, 1))
     ax_cb.set_ticklabels(['', 'Positive', 'Tolerance'])
 
-    im = ax[2, 0].imshow(B_eval, cmap_measures)
+    im = ax[2, 0].imshow(B_eval, cmap=cmap_measures, interpolation='nearest')
     ax[2, 0].set_title('Evaluation')
     im.set_clim(vmin=-0.5, vmax=3.5)
     ax[2, 0].set_xticks([])

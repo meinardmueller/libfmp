@@ -139,7 +139,7 @@ def visualize_salience_traj_constraints(Z, T_coef, F_coef_cents, F_ref=55.0, col
         fig, ax = plt.subplots(1, 1, figsize=figsize)
 
     sal = ax.imshow(Z, extent=[T_coef[0], T_coef[-1], F_coef_cents[0], F_coef_cents[-1]],
-                    cmap=cmap, origin='lower', aspect='auto')
+                    cmap=cmap, origin='lower', aspect='auto', interpolation='nearest')
 
     y_ticklabels_left = np.arange(F_coef_cents[0], F_coef_cents[-1]+1, 1200)
     ax.set_yticks(y_ticklabels_left)

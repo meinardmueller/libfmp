@@ -123,6 +123,8 @@ def plot_matrix(X, Fs=1, Fs_F=1, T_coef=None, F_coef=None, xlabel='Time (seconds
         kwargs['aspect'] = 'auto'
     if 'origin' not in kwargs:
         kwargs['origin'] = 'lower'
+    if 'interpolation' not in kwargs:
+        kwargs['interpolation'] = 'nearest'
 
     im = ax[0].imshow(X, **kwargs)
 

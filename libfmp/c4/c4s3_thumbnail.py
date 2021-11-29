@@ -369,7 +369,7 @@ def plot_ssm_ann_optimal_path_family(S, ann, seg, Fs=1, cmap='gray_r', color_ann
 
 
 def visualize_scape_plot(SP, Fs=1, ax=None, figsize=(4, 3), title='',
-                         xlabel='Center (seconds)', ylabel='Length (seconds)'):
+                         xlabel='Center (seconds)', ylabel='Length (seconds)', interpolation='nearest'):
     """Visualize scape plot
 
     Notebook: C4/C4S3_ScapePlot.ipynb
@@ -382,6 +382,7 @@ def visualize_scape_plot(SP, Fs=1, ax=None, figsize=(4, 3), title='',
         title: Title of figure (Default value = '')
         xlabel: Label for x-axis (Default value = 'Center (seconds)')
         ylabel: Label for y-axis (Default value = 'Length (seconds)')
+        interpolation: Interpolation value for imshow (Default value = 'nearest')
 
     Returns:
         fig: Handle for figure
@@ -400,7 +401,7 @@ def visualize_scape_plot(SP, Fs=1, ax=None, figsize=(4, 3), title='',
             SP_vis[length_minus_one, center] = SP[length_minus_one, start]
 
     extent = np.array([-0.5, (N-1)+0.5, -0.5, (N-1)+0.5]) / Fs
-    im = plt.imshow(SP_vis, cmap='hot_r', aspect='auto', origin='lower', extent=extent)
+    im = plt.imshow(SP_vis, cmap='hot_r', aspect='auto', origin='lower', extent=extent, interpolation=interpolation)
     x = np.asarray(range(N))
     x_half_lower = x/2
     x_half_upper = x/2 + N/2 - 1/2

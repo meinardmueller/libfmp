@@ -83,7 +83,7 @@ def plot_constellation_map(Cmap, Y=None, xlim=None, ylim=None, title='',
     if Y is None:
         Y = np.zeros((K, N))
     fig, ax = plt.subplots(1, 1, figsize=figsize, dpi=dpi)
-    im = ax.imshow(Y, origin='lower', aspect='auto', cmap='gray_r')
+    im = ax.imshow(Y, origin='lower', aspect='auto', cmap='gray_r', interpolation='nearest')
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_title(title)

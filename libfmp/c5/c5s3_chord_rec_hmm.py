@@ -210,7 +210,7 @@ def plot_transition_matrix(A, log=True, ax=None, figsize=(6, 5), title='',
         A_plot = A
         cbar_label = 'Probability'
         clim = [0, 1]
-    im = ax[0].imshow(A_plot, origin='lower', aspect='equal', cmap=cmap)
+    im = ax[0].imshow(A_plot, origin='lower', aspect='equal', cmap=cmap, interpolation='nearest')
     im.set_clim(clim)
     plt.sca(ax[0])
     cbar = plt.colorbar(im)
