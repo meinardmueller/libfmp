@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c5.c5s2_chord_rec_template &mdash; libfmp 1.2.0 documentation</title>
+  <title>libfmp.c5.c5s2_chord_rec_template &mdash; libfmp 1.2.3 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.2.3
               </div>
             
           
@@ -238,7 +238,7 @@
         <span class="n">X</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">chroma_cqt</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">n_octaves</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
                                        <span class="n">fmin</span><span class="o">=</span><span class="n">librosa</span><span class="o">.</span><span class="n">midi_to_hz</span><span class="p">(</span><span class="mi">24</span><span class="p">),</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">norm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">normalize_feature_sequence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">libfmp</span><span class="o">.</span><span class="n">c3</span><span class="o">.</span><span class="n">normalize_feature_sequence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
     <span class="n">Fs_X</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">H</span>
     <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">Fs_X</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">x_dur</span></div>
 
