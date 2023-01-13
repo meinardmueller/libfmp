@@ -59,7 +59,7 @@ def compute_chromagram_from_filename(fn_wav, Fs=22050, N=4096, H=2048, gamma=Non
         X = librosa.feature.chroma_cqt(C=X, bins_per_octave=12, n_octaves=7,
                                        fmin=librosa.midi_to_hz(24), norm=None)
     if norm is not None:
-        X = libfmp.c3.normalize_feature_sequence(X, norm='2')
+        X = libfmp.c3.normalize_feature_sequence(X, norm=norm)
     Fs_X = Fs / H
     return X, Fs_X, x, Fs, x_dur
 
