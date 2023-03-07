@@ -118,7 +118,7 @@ def compute_novelty_spectrum(x, Fs=1, N=1024, H=256, gamma=100.0, M=10, norm=Tru
         novelty_spectrum (np.ndarray): Energy-based novelty function
         Fs_feature (scalar): Feature rate
     """
-    X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hanning')
+    X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hann')
     Fs_feature = Fs / H
     Y = np.log(1 + gamma * np.abs(X))
     Y_diff = np.diff(Y)
@@ -169,7 +169,7 @@ def compute_novelty_phase(x, Fs=1, N=1024, H=64, M=40, norm=True):
         novelty_phase (np.ndarray): Energy-based novelty function
         Fs_feature (scalar): Feature rate
     """
-    X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hanning')
+    X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hann')
     Fs_feature = Fs / H
     phase = np.angle(X) / (2*np.pi)
     phase_diff = principal_argument(np.diff(phase, axis=1))
@@ -205,7 +205,7 @@ def compute_novelty_complex(x, Fs=1, N=1024, H=64, gamma=10.0, M=40, norm=True):
         novelty_complex (np.ndarray): Energy-based novelty function
         Fs_feature (scalar): Feature rate
     """
-    X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hanning')
+    X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hann')
     Fs_feature = Fs / H
     mag = np.abs(X)
     if gamma > 0:

@@ -342,7 +342,7 @@ def plot_spectrogram(x, Fs=11025, N=4096, H=2048, figsize=(4, 2)):
 
     """
     N, H = 2048, 1024
-    X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hanning')
+    X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hann')
     Y = np.abs(X)
     plt.figure(figsize=figsize)
     librosa.display.specshow(librosa.amplitude_to_db(Y, ref=np.max),
