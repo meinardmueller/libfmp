@@ -106,7 +106,7 @@ def beat_period_to_tempo(beat, Fs):
 
 
 def compute_plot_sonify_beat(x, Fs, nov, Fs_nov, beat_ref, factor, title=None, figsize=(6, 2)):
-    """Compute, plot, and sonfy beat sequence from novelty function [FMP, Section 6.3.2]
+    """Compute, plot, and sonify beat sequence from novelty function [FMP, Section 6.3.2]
 
     Notebook: C6/C6S3_BeatTracking.ipynb
 
