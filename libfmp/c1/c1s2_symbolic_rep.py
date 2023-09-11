@@ -67,7 +67,7 @@ def midi_to_list(midi):
             start = note.start
             duration = note.end - start
             pitch = note.pitch
-            velocity = note.velocity / 128.
+            velocity = note.velocity / 127.  # since midi velocity is in [0, 127]
             score.append([start, duration, pitch, velocity, instrument.name])
     return score
 
