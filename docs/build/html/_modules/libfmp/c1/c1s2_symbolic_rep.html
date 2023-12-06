@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c1.c1s2_symbolic_rep &mdash; libfmp 1.2.3 documentation</title>
+  <title>libfmp.c1.c1s2_symbolic_rep &mdash; libfmp 1.2.5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.2.3
+                1.2.5
               </div>
             
           
@@ -194,7 +194,7 @@
 
 
 <div class="viewcode-block" id="csv_to_list"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s2_symbolic_rep.csv_to_list">[docs]</a><span class="k">def</span> <span class="nf">csv_to_list</span><span class="p">(</span><span class="n">csv</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convert a csv score file to a list of note events</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a csv score file to a list of note events</span>
 
 <span class="sd">    Notebook: C1/C1S2_CSV.ipynb</span>
 
@@ -220,7 +220,7 @@
 
 
 <div class="viewcode-block" id="midi_to_list"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s2_symbolic_rep.midi_to_list">[docs]</a><span class="k">def</span> <span class="nf">midi_to_list</span><span class="p">(</span><span class="n">midi</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convert a midi file to a list of note events</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a midi file to a list of note events</span>
 
 <span class="sd">    Notebook: C1/C1S2_MIDI.ipynb</span>
 
@@ -246,13 +246,13 @@
             <span class="n">start</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">start</span>
             <span class="n">duration</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
             <span class="n">pitch</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">pitch</span>
-            <span class="n">velocity</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">velocity</span> <span class="o">/</span> <span class="mf">128.</span>
+            <span class="n">velocity</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">velocity</span> <span class="o">/</span> <span class="mf">127.</span>  <span class="c1"># since midi velocity is in [0, 127]</span>
             <span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">start</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">score</span></div>
 
 
 <div class="viewcode-block" id="xml_to_list"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s2_symbolic_rep.xml_to_list">[docs]</a><span class="k">def</span> <span class="nf">xml_to_list</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convert a music xml file to a list of note events</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a music xml file to a list of note events</span>
 
 <span class="sd">    Notebook: C1/C1S2_MusicXML.ipynb</span>
 
@@ -299,7 +299,7 @@
 
 
 <div class="viewcode-block" id="list_to_csv"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s2_symbolic_rep.list_to_csv">[docs]</a><span class="k">def</span> <span class="nf">list_to_csv</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">fn_out</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Write a list of note events (comprising a start time, duration, pitch, velocity, and label for each note event)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write a list of note events (comprising a start time, duration, pitch, velocity, and label for each note event)</span>
 <span class="sd">    to a CSV file</span>
 
 <span class="sd">    Args:</span>
@@ -314,7 +314,7 @@
 
 <div class="viewcode-block" id="visualize_piano_roll"><a class="viewcode-back" href="../../../index_c1.html#libfmp.c1.c1s2_symbolic_rep.visualize_piano_roll">[docs]</a><span class="k">def</span> <span class="nf">visualize_piano_roll</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Pitch&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;FMP_1&#39;</span><span class="p">,</span> <span class="n">velocity_alpha</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                          <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">72</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot a pianoroll visualization</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot a pianoroll visualization</span>
 
 <span class="sd">    Notebook: C1/C1S2_CSV.ipynb</span>
 

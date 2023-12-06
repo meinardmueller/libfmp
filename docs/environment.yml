@@ -1,7 +1,7 @@
 name: libfmp_docs
 
 dependencies:
-  - python==3.7.*
+  - python==3.8.*
   - pip
   - pip:
     - ipython==7.8.*
