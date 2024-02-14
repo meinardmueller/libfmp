@@ -216,9 +216,9 @@ def compute_novelty_complex(x, Fs=1, N=1024, H=64, gamma=10.0, M=40, norm=True):
     X_hat = mag * np.exp(2*np.pi*1j*(phase+phase_diff))
     X_prime = np.abs(X_hat - X)
     X_plus = np.copy(X_prime)
-    for n in range(1, X.shape[0]):
-        idx = np.where(mag[n, :] < mag[n-1, :])
-        X_plus[n, idx] = 0
+    for n in range(1, X.shape[1]):
+        idx = np.where(mag[:, n] < mag[:, n-1])
+        X_plus[idx, n] = 0
     novelty_complex = np.sum(X_plus, axis=0)
     if M > 0:
         local_average = compute_local_average(novelty_complex, M)
