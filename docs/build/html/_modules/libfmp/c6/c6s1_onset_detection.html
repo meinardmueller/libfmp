@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libfmp.c6.c6s1_onset_detection &mdash; libfmp 1.2.3 documentation</title>
+  <title>libfmp.c6.c6s1_onset_detection &mdash; libfmp 1.2.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.2.3
+                1.2.6
               </div>
             
           
@@ -195,7 +195,7 @@
 
 
 <div class="viewcode-block" id="read_annotation_pos"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.read_annotation_pos">[docs]</a><span class="k">def</span> <span class="nf">read_annotation_pos</span><span class="p">(</span><span class="n">fn_ann</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">print_table</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Read and convert file containing either list of pairs (number,label) or list of (number)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read and convert file containing either list of pairs (number,label) or list of (number)</span>
 
 <span class="sd">    Notebook: C6/C6S1_OnsetDetection.ipynb</span>
 
@@ -223,7 +223,7 @@
 
 
 <div class="viewcode-block" id="compute_novelty_energy"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.compute_novelty_energy">[docs]</a><span class="k">def</span> <span class="nf">compute_novelty_energy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute energy-based novelty function</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute energy-based novelty function</span>
 
 <span class="sd">    Notebook: C6/C6S1_NoveltyEnergy.ipynb</span>
 
@@ -259,7 +259,7 @@
 
 <div class="viewcode-block" id="compute_local_average"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.compute_local_average">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">compute_local_average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute local average of signal</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute local average of signal</span>
 
 <span class="sd">    Notebook: C6/C6S1_NoveltySpectral.ipynb</span>
 
@@ -280,7 +280,7 @@
 
 
 <div class="viewcode-block" id="compute_novelty_spectrum"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.compute_novelty_spectrum">[docs]</a><span class="k">def</span> <span class="nf">compute_novelty_spectrum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute spectral-based novelty function</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute spectral-based novelty function</span>
 
 <span class="sd">    Notebook: C6/C6S1_NoveltySpectral.ipynb</span>
 
@@ -316,7 +316,7 @@
 
 
 <div class="viewcode-block" id="principal_argument"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.principal_argument">[docs]</a><span class="k">def</span> <span class="nf">principal_argument</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Principal argument function</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Principal argument function</span>
 
 <span class="sd">    | Notebook: C6/C6S1_NoveltyPhase.ipynb, see also</span>
 <span class="sd">    | Notebook: C8/C8S2_InstantFreqEstimation.ipynb</span>
@@ -332,7 +332,7 @@
 
 
 <div class="viewcode-block" id="compute_novelty_phase"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.compute_novelty_phase">[docs]</a><span class="k">def</span> <span class="nf">compute_novelty_phase</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute phase-based novelty function</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute phase-based novelty function</span>
 
 <span class="sd">    Notebook: C6/C6S1_NoveltyPhase.ipynb</span>
 
@@ -367,7 +367,7 @@
 
 
 <div class="viewcode-block" id="compute_novelty_complex"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.compute_novelty_complex">[docs]</a><span class="k">def</span> <span class="nf">compute_novelty_complex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute complex-domain novelty function</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute complex-domain novelty function</span>
 
 <span class="sd">    Notebook: C6/C6S1_NoveltyComplex.ipynb</span>
 
@@ -395,9 +395,9 @@
     <span class="n">X_hat</span> <span class="o">=</span> <span class="n">mag</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">phase</span><span class="o">+</span><span class="n">phase_diff</span><span class="p">))</span>
     <span class="n">X_prime</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_hat</span> <span class="o">-</span> <span class="n">X</span><span class="p">)</span>
     <span class="n">X_plus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">X_prime</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mag</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&lt;</span> <span class="n">mag</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
-        <span class="n">X_plus</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mag</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">mag</span><span class="p">[:,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">X_plus</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">novelty_complex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X_plus</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">M</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">local_average</span> <span class="o">=</span> <span class="n">compute_local_average</span><span class="p">(</span><span class="n">novelty_complex</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
@@ -411,7 +411,7 @@
 
 
 <div class="viewcode-block" id="resample_signal"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.resample_signal">[docs]</a><span class="k">def</span> <span class="nf">resample_signal</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span> <span class="n">Fs_in</span><span class="p">,</span> <span class="n">Fs_out</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">time_max_sec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Resample and smooth signal</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resample and smooth signal</span>
 
 <span class="sd">    Notebook: C6/C6S1_NoveltyComparison.ipynb</span>
 
@@ -447,7 +447,7 @@
 
 
 <div class="viewcode-block" id="average_nov_dic"><a class="viewcode-back" href="../../../index_c6.html#libfmp.c6.c6s1_onset_detection.average_nov_dic">[docs]</a><span class="k">def</span> <span class="nf">average_nov_dic</span><span class="p">(</span><span class="n">nov_dic</span><span class="p">,</span> <span class="n">time_max_sec</span><span class="p">,</span> <span class="n">Fs_out</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Average respamples set of novelty functions</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Average respamples set of novelty functions</span>
 
 <span class="sd">    Notebook: C6/C6S1_NoveltyComparison.ipynb</span>
 
