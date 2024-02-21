@@ -56,8 +56,8 @@ def compute_tempogram_fourier(x, Fs, N, H, Theta=np.arange(30, 601, 1)):
             t_0 = n * H
             t_1 = t_0 + N
             X[k, n] = np.sum(win * x_exp[t_0:t_1])
-        T_coef = np.arange(M) * H / Fs
-        F_coef_BPM = Theta
+    T_coef = np.arange(M) * H / Fs
+    F_coef_BPM = Theta
     return X, T_coef, F_coef_BPM
 
 
