@@ -46,7 +46,7 @@ def compute_tempogram_fourier(x, Fs, N, H, Theta=np.arange(30, 601, 1)):
     t_pad = np.arange(L_pad)
     M = int(np.floor(L_pad - N) / H) + 1
     K = len(Theta)
-    X = np.zeros((K, M), dtype=np.complex_)
+    X = np.zeros((K, M), dtype=np.complex128)
 
     for k in range(K):
         omega = (Theta[k] / 60) / Fs
@@ -270,7 +270,7 @@ def set_yticks_tempogram_cyclic(ax, octave_bin, F_coef_scale, num_tick=5):
     """
     yticks = np.arange(0, octave_bin, octave_bin // num_tick)
     ax.set_yticks(yticks)
-    ax.set_yticklabels(F_coef_scale[yticks].astype((np.unicode_, 4)))
+    ax.set_yticklabels(F_coef_scale[yticks].astype((np.str_, 4)))
 
 
 @jit(nopython=True)
