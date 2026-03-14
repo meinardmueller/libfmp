@@ -1,19 +1,19 @@
 name: libfmp_docs
 
 dependencies:
-  - python==3.8.*
+  - python==3.10.*
   - pip
   - pip:
-    - ipython==7.8.*
-    - librosa==0.8.*
+    - ipython==8.38.*
+    - librosa==0.10.*
     - matplotlib==3.3.*
-    - music21==5.7.*
-    - numba==0.56.*
-    - pandas==1.1.*
+    - music21==9.9.*
+    - numba==0.59.*
+    - pandas==2.3.*
     - pretty_midi==0.2.*
     - soundfile==0.9.*
     - scipy==1.5.*
-    - numpy==1.19.*
+    - numpy==1.26.*
     # - libfmp  # using a freshly downloaded version of libfmp in the ci script
-    - sphinx==4.0.*
-    - sphinx_rtd_theme==0.5.*
+    - sphinx==7.4.*
+    - sphinx_rtd_theme==2.0.*
