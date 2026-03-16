@@ -30,7 +30,7 @@ The libfmp package bundles core concepts from the music information retrieval (M
 
 ## Installing
 
-With Python >= 3.6, you can install libfmp using the Python package manager pip:
+With Python >= 3.10, you can install libfmp using the Python package manager pip:
 
 ```
 pip install libfmp
