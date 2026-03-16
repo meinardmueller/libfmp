@@ -14,6 +14,12 @@ import music21 as m21
 import libfmp.b
 
 
+def _get_part_instrument_name(part):
+    """Return a stable instrument label across music21 versions."""
+    instrument = part.getInstrument(returnDefault=True)
+    return instrument.partName or instrument.instrumentName or instrument.bestName() or 'Unknown'
+
+
 def csv_to_list(csv):
     """Convert a csv score file to a list of note events
 
@@ -95,9 +101,9 @@ def xml_to_list(xml):
     score = []
 
     for part in xml_data.parts:
-        instrument = part.getInstrument().instrumentName
+        instrument = _get_part_instrument_name(part)
 
-        for note in part.flat.notes:
+        for note in part.flatten().notes:
 
             if note.isChord:
                 start = note.offset
