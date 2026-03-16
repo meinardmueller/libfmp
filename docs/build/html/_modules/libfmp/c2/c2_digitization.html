@@ -1,101 +1,52 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>libfmp.c2.c2_digitization &mdash; libfmp 1.2.3 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
+  <title>libfmp.c2.c2_digitization &mdash; libfmp 1.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
+        <script src="../../../_static/documentation_options.js?v=1f29e9d3"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../../index.html">
           
-
-          
+          <a href="../../../index.html">
             
-            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
-          
+              <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
           </a>
-
-          
-            
-            
               <div class="version">
-                1.2.3
+                1.3.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API Documentation</span></p>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
@@ -107,75 +58,36 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">libfmp</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-        
-      <li>libfmp.c2.c2_digitization</li>
-    
-    
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">libfmp.c2.c2_digitization</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for libfmp.c2.c2_digitization</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Module: libfmp.c2.c2_digitization</span>
@@ -184,13 +96,15 @@
 
 <span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 
-<div class="viewcode-block" id="generate_function"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.generate_function">[docs]</a><span class="k">def</span> <span class="nf">generate_function</span><span class="p">(</span><span class="n">Fs</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generate example function</span>
+<div class="viewcode-block" id="generate_function">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.generate_function">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_function</span><span class="p">(</span><span class="n">Fs</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate example function</span>
 
 <span class="sd">    Notebook: C2/C2S2_DigitalSignalSampling.ipynb</span>
 
@@ -210,8 +124,11 @@
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span></div>
 
 
-<div class="viewcode-block" id="sampling_equidistant"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.sampling_equidistant">[docs]</a><span class="k">def</span> <span class="nf">sampling_equidistant</span><span class="p">(</span><span class="n">x_1</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">Fs_2</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Equidistant sampling of interpolated signal</span>
+
+<div class="viewcode-block" id="sampling_equidistant">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.sampling_equidistant">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sampling_equidistant</span><span class="p">(</span><span class="n">x_1</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">Fs_2</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Equidistant sampling of interpolated signal</span>
 
 <span class="sd">    Notebook: C2/C2S2_DigitalSignalSampling.ipynb</span>
 
@@ -233,8 +150,11 @@
     <span class="k">return</span> <span class="n">x_2</span><span class="p">,</span> <span class="n">t_2</span></div>
 
 
-<div class="viewcode-block" id="reconstruction_sinc"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.reconstruction_sinc">[docs]</a><span class="k">def</span> <span class="nf">reconstruction_sinc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t_sinc</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Reconstruction from sampled signal using sinc-functions</span>
+
+<div class="viewcode-block" id="reconstruction_sinc">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.reconstruction_sinc">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">reconstruction_sinc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t_sinc</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reconstruction from sampled signal using sinc-functions</span>
 
 <span class="sd">    Notebook: C2/C2S2_DigitalSignalSampling.ipynb</span>
 
@@ -253,8 +173,11 @@
     <span class="k">return</span> <span class="n">x_sinc</span></div>
 
 
-<div class="viewcode-block" id="quantize_uniform"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.quantize_uniform">[docs]</a><span class="k">def</span> <span class="nf">quantize_uniform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">quant_min</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">quant_max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">quant_level</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Uniform quantization approach</span>
+
+<div class="viewcode-block" id="quantize_uniform">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.quantize_uniform">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">quantize_uniform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">quant_min</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">quant_max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">quant_level</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Uniform quantization approach</span>
 
 <span class="sd">    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb</span>
 
@@ -275,8 +198,11 @@
     <span class="k">return</span> <span class="n">x_quant</span></div>
 
 
-<div class="viewcode-block" id="plot_graph_quant_function"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.plot_graph_quant_function">[docs]</a><span class="k">def</span> <span class="nf">plot_graph_quant_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">quant_min</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">quant_max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">quant_level</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">,</span> <span class="n">quant</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Helper function for plotting a graph of quantization function and quantization error</span>
+
+<div class="viewcode-block" id="plot_graph_quant_function">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.plot_graph_quant_function">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_graph_quant_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">quant_min</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">quant_max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">quant_level</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">,</span> <span class="n">quant</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for plotting a graph of quantization function and quantization error</span>
 
 <span class="sd">    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb</span>
 
@@ -309,8 +235,11 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="plot_signal_quant"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.plot_signal_quant">[docs]</a><span class="k">def</span> <span class="nf">plot_signal_quant</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x_quant</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Helper function for plotting a signal and its quantized version</span>
+
+<div class="viewcode-block" id="plot_signal_quant">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.plot_signal_quant">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_signal_quant</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x_quant</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for plotting a signal and its quantized version</span>
 
 <span class="sd">    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb</span>
 
@@ -340,8 +269,11 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="encoding_mu_law"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.encoding_mu_law">[docs]</a><span class="k">def</span> <span class="nf">encoding_mu_law</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;mu-law encoding</span>
+
+<div class="viewcode-block" id="encoding_mu_law">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.encoding_mu_law">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">encoding_mu_law</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;mu-law encoding</span>
 
 <span class="sd">    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb</span>
 
@@ -356,8 +288,11 @@
     <span class="k">return</span> <span class="n">v_encode</span></div>
 
 
-<div class="viewcode-block" id="decoding_mu_law"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.decoding_mu_law">[docs]</a><span class="k">def</span> <span class="nf">decoding_mu_law</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;mu-law decoding</span>
+
+<div class="viewcode-block" id="decoding_mu_law">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.decoding_mu_law">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">decoding_mu_law</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;mu-law decoding</span>
 
 <span class="sd">    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb</span>
 
@@ -372,8 +307,11 @@
     <span class="k">return</span> <span class="n">v_decode</span></div>
 
 
-<div class="viewcode-block" id="plot_mu_law"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.plot_mu_law">[docs]</a><span class="k">def</span> <span class="nf">plot_mu_law</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">8.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
-    <span class="sd">&quot;&quot;&quot;Helper function for plotting a signal and its quantized version</span>
+
+<div class="viewcode-block" id="plot_mu_law">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.plot_mu_law">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_mu_law</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">8.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for plotting a signal and its quantized version</span>
 
 <span class="sd">    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb</span>
 
@@ -412,8 +350,11 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="quantize_nonuniform_mu"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.quantize_nonuniform_mu">[docs]</a><span class="k">def</span> <span class="nf">quantize_nonuniform_mu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">,</span> <span class="n">quant_level</span><span class="o">=</span><span class="mi">256</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Nonuniform quantization approach using mu-encoding</span>
+
+<div class="viewcode-block" id="quantize_nonuniform_mu">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_digitization.quantize_nonuniform_mu">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">quantize_nonuniform_mu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">,</span> <span class="n">quant_level</span><span class="o">=</span><span class="mi">256</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Nonuniform quantization approach using mu-encoding</span>
 
 <span class="sd">    Notebook: C2/C2S2_DigitalSignalQuantization.ipynb</span>
 
@@ -429,49 +370,34 @@
     <span class="n">x_en_quant</span> <span class="o">=</span> <span class="n">quantize_uniform</span><span class="p">(</span><span class="n">x_en</span><span class="p">,</span> <span class="n">quant_min</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">quant_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">quant_level</span><span class="o">=</span><span class="n">quant_level</span><span class="p">)</span>
     <span class="n">x_quant</span> <span class="o">=</span> <span class="n">decoding_mu_law</span><span class="p">(</span><span class="n">x_en_quant</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x_quant</span></div>
+
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
-
-    </p>
+    <p>&#169; Copyright 2021, Meinard Müller and Frank Zalkow.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -1,101 +1,52 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>libfmp.c8.c8s3_nmf &mdash; libfmp 1.2.3 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
+  <title>libfmp.c8.c8s3_nmf &mdash; libfmp 1.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
+        <script src="../../../_static/documentation_options.js?v=1f29e9d3"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../../index.html">
           
-
-          
+          <a href="../../../index.html">
             
-            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
-          
+              <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
           </a>
-
-          
-            
-            
               <div class="version">
-                1.2.3
+                1.3.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API Documentation</span></p>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
@@ -107,75 +58,36 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">libfmp</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-        
-      <li>libfmp.c8.c8s3_nmf</li>
-    
-    
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">libfmp.c8.c8s3_nmf</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for libfmp.c8.c8s3_nmf</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Module: libfmp.c8.c8s3_nmf</span>
@@ -185,14 +97,16 @@
 <span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numba</span><span class="w"> </span><span class="kn">import</span> <span class="n">jit</span>
 
 
-<div class="viewcode-block" id="nmf"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.nmf">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">nmf</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;NMF algorithm with Euclidean distance</span>
+<div class="viewcode-block" id="nmf">
+<a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.nmf">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">nmf</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;NMF algorithm with Euclidean distance</span>
 
 <span class="sd">    Notebook: C8/C8S3_NMFbasic.ipynb</span>
 
@@ -259,9 +173,12 @@
     <span class="k">return</span> <span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">V_approx</span><span class="p">,</span> <span class="n">V_approx_err</span><span class="p">,</span> <span class="n">H_W_error</span></div>
 
 
-<div class="viewcode-block" id="plot_nmf_factors"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.plot_nmf_factors">[docs]</a><span class="k">def</span> <span class="nf">plot_nmf_factors</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N_fft</span><span class="p">,</span> <span class="n">H_fft</span><span class="p">,</span> <span class="n">freq_max</span><span class="p">,</span> <span class="n">label_pitch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+
+<div class="viewcode-block" id="plot_nmf_factors">
+<a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.plot_nmf_factors">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_nmf_factors</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N_fft</span><span class="p">,</span> <span class="n">H_fft</span><span class="p">,</span> <span class="n">freq_max</span><span class="p">,</span> <span class="n">label_pitch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                      <span class="n">title_W</span><span class="o">=</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="n">title_H</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">title_V</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">)):</span>
-    <span class="sd">&quot;&quot;&quot;Plots the factore of an NMF-based spectral decomposition</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plots the factore of an NMF-based spectral decomposition</span>
 
 <span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
 
@@ -317,8 +234,11 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="pitch_from_annotation"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.pitch_from_annotation">[docs]</a><span class="k">def</span> <span class="nf">pitch_from_annotation</span><span class="p">(</span><span class="n">annotation</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Extract set of occurring pitches from annotation</span>
+
+<div class="viewcode-block" id="pitch_from_annotation">
+<a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.pitch_from_annotation">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">pitch_from_annotation</span><span class="p">(</span><span class="n">annotation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract set of occurring pitches from annotation</span>
 
 <span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
 
@@ -333,8 +253,11 @@
     <span class="k">return</span> <span class="n">pitch_set</span></div>
 
 
-<div class="viewcode-block" id="template_pitch"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.template_pitch">[docs]</a><span class="k">def</span> <span class="nf">template_pitch</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Defines spectral template for a given pitch</span>
+
+<div class="viewcode-block" id="template_pitch">
+<a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.template_pitch">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">template_pitch</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Defines spectral template for a given pitch</span>
 
 <span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
 
@@ -358,8 +281,11 @@
     <span class="k">return</span> <span class="n">template</span></div>
 
 
-<div class="viewcode-block" id="init_nmf_template_pitch"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_template_pitch">[docs]</a><span class="k">def</span> <span class="nf">init_nmf_template_pitch</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch_set</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Initializes template matrix for a given set of pitches</span>
+
+<div class="viewcode-block" id="init_nmf_template_pitch">
+<a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_template_pitch">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">init_nmf_template_pitch</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch_set</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initializes template matrix for a given set of pitches</span>
 
 <span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
 
@@ -379,8 +305,11 @@
     <span class="k">return</span> <span class="n">W</span></div>
 
 
-<div class="viewcode-block" id="init_nmf_activation_score"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_activation_score">[docs]</a><span class="k">def</span> <span class="nf">init_nmf_activation_score</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">annotation</span><span class="p">,</span> <span class="n">frame_res</span><span class="p">,</span> <span class="n">tol_note</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">pitch_set</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Initializes activation matrix for given score annotations</span>
+
+<div class="viewcode-block" id="init_nmf_activation_score">
+<a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_activation_score">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">init_nmf_activation_score</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">annotation</span><span class="p">,</span> <span class="n">frame_res</span><span class="p">,</span> <span class="n">tol_note</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">pitch_set</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initializes activation matrix for given score annotations</span>
 
 <span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
 
@@ -410,8 +339,11 @@
     <span class="k">return</span> <span class="n">H</span><span class="p">,</span> <span class="n">pitch_set</span></div>
 
 
-<div class="viewcode-block" id="init_nmf_template_pitch_onset"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_template_pitch_onset">[docs]</a><span class="k">def</span> <span class="nf">init_nmf_template_pitch_onset</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch_set</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Initializes template matrix with onsets for a given set of pitches</span>
+
+<div class="viewcode-block" id="init_nmf_template_pitch_onset">
+<a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_template_pitch_onset">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">init_nmf_template_pitch_onset</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">pitch_set</span><span class="p">,</span> <span class="n">freq_res</span><span class="p">,</span> <span class="n">tol_pitch</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initializes template matrix with onsets for a given set of pitches</span>
 
 <span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
 
@@ -432,9 +364,12 @@
     <span class="k">return</span> <span class="n">W</span></div>
 
 
-<div class="viewcode-block" id="init_nmf_activation_score_onset"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_activation_score_onset">[docs]</a><span class="k">def</span> <span class="nf">init_nmf_activation_score_onset</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">annotation</span><span class="p">,</span> <span class="n">frame_res</span><span class="p">,</span> <span class="n">tol_note</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">tol_onset</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+
+<div class="viewcode-block" id="init_nmf_activation_score_onset">
+<a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.init_nmf_activation_score_onset">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">init_nmf_activation_score_onset</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">annotation</span><span class="p">,</span> <span class="n">frame_res</span><span class="p">,</span> <span class="n">tol_note</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">tol_onset</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
                                     <span class="n">pitch_set</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Initializes activation matrix with onsets for given score annotations</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initializes activation matrix with onsets for given score annotations</span>
 
 <span class="sd">    Notebook: C8/C8S3_NMFSpecFac.ipynb</span>
 
@@ -474,8 +409,11 @@
     <span class="k">return</span> <span class="n">H</span><span class="p">,</span> <span class="n">pitch_set</span><span class="p">,</span> <span class="n">label_pitch</span></div>
 
 
-<div class="viewcode-block" id="split_annotation_lh_rh"><a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.split_annotation_lh_rh">[docs]</a><span class="k">def</span> <span class="nf">split_annotation_lh_rh</span><span class="p">(</span><span class="n">ann</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Splitting of the annotation data in left and right hand</span>
+
+<div class="viewcode-block" id="split_annotation_lh_rh">
+<a class="viewcode-back" href="../../../index_c8.html#libfmp.c8.c8s3_nmf.split_annotation_lh_rh">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">split_annotation_lh_rh</span><span class="p">(</span><span class="n">ann</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Splitting of the annotation data in left and right hand</span>
 
 <span class="sd">    Notebook: C8/C8S3_NMFAudioDecomp.ipynb</span>
 
@@ -494,49 +432,34 @@
         <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;rh&#39;</span><span class="p">:</span>
             <span class="n">ann_rh</span> <span class="o">=</span> <span class="n">ann_rh</span> <span class="o">+</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">ann_lh</span><span class="p">,</span> <span class="n">ann_rh</span></div>
+
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
-
-    </p>
+    <p>&#169; Copyright 2021, Meinard Müller and Frank Zalkow.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

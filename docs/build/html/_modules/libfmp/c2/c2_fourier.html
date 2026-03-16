@@ -1,101 +1,52 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>libfmp.c2.c2_fourier &mdash; libfmp 1.2.3 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
+  <title>libfmp.c2.c2_fourier &mdash; libfmp 1.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
+        <script src="../../../_static/documentation_options.js?v=1f29e9d3"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../../index.html">
           
-
-          
+          <a href="../../../index.html">
             
-            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
-          
+              <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
           </a>
-
-          
-            
-            
               <div class="version">
-                1.2.3
+                1.3.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API Documentation</span></p>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
@@ -107,75 +58,36 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">libfmp</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-        
-      <li>libfmp.c2.c2_fourier</li>
-    
-    
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">libfmp.c2.c2_fourier</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for libfmp.c2.c2_fourier</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Module: libfmp.c2.c2_fourier</span>
@@ -184,14 +96,16 @@
 
 <span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
-<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numba</span><span class="w"> </span><span class="kn">import</span> <span class="n">jit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">librosa</span>
 
 
-<div class="viewcode-block" id="generate_matrix_dft"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.generate_matrix_dft">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">generate_matrix_dft</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates a DFT (discrete Fourier transfrom) matrix</span>
+<div class="viewcode-block" id="generate_matrix_dft">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.generate_matrix_dft">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_matrix_dft</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a DFT (discrete Fourier transfrom) matrix</span>
 
 <span class="sd">    Notebook: C2/C2_DFT-FFT.ipynb</span>
 
@@ -209,9 +123,12 @@
     <span class="k">return</span> <span class="n">dft</span></div>
 
 
-<div class="viewcode-block" id="generate_matrix_dft_inv"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.generate_matrix_dft_inv">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">generate_matrix_dft_inv</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates an IDFT (inverse discrete Fourier transfrom) matrix</span>
+
+<div class="viewcode-block" id="generate_matrix_dft_inv">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.generate_matrix_dft_inv">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_matrix_dft_inv</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates an IDFT (inverse discrete Fourier transfrom) matrix</span>
 
 <span class="sd">    Notebook: C2/C2_STFT-Inverse.ipynb</span>
 
@@ -229,9 +146,12 @@
     <span class="k">return</span> <span class="n">dft</span></div>
 
 
-<div class="viewcode-block" id="dft"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.dft">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">dft</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the disrcete Fourier transfrom (DFT)</span>
+
+<div class="viewcode-block" id="dft">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.dft">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dft</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the disrcete Fourier transfrom (DFT)</span>
 
 <span class="sd">    Notebook: C2/C2_DFT-FFT.ipynb</span>
 
@@ -247,9 +167,12 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dft_mat</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="idft"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.idft">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">idft</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the inverse discrete Fourier transfrom (IDFT)</span>
+
+<div class="viewcode-block" id="idft">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.idft">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">idft</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the inverse discrete Fourier transfrom (IDFT)</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        X (np.ndarray): Signal to be transformed</span>
@@ -263,9 +186,12 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dft_mat</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="twiddle"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.twiddle">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">twiddle</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generate the twiddle factors used in the computation of the fast Fourier transform (FFT)</span>
+
+<div class="viewcode-block" id="twiddle">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.twiddle">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">twiddle</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate the twiddle factors used in the computation of the fast Fourier transform (FFT)</span>
 
 <span class="sd">    Notebook: C2/C2_DFT-FFT.ipynb</span>
 
@@ -280,9 +206,12 @@
     <span class="k">return</span> <span class="n">sigma</span></div>
 
 
-<div class="viewcode-block" id="twiddle_inv"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.twiddle_inv">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">twiddle_inv</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generate the twiddle factors used in the computation of the Inverse fast Fourier transform (IFFT)</span>
+
+<div class="viewcode-block" id="twiddle_inv">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.twiddle_inv">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">twiddle_inv</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate the twiddle factors used in the computation of the Inverse fast Fourier transform (IFFT)</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        N (int): Number of samples</span>
@@ -295,9 +224,12 @@
     <span class="k">return</span> <span class="n">sigma</span></div>
 
 
-<div class="viewcode-block" id="fft"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.fft">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">fft</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the fast Fourier transform (FFT)</span>
+
+<div class="viewcode-block" id="fft">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.fft">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fft</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the fast Fourier transform (FFT)</span>
 
 <span class="sd">    Notebook: C2/C2_DFT-FFT.ipynb</span>
 
@@ -325,9 +257,12 @@
         <span class="k">return</span> <span class="n">X</span></div>
 
 
-<div class="viewcode-block" id="ifft_noscale"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.ifft_noscale">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">ifft_noscale</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the inverse fast Fourier transform (IFFT) without the final scaling factor of 1/N</span>
+
+<div class="viewcode-block" id="ifft_noscale">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.ifft_noscale">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ifft_noscale</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the inverse fast Fourier transform (IFFT) without the final scaling factor of 1/N</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        X (np.ndarray): Fourier transform of x</span>
@@ -353,9 +288,12 @@
         <span class="k">return</span> <span class="n">x</span></div>
 
 
-<div class="viewcode-block" id="ifft"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.ifft">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">ifft</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the inverse fast Fourier transform (IFFT)</span>
+
+<div class="viewcode-block" id="ifft">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.ifft">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ifft</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the inverse fast Fourier transform (IFFT)</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        X (np.ndarray): Fourier transform of x</span>
@@ -366,8 +304,11 @@
     <span class="k">return</span> <span class="n">ifft_noscale</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="stft_basic"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.stft_basic">[docs]</a><span class="k">def</span> <span class="nf">stft_basic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">only_positive_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute a basic version of the discrete short-time Fourier transform (STFT)</span>
+
+<div class="viewcode-block" id="stft_basic">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.stft_basic">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">stft_basic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">only_positive_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute a basic version of the discrete short-time Fourier transform (STFT)</span>
 
 <span class="sd">    Notebook: C2/C2_STFT-Basic.ipynb</span>
 
@@ -396,8 +337,11 @@
     <span class="k">return</span> <span class="n">X</span></div>
 
 
-<div class="viewcode-block" id="istft_basic"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.istft_basic">[docs]</a><span class="k">def</span> <span class="nf">istft_basic</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the inverse of the basic discrete short-time Fourier transform (ISTFT)</span>
+
+<div class="viewcode-block" id="istft_basic">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.istft_basic">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">istft_basic</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the inverse of the basic discrete short-time Fourier transform (ISTFT)</span>
 
 <span class="sd">    Notebook: C2/C2_STFT-Inverse.ipynb</span>
 
@@ -428,9 +372,12 @@
     <span class="k">return</span> <span class="n">x_rec</span><span class="p">,</span> <span class="n">x_win_sum</span><span class="p">,</span> <span class="n">w_sum</span></div>
 
 
-<div class="viewcode-block" id="stft"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.stft">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">stft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">zero_padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">only_positive_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the discrete short-time Fourier transform (STFT)</span>
+
+<div class="viewcode-block" id="stft">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.stft">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">stft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">zero_padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">only_positive_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the discrete short-time Fourier transform (STFT)</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        x (np.ndarray): Signal to be transformed</span>
@@ -468,9 +415,12 @@
     <span class="k">return</span> <span class="n">X</span></div>
 
 
-<div class="viewcode-block" id="istft"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.istft">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">istft</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">zero_padding</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the inverse discrete short-time Fourier transform (ISTFT)</span>
+
+<div class="viewcode-block" id="istft">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.istft">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">istft</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">zero_padding</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the inverse discrete short-time Fourier transform (ISTFT)</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        X (np.ndarray): The discrete short-time Fourier transform</span>
@@ -516,8 +466,11 @@
     <span class="k">return</span> <span class="n">x_rec</span></div>
 
 
-<div class="viewcode-block" id="stft_convention_fmp"><a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.stft_convention_fmp">[docs]</a><span class="k">def</span> <span class="nf">stft_convention_fmp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">pad_mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the discrete short-time Fourier transform (STFT)</span>
+
+<div class="viewcode-block" id="stft_convention_fmp">
+<a class="viewcode-back" href="../../../index_c2.html#libfmp.c2.c2_fourier.stft_convention_fmp">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">stft_convention_fmp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">pad_mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the discrete short-time Fourier transform (STFT)</span>
 
 <span class="sd">    Notebook: C2/C2_STFT-FreqGridInterpol.ipynb</span>
 
@@ -545,49 +498,34 @@
     <span class="c1"># T_coef = np.arange(X.shape[1]) * H/Fs</span>
     <span class="c1"># F_coef = np.arange(N//2+1) * Fs/N</span>
     <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">T_coef</span><span class="p">,</span> <span class="n">F_coef</span></div>
+
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
-
-    </p>
+    <p>&#169; Copyright 2021, Meinard Müller and Frank Zalkow.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

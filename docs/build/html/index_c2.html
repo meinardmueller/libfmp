@@ -1,107 +1,92 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Fourier Analysis of Signals (libfmp.c2) &mdash; libfmp 1.2.6 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
+  <title>Fourier Analysis of Signals (libfmp.c2) &mdash; libfmp 1.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+        <script src="_static/documentation_options.js?v=1f29e9d3"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Music Synchronization (libfmp.c3)" href="index_c3.html" />
     <link rel="prev" title="Music Representations (libfmp.c1)" href="index_c1.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html">
           
-
-          
+          <a href="index.html">
             
-            <img src="_static/Logo_libfmp.png" class="logo" alt="Logo"/>
-          
+              <img src="_static/Logo_libfmp.png" class="logo" alt="Logo"/>
           </a>
-
-          
-            
-            
               <div class="version">
-                1.2.6
+                1.3.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API Documentation</span></p>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index_b.html">Basics (libfmp.b)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index_c1.html">Music Representations (libfmp.c1)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Fourier Analysis of Signals (libfmp.c2)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Fourier Analysis of Signals (libfmp.c2)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_complex.generate_figure"><code class="docutils literal notranslate"><span class="pre">generate_figure()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_complex.plot_vector"><code class="docutils literal notranslate"><span class="pre">plot_vector()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_digitization.decoding_mu_law"><code class="docutils literal notranslate"><span class="pre">decoding_mu_law()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_digitization.encoding_mu_law"><code class="docutils literal notranslate"><span class="pre">encoding_mu_law()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_digitization.generate_function"><code class="docutils literal notranslate"><span class="pre">generate_function()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_digitization.plot_graph_quant_function"><code class="docutils literal notranslate"><span class="pre">plot_graph_quant_function()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_digitization.plot_mu_law"><code class="docutils literal notranslate"><span class="pre">plot_mu_law()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_digitization.plot_signal_quant"><code class="docutils literal notranslate"><span class="pre">plot_signal_quant()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_digitization.quantize_nonuniform_mu"><code class="docutils literal notranslate"><span class="pre">quantize_nonuniform_mu()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_digitization.quantize_uniform"><code class="docutils literal notranslate"><span class="pre">quantize_uniform()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_digitization.reconstruction_sinc"><code class="docutils literal notranslate"><span class="pre">reconstruction_sinc()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_digitization.sampling_equidistant"><code class="docutils literal notranslate"><span class="pre">sampling_equidistant()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.dft"><code class="docutils literal notranslate"><span class="pre">dft()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.fft"><code class="docutils literal notranslate"><span class="pre">fft()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.generate_matrix_dft"><code class="docutils literal notranslate"><span class="pre">generate_matrix_dft()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.generate_matrix_dft_inv"><code class="docutils literal notranslate"><span class="pre">generate_matrix_dft_inv()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.idft"><code class="docutils literal notranslate"><span class="pre">idft()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.ifft"><code class="docutils literal notranslate"><span class="pre">ifft()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.ifft_noscale"><code class="docutils literal notranslate"><span class="pre">ifft_noscale()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.istft"><code class="docutils literal notranslate"><span class="pre">istft()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.istft_basic"><code class="docutils literal notranslate"><span class="pre">istft_basic()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.stft"><code class="docutils literal notranslate"><span class="pre">stft()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.stft_basic"><code class="docutils literal notranslate"><span class="pre">stft_basic()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.stft_convention_fmp"><code class="docutils literal notranslate"><span class="pre">stft_convention_fmp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.twiddle"><code class="docutils literal notranslate"><span class="pre">twiddle()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_fourier.twiddle_inv"><code class="docutils literal notranslate"><span class="pre">twiddle_inv()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_interference.generate_chirp_linear"><code class="docutils literal notranslate"><span class="pre">generate_chirp_linear()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_interference.plot_interference"><code class="docutils literal notranslate"><span class="pre">plot_interference()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_interpolation.compute_f_coef_linear"><code class="docutils literal notranslate"><span class="pre">compute_f_coef_linear()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_interpolation.compute_f_coef_log"><code class="docutils literal notranslate"><span class="pre">compute_f_coef_log()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libfmp.c2.c2_interpolation.interpolate_freq_stft"><code class="docutils literal notranslate"><span class="pre">interpolate_freq_stft()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="index_c3.html">Music Synchronization (libfmp.c3)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index_c4.html">Music Structure Analysis (libfmp.c4)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index_c5.html">Chord Recognition (libfmp.c5)</a></li>
@@ -109,89 +94,48 @@
 <li class="toctree-l1"><a class="reference internal" href="index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 <li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">libfmp</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>Fourier Analysis of Signals (libfmp.c2)</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Fourier Analysis of Signals (libfmp.c2)</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/index_c2.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="fourier-analysis-of-signals-libfmp-c2">
-<h1>Fourier Analysis of Signals (libfmp.c2)<a class="headerlink" href="#fourier-analysis-of-signals-libfmp-c2" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="fourier-analysis-of-signals-libfmp-c2">
+<h1>Fourier Analysis of Signals (libfmp.c2)<a class="headerlink" href="#fourier-analysis-of-signals-libfmp-c2" title="Link to this heading">¶</a></h1>
 <p>The <a class="reference external" href="https://www.audiolabs-erlangen.de/FMP">FMP notebooks</a> provide detailed textbook-like explanations of central techniques and algorithms implemented in the libfmp.
 The part of FMP related to this module is available at the following URL:</p>
 <p><a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2.html">https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2.html</a></p>
-<span class="target" id="module-libfmp.c2"></span><span class="target" id="module-libfmp.c2.c2_complex"></span><dl class="py function">
-<dt class="sig sig-object py" id="libfmp.c2.c2_complex.generate_figure">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_complex.</span></span><span class="sig-name descname"><span class="pre">generate_figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(2,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_complex.html#generate_figure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_complex.generate_figure" title="Permalink to this definition">¶</a></dt>
+<dl class="py function" id="module-libfmp.c2.c2_complex">
+<span id="module-libfmp.c2"></span><dt class="sig sig-object py" id="libfmp.c2.c2_complex.generate_figure">
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_complex.</span></span><span class="sig-name descname"><span class="pre">generate_figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(2,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_complex.html#generate_figure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_complex.generate_figure" title="Link to this definition">¶</a></dt>
 <dd><p>Generate figure for plotting complex numbers</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_ComplexNumbers.html">C2/C2_ComplexNumbers.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_ComplexNumbers.html">C2/C2_ComplexNumbers.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>figsize</strong> – Figure size (Default value = (2, 2))</p></li>
 <li><p><strong>xlim</strong> – Limits of x-axis (Default value = [0, 1])</p></li>
@@ -203,11 +147,11 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_complex.plot_vector">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_complex.</span></span><span class="sig-name descname"><span class="pre">plot_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'-'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_complex.html#plot_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_complex.plot_vector" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_complex.</span></span><span class="sig-name descname"><span class="pre">plot_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'-'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_complex.html#plot_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_complex.plot_vector" title="Link to this definition">¶</a></dt>
 <dd><p>Plot arrow corresponding to difference of two complex numbers</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_ComplexNumbers.html">C2/C2_ComplexNumbers.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_ComplexNumbers.html">C2/C2_ComplexNumbers.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>c</strong> – Complex number</p></li>
 <li><p><strong>color</strong> – Color of arrow (Default value = ‘k’)</p></li>
@@ -215,25 +159,25 @@ The part of FMP related to this module is available at the following URL:</p>
 <li><p><strong>linestyle</strong> – Linestyle of arrow (Default value = ‘-‘)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>arrow</strong> (<em>matplotlib.patches.FancyArrow</em>) – Arrow</p>
 </dd>
 </dl>
 </dd></dl>
 
-<span class="target" id="module-libfmp.c2.c2_digitization"></span><dl class="py function">
+<dl class="py function" id="module-libfmp.c2.c2_digitization">
 <dt class="sig sig-object py" id="libfmp.c2.c2_digitization.decoding_mu_law">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">decoding_mu_law</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#decoding_mu_law"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.decoding_mu_law" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">decoding_mu_law</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#decoding_mu_law"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.decoding_mu_law" title="Link to this definition">¶</a></dt>
 <dd><p>mu-law decoding</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>v</strong> (<em>float</em>) – Value between -1 and 1</p></li>
 <li><p><strong>mu</strong> (<em>float</em>) – Dencoding parameter (Default value = 255.0)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>v_decode</strong> (<em>float</em>) – Decoded value</p>
 </dd>
 </dl>
@@ -241,17 +185,17 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_digitization.encoding_mu_law">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">encoding_mu_law</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#encoding_mu_law"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.encoding_mu_law" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">encoding_mu_law</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#encoding_mu_law"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.encoding_mu_law" title="Link to this definition">¶</a></dt>
 <dd><p>mu-law encoding</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>v</strong> (<em>float</em>) – Value between -1 and 1</p></li>
 <li><p><strong>mu</strong> (<em>float</em>) – Encoding parameter (Default value = 255.0)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>v_encode</strong> (<em>float</em>) – Encoded value</p>
 </dd>
 </dl>
@@ -259,17 +203,17 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_digitization.generate_function">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">generate_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#generate_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.generate_function" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">generate_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#generate_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.generate_function" title="Link to this definition">¶</a></dt>
 <dd><p>Generate example function</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalSampling.html">C2/C2S2_DigitalSignalSampling.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalSampling.html">C2/C2S2_DigitalSignalSampling.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
 <li><p><strong>dur</strong> (<em>float</em>) – Duration (in seconds) of signal to be generated (Default value = 1)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal</p></li>
 <li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
@@ -280,11 +224,11 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_digitization.plot_graph_quant_function">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">plot_graph_quant_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#plot_graph_quant_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.plot_graph_quant_function" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">plot_graph_quant_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#plot_graph_quant_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.plot_graph_quant_function" title="Link to this definition">¶</a></dt>
 <dd><p>Helper function for plotting a graph of quantization function and quantization error</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ax</strong> (<em>mpl.axes.Axes</em>) – Axis</p></li>
 <li><p><strong>quant_min</strong> (<em>float</em>) – Minimum quantization level (Default value = -1.0)</p></li>
@@ -299,11 +243,11 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_digitization.plot_mu_law">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">plot_mu_law</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8.5,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#plot_mu_law"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.plot_mu_law" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">plot_mu_law</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8.5,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#plot_mu_law"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.plot_mu_law" title="Link to this definition">¶</a></dt>
 <dd><p>Helper function for plotting a signal and its quantized version</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mu</strong> (<em>float</em>) – Dencoding parameter (Default value = 255.0)</p></li>
 <li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size (Default value = (8.5, 2))</p></li>
@@ -314,11 +258,11 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_digitization.plot_signal_quant">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">plot_signal_quant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_quant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#plot_signal_quant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.plot_signal_quant" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">plot_signal_quant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_quant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#plot_signal_quant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.plot_signal_quant" title="Link to this definition">¶</a></dt>
 <dd><p>Helper function for plotting a signal and its quantized version</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> – Original Signal</p></li>
 <li><p><strong>t</strong> – Time</p></li>
@@ -334,18 +278,18 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_digitization.quantize_nonuniform_mu">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">quantize_nonuniform_mu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#quantize_nonuniform_mu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.quantize_nonuniform_mu" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">quantize_nonuniform_mu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#quantize_nonuniform_mu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.quantize_nonuniform_mu" title="Link to this definition">¶</a></dt>
 <dd><p>Nonuniform quantization approach using mu-encoding</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>np.ndarray</em>) – Original signal</p></li>
 <li><p><strong>mu</strong> (<em>float</em>) – Encoding parameter (Default value = 255.0)</p></li>
 <li><p><strong>quant_level</strong> (<em>int</em>) – Number of quantization levels (Default value = 256)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x_quant</strong> (<em>np.ndarray</em>) – Quantized signal</p>
 </dd>
 </dl>
@@ -353,11 +297,11 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_digitization.quantize_uniform">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">quantize_uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#quantize_uniform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.quantize_uniform" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">quantize_uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quant_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#quantize_uniform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.quantize_uniform" title="Link to this definition">¶</a></dt>
 <dd><p>Uniform quantization approach</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalQuantization.html">C2/C2S2_DigitalSignalQuantization.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>np.ndarray</em>) – Original signal</p></li>
 <li><p><strong>quant_min</strong> (<em>float</em>) – Minimum quantization level (Default value = -1.0)</p></li>
@@ -365,7 +309,7 @@ The part of FMP related to this module is available at the following URL:</p>
 <li><p><strong>quant_level</strong> (<em>int</em>) – Number of quantization levels (Default value = 5)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x_quant</strong> (<em>np.ndarray</em>) – Quantized signal</p>
 </dd>
 </dl>
@@ -373,18 +317,18 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_digitization.reconstruction_sinc">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">reconstruction_sinc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_sinc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#reconstruction_sinc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.reconstruction_sinc" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">reconstruction_sinc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_sinc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#reconstruction_sinc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.reconstruction_sinc" title="Link to this definition">¶</a></dt>
 <dd><p>Reconstruction from sampled signal using sinc-functions</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalSampling.html">C2/C2S2_DigitalSignalSampling.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalSampling.html">C2/C2S2_DigitalSignalSampling.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>np.ndarray</em>) – Sampled signal</p></li>
 <li><p><strong>t</strong> (<em>np.ndarray</em>) – Equidistant discrete time axis (in seconds) of x</p></li>
 <li><p><strong>t_sinc</strong> (<em>np.ndarray</em>) – Equidistant discrete time axis (in seconds) of signal to be reconstructed</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x_sinc</strong> (<em>np.ndarray</em>) – Reconstructed signal having time axis t_sinc</p>
 </dd>
 </dl>
@@ -392,11 +336,11 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_digitization.sampling_equidistant">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">sampling_equidistant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#sampling_equidistant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.sampling_equidistant" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_digitization.</span></span><span class="sig-name descname"><span class="pre">sampling_equidistant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_digitization.html#sampling_equidistant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_digitization.sampling_equidistant" title="Link to this definition">¶</a></dt>
 <dd><p>Equidistant sampling of interpolated signal</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalSampling.html">C2/C2S2_DigitalSignalSampling.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S2_DigitalSignalSampling.html">C2/C2S2_DigitalSignalSampling.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x_1</strong> (<em>np.ndarray</em>) – Signal to be interpolated and sampled</p></li>
 <li><p><strong>t_1</strong> (<em>np.ndarray</em>) – Time axis (in seconds) of x_1</p></li>
@@ -404,7 +348,7 @@ The part of FMP related to this module is available at the following URL:</p>
 <li><p><strong>dur</strong> (<em>float</em>) – Duration (in seconds) of sampled signal (Default value = None)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>x</strong> (<em>np.ndarray</em>) – Sampled signal</p></li>
 <li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds) of sampled signal</p></li>
@@ -413,16 +357,16 @@ The part of FMP related to this module is available at the following URL:</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="module-libfmp.c2.c2_fourier"></span><dl class="py function">
+<dl class="py function" id="module-libfmp.c2.c2_fourier">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.dft">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">dft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#dft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.dft" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">dft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#dft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.dft" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the disrcete Fourier transfrom (DFT)</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_DFT-FFT.html">C2/C2_DFT-FFT.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_DFT-FFT.html">C2/C2_DFT-FFT.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Signal to be transformed</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>X</strong> (<em>np.ndarray</em>) – Fourier transform of x</p>
 </dd>
 </dl>
@@ -430,14 +374,14 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.fft">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">fft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#fft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.fft" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">fft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#fft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.fft" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the fast Fourier transform (FFT)</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_DFT-FFT.html">C2/C2_DFT-FFT.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_DFT-FFT.html">C2/C2_DFT-FFT.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Signal to be transformed</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>X</strong> (<em>np.ndarray</em>) – Fourier transform of x</p>
 </dd>
 </dl>
@@ -445,17 +389,17 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.generate_matrix_dft">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">generate_matrix_dft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#generate_matrix_dft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.generate_matrix_dft" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">generate_matrix_dft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#generate_matrix_dft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.generate_matrix_dft" title="Link to this definition">¶</a></dt>
 <dd><p>Generates a DFT (discrete Fourier transfrom) matrix</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_DFT-FFT.html">C2/C2_DFT-FFT.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_DFT-FFT.html">C2/C2_DFT-FFT.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>N</strong> (<em>int</em>) – Number of samples</p></li>
 <li><p><strong>K</strong> (<em>int</em>) – Number of frequency bins</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>dft</strong> (<em>np.ndarray</em>) – The DFT matrix</p>
 </dd>
 </dl>
@@ -463,17 +407,17 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.generate_matrix_dft_inv">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">generate_matrix_dft_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#generate_matrix_dft_inv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.generate_matrix_dft_inv" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">generate_matrix_dft_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#generate_matrix_dft_inv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.generate_matrix_dft_inv" title="Link to this definition">¶</a></dt>
 <dd><p>Generates an IDFT (inverse discrete Fourier transfrom) matrix</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-Inverse.html">C2/C2_STFT-Inverse.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-Inverse.html">C2/C2_STFT-Inverse.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>N</strong> (<em>int</em>) – Number of samples</p></li>
 <li><p><strong>K</strong> (<em>int</em>) – Number of frequency bins</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>dft</strong> (<em>np.ndarray</em>) – The IDFT matrix</p>
 </dd>
 </dl>
@@ -481,13 +425,13 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.idft">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">idft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#idft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.idft" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">idft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#idft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.idft" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the inverse discrete Fourier transfrom (IDFT)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em>) – Signal to be transformed</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x</strong> (<em>np.ndarray</em>) – Inverse Fourier transform of X</p>
 </dd>
 </dl>
@@ -495,13 +439,13 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.ifft">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">ifft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#ifft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.ifft" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">ifft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#ifft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.ifft" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the inverse fast Fourier transform (IFFT)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em>) – Fourier transform of x</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x</strong> (<em>np.ndarray</em>) – Inverse Fourier transform of X</p>
 </dd>
 </dl>
@@ -509,13 +453,13 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.ifft_noscale">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">ifft_noscale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#ifft_noscale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.ifft_noscale" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">ifft_noscale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#ifft_noscale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.ifft_noscale" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the inverse fast Fourier transform (IFFT) without the final scaling factor of 1/N</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em>) – Fourier transform of x</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x</strong> (<em>np.ndarray</em>) – Inverse Fourier transform of X</p>
 </dd>
 </dl>
@@ -523,10 +467,10 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.istft">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">istft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#istft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.istft" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">istft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#istft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.istft" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the inverse discrete short-time Fourier transform (ISTFT)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>np.ndarray</em>) – The discrete short-time Fourier transform</p></li>
 <li><p><strong>w</strong> (<em>np.ndarray</em>) – Window function</p></li>
@@ -536,7 +480,7 @@ The part of FMP related to this module is available at the following URL:</p>
 (Default value = 0)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x</strong> (<em>np.ndarray</em>) – Reconstructed time signal</p>
 </dd>
 </dl>
@@ -544,11 +488,11 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.istft_basic">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">istft_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#istft_basic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.istft_basic" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">istft_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#istft_basic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.istft_basic" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the inverse of the basic discrete short-time Fourier transform (ISTFT)</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-Inverse.html">C2/C2_STFT-Inverse.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-Inverse.html">C2/C2_STFT-Inverse.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>np.ndarray</em>) – The discrete short-time Fourier transform</p></li>
 <li><p><strong>w</strong> (<em>np.ndarray</em>) – Window function</p></li>
@@ -556,7 +500,7 @@ The part of FMP related to this module is available at the following URL:</p>
 <li><p><strong>L</strong> (<em>int</em>) – Length of time signal</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x</strong> (<em>np.ndarray</em>) – Time signal</p>
 </dd>
 </dl>
@@ -564,10 +508,10 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.stft">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">stft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_positive_frequencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#stft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.stft" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">stft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_positive_frequencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#stft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.stft" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the discrete short-time Fourier transform (STFT)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal to be transformed</p></li>
 <li><p><strong>w</strong> (<em>np.ndarray</em>) – Window function</p></li>
@@ -578,7 +522,7 @@ The part of FMP related to this module is available at the following URL:</p>
 (Default value = False)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>X</strong> (<em>np.ndarray</em>) – The discrete short-time Fourier transform</p>
 </dd>
 </dl>
@@ -586,11 +530,11 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.stft_basic">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">stft_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_positive_frequencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#stft_basic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.stft_basic" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">stft_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_positive_frequencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#stft_basic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.stft_basic" title="Link to this definition">¶</a></dt>
 <dd><p>Compute a basic version of the discrete short-time Fourier transform (STFT)</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-Basic.html">C2/C2_STFT-Basic.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-Basic.html">C2/C2_STFT-Basic.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal to be transformed</p></li>
 <li><p><strong>w</strong> (<em>np.ndarray</em>) – Window function</p></li>
@@ -599,7 +543,7 @@ The part of FMP related to this module is available at the following URL:</p>
 (Default value = False)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>X</strong> (<em>np.ndarray</em>) – The discrete short-time Fourier transform</p>
 </dd>
 </dl>
@@ -607,11 +551,11 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.stft_convention_fmp">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">stft_convention_fmp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'constant'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#stft_convention_fmp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.stft_convention_fmp" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">stft_convention_fmp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'constant'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#stft_convention_fmp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.stft_convention_fmp" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the discrete short-time Fourier transform (STFT)</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-FreqGridInterpol.html">C2/C2_STFT-FreqGridInterpol.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-FreqGridInterpol.html">C2/C2_STFT-FreqGridInterpol.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>np.ndarray</em>) – Signal to be transformed</p></li>
 <li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
@@ -623,7 +567,7 @@ The part of FMP related to this module is available at the following URL:</p>
 <li><p><strong>gamma</strong> (<em>float</em>) – Constant for logarithmic compression (only applied when mag==True) (Default value = 0)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>X</strong> (<em>np.ndarray</em>) – Discrete (magnitude) short-time Fourier transform</p>
 </dd>
 </dl>
@@ -631,14 +575,14 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.twiddle">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">twiddle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#twiddle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.twiddle" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">twiddle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#twiddle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.twiddle" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the twiddle factors used in the computation of the fast Fourier transform (FFT)</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_DFT-FFT.html">C2/C2_DFT-FFT.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_DFT-FFT.html">C2/C2_DFT-FFT.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>N</strong> (<em>int</em>) – Number of samples</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>sigma</strong> (<em>np.ndarray</em>) – The twiddle factors</p>
 </dd>
 </dl>
@@ -646,25 +590,25 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_fourier.twiddle_inv">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">twiddle_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#twiddle_inv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.twiddle_inv" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_fourier.</span></span><span class="sig-name descname"><span class="pre">twiddle_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_fourier.html#twiddle_inv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_fourier.twiddle_inv" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the twiddle factors used in the computation of the Inverse fast Fourier transform (IFFT)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>N</strong> (<em>int</em>) – Number of samples</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>sigma</strong> (<em>np.ndarray</em>) – The twiddle factors</p>
 </dd>
 </dl>
 </dd></dl>
 
-<span class="target" id="module-libfmp.c2.c2_interference"></span><dl class="py function">
+<dl class="py function" id="module-libfmp.c2.c2_interference">
 <dt class="sig sig-object py" id="libfmp.c2.c2_interference.generate_chirp_linear">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_interference.</span></span><span class="sig-name descname"><span class="pre">generate_chirp_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dur</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_interference.html#generate_chirp_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_interference.generate_chirp_linear" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_interference.</span></span><span class="sig-name descname"><span class="pre">generate_chirp_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dur</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_interference.html#generate_chirp_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_interference.generate_chirp_linear" title="Link to this definition">¶</a></dt>
 <dd><p>Generation chirp with linear frequency increase</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S3_InterferenceBeating.html">C2/C2S3_InterferenceBeating.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S3_InterferenceBeating.html">C2/C2S3_InterferenceBeating.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dur</strong> (<em>float</em>) – Duration (seconds) of the signal</p></li>
 <li><p><strong>freq_start</strong> (<em>float</em>) – Start frequency of the chirp</p></li>
@@ -673,7 +617,7 @@ The part of FMP related to this module is available at the following URL:</p>
 <li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate (Default value = 22050)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>x</strong> (<em>np.ndarray</em>) – Generated chirp signal</p></li>
 <li><p><strong>t</strong> (<em>np.ndarray</em>) – Time axis (in seconds)</p></li>
@@ -685,11 +629,11 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_interference.plot_interference">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_interference.</span></span><span class="sig-name descname"><span class="pre">plot_interference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_interference.html#plot_interference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_interference.plot_interference" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_interference.</span></span><span class="sig-name descname"><span class="pre">plot_interference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_interference.html#plot_interference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_interference.plot_interference" title="Link to this definition">¶</a></dt>
 <dd><p>Helper function for plotting two signals and its superposition</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S3_InterferenceBeating.html">C2/C2S3_InterferenceBeating.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2S3_InterferenceBeating.html">C2/C2S3_InterferenceBeating.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x1</strong> – Signal 1</p></li>
 <li><p><strong>x2</strong> – Signal 2</p></li>
@@ -703,20 +647,20 @@ The part of FMP related to this module is available at the following URL:</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="module-libfmp.c2.c2_interpolation"></span><dl class="py function">
+<dl class="py function" id="module-libfmp.c2.c2_interpolation">
 <dt class="sig sig-object py" id="libfmp.c2.c2_interpolation.compute_f_coef_linear">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_interpolation.</span></span><span class="sig-name descname"><span class="pre">compute_f_coef_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_interpolation.html#compute_f_coef_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_interpolation.compute_f_coef_linear" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_interpolation.</span></span><span class="sig-name descname"><span class="pre">compute_f_coef_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_interpolation.html#compute_f_coef_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_interpolation.compute_f_coef_linear" title="Link to this definition">¶</a></dt>
 <dd><p>Refines the frequency vector by factor of rho</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-FreqGridInterpol.html">C2/C2_STFT-FreqGridInterpol.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-FreqGridInterpol.html">C2/C2_STFT-FreqGridInterpol.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>N</strong> (<em>int</em>) – Window size</p></li>
 <li><p><strong>Fs</strong> (<em>scalar</em>) – Sampling rate</p></li>
 <li><p><strong>rho</strong> (<em>int</em>) – Factor for refinement (Default value = 1)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>F_coef_new</strong> (<em>np.ndarray</em>) – Refined frequency vector</p>
 </dd>
 </dl>
@@ -724,18 +668,18 @@ The part of FMP related to this module is available at the following URL:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_interpolation.compute_f_coef_log">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_interpolation.</span></span><span class="sig-name descname"><span class="pre">compute_f_coef_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_interpolation.html#compute_f_coef_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_interpolation.compute_f_coef_log" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_interpolation.</span></span><span class="sig-name descname"><span class="pre">compute_f_coef_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_interpolation.html#compute_f_coef_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_interpolation.compute_f_coef_log" title="Link to this definition">¶</a></dt>
 <dd><p>Adapts the frequency vector in a logarithmic fashion</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-FreqGridInterpol.html">C2/C2_STFT-FreqGridInterpol.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-FreqGridInterpol.html">C2/C2_STFT-FreqGridInterpol.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>R</strong> (<em>scalar</em>) – Resolution (cents)</p></li>
 <li><p><strong>F_min</strong> (<em>float</em>) – Minimum frequency</p></li>
 <li><p><strong>F_max</strong> (<em>float</em>) – Maximum frequency (not included)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>F_coef_log</strong> (<em>np.ndarray</em>) – Refined frequency vector with values given in Hz)</p></li>
 <li><p><strong>F_coef_cents</strong> (<em>np.ndarray</em>) – Refined frequency vector with values given in cents.
@@ -747,71 +691,54 @@ Note: F_min serves as reference (0 cents)</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="libfmp.c2.c2_interpolation.interpolate_freq_stft">
-<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_interpolation.</span></span><span class="sig-name descname"><span class="pre">interpolate_freq_stft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef_new</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_interpolation.html#interpolate_freq_stft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_interpolation.interpolate_freq_stft" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">libfmp.c2.c2_interpolation.</span></span><span class="sig-name descname"><span class="pre">interpolate_freq_stft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_coef_new</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/libfmp/c2/c2_interpolation.html#interpolate_freq_stft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libfmp.c2.c2_interpolation.interpolate_freq_stft" title="Link to this definition">¶</a></dt>
 <dd><p>Interpolation of STFT along frequency axis</p>
-<p>Notebook: <a class="reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-FreqGridInterpol.html">C2/C2_STFT-FreqGridInterpol.ipynb</a></p>
+<p>Notebook: <a class="extlink-fmpnotebook reference external" href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-FreqGridInterpol.html">C2/C2_STFT-FreqGridInterpol.ipynb</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>Y</strong> (<em>np.ndarray</em>) – Magnitude STFT</p></li>
 <li><p><strong>F_coef</strong> (<em>np.ndarray</em>) – Vector of frequency values</p></li>
 <li><p><strong>F_coef_new</strong> (<em>np.ndarray</em>) – Vector of new frequency values</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>Y_interpol</strong> (<em>np.ndarray</em>) – Interploated magnitude STFT</p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="index_c3.html" class="btn btn-neutral float-right" title="Music Synchronization (libfmp.c3)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index_c1.html" class="btn btn-neutral float-left" title="Music Representations (libfmp.c1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index_c3.html" class="btn btn-neutral float-right" title="Music Synchronization (libfmp.c3)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
-
-    </p>
+    <p>&#169; Copyright 2021, Meinard Müller and Frank Zalkow.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

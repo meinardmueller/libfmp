@@ -1,101 +1,52 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>libfmp.c7.c7s2_audio_matching &mdash; libfmp 1.2.3 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
+  <title>libfmp.c7.c7s2_audio_matching &mdash; libfmp 1.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
+        <script src="../../../_static/documentation_options.js?v=1f29e9d3"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../../index.html">
           
-
-          
+          <a href="../../../index.html">
             
-            <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
-          
+              <img src="../../../_static/Logo_libfmp.png" class="logo" alt="Logo"/>
           </a>
-
-          
-            
-            
               <div class="version">
-                1.2.3
+                1.3.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API Documentation</span></p>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_b.html">Basics (libfmp.b)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c1.html">Music Representations (libfmp.c1)</a></li>
@@ -107,75 +58,36 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c7.html">Content-Based Audio Retrieval (libfmp.c7)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_c8.html">Musically Informed Audio Decomposition (libfmp.c8)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">libfmp</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-        
-      <li>libfmp.c7.c7s2_audio_matching</li>
-    
-    
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">libfmp.c7.c7s2_audio_matching</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for libfmp.c7.c7s2_audio_matching</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Module: libfmp.c7.c7s2_audio_matching</span>
@@ -184,18 +96,20 @@
 
 <span class="sd">This file is part of the FMP Notebooks (https://www.audiolabs-erlangen.de/FMP)</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">patches</span>
-<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
-<span class="kn">import</span> <span class="nn">scipy</span>
-<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">patches</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numba</span><span class="w"> </span><span class="kn">import</span> <span class="n">jit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">librosa</span>
 
-<span class="kn">import</span> <span class="nn">libfmp.c3</span>
-<span class="kn">import</span> <span class="nn">libfmp.c7</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libfmp.c3</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libfmp.c7</span>
 
 
-<div class="viewcode-block" id="quantize_matrix"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.quantize_matrix">[docs]</a><span class="k">def</span> <span class="nf">quantize_matrix</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">quant_fct</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Quantize matrix values in a logarithmic manner (as done for CENS features)</span>
+<div class="viewcode-block" id="quantize_matrix">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.quantize_matrix">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">quantize_matrix</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">quant_fct</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Quantize matrix values in a logarithmic manner (as done for CENS features)</span>
 
 <span class="sd">    Notebook: C7/C7S2_CENS.ipynb</span>
 
@@ -215,8 +129,11 @@
     <span class="k">return</span> <span class="n">C_quant</span></div>
 
 
-<div class="viewcode-block" id="compute_cens_from_chromagram"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_cens_from_chromagram">[docs]</a><span class="k">def</span> <span class="nf">compute_cens_from_chromagram</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ell</span><span class="o">=</span><span class="mi">41</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">quant</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute CENS features from chromagram</span>
+
+<div class="viewcode-block" id="compute_cens_from_chromagram">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_cens_from_chromagram">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_cens_from_chromagram</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ell</span><span class="o">=</span><span class="mi">41</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">quant</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute CENS features from chromagram</span>
 
 <span class="sd">    Notebook: C7/C7S2_CENS.ipynb</span>
 
@@ -241,8 +158,11 @@
     <span class="k">return</span> <span class="n">C_CENS</span><span class="p">,</span> <span class="n">Fs_CENS</span></div>
 
 
-<div class="viewcode-block" id="scale_tempo_sequence"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.scale_tempo_sequence">[docs]</a><span class="k">def</span> <span class="nf">scale_tempo_sequence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Scales a sequence (given as feature matrix) along time (second dimension)</span>
+
+<div class="viewcode-block" id="scale_tempo_sequence">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.scale_tempo_sequence">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">scale_tempo_sequence</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scales a sequence (given as feature matrix) along time (second dimension)</span>
 
 <span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
 
@@ -262,8 +182,11 @@
     <span class="k">return</span> <span class="n">X_new</span><span class="p">,</span> <span class="n">N_new</span></div>
 
 
-<div class="viewcode-block" id="cost_matrix_dot"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.cost_matrix_dot">[docs]</a><span class="k">def</span> <span class="nf">cost_matrix_dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Computes cost matrix via dot product</span>
+
+<div class="viewcode-block" id="cost_matrix_dot">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.cost_matrix_dot">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cost_matrix_dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes cost matrix via dot product</span>
 
 <span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
 
@@ -277,8 +200,11 @@
     <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="matching_function_diag"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matching_function_diag">[docs]</a><span class="k">def</span> <span class="nf">matching_function_diag</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">cyclic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Computes diagonal matching function</span>
+
+<div class="viewcode-block" id="matching_function_diag">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matching_function_diag">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">matching_function_diag</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">cyclic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes diagonal matching function</span>
 
 <span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
 
@@ -300,8 +226,11 @@
     <span class="k">return</span> <span class="n">Delta</span></div>
 
 
-<div class="viewcode-block" id="mininma_from_matching_function"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.mininma_from_matching_function">[docs]</a><span class="k">def</span> <span class="nf">mininma_from_matching_function</span><span class="p">(</span><span class="n">Delta</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Derives local minima positions of matching function in an iterative fashion</span>
+
+<div class="viewcode-block" id="mininma_from_matching_function">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.mininma_from_matching_function">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mininma_from_matching_function</span><span class="p">(</span><span class="n">Delta</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Derives local minima positions of matching function in an iterative fashion</span>
 
 <span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
 
@@ -330,8 +259,11 @@
     <span class="k">return</span> <span class="n">pos</span></div>
 
 
-<div class="viewcode-block" id="matches_diag"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matches_diag">[docs]</a><span class="k">def</span> <span class="nf">matches_diag</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">Delta_N</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Derives matches from positions in the case of diagonal matching</span>
+
+<div class="viewcode-block" id="matches_diag">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matches_diag">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">matches_diag</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">Delta_N</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Derives matches from positions in the case of diagonal matching</span>
 
 <span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
 
@@ -353,8 +285,11 @@
     <span class="k">return</span> <span class="n">matches</span></div>
 
 
-<div class="viewcode-block" id="plot_matches"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.plot_matches">[docs]</a><span class="k">def</span> <span class="nf">plot_matches</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">matches</span><span class="p">,</span> <span class="n">Delta</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s_marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">t_marker</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plots matches into existing axis</span>
+
+<div class="viewcode-block" id="plot_matches">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.plot_matches">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_matches</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">matches</span><span class="p">,</span> <span class="n">Delta</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s_marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">t_marker</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plots matches into existing axis</span>
 
 <span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
 
@@ -376,8 +311,11 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="matching_function_diag_multiple"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matching_function_diag_multiple">[docs]</a><span class="k">def</span> <span class="nf">matching_function_diag_multiple</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cyclic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Computes diagonal matching function using multiple query strategy</span>
+
+<div class="viewcode-block" id="matching_function_diag_multiple">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matching_function_diag_multiple">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">matching_function_diag_multiple</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">tempo_rel_set</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cyclic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes diagonal matching function using multiple query strategy</span>
 
 <span class="sd">    Notebook: C7/C7S2_DiagonalMatching.ipynb</span>
 
@@ -406,9 +344,12 @@
     <span class="k">return</span> <span class="n">Delta_min</span><span class="p">,</span> <span class="n">Delta_N</span><span class="p">,</span> <span class="n">Delta_scale</span></div>
 
 
-<div class="viewcode-block" id="compute_accumulated_cost_matrix_subsequence_dtw"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_accumulated_cost_matrix_subsequence_dtw">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">compute_accumulated_cost_matrix_subsequence_dtw</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Given the cost matrix, compute the accumulated cost matrix for</span>
+
+<div class="viewcode-block" id="compute_accumulated_cost_matrix_subsequence_dtw">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_accumulated_cost_matrix_subsequence_dtw">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_accumulated_cost_matrix_subsequence_dtw</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Given the cost matrix, compute the accumulated cost matrix for</span>
 <span class="sd">    subsequence dynamic time warping with step sizes {(1, 0), (0, 1), (1, 1)}</span>
 
 <span class="sd">    Notebook: C7/C7S2_SubsequenceDTW.ipynb</span>
@@ -429,9 +370,12 @@
     <span class="k">return</span> <span class="n">D</span></div>
 
 
-<div class="viewcode-block" id="compute_optimal_warping_path_subsequence_dtw"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_optimal_warping_path_subsequence_dtw">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">compute_optimal_warping_path_subsequence_dtw</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">m</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Given an accumulated cost matrix, compute the warping path for</span>
+
+<div class="viewcode-block" id="compute_optimal_warping_path_subsequence_dtw">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_optimal_warping_path_subsequence_dtw">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_optimal_warping_path_subsequence_dtw</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">m</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Given an accumulated cost matrix, compute the warping path for</span>
 <span class="sd">    subsequence dynamic time warping with step sizes {(1, 0), (0, 1), (1, 1)}</span>
 
 <span class="sd">    Notebook: C7/C7S2_SubsequenceDTW.ipynb</span>
@@ -467,9 +411,12 @@
     <span class="k">return</span> <span class="n">P</span></div>
 
 
-<div class="viewcode-block" id="compute_accumulated_cost_matrix_subsequence_dtw_21"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_accumulated_cost_matrix_subsequence_dtw_21">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">compute_accumulated_cost_matrix_subsequence_dtw_21</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Given the cost matrix, compute the accumulated cost matrix for</span>
+
+<div class="viewcode-block" id="compute_accumulated_cost_matrix_subsequence_dtw_21">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_accumulated_cost_matrix_subsequence_dtw_21">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_accumulated_cost_matrix_subsequence_dtw_21</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Given the cost matrix, compute the accumulated cost matrix for</span>
 <span class="sd">    subsequence dynamic time warping with step sizes {(1, 1), (2, 1), (1, 2)}</span>
 
 <span class="sd">    Notebook: C7/C7S2_SubsequenceDTW.ipynb</span>
@@ -496,9 +443,12 @@
     <span class="k">return</span> <span class="n">D</span></div>
 
 
-<div class="viewcode-block" id="compute_optimal_warping_path_subsequence_dtw_21"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_optimal_warping_path_subsequence_dtw_21">[docs]</a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">compute_optimal_warping_path_subsequence_dtw_21</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">m</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Given an accumulated cost matrix, compute the warping path for</span>
+
+<div class="viewcode-block" id="compute_optimal_warping_path_subsequence_dtw_21">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_optimal_warping_path_subsequence_dtw_21">[docs]</a>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_optimal_warping_path_subsequence_dtw_21</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">m</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Given an accumulated cost matrix, compute the warping path for</span>
 <span class="sd">    subsequence dynamic time warping with step sizes {(1, 1), (2, 1), (1, 2)}</span>
 
 <span class="sd">    Notebook: C7/C7S2_SubsequenceDTW.ipynb</span>
@@ -534,8 +484,11 @@
     <span class="k">return</span> <span class="n">P</span></div>
 
 
-<div class="viewcode-block" id="compute_cens_from_file"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_cens_from_file">[docs]</a><span class="k">def</span> <span class="nf">compute_cens_from_file</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">4410</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">2205</span><span class="p">,</span> <span class="n">ell</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute CENS features from file</span>
+
+<div class="viewcode-block" id="compute_cens_from_file">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_cens_from_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_cens_from_file</span><span class="p">(</span><span class="n">fn_wav</span><span class="p">,</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">4410</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">2205</span><span class="p">,</span> <span class="n">ell</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute CENS features from file</span>
 
 <span class="sd">    Notebook: C7/C7S2_AudioMatching.ipynb</span>
 
@@ -561,8 +514,11 @@
     <span class="k">return</span> <span class="n">X_CENS</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Fs_CENS</span><span class="p">,</span> <span class="n">x_duration</span></div>
 
 
-<div class="viewcode-block" id="compute_matching_function_dtw"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_matching_function_dtw">[docs]</a><span class="k">def</span> <span class="nf">compute_matching_function_dtw</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute CENS features from file</span>
+
+<div class="viewcode-block" id="compute_matching_function_dtw">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_matching_function_dtw">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_matching_function_dtw</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute CENS features from file</span>
 
 <span class="sd">    Notebook: C7/C7S2_AudioMatching.ipynb</span>
 
@@ -586,8 +542,11 @@
     <span class="k">return</span> <span class="n">Delta</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span></div>
 
 
-<div class="viewcode-block" id="matches_dtw"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matches_dtw">[docs]</a><span class="k">def</span> <span class="nf">matches_dtw</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Derives matches from positions for DTW-based strategy</span>
+
+<div class="viewcode-block" id="matches_dtw">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.matches_dtw">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">matches_dtw</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Derives matches from positions for DTW-based strategy</span>
 
 <span class="sd">    Notebook: C7/C7S2_AudioMatching.ipynb</span>
 
@@ -612,8 +571,11 @@
     <span class="k">return</span> <span class="n">matches</span></div>
 
 
-<div class="viewcode-block" id="compute_matching_function_dtw_ti"><a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_matching_function_dtw_ti">[docs]</a><span class="k">def</span> <span class="nf">compute_matching_function_dtw_ti</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">cyc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute transposition-invariant matching function</span>
+
+<div class="viewcode-block" id="compute_matching_function_dtw_ti">
+<a class="viewcode-back" href="../../../index_c7.html#libfmp.c7.c7s2_audio_matching.compute_matching_function_dtw_ti">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_matching_function_dtw_ti</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">cyc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute transposition-invariant matching function</span>
 
 <span class="sd">    Notebook: C7/C7S2_AudioMatching.ipynb</span>
 
@@ -637,49 +599,34 @@
     <span class="n">Delta_TI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Delta_cyc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">Delta_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">Delta_cyc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Delta_TI</span><span class="p">,</span> <span class="n">Delta_ind</span><span class="p">,</span> <span class="n">Delta_cyc</span></div>
+
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Meinard Müller and Frank Zalkow.
-
-    </p>
+    <p>&#169; Copyright 2021, Meinard Müller and Frank Zalkow.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
