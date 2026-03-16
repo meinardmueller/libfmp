@@ -113,7 +113,7 @@ autodoc_preserve_defaults = True
 # Interpret "Returns" section as "Args" section
 napoleon_custom_sections = [('Returns', 'params_style'), ('Attributes', 'params_style')]
 
-extlinks = {'fmpbook': ('https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP', 'FMP'),
+extlinks = {'fmpbook': ('https://www.audiolabs-erlangen.de/fau/professor/mueller/bookFMP%s', 'FMP%s'),
             'fmpnotebook': ('https://www.audiolabs-erlangen.de/resources/MIR/FMP/%s.html', '%s.ipynb')}
 
 
