@@ -10,6 +10,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+from datetime import date
 import re
 import os
 
@@ -34,8 +35,9 @@ assert libfmp.__path__[0].startswith(FMP_DIR)
 
 # -- Project information -----------------------------------------------------
 
+
 project = 'libfmp'
-copyright = '2021, Meinard Müller and Frank Zalkow'
+copyright = f'2021–{date.today().year}, Meinard Müller and Frank Zalkow'
 author = 'Meinard Müller and Frank Zalkow'
 
 # The version info for the project you're documenting, acts as replacement for
