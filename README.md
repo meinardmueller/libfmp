@@ -10,7 +10,7 @@ https://www.audiolabs-erlangen.de/resources/MIR/FMP/B/B_libfmp.html
 
 There is also an API documentation for libfmp:
 
-https://meinardmueller.github.io/libfmp
+https://groupmm.github.io/libfmp
 
 If you use the package libfmp, please consider the following references.
 
